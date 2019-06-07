@@ -24,7 +24,7 @@ export default fp(async (server, {}, next) => {
       return reply.code(200).send({
         status: 200,
         data: {
-          access_token: 'access token here',
+          access_token: 'get access token',
         },
       });
     },

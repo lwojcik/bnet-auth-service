@@ -2,7 +2,7 @@ import fp from 'fastify-plugin';
 
 export default fp(async (server, {}, next) => {
   server.route({
-    url: '/accessToken/get',
+    url: '/accessToken/check',
     method: 'GET',
     // schema,
     // preHandler: (request, reply, done) => {

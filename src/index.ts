@@ -21,7 +21,7 @@ import appConfig from './config/app';
 // const twitchConfig = require('./config/twitch');
 // const redisConfig = require('./config/redis');
 
-import routes from './routes/index';
+import * as routes from './routes/index';
 // const saveConfigRoutes = require('./routes/v1.1/config/save');
 // const getConfigRoutes = require('./routes/v1.1/config/get');
 
@@ -85,7 +85,10 @@ const plugins = [
   helmet,
 
   /* Routes */
-  routes,
+  routes.checkAccessToken,
+  routes.fetchAccessToken,
+  routes.getAccessToken,
+  routes.refreshAccessToken,
 ] as FastifyPlugins;
 
 // /* Caching */

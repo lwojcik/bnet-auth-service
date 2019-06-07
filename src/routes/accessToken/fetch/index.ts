@@ -1,30 +1,32 @@
 import fp from 'fastify-plugin';
+import schema from './schema';
+import { BlizzAPI } from 'blizzapi';
+
+import bnetConfig from '../../../config/bnet';
+
+const { region, apiKey, apiSecret } = bnetConfig;
 
 export default fp(async (server, {}, next) => {
   server.route({
-    url: '/accessToken/get',
+    schema,
+    url: '/accessToken/fetch',
     method: 'GET',
-    // schema,
-    // preHandler: (request, reply, done) => {
-    //   const { channelId } = request.params;
-    //   const { token } = request.headers;
-    //   const validRequest = server.twitchEbs.validatePermission(token, channelId, ['viewer', 'broadcaster']);
-
-    //   if (validRequest) {
-    //     done();
-    //   } else {
-    //     server.log.error('invalid request');
-    //     reply.code(400).send({
-    //       status: 400,
-    //       message: 'Bad request',
-    //     });
-    //   }
-    // },
     handler: async ({}, reply) => {
+      const blizzAPI = new BlizzAPI(region, apiKey, apiSecret);
+      const accessToken = await blizzAPI.getAccessToken();
+
+      if (!accessToken) {
+        return reply.code(400).send({
+          status: 400,
+          message: 'Error fetching access token',
+        });
+      }
+
       return reply.code(200).send({
         status: 200,
+        message: 'Access token fetched successfully',
         data: {
-          access_token: 'access token here',
+          accessToken,
         },
       });
     },

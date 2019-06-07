@@ -2,7 +2,7 @@ import fp from 'fastify-plugin';
 
 export default fp(async (server, {}, next) => {
   server.route({
-    url: '/accessToken/get',
+    url: '/accessToken/refresh',
     method: 'GET',
     // schema,
     // preHandler: (request, reply, done) => {
@@ -24,7 +24,7 @@ export default fp(async (server, {}, next) => {
       return reply.code(200).send({
         status: 200,
         data: {
-          access_token: 'access token here',
+          access_token: 'refresh access token here',
         },
       });
     },
