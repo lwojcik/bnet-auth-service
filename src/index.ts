@@ -12,8 +12,8 @@ import noIcon from 'fastify-no-icon';
 import tlsKeygen from 'fastify-tls-keygen';
 // const fastifyCaching = require('fastify-caching');
 // const fastifyRedis = require('fastify-redis');
-// const Redis = require('ioredis');
-// const AbstractCache = require('abstract-cache');
+// import Redis from 'ioredis';
+// import AbstractCache from 'abstract-cache';
 // const twitchEbs = require('fastify-twitch-ebs-tools');
 
 import appConfig from './config/app';
@@ -49,7 +49,21 @@ const server = fastify({
 
 /* Server plugins */
 
+// /* Caching */
 
+// 
+// const abcache = new AbstractCache({
+//   useAwait: true,
+//   driver: {
+//     name: 'abstract-cache-redis',
+//     options: {
+//       client: redisClient,
+//       cacheSegment: 'sc2pte-cache',
+//     },
+//   },
+// });
+
+// const redisClient = new Redis(redisConfig.connectionString);
 
 const plugins = [
   /* Display the routes table to console at startup */
@@ -90,21 +104,6 @@ const plugins = [
   routes.getAccessToken,
   routes.refreshAccessToken,
 ] as FastifyPlugins;
-
-// /* Caching */
-
-// const redisClient = new Redis(redisConfig.connectionString);
-
-// const abcache = new AbstractCache({
-//   useAwait: true,
-//   driver: {
-//     name: 'abstract-cache-redis',
-//     options: {
-//       client: redisClient,
-//       cacheSegment: 'sc2pte-cache',
-//     },
-//   },
-// });
 
 // server.register(fastifyRedis, { client: redisClient });
 // server.register(fastifyCaching, {

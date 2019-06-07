@@ -24,7 +24,6 @@ export default fp(async (server, {}, next) => {
 
       return reply.code(200).send({
         status: 200,
-        message: 'Access token fetched successfully',
         data: {
           accessToken,
         },
