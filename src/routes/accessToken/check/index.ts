@@ -4,23 +4,11 @@ export default fp(async (server, {}, next) => {
   server.route({
     url: '/accessToken/check',
     method: 'GET',
-    // schema,
-    // preHandler: (request, reply, done) => {
-    //   const { channelId } = request.params;
-    //   const { token } = request.headers;
-    //   const validRequest = server.twitchEbs.validatePermission(token, channelId, ['viewer', 'broadcaster']);
-
-    //   if (validRequest) {
-    //     done();
-    //   } else {
-    //     server.log.error('invalid request');
-    //     reply.code(400).send({
-    //       status: 400,
-    //       message: 'Bad request',
-    //     });
-    //   }
-    // },
     handler: async ({}, reply) => {
+      // get token
+      // check token
+      // if ok return ok
+      // else fetch and save new one
       return reply.code(200).send({
         status: 200,
         data: {
