@@ -1,33 +1,22 @@
 require('dotenv').config();
 import fastify, { ServerOptions, Plugin } from 'fastify';
 import { Server, IncomingMessage, ServerResponse } from 'http';
-import cors from 'fastify-cors';
 // const rateLimit = require('fastify-rate-limit');
 import blipp from 'fastify-blipp';
 // const healthcheck = require('fastify-healthcheck');
 // const compression = require('fastify-compress');
 import helmet from 'fastify-helmet';
-// const sensible = require('fastify-sensible');
-import noIcon from 'fastify-no-icon';
-import tlsKeygen from 'fastify-tls-keygen';
 // const fastifyCaching = require('fastify-caching');
 // const fastifyRedis = require('fastify-redis');
 // import Redis from 'ioredis';
 // import AbstractCache from 'abstract-cache';
-// const twitchEbs = require('fastify-twitch-ebs-tools');
 
 import appConfig from './config/app';
-// const dbConfig = require('./config/database');
-// const twitchConfig = require('./config/twitch');
 // const redisConfig = require('./config/redis');
 
 import * as routes from './routes/index';
-// const saveConfigRoutes = require('./routes/v1.1/config/save');
-// const getConfigRoutes = require('./routes/v1.1/config/get');
 
 // const db = require('./plugins/db');
-
-// const sc2pte = require('./plugins/sc2pte');
 
 /* Fastify plugin types */
 
@@ -69,32 +58,6 @@ const plugins = [
   /* Display the routes table to console at startup */
   blipp,
 
-  /* CORS options */
-  {
-    plugin: cors,
-    options: {
-      origin: '*',
-      methods: ['GET', 'POST'],
-      credentials: true,
-      allowedHeaders: [
-        'X-Requested-With',
-        'content-type',
-        'channelId',
-        'regionId',
-        'realmId',
-        'playerId',
-        'selectedView',
-        'token',
-      ],
-    }
-  },
-
-  /* Generate TLS certificate if served via HTTPS */
-  (process.env.API_HOST_PROTOCOL === 'https' ? tlsKeygen : null),
-
-  /* Deal with annoying /favicon.ico requests */
-  noIcon,
-
   /* Important security headers */
   helmet,
 
@@ -116,8 +79,6 @@ const plugins = [
 
 // server.register(compression);
 // server.register(helmet);
-// server.register(db, { uri: dbConfig.connectionString });
-// server.register(healthcheck, { healthcheckUrl: '/status' });
 // server.register(rateLimit, {
 //   max: 100,
 //   timeWindow: '1 minute',
@@ -125,23 +86,6 @@ const plugins = [
 //   whitelist: ['127.0.0.1'],
 //   skipOnError: true,
 // });
-// server.register(sensible);
-// server.register(twitchEbs, {
-//   enabled: env.NODE_ENV === 'production',
-//   secret: twitchConfig.sharedSecret,
-// });
-// server.register(noIcon);
-// server.register(sc2pte);
-
-// if (env.API_HOST_PROTOCOL === 'https') {
-//   server.register(tlsKeygen);
-// }
-
-// /* Routes */
-
-// server.register(getViewerRoutes);
-// server.register(getConfigRoutes);
-// server.register(saveConfigRoutes);
 
 /* Registering server plugins */
 
