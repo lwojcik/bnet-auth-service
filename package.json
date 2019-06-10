@@ -5,7 +5,8 @@
   "description": "Battle.net authentication service",
   "main": "src/index.js",
   "scripts": {
-    "dev": "tsc-watch --onSuccess \"node ./dist/index.js\" | pino-pretty"
+    "dev": "tsc-watch --onSuccess \"node ./dist/index.js\" | pino-pretty",
+    "test": "jest"
   },
   "repository": {
     "type": "git",
@@ -48,10 +49,12 @@
   },
   "devDependencies": {
     "@types/ioredis": "4.0.11",
+    "@types/jest": "24.0.13",
     "@types/node": "12.0.2",
     "jest": "24.8.0",
     "pino-pretty": "3.1.0",
     "prettier": "1.17.1",
+    "ts-jest": "24.0.2",
     "tsc-watch": "2.2.1",
     "tslint": "5.16.0",
     "tslint-config-airbnb": "5.11.1",

@@ -8,7 +8,8 @@
 const redisConfig = {
   connectionString: process.env.API_REDIS_CONNECTION_STRING || 'redis://127.0.0.1:6379',
   db: process.env.API_REDIS_DB || '4',
-  replyCachePeriod: process.env.API_REDIS_CACHE_PERIOD || 1000 * 60 * 5
+  replyCachePeriod: process.env.API_REDIS_CACHE_PERIOD || 1000 * 60 * 5,
+  cacheSegment: process.env.API_REDIS_CACHE_SEGMENT || 'bas',
 };
 
 export default redisConfig;

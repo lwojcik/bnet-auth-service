@@ -8,5 +8,15 @@ declare module "fastify" {
     HttpResponse = http.ServerResponse
   > {
     blipp(): void;
+    cache: {
+      has: (key) => boolean,
+      set: (key, value, cachePeriod) => void,
+      get: (key) => Promise<{
+        item: string,
+        stored: number,
+        ttl: number,
+      }>,
+    };
+    log(): void;
   }
 }

@@ -65,8 +65,6 @@ const plugins = [
   },
 
   /* Routes */
-  routes.checkAccessToken,
-  routes.fetchAccessToken,
   routes.getAccessToken,
   routes.refreshAccessToken,
 ] as FastifyPlugins;
