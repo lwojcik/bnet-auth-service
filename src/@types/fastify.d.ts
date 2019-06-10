@@ -10,7 +10,7 @@ declare module "fastify" {
     blipp(): void;
     cache: {
       has: (key) => boolean,
-      set: (key, value, cachePeriod) => void,
+      set: (key, value, cachePeriod) => any,
       get: (key) => Promise<{
         item: string,
         stored: number,

@@ -1,4 +1,5 @@
 import fp from 'fastify-plugin';
+import schema from './schema';
 import { BlizzAPI } from 'blizzapi';
 
 import bnetConfig from '../../../config/bnet';
@@ -29,12 +30,12 @@ const getAccessTokenFromRedis = async (server: FastifyInstance): Promise<string>
 
 export default fp(async (server, {}, next) => {
   server.route({
+    schema,
     url: '/accessToken/get',
     method: 'GET',
     handler: async (request, reply) => {
-      const { refresh } = request.params;
-
-      const accessToken = (refresh && !server.cache.has(cacheSegment))
+      const { refresh } = request.query;
+      const accessToken = (!!refresh || !server.cache.has(cacheSegment))
         ? await fetchAccessTokenFromBnet()
         : await getAccessTokenFromRedis(server);
 
