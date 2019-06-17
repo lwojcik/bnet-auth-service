@@ -106,5 +106,9 @@ process.on('unhandledRejection', (error) => {
 
 /* Here we go! */
 
-registerPlugins(plugins);
-start();
+const startServer = () => {
+  registerPlugins(plugins);
+  start();
+}
+
+export = startServer;

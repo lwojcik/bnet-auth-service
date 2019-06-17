@@ -5,7 +5,7 @@
   "description": "Battle.net authentication service",
   "main": "dist/index.js",
   "scripts": {
-    "dev": "tsc-watch --onSuccess \"node ./dist/index.js\" | pino-pretty",
+    "dev": "tsc-watch --onSuccess \"node start\" | pino-pretty",
     "test": "jest",
     "build": "tsc",
     "format": "prettier --write \"src/**/*.ts\" \"src/**/*.js\"",
