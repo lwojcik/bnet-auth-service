@@ -7,7 +7,9 @@
   "scripts": {
     "dev": "tsc-watch --onSuccess \"node start\" | pino-pretty",
     "test": "jest",
-    "build": "tsc",
+    "clearTestCache": "jest --clearCache",
+    "clean": "rimraf dist/*",
+    "build": "npm run clean && tsc",
     "format": "prettier --write \"src/**/*.ts\" \"src/**/*.js\"",
     "lint": "tslint --project tsconfig.json"
   },
@@ -43,7 +45,8 @@
     "fastify-plugin": "1.6.0",
     "fastify-rate-limit": "2.1.1",
     "fastify-redis": "3.1.0",
-    "ioredis": "4.9.5"
+    "ioredis": "4.9.5",
+    "rimraf": "2.6.3"
   },
   "devDependencies": {
     "@types/ioredis": "4.0.11",

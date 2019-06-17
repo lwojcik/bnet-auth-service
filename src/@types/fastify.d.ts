@@ -18,5 +18,6 @@ declare module "fastify" {
       }>,
     };
     log(): void;
+    close(): Promise<any>;
   }
 }

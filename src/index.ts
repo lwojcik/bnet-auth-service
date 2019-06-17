@@ -1,5 +1,5 @@
 require('dotenv').config();
-import fastify, { ServerOptions, Plugin } from 'fastify';
+import fastify, { ServerOptions, Plugin, FastifyInstance } from 'fastify';
 import { Server, IncomingMessage, ServerResponse } from 'http';
 import blipp from 'fastify-blipp';
 import fastifyCaching from 'fastify-caching';
@@ -25,7 +25,7 @@ type FastifyPlugins = (FastifyPlugin | FastifyPluginObject)[];
 
 /* Server instance */
 
-const server = fastify({
+const fastifyServer = fastify({
   logger: process.env.NODE_ENV === 'development'
 } as ServerOptions);
 
@@ -72,7 +72,7 @@ const plugins = [
 
 /* Registering server plugins */
 
-const registerPlugins = (plugins: FastifyPlugins) => {
+const registerPlugins = (server: FastifyInstance, plugins: FastifyPlugins) => {
   plugins.map((plugin) => {
     if (typeof plugin === 'function') {
       server.register(plugin);
@@ -84,32 +84,19 @@ const registerPlugins = (plugins: FastifyPlugins) => {
 
 /* Server invocation */
 
-const start = async () => {
+const startServer = async () => {
   try {
-    await server.listen(appConfig.port);
-    server.blipp();
+    registerPlugins(fastifyServer, plugins);
+    await fastifyServer.listen(appConfig.port);
+    fastifyServer.blipp();
   } catch (err) {
-    server.log.error(err);
+    fastifyServer.log.error(err);
     process.exit(1);
   }
 };
 
-
 /* Here we go! */
 
-const startServer = () => {
-  /* Exception handling */
-
-  process.on('uncaughtException', (error) => {
-    console.error(error);
-  });
-
-  process.on('unhandledRejection', (error) => {
-    console.error(error);
-  });
-
-  registerPlugins(plugins);
-  start();
+export = {
+  start: startServer,
 }
-
-export = startServer;

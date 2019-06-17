@@ -2,7 +2,7 @@ const response = {
   200: {
     type: 'object',
     properties: {
-      status: { type: 'string' },
+      status: { type: 'number' },
       message: { type: 'string' },
     },
   },
