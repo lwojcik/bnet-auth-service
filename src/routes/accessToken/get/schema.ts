@@ -12,7 +12,7 @@ const response = {
         properties: {
           accessToken: { type: 'string' }
         },
-      },
+      }
     },
   },
   400: {

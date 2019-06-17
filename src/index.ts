@@ -98,8 +98,8 @@ const startServer = async () => {
     registerPlugins(plugins);
     if (redisConfig.enable) registerPlugins(cacheSetup() as FastifyPlugins);
     await fastifyServer.listen(appConfig.port);
-    fastifyServer.blipp();
     fastifyServer.log.info(`Redis cache enabled: ${redisConfig.enable}`);
+    fastifyServer.blipp();
   } catch (err) {
     fastifyServer.log.error(err);
   }
