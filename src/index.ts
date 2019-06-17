@@ -94,19 +94,20 @@ const start = async () => {
   }
 };
 
-/* Exception handling */
-
-process.on('uncaughtException', (error) => {
-  console.error(error);
-});
-
-process.on('unhandledRejection', (error) => {
-  console.error(error);
-});
 
 /* Here we go! */
 
 const startServer = () => {
+  /* Exception handling */
+
+  process.on('uncaughtException', (error) => {
+    console.error(error);
+  });
+
+  process.on('unhandledRejection', (error) => {
+    console.error(error);
+  });
+
   registerPlugins(plugins);
   start();
 }
