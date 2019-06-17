@@ -1,5 +1,5 @@
 require('dotenv').config();
-import fastify, { ServerOptions, Plugin, FastifyInstance } from 'fastify';
+import fastify, { ServerOptions, Plugin } from 'fastify';
 import { Server, IncomingMessage, ServerResponse } from 'http';
 import blipp from 'fastify-blipp';
 import fastifyCaching from 'fastify-caching';
@@ -31,38 +31,45 @@ const fastifyServer = fastify({
 
 /* Caching */
 
-const redisClient = new Redis(redisConfig.connectionString);
+const cacheSetup = () => {
+  if (redisConfig.enable) {
+    const redisClient = new Redis(redisConfig.connectionString);
+
+    return [
+      {
+        plugin: fastifyRedis,
+        options: {
+          client: redisClient,
+        },
+      },
+    
+      {
+        plugin: fastifyCaching,
+        options: {
+          cache: new AbstractCache({
+            useAwait: true,
+            driver: {
+              name: 'abstract-cache-redis',
+              options: {
+                client: redisClient,
+                cacheSegment: 'bas-cache',
+              },
+            },
+          }),
+          expiresIn: 5 * 60, // seconds
+          cacheSegment: process.env.API_REDIS_CACHE_SEGMENT,
+        },
+      },
+    ]
+  }
+  return {
+    plugins: null,
+  };
+}
 
 const plugins = [
   /* Display the routes table to console at startup */
   blipp,
-
-  /* Caching */
-
-  {
-    plugin: fastifyRedis,
-    options: {
-      client: redisClient,
-    },
-  },
-
-  {
-    plugin: fastifyCaching,
-    options: {
-      cache: new AbstractCache({
-        useAwait: true,
-        driver: {
-          name: 'abstract-cache-redis',
-          options: {
-            client: redisClient,
-            cacheSegment: 'bas-cache',
-          },
-        },
-      }),
-      expiresIn: 5 * 60, // seconds
-      cacheSegment: process.env.API_REDIS_CACHE_SEGMENT,
-    },
-  },
 
   /* Routes */
   routes.status,
@@ -72,26 +79,29 @@ const plugins = [
 
 /* Registering server plugins */
 
-const registerPlugins = (server: FastifyInstance, plugins: FastifyPlugins) => {
-  plugins.map((plugin) => {
-    if (typeof plugin === 'function') {
-      server.register(plugin);
-    } else if (plugin !== null && 'plugin' in plugin && 'options' in plugin) {
-      server.register(plugin.plugin, plugin.options);
-    }
-  });
+const registerPlugins = (plugins: FastifyPlugins | null) => {
+  if (plugins) {
+    plugins.map((plugin) => {
+      if (typeof plugin === 'function') {
+        fastifyServer.register(plugin);
+      } else if (plugin !== null && 'plugin' in plugin && 'options' in plugin) {
+        fastifyServer.register(plugin.plugin, plugin.options);
+      }
+    });
+  }
 }
 
 /* Server invocation */
 
 const startServer = async () => {
   try {
-    registerPlugins(fastifyServer, plugins);
+    registerPlugins(plugins);
+    if (redisConfig.enable) registerPlugins(cacheSetup() as FastifyPlugins);
     await fastifyServer.listen(appConfig.port);
     fastifyServer.blipp();
+    fastifyServer.log.info(`Redis cache enabled: ${redisConfig.enable}`);
   } catch (err) {
     fastifyServer.log.error(err);
-    process.exit(1);
   }
 };
 
@@ -99,4 +109,6 @@ const startServer = async () => {
 
 export = {
   start: startServer,
+  registerPlugins: () => registerPlugins(plugins),
+  instance: fastifyServer,
 }
