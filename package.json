@@ -44,26 +44,25 @@
     "fastify-log": "1.0.3",
     "fastify-plugin": "1.6.0",
     "fastify-rate-limit": "2.1.1",
-    "fastify-redis": "3.1.0",
-    "ioredis": "4.9.5",
+    "fastify-redis": "3.1.1",
+    "ioredis": "4.10.0",
     "rimraf": "2.6.3"
   },
   "devDependencies": {
-    "@types/ioredis": "4.0.11",
-    "@types/jest": "24.0.13",
-    "@types/node": "12.0.2",
+    "@types/ioredis": "4.0.12",
+    "@types/jest": "24.0.15",
+    "@types/node": "12.0.8",
     "jest": "24.8.0",
-    "jest-mock-console": "1.0.0",
-    "pino-pretty": "3.1.0",
-    "prettier": "1.17.1",
+    "pino-pretty": "3.2.0",
+    "prettier": "1.18.2",
     "ts-jest": "24.0.2",
     "tsc-watch": "2.2.1",
-    "tslint": "5.16.0",
+    "tslint": "5.17.0",
     "tslint-config-airbnb": "5.11.1",
     "tslint-config-prettier": "1.18.0",
     "tslint-eslint-rules": "5.4.0",
-    "tslint-immutable": "5.5.2",
+    "tslint-immutable": "6.0.0",
     "tslint-plugin-prettier": "2.0.1",
-    "typescript": "3.5.1"
+    "typescript": "3.5.2"
   }
 }
