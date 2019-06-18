@@ -1,20 +1,35 @@
-import server from '../src/index';
+const redisConfig = require('../src/config/redis');
 
+global.console.log = jest.fn();
 
-describe('/status', () => {
-  beforeAll(async () => {
-    server.registerPlugins();
-    await server.instance.ready();
+jest.mock('../src/config/redis', () => ({  
+  enable: jest.fn(),
+}));
+
+describe('Server', () => {
+  const server = require('../src/index');
+
+  beforeEach(() => {
+    jest.resetModules();
+    jest.resetAllMocks();
   });
 
-  it("GET returns 200", async done => {
-    const response = await server.instance.inject({ method: "GET", url: "/status" });
-    expect(response.statusCode).toEqual(200);
-    const payload: { status: number; message: string } = JSON.parse(
-      response.payload
-    );
-    expect(payload).toMatchSnapshot({ status: 200, message: 'ok' });
 
-    done();
+  it("works with redis disabled", (done) => {
+    expect(() => {
+      require('../src/config/redis').enable.mockImplementation(() => false);
+      server.start(async () => {
+        server.stop(done);
+      });
+    }).not.toThrow();
+  });
+
+  it("works with redis enabled", (done) => {
+    expect(() => {
+      require('../src/config/redis').enable.mockImplementation(() => true);
+      server.start(async () => {
+        server.stop(done);
+      });
+    }).not.toThrow();
   });
 });

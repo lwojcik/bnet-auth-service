@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`/status GET returns 200 1`] = `
+exports[`/status Response matches snapshot 1`] = `
 Object {
   "message": "ok",
   "status": 200,
