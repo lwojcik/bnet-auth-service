@@ -31,42 +31,36 @@ const fastifyServer = fastify({
 
 /* Caching */
 
+/* istanbul ignore next */
 const cacheSetup = () => {
-  /* istanbul ignore else */ 
-  if (redisConfig.enable) {
-    const redisClient = new Redis(redisConfig.connectionString);
+  const redisClient = new Redis(redisConfig.connectionString);
 
-    return [
-      {
-        plugin: fastifyRedis,
-        options: {
-          client: redisClient,
-        },
+  return [
+    {
+      plugin: fastifyRedis,
+      options: {
+        client: redisClient,
       },
-    
-      {
-        plugin: fastifyCaching,
-        options: {
-          cache: new AbstractCache({
-            useAwait: true,
-            driver: {
-              name: 'abstract-cache-redis',
-              options: {
-                client: redisClient,
-                cacheSegment: 'bas-cache',
-              },
+    },
+  
+    {
+      plugin: fastifyCaching,
+      options: {
+        cache: new AbstractCache({
+          useAwait: true,
+          driver: {
+            name: 'abstract-cache-redis',
+            options: {
+              client: redisClient,
+              cacheSegment: 'bas-cache',
             },
-          }),
-          expiresIn: 5 * 60, // seconds
-          cacheSegment: process.env.API_REDIS_CACHE_SEGMENT,
-        },
+          },
+        }),
+        expiresIn: 5 * 60, // seconds
+        cacheSegment: redisConfig.cacheSegment,
       },
-    ]
-  }
-  /* istanbul ignore next */ 
-  return {
-    plugins: null,
-  };
+    },
+  ];
 }
 
 const plugins = [
@@ -85,12 +79,12 @@ const registerPlugins = (plugins: FastifyPlugins | null) => {
   /* istanbul ignore else */ 
   if (plugins) {
     plugins.map((plugin) => {
-      /* istanbul ignore else */
-      if (typeof plugin === 'function') {
-        fastifyServer.register(plugin);
-      } else if (plugin !== null && 'plugin' in plugin && 'options' in plugin) {
-        fastifyServer.register(plugin.plugin, plugin.options);
-      }
+      (typeof plugin === 'function')
+        && fastifyServer.register(plugin);
+
+      /* istanbul ignore next */
+      (plugin !== null && 'plugin' in plugin && 'options' in plugin)
+        && fastifyServer.register(plugin.plugin, plugin.options);
     });
   }
 }
@@ -100,8 +94,8 @@ const registerPlugins = (plugins: FastifyPlugins | null) => {
 const startServer = async () => {
   try {
     registerPlugins(plugins);
-    /* istanbul ignore else */
-    if (redisConfig.enable) registerPlugins(cacheSetup() as FastifyPlugins);
+    /* istanbul ignore next */
+    redisConfig.enable && registerPlugins(cacheSetup() as FastifyPlugins);
     await fastifyServer.listen(appConfig.port);
     /* istanbul ignore if */ 
     if (process.env.NODE_ENV === 'development') {
@@ -113,9 +107,7 @@ const startServer = async () => {
   }
 };
 
-const stopServer = () => {
-  fastifyServer.close();
-}
+const stopServer = () => fastifyServer.close();
 
 /* Here we go! */
 

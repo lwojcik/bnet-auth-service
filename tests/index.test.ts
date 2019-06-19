@@ -1,10 +1,8 @@
-const redisConfig = require('../src/config/redis');
+// const redisConfig = require('../src/config/redis');
 
-global.console.log = jest.fn();
+// global.console.log = jest.fn();
 
-jest.mock('../src/config/redis', () => ({  
-  enable: jest.fn(),
-}));
+const redisConfig = jest.fn();
 
 describe('Server', () => {
   const server = require('../src/index');
@@ -15,18 +13,26 @@ describe('Server', () => {
   });
 
 
-  it("works with redis disabled", (done) => {
+  it("works with redis enabled", (done) => {
+
+    redisConfig.mockReturnValue({
+      enable: true,
+    });
+
     expect(async () => {
-      require('../src/config/redis').enable.mockImplementation(() => false);
       await server.start();
       await server.stop();
       done();
     }).not.toThrow();
   });
 
-  it("works with redis enabled", (done) => {
+  it("works with redis disabled", (done) => {
+
+    redisConfig.mockReturnValue({
+      enable: false,
+    });
+
     expect(async () => {
-      require('../src/config/redis').enable.mockImplementation(() => true);
       await server.start();
       await server.stop();
       done();
