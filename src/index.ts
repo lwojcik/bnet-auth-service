@@ -97,7 +97,7 @@ const registerPlugins = (plugins: FastifyPlugins | null) => {
 
 /* Server invocation */
 
-const startServer = async (done?: Function) => {
+const startServer = async () => {
   try {
     registerPlugins(plugins);
     /* istanbul ignore else */
@@ -111,15 +111,10 @@ const startServer = async (done?: Function) => {
   } catch (err) {
     fastifyServer.log.error(err);
   }
-  /* istanbul ignore else */ 
-  if (done) done();
 };
 
-const stopServer = async (done?: Function) => {
-  fastifyServer.close(() => {
-    /* istanbul ignore else */ 
-    if (done) done();
-  });
+const stopServer = () => {
+  fastifyServer.close();
 }
 
 /* Here we go! */

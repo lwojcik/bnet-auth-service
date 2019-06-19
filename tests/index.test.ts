@@ -16,20 +16,20 @@ describe('Server', () => {
 
 
   it("works with redis disabled", (done) => {
-    expect(() => {
+    expect(async () => {
       require('../src/config/redis').enable.mockImplementation(() => false);
-      server.start(async () => {
-        server.stop(done);
-      });
+      await server.start();
+      await server.stop();
+      done();
     }).not.toThrow();
   });
 
   it("works with redis enabled", (done) => {
-    expect(() => {
+    expect(async () => {
       require('../src/config/redis').enable.mockImplementation(() => true);
-      server.start(async () => {
-        server.stop(done);
-      });
+      await server.start();
+      await server.stop();
+      done();
     }).not.toThrow();
   });
 });
