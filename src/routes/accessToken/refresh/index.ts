@@ -1,12 +1,10 @@
 import fp from 'fastify-plugin';
 import schema from './schema';
-import { BlizzAPI } from 'blizzapi';
 
-import bnetConfig from '../../../config/bnet';
-import redisConfig from '../../../config/redis';
-
-const { region, apiKey, apiSecret } = bnetConfig;
-const { replyCachePeriod, cacheSegment } = redisConfig;
+import {
+  getFreshAccessToken,
+  cacheAccessToken
+} from '../../../utils/accessToken';
 
 export default fp(async (server, {}, next) => {
   server.route({
@@ -14,12 +12,12 @@ export default fp(async (server, {}, next) => {
     url: '/accessToken/refresh',
     method: 'GET',
     handler: async ({}, reply) => {
-      const accessToken = await new BlizzAPI(region, apiKey, apiSecret).getAccessToken();
-      await server.cache.set(cacheSegment, accessToken, replyCachePeriod);
+      const accessToken = await getFreshAccessToken();
+      await cacheAccessToken(server, accessToken);
 
       return reply.code(200).send({
         status: 200,
-        message: 'Refresh trigger successful',
+        message: 'Access token refreshed successfully',
       });
     },
   });
