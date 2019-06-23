@@ -1,41 +1,41 @@
-// const redisConfig = require('../src/config/redis');
+// import redisConfig from '../src/config/redis';
+import server from '../src/index';
+import appConfig from '../src/config/app';
+import redisConfig from '../src/config/redis';
 
-// global.console.log = jest.fn();
+jest.mock('../src/config/app', () => ({
+  nodeEnv: 'test',
+  port: '8123',
+}));
 
-const redisConfig = jest.fn();
+jest.mock('../src/config/redis', () => ({
+  enable: true,
+}));
 
 describe('Server', () => {
-  const server = require('../src/index');
-
   beforeEach(() => {
+    jest.clearAllMocks();
     jest.resetModules();
-    jest.resetAllMocks();
   });
 
 
   it("works with redis enabled", (done) => {
-
-    redisConfig.mockReturnValue({
-      enable: true,
-    });
-
-    expect(async () => {
-      await server.start();
-      await server.stop();
-      done();
+    appConfig.port = '8123';
+    redisConfig.enable = true;
+    const instance = server.getInstance();
+    expect(() => {
+      server.start(instance, () => {
+        server.stop(instance, () => {
+          done();
+        });
+      });
     }).not.toThrow();
   });
 
-  it("works with redis disabled", (done) => {
+  // it("works with redis disabled", (done) => {
+  //   redisConfig.enable = false;
+  //   const instance = server.getInstance();
+  //   expect(() => server.start(instance, () => server.stop(instance, done()))).not.toThrow();
+  // });
 
-    redisConfig.mockReturnValue({
-      enable: false,
-    });
-
-    expect(async () => {
-      await server.start();
-      await server.stop();
-      done();
-    }).not.toThrow();
-  });
 });

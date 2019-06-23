@@ -6,6 +6,7 @@
  */
 
 const appConfig = {
+  nodeEnv: process.env.NODE_ENV || 'development',
   /** Node.js app port */
   port: process.env.API_NODE_PORT || '8881',
 };
