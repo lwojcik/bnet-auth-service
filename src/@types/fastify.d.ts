@@ -19,5 +19,12 @@ declare module "fastify" {
     };
     log(): void;
     close(): Promise<any>;
+    accessToken: {
+      getAccessToken: (refresh: boolean) => Promise<string>,
+      getFreshAccessToken,
+      getCachedAccessToken,
+      isAccessTokenCached,
+      cacheAccessToken
+    }
   }
 }

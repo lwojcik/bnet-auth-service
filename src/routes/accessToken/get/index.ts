@@ -1,8 +1,6 @@
 import fp from 'fastify-plugin';
 import schema from './schema';
 
-import { getAccessToken } from '../../../utils/accessToken';
-
 export default fp(async (server, {}, next) => {
   server.route({
     schema,
@@ -10,7 +8,7 @@ export default fp(async (server, {}, next) => {
     method: 'GET',
     handler: async (request, reply) => {
       const { refresh } = request.query;
-      const accessToken = await getAccessToken(server, refresh);
+      const accessToken = await server.accessToken.getAccessToken(refresh);
 
       if (!accessToken || accessToken.length <= 0) {
         return reply.code(400).send({

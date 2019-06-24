@@ -1,7 +1,7 @@
 import fp from 'fastify-plugin';
 import schema from './schema';
 
-export default fp(async (server, {}, next) => {
+export default fp((server, {}, next) => {
   server.route({
     schema,
     url: '/status',
