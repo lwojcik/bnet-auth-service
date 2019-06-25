@@ -31,10 +31,10 @@ const fastifyInstance = fastify({
 fastifyInstance.register(fp(server), opts);
 fastifyInstance.register(fastifyBlipp);
 
-const start = () => fastifyInstance.listen(process.env.API_NODE_PORT, (err) => {
+const start = () => fastifyInstance.listen(opts.app.port, (err) => {
   if (err) throw err;
   fastifyInstance.blipp();
-  fastifyInstance.log.info(`Redis cache enabled: ${!!process.env.API_REDIS_ENABLE}`);
+  fastifyInstance.log.info(`Redis cache enabled: ${!!opts.redis.enable}`);
 });
 
 start();

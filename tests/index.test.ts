@@ -3,7 +3,7 @@ const fp = require('fastify-plugin');
 const server = require('../src/index');
 const getInstance = require('./helper');
 
-const config = () => ({
+const config = {
   app: {
     nodeEnv: 'test',
     port: '8123',
@@ -13,14 +13,13 @@ const config = () => ({
     apiKey: 'key',
     apiSecret: 'secret',
   }
-});
+}
 
 const redisDisabled = {
   redis: {
     enable: false,
   }
 }
-
 
 const redisEnabled = {
   redis: {
@@ -37,9 +36,10 @@ describe('Server', () => {
     jest.clearAllMocks();
     jest.resetModules();
   });
+
   it('works with Redis disabled', async () => {
     const opts = {
-      ...config(),
+      ...config,
       ...redisDisabled,
     }
     expect(async () => {
@@ -51,7 +51,7 @@ describe('Server', () => {
 
   it('works with Redis enabled', async () => {
     const opts = {
-      ...config(),
+      ...config,
       ...redisDisabled,
     }
 
@@ -61,36 +61,4 @@ describe('Server', () => {
       await fastifyServer.close();
     }).not.toThrow();
   });
-
-  // it('works with Redis enabled', async () => {
-  //   const opts = {
-  //     ...config(),
-  //     ...redisEnabled,
-  //   }
-  //   expect(async () => {
-  //     const instance = getInstance(server, opts);
-  //     await instance.ready();
-  //     await instance.close();
-  //   }).not.toThrow();
-  // });
-
-  // it("works with redis enabled", (done) => {
-  //   appConfig.port = '8123';
-  //   redisConfig.enable = true;
-  //   const instance = server.getInstance();
-  //   expect(() => {
-  //     server.start(instance, () => {
-  //       server.stop(instance, () => {
-  //         done();
-  //       });
-  //     });
-  //   }).not.toThrow();
-  // });
-
-  // it("works with redis disabled", (done) => {
-  //   redisConfig.enable = false;
-  //   const instance = server.getInstance();
-  //   expect(() => server.start(instance, () => server.stop(instance, done()))).not.toThrow();
-  // });
-
 });
