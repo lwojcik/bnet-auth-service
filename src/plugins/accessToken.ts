@@ -37,8 +37,11 @@ export default fp((server: FastifyInstance, opts:AccessTokenOptions, next: Funct
   const isAccessTokenCached = () =>
     enable ? server.cache.has(cacheSegment) : false;
   
-  const cacheAccessToken = (accessToken: string) =>
-    enable ? server.cache.set(cacheSegment, accessToken, replyCachePeriod) : null;
+  const cacheAccessToken = (accessToken: string) => {
+    if (!enable) return 'Access token not refreshed (Redis disabled)';
+    server.cache.set(cacheSegment, accessToken, replyCachePeriod);
+    return 'Access token refreshed successfully';
+  }
   
   const getAccessToken = async (refresh: Boolean) => {
     const noKeyInCache = !(await isAccessTokenCached());

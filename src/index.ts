@@ -30,8 +30,6 @@ const api = (fastify: FastifyInstance, opts: ServerOptions, next: Function) => {
   fastify.register(routes.getAccessToken, opts.bnet);
   fastify.register(routes.refreshAccessToken, opts.bnet);
 
-  // Redis cache setup
-  
   if (opts.redis.enable) {
     const redisClient = new Redis(opts.redis.connectionString);
 
@@ -53,7 +51,7 @@ const api = (fastify: FastifyInstance, opts: ServerOptions, next: Function) => {
         expiresIn: 5 * 60, // seconds
         cacheSegment: opts.redis.cacheSegment,
       });
-  }
+    }
 
   next();
 }

@@ -8,11 +8,10 @@ export default fp(async (server, {}, next) => {
     method: 'GET',
     handler: async ({}, reply) => {
       const accessToken = await server.accessToken.getFreshAccessToken();
-      await server.accessToken.cacheAccessToken(server, accessToken);
-
+      const refreshStatusMessage = server.accessToken.cacheAccessToken(server, accessToken);
       return reply.code(200).send({
         status: 200,
-        message: 'Access token refreshed successfully',
+        message: refreshStatusMessage,
       });
     },
   });
