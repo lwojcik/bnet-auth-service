@@ -8,7 +8,7 @@ export default fp(async (server, {}, next) => {
     method: 'GET',
     handler: async ({}, reply) => {
       const accessToken = await server.accessToken.getFreshAccessToken();
-      const refreshStatusMessage = server.accessToken.cacheAccessToken(server, accessToken);
+      const refreshStatusMessage = server.accessToken.cacheAccessToken(accessToken);
       return reply.code(200).send({
         status: 200,
         message: refreshStatusMessage,
