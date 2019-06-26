@@ -4,7 +4,7 @@ const server = require('../src/index');
 describe('Server (Redis enabled)', () => {
   const config = {
     app: {
-      nodeEnv: 'test',
+      nodeEnv: 'production',
       port: '8123',
     },
     bnet: {
@@ -16,19 +16,12 @@ describe('Server (Redis enabled)', () => {
       enable: true,
     }
   }
-  
-  beforeEach(() => {
-    jest.clearAllMocks();
-    jest.resetModules();
-  });
-
   it('starts and stops without throwing', async () => {
     const opts = config;
 
-    expect(async () => {
+    expect(() => {
       const fastifyServer = fastify();
       fastifyServer.register(server, opts);
-      await fastifyServer.close();
     }).not.toThrow();
   });
 });

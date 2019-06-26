@@ -28,7 +28,6 @@ describe('Server (Redis disabled)', () => {
     expect(async () => {
       const fastifyServer = fastify();
       fastifyServer.register(server, opts);
-      await fastifyServer.ready();
       await fastifyServer.close();
     }).not.toThrow();
   });

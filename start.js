@@ -1,7 +1,6 @@
 if (process.env.NODE_ENV !== 'production') require('dotenv').config();
 
 const fastify = require('fastify');
-const fp = require('fastify-plugin');
 const fastifyBlipp = require('fastify-blipp');
 const server = require('./dist/index');
 
@@ -28,7 +27,7 @@ const fastifyInstance = fastify({
   logger: opts.app.nodeEnv === 'development'
 });
 
-fastifyInstance.register(fp(server), opts);
+fastifyInstance.register(server, opts);
 fastifyInstance.register(fastifyBlipp);
 
 const start = () => fastifyInstance.listen(opts.app.port, (err) => {

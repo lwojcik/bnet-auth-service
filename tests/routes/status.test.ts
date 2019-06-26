@@ -37,11 +37,6 @@ describe('/status (Redis enabled)', () => {
     fastifyServer.register(server, { ...config, ...redisEnabled });
   });
 
-  beforeEach(() => {
-    jest.clearAllMocks();
-    jest.resetModules();
-  });
-
   afterEach(() => {
     fastifyServer.close();
   });
@@ -63,11 +58,6 @@ describe('/status (Redis disabled)', () => {
 
   beforeAll(() => {
     fastifyServer.register(server, { ...config, ...redisDisabled });
-  });
-
-  beforeEach(() => {
-    jest.clearAllMocks();
-    jest.resetModules();
   });
 
   afterEach(() => {

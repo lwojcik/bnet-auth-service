@@ -1,6 +1,5 @@
 import { FastifyInstance } from "fastify";
 import Redis from 'ioredis';
-import RedisMock from 'ioredis-mock';
 import AbstractCache from 'abstract-cache';
 
 import * as routes from './routes';
@@ -32,9 +31,7 @@ const api = (fastify: FastifyInstance, opts: ServerOptions, next: Function) => {
   fastify.register(routes.refreshAccessToken, opts.bnet);
 
   if (opts.redis.enable) {
-    const redisClient = (opts.app.nodeEnv !== 'test' && opts.redis.enable)
-      ? new Redis(opts.redis.connectionString)
-      : new RedisMock();
+    const redisClient = new Redis(opts.redis.connectionString);
 
     fastify
       .register(require('fastify-redis') , {
