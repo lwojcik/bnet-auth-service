@@ -1,43 +1,101 @@
-# sc2profile-twitch-extension-api
+# bnet-auth-service
 [![Travis Build Status](https://travis-ci.org/lukemnet/sc2pte-backend.svg?branch=master)](https://travis-ci.org/lukemnet/sc2profile-twitch-extension-api)
 [![Greenkeeper badge](https://badges.greenkeeper.io/lukemnet/sc2pte-backend.svg)](https://greenkeeper.io/)
 [![Maintainability](https://api.codeclimate.com/v1/badges/fc6333b35828244a871c/maintainability)](https://codeclimate.com/github/lukemnet/sc2pte-backend/maintainability)
 [![Test Coverage](https://api.codeclimate.com/v1/badges/fc6333b35828244a871c/test_coverage)](https://codeclimate.com/github/lukemnet/sc2pte-backend/test_coverage)
 
-This is an official repository of the backend service (EBS) for [StarCraft II Profile Twitch Extension](https://sc2pte.lukem.net/).
+REST API retrieving and caching OAuth access tokens from Blizzard Battle.net.
 
-For current status see [the kanban board of the project](https://github.com/orgs/lukemnet/projects/1).
+Under the hood it uses [Fastify](https://www.fastify.io/) and [BlizzAPI](https://www.npmjs.com/package/blizzapi).
+
+This API should not be exposed to the internet. It is designed to run locally or as a part of a bigger, more secure API architecture.
+
+## Requirements
+
+* Node.js (LTS preferred)
+* Redis server - recommended, but not required
+* Battle.net API credentials
 
 ## Setup
 
-To run a server you need Node.js (preferably LTS version), MongoDB and Redis installed. MongoDB and Redis must be running before starting the API server.
+The following environment variables must be set up:
 
-Launching MongoDB as a service in Ubuntu and tailing the log file:
+* `NODE_ENV` - Node environment (`'development'` or `'production'`, default: `development`)
+* `BAS_NODE_HOST` - hostname (default: `'localhost'`)
+* `BAS_NODE_PORT` - port (default: `'8080'`)
+* `BAS_REDIS_ENABLE` - enable Redis caching (default `'true'`)
+* `BAS_REDIS_HOST` - Redis hostname (default: `'localhost'`)
+* `BAS_REDIS_PORT` - Redis port (default: `'6379'`)
+* `BAS_REDIS_PASSWORD` - Redis password (optional)
+* `BAS_REDIS_TTL` - cache TTL (Time To Live, time for which objects will be cached)
+* `BAS_REDIS_DB` - Redis database index to use
+* `BAS_REDIS_CACHE_SEGMENT` - Redis cache segment used to identify keys in database (default: `'bas'`)
+* `BAS_BATTLENET_REGION` - Battle.net API region to authorize against (`'us'`, `'eu'`, `'kr'` or `'ch'`, required)
+* `BAS_BATTLENET_KEY` = Battle.net API application key
+* `BAS_BATTLENET_SECRET` = Battle.net API application secret
+
+To obtain Battle.net API credentials (key and secret) visit [Blizzard Battle.net Developer Portal](https://develop.battle.net/access/).
+
+See also `.env.sample` for a dotenv template.
+
+When in development mode, the API can load environment variables from `.env` file in root directory.
+
+## Build and install
 
 ```
-$ sudo service mongod start
-$ tail -f /var/log/mongodb/mongod.log
+git clone https://github.com/lukemnet/bnet-auth-service.git
+cd bnet-auth-service
+npm install
+npm run lint
+npm test
+npm start
 ```
 
-Use `cp .env.sample .env` to create an environment variables file based on the provided template. Fill it with the following details:
+## Start server
 
-* `API_MONGODB_CONNECTION_STRING` - if different than the default value
-* `API_REDIS_CONNECTION_STRING` - if different than the default value
-* `API_BATTLENET_KEY` - Battle.net API key. To obtain it you must create the application on [Battle.net Developer Portal](https://dev.battle.net/)
-* `API_BATTLENET_SECRET` - Battle.net API secret. To obtain it you must create the application on [Battle.net Developer Portal](https://dev.battle.net/)
-* `API_TWITCH_EXTENSION_CLIENT_ID` - Client ID needed to identify an app on Twitch ecosystem. To obtain it you must create an extension via [Extensions Dashboard on Twitch Developers portal](https://dev.twitch.tv/dashboard/extensions)
-* `API_TWITCH_EXTENSION_SHARED_SECRET` - secret string used by Twitch to sign JSON Web Tokens. To obtain it you must create an extension via [Extensions Dashboard on Twitch Developers portal](https://dev.twitch.tv/dashboard/extensions)
+```
+node start.js
+```
 
-When running the API via HTTPS you need a SSL key / certificate pair. For localhost you can [create a self-signed cert](https://gist.github.com/lwojcik/a513d0cabad380d0b8df74c08431426c). Rename the key and the cert respectively to `server.key` and `server.crt`. Copy them to `ssl/` directory of the project.
+## Available endpoints
 
-When configured correctly, you can launch the project with `npm run dev`.
+### `GET /status`
 
+API health status.
 
-You can now proceed to set up the [extension frontend](https://github.com/lukemnet/sc2pte-frontend).
+**Sample response:**
 
-## Contact
+```
+{"status":200,"message":"ok"}
+```
 
-See [the project homepage](https://sc2pte.lukem.net/) for contact information.
+### `GET /accessToken/get`
+
+Get access token from Redis cache. If no access token is cached, API will reach Battle.net for a new one and cache it.
+
+**Sample response:**
+
+```
+{"status":200,"data":{"accessToken":"access token here"}}
+```
+
+### `GET /accessToken/get?refresh=true`
+
+Get access token from Battle.net (skipping Redis cache)
+
+**Sample response:**
+
+```
+{"status":200,"data":{"accessToken":"access token here"}}
+```
+
+### `GET /accessToken/refresh`
+
+Refresh access token stored in Redis cache. Triggering this method will cause next `GET /accessToken/get` 
+
+```
+{"status":200,"message":"Access token refreshed successfully"}
+```
 
 ## License
 
