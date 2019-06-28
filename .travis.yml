@@ -1,19 +1,36 @@
+env:
+  global:
+    - CC_TEST_REPORTER_ID=$CC_TEST_REPORTER_ID
+
 language: node_js
+
 os:
-- linux
+  - linux
+  - osx
+  - windows
+
+matrix:
+  allow_failures:
+    - os: windows
+
 node_js:
-- lts/*
+  - 'lts/*'
+  - 'node'
+
+install:
+  - npm install
+  - npm install -g codecov
+
+before_script:
+  - if [[ "$TRAVIS_OS_NAME" == "osx" ]]; then curl -L https://codeclimate.com/downloads/test-reporter/test-reporter-latest-darwin-amd64 > ./cc-test-reporter; fi
+  - if [[ "$TRAVIS_OS_NAME" == "linux" ]]; then curl -L https://codeclimate.com/downloads/test-reporter/test-reporter-latest-linux-amd64 > ./cc-test-reporter; fi
+  - if [[ "$TRAVIS_OS_NAME" != "windows" ]]; then chmod +x ./cc-test-reporter; fi
+  - if [[ "$TRAVIS_OS_NAME" != "windows" ]]; then ./cc-test-reporter before-build; fi
+
 script:
-- npm ci
-before_deploy:
-- git config --local user.name "Łukasz Wójcik"
-- git config --local user.email "lwojcik@lukem.net"
-- git tag "$(date +'%Y%m%d'-'%H%M%S')-$(git log --format=%h -1)"
-deploy:
-  provider: releases
-  api_key:
-    secure: wZjEZBvB718Mtijtg3aBjm8ntc+otQ+SbiPbta6lWef8nDUYhZdPP4JYmycG1l7sSRc4hiBx1skVAghAXkN6oBa0ddJIZktT7B0/ruZg9mPHG2DcCkhzrcNzkO1PDasrmSd4sw/WkSafRd19odERrLtpiss8Pb/2xkqmMfIzSW+cBnOHHmVtDtRPxKKkyEs3gpgQL+zlnabNf8Bt+eLZ7cCs1Uiq4YPpXRDzudgR0ye5ZfSf7bRWOZaM70JaxlochLGr+S9ATuNnfNskd7JIAX5hywFQ7yk6R4VkEAlMbrmDNFAfVYA6PXinLV0A3XBg5dsWlEjyeztN27GnKiyt0GZzmQpRsP+ZsvYlJ8ALPLSQDrqJHutO3iVWmuJsMD8RMiBKPEs3bXJ7fr3OSjOMuXNF1LyQFBaYevn9eTPaUFrJyIeB9vaQtTAwKIwNeIiB9V83Za+9b9XUEKdxPAwONiubiBAGbfv06RyEvnv4eWAsKHpnB6ISwMhtKZ0wG+Zyo0DB6KgO+9E5d7KJ63kH/DMISv+Ngr97IoCQ74L4QnwTIXlx+tsJpD03tpcSFpfuV6YX1wU4htvvk4DMeFqRo5qLS0jCKgQYcIvp36iB+X6MaE08FYH6vJl7BlTAxUUHDab8fhvI2208PbZFBRyf9qiaMG1egWhcMEIQSRXcwEk=
-  file: sc2pte-api-build-$TRAVIS_COMMIT.zip
-  on:
-    repo: lukemnet/sc2profile-twitch-extension-api
-    branch: master
+  - npm run lint
+  - npm run test
+  - npm run build
+
+after_script:
+  - if [[ "$TRAVIS_OS_NAME" != "linux" ]]; then ./cc-test-reporter after-build --exit-code $TRAVIS_TEST_RESULT; fi
