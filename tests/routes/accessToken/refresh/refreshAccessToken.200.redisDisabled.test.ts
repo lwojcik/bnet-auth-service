@@ -1,24 +1,7 @@
-const fastify = require('fastify');
-const fp = require('fastify-plugin');
-const fastifyRedis = require('fastify-redis-mock');
-const server = require('../../../../src/index');
-
-const config = {
-  app: {
-    nodeEnv: 'test',
-    port: '8123',
-  },
-  bnet: {
-    region: 'us',
-    apiKey: 'key',
-    apiSecret: 'secret',
-  },
-  redis: {
-    enable: false,
-    cacheSegment: 'test',
-    replyCachePeriod: 100
-  }
-}
+import fastify from 'fastify';
+import fastifyRedis from 'fastify-redis-mock';
+import server from '../../../../src/index';
+import getConfig from '../../../helper';
 
 describe('/accessToken/refresh (Redis disabled)', () => {
   const fastifyServer = fastify();
@@ -31,7 +14,7 @@ describe('/accessToken/refresh (Redis disabled)', () => {
       enableReadyCheck: true,
       dropBufferSupport: false,
     });
-    fastifyServer.register(server, config);
+    fastifyServer.register(server, getConfig(false));
   });
 
   afterEach(() => {

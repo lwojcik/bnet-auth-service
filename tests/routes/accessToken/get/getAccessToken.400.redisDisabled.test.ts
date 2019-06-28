@@ -1,7 +1,6 @@
-
-const fastify = require('fastify');
-const fastifyRedis = require('fastify-redis-mock');
-const server = require('../../../../src/index');
+import fastify from 'fastify';
+import fastifyRedis from 'fastify-redis-mock';
+import server from '../../../../src/index';
 
 const config = {
   app: {
@@ -16,7 +15,13 @@ const config = {
   redis: {
     enable: false,
     cacheSegment: 'test',
-    replyCachePeriod: 100
+    replyCachePeriod: 100,
+    host: '127.0.0.1',
+    port: '6379',
+    db: '0',
+    password: '',
+    enableReadyCheck: true,
+    dropBufferSupport: false,
   }
 }
 

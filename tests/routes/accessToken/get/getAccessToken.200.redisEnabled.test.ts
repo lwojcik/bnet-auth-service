@@ -1,23 +1,7 @@
-const fastify = require('fastify');
-const fastifyRedis = require('fastify-redis-mock');
-const server = require('../../../../src/index');
-
-const config = {
-  app: {
-    nodeEnv: 'test',
-    port: '8123',
-  },
-  bnet: {
-    region: 'us',
-    apiKey: 'key',
-    apiSecret: 'secret',
-  },
-  redis: {
-    enable: true,
-    cacheSegment: 'test',
-    replyCachePeriod: 100
-  }
-}
+import fastify from 'fastify';
+import fastifyRedis from 'fastify-redis-mock';
+import server from '../../../../src/index';
+import getConfig from '../../../helper';
 
 describe('/accessToken/get 200 (Redis enabled)', () => {
   const fastifyServer = fastify();
@@ -30,7 +14,7 @@ describe('/accessToken/get 200 (Redis enabled)', () => {
       enableReadyCheck: true,
       dropBufferSupport: false,
     });
-    await fastifyServer.register(server, config);
+    await fastifyServer.register(server, getConfig(true));
   });
 
   afterAll(() => {
@@ -48,7 +32,7 @@ describe('/accessToken/get 200 (Redis enabled)', () => {
   });
 
   it('returns correct response when access token is cached', async () => {
-    await fastifyServer.redis.set(config.redis.cacheSegment, 'sample cached access token');
+    await (fastifyServer as any).redis.set(getConfig(true).redis.cacheSegment, 'sample cached access token');
     const res = await fastifyServer.inject({ method: 'GET', url: '/accessToken/get', });
     expect(JSON.parse(res.payload)).toEqual({"status":200,"data":{ accessToken: "sample cached access token" }});
   });

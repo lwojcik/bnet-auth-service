@@ -3,18 +3,21 @@ import { FastifyInstance } from "fastify";
 import { BlizzAPI } from "blizzapi";
 
 interface BnetConfig {
+  [key:string]: string | number | boolean;
   region: string;
   apiKey: string;
   apiSecret: string;
 }
 
 interface RedisConfig {
+  [key:string]: string | number | boolean;
   enable: boolean;
   cacheSegment: string;
   replyCachePeriod: number;
 }
 
 interface AccessTokenOptions {
+  [key: string]: object | string | number | boolean;
   bnet: BnetConfig;
   redis: RedisConfig;
 }

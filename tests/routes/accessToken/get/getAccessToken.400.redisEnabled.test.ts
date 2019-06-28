@@ -1,24 +1,7 @@
-
-const fastify = require('fastify');
-const fastifyRedis = require('fastify-redis-mock');
-const server = require('../../../../src/index');
-
-const config = {
-  app: {
-    nodeEnv: 'test',
-    port: '8123',
-  },
-  bnet: {
-    region: 'us',
-    apiKey: 'key',
-    apiSecret: 'secret',
-  },
-  redis: {
-    enable: true,
-    cacheSegment: 'test',
-    replyCachePeriod: 100
-  }
-}
+import fastify from 'fastify';
+import fastifyRedis from 'fastify-redis-mock';
+import server from '../../../../src/index';
+import getConfig from '../../../helper';
 
 const { BlizzAPI } = require('blizzapi');
 BlizzAPI.prototype.getAccessToken = () => '';
@@ -34,7 +17,7 @@ describe('/accessToken/get 400 (Redis enabled)', () => {
       enableReadyCheck: true,
       dropBufferSupport: false,
     });
-    fastifyServer.register(server, config);
+    fastifyServer.register(server, getConfig(true));
   });
 
   afterEach(() => {

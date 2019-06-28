@@ -35,4 +35,4 @@ const api = async (
   next();
 };
 
-module.exports = api;
+export default api;

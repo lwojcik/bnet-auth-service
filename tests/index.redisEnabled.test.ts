@@ -1,27 +1,12 @@
-const fastify = require('fastify');
-const server = require('../src/index');
+import fastify from 'fastify';
+import server from '../src/index';
+import getConfig from './helper';
 
 describe('Server (Redis enabled)', () => {
-  const config = {
-    app: {
-      nodeEnv: 'production',
-      port: '8123',
-    },
-    bnet: {
-      region: 'us',
-      apiKey: 'key',
-      apiSecret: 'secret',
-    },
-    redis: {
-      enable: true,
-    }
-  }
   it('starts and stops without throwing', async () => {
-    const opts = config;
-
     expect(() => {
       const fastifyServer = fastify();
-      fastifyServer.register(server, opts);
+      fastifyServer.register(server, getConfig(true));
     }).not.toThrow();
   });
 });
