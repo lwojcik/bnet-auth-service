@@ -99,4 +99,4 @@ Refresh access token stored in Redis cache. Triggering this method will cause ne
 
 ## License
 
-Code is available under MIT license. See [LICENSE](https://raw.githubusercontent.com/lukemsc/sc2profile-twitch-extension-api/master/LICENSE) for more information.
+Code is available under MIT license. See [LICENSE](https://raw.githubusercontent.com/lukemnet/bnet-auth-service/master/LICENSE) for more information.
