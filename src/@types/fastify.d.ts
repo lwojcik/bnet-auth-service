@@ -29,8 +29,8 @@ declare module "fastify" {
       cacheAccessToken;
     };
     redis: {
-      set: (key, value) => Promise<void>
-      get: (key) => Promise<any>
+      set: (key, value) => Promise<void>;
+      get: (key) => Promise<any>;
     };
   }
 }
