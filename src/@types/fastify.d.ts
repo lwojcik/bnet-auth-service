@@ -31,6 +31,7 @@ declare module "fastify" {
     redis: {
       set: (key, value) => Promise<void>;
       get: (key) => Promise<any>;
+      expire: (key, value) => Promise<any>;
     };
   }
 }
