@@ -1,8 +1,8 @@
 # bnet-auth-service
-[![Travis Build Status](https://travis-ci.org/lukemnet/sc2pte-backend.svg?branch=master)](https://travis-ci.org/lukemnet/sc2profile-twitch-extension-api)
-[![Greenkeeper badge](https://badges.greenkeeper.io/lukemnet/sc2pte-backend.svg)](https://greenkeeper.io/)
-[![Maintainability](https://api.codeclimate.com/v1/badges/fc6333b35828244a871c/maintainability)](https://codeclimate.com/github/lukemnet/sc2pte-backend/maintainability)
-[![Test Coverage](https://api.codeclimate.com/v1/badges/fc6333b35828244a871c/test_coverage)](https://codeclimate.com/github/lukemnet/sc2pte-backend/test_coverage)
+[![Travis CI Build Status](https://travis-ci.org/lukemnet/bnet-auth-service.svg?branch=master)](https://travis-ci.org/lukemnet/bnet-auth-service)
+[![AppVeyor Build status](https://ci.appveyor.com/api/projects/status/ci1n4338v95ygpdi?svg=true)](https://ci.appveyor.com/project/lwojcik/bnet-auth-service)
+[![Maintainability](https://api.codeclimate.com/v1/badges/e988aeb1b13e096f989c/maintainability)](https://codeclimate.com/github/lukemnet/bnet-auth-service/maintainability)
+[![Test Coverage](https://api.codeclimate.com/v1/badges/e988aeb1b13e096f989c/test_coverage)](https://codeclimate.com/github/lukemnet/bnet-auth-service/test_coverage)
 
 REST API retrieving and caching OAuth access tokens from Blizzard Battle.net.
 
