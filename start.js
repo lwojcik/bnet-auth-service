@@ -1,5 +1,4 @@
-if (process.env.NODE_ENV !== 'production') require('dotenv').config();
-
+(process.env.NODE_ENV !== 'production') && require('dotenv').config();
 const fastify = require('fastify');
 const fastifyBlipp = require('fastify-blipp');
 const fastifyRedis = require('fastify-redis');
@@ -92,14 +91,16 @@ const envSchema = {
   }
 }
 
-const envOptions = {
-  schema: envSchema,
-  dotenv: true,
-  debug: process.env.NODE_ENV === 'development'
-}
-
 const fastifyInstance = fastify({
   logger: opts.app.nodeEnv === 'development'
+});
+
+fastifyInstance.register(fastifyEnv, {
+  schema: envSchema,
+  dotenv: {
+      path: `${__dirname}/.env`,
+      debug: process.env.NODE_ENV === 'development'
+  },
 });
 
 fastifyInstance.register(fastifyRedis, {
@@ -111,7 +112,7 @@ fastifyInstance.register(fastifyRedis, {
 });
 
 fastifyInstance.register(server, opts);
-fastifyInstance.register(fastifyEnv, envOptions);
+
 fastifyInstance.register(fastifyBlipp);
 
 const start = () => fastifyInstance.listen(opts.app.port, (err) => {
