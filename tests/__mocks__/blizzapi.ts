@@ -1,15 +1,9 @@
-interface AccessTokenObject {
-  accessToken: string,
-}
-
 class BlizzAPI {
   constructor() {}
 
-  getAccessToken(): Promise<AccessTokenObject> {
+  getAccessToken(): Promise<string> {
     return new Promise((resolve) => {
-      resolve({
-        accessToken: 'sample access token',
-      });
+      resolve('sample access token');
     });
   }
 }

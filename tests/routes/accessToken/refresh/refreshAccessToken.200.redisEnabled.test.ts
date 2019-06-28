@@ -1,39 +1,42 @@
 const fastify = require('fastify');
 const fp = require('fastify-plugin');
+const fastifyRedis = require('fastify-redis-mock');
 const server = require('../../../../src/index');
 
-describe('/accessToken/refresh (Redis enabled)', () => {
-  jest.mock('ioredis');
-
-  const config = {
-    app: {
-      nodeEnv: 'test',
-      port: '8123',
-    },
-    bnet: {
-      region: 'us',
-      apiKey: 'key',
-      apiSecret: 'secret',
-    },
-    redis: {
-      enable: true,
-      connectionString: 'redis://127.0.0.1:6379',
-      db: '0',
-      replyCachePeriod: 100,
-      cacheSegment: 'bas',
-    }
+const config = {
+  app: {
+    nodeEnv: 'test',
+    port: '8123',
+  },
+  bnet: {
+    region: 'us',
+    apiKey: 'key',
+    apiSecret: 'secret',
+  },
+  redis: {
+    enable: true,
+    cacheSegment: 'test',
+    replyCachePeriod: 100
   }
+}
 
+describe('/accessToken/refresh (Redis enabled)', () => {
   const fastifyServer = fastify();
-  fastifyServer.register(server, config);
 
-  beforeEach(() => {
-    jest.clearAllMocks();
-    jest.resetModules();
+  beforeAll(async () => {
+    fastifyServer.register(fastifyRedis, {
+      host: '127.0.0.1',
+      port: '6379',
+      password: '',
+      enableReadyCheck: true,
+      dropBufferSupport: false,
+    });
+    fastifyServer.register(server, config);
+    await fastifyServer.ready();
   });
 
-  afterAll(async () => {
-    await fastifyServer.close();
+  afterEach(() => {
+    fastifyServer.close();
   });
  
   it('returns 200', async () => {

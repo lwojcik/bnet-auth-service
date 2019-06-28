@@ -2,6 +2,8 @@ if (process.env.NODE_ENV !== 'production') require('dotenv').config();
 
 const fastify = require('fastify');
 const fastifyBlipp = require('fastify-blipp');
+const fastifyRedis = require('fastify-redis');
+const fastifyEnv = require('fastify-env');
 const server = require('./dist/index');
 
 const opts = {
@@ -11,7 +13,9 @@ const opts = {
   },
   redis: {
     enable: process.env.BAS_REDIS_ENABLE === 'true' || false,
-    connectionString: process.env.BAS_REDIS_CONNECTION_STRING || 'redis://127.0.0.1:6379',
+    host: process.env.BAS_REDIS_HOST || '127.0.0.1',
+    port: process.env.BAS_REDIS_PORT || '6379',
+    password: process.env.BAS_REDIS_PASSWORD || '',
     db: process.env.BAS_REDIS_DB || '0',
     replyCachePeriod: process.env.BAS_REDIS_CACHE_PERIOD || 1000 * 60 * 5,
     cacheSegment: process.env.BAS_REDIS_CACHE_SEGMENT || 'bas',
@@ -23,11 +27,91 @@ const opts = {
   }
 }
 
+const envSchema = {
+  type: 'object',
+  required: [
+    'NODE_ENV',
+    'BAS_NODE_HOST',
+    'BAS_REDIS_ENABLE',
+    'BAS_REDIS_HOST',
+    'BAS_REDIS_PORT',
+    'BAS_REDIS_PASSWORD',
+    'BAS_REDIS_TTL',
+    'BAS_REDIS_DB',
+    'BAS_REDIS_CACHE_SEGMENT',
+    'BAS_BATTLENET_REGION',
+    'BAS_BATTLENET_KEY',
+    'BAS_BATTLENET_SECRET'
+  ],
+  properties: {
+    NODE_ENV: {
+      type: 'string',
+      default: 'development',
+    },
+    BAS_NODE_HOST: {
+      type: 'string',
+      default: 'localhost',
+    },
+    BAS_REDIS_ENABLE: {
+      type: 'string',
+      default: 'true',
+    },
+    BAS_REDIS_HOST: {
+      type: 'string',
+      default: '127.0.0.1',
+    },
+    BAS_REDIS_PORT: {
+      type: 'string',
+      default: '6379',
+    },
+    BAS_REDIS_PASSWORD: {
+      type: 'string',
+      default: '',
+    },
+    BAS_REDIS_TTL: {
+      type: 'string',
+      default: '2000',
+    },
+    BAS_REDIS_DB: {
+      type: 'string',
+      default: '0',
+    },
+    BAS_REDIS_CACHE_SEGMENT: {
+      type: 'string',
+      default: 'bas',
+    },
+    BAS_BATTLENET_REGION: {
+      type: 'string',
+    },
+    BAS_BATTLENET_KEY: {
+      type: 'string',
+    },
+    BAS_BATTLENET_SECRET: {
+      type: 'string',
+    }
+  }
+}
+
+const envOptions = {
+  schema: envSchema,
+  dotenv: true,
+  debug: process.env.NODE_ENV === 'development'
+}
+
 const fastifyInstance = fastify({
   logger: opts.app.nodeEnv === 'development'
 });
 
+fastifyInstance.register(fastifyRedis, {
+  host: opts.redis.host,
+  port: opts.redis.port,
+  password: opts.redis.password,
+  enableReadyCheck: true,
+  dropBufferSupport: false,
+});
+
 fastifyInstance.register(server, opts);
+fastifyInstance.register(fastifyEnv, envOptions);
 fastifyInstance.register(fastifyBlipp);
 
 const start = () => fastifyInstance.listen(opts.app.port, (err) => {

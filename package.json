@@ -6,7 +6,7 @@
   "main": "dist/index.js",
   "scripts": {
     "clean": "rimraf dist/*",
-    "build": "npm run clean && tsc",
+    "build": "npm run lint && npm run test && npm run clean && tsc",
     "format": "prettier --write \"src/**/*.ts\" \"src/**/*.js\"",
     "lint": "tslint --project tsconfig.json",
     "dev": "tsc-watch --onSuccess \"npm start\" | pino-pretty",
@@ -32,24 +32,20 @@
   },
   "homepage": "https://github.com/lukemnet/bnet-auth-service#readme",
   "dependencies": {
-    "abstract-cache": "1.0.1",
-    "abstract-cache-redis": "1.1.0",
     "blizzapi": "0.0.8",
-    "dotenv": "8.0.0",
     "fastify": "2.5.0",
     "fastify-blipp": "2.0.0",
     "fastify-caching": "5.0.0",
     "fastify-env": "0.6.2",
+    "fastify-ioredis": "0.1.1",
     "fastify-log": "1.0.3",
     "fastify-plugin": "1.6.0",
-    "fastify-redis": "3.1.1",
-    "ioredis": "4.10.0"
+    "fastify-redis": "3.1.1"
   },
   "devDependencies": {
-    "@types/ioredis": "4.0.12",
     "@types/jest": "24.0.15",
     "@types/node": "12.0.10",
-    "ioredis-mock": "4.12.0",
+    "fastify-redis-mock": "^1.0.0",
     "jest": "24.8.0",
     "pino-pretty": "3.2.0",
     "prettier": "1.18.2",

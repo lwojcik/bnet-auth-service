@@ -9,22 +9,25 @@ declare module "fastify" {
   > {
     blipp(): void;
     cache: {
-      has: (key) => boolean,
-      set: (key, value, cachePeriod) => any,
-      get: (key) => Promise<{
-        item: string,
-        stored: number,
-        ttl: number,
-      }>,
+      has: (key) => boolean;
+      set: (key, value, cachePeriod) => any;
+      get: (
+        key
+      ) => Promise<{
+        item: string;
+        stored: number;
+        ttl: number;
+      }>;
     };
     log(): void;
     close(): Promise<any>;
     accessToken: {
-      getAccessToken: (refresh: boolean) => Promise<string>,
-      getFreshAccessToken,
-      getCachedAccessToken,
-      isAccessTokenCached,
-      cacheAccessToken
-    }
+      getAccessToken: (refresh: boolean) => Promise<string>;
+      getFreshAccessToken;
+      getCachedAccessToken;
+      isAccessTokenCached;
+      cacheAccessToken;
+    };
+    redis: any;
   }
 }

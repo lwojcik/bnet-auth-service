@@ -1,19 +1,21 @@
-import fp from 'fastify-plugin';
-import schema from './schema';
+import fp from "fastify-plugin";
+import schema from "./schema";
 
 export default fp(async (server, {}, next) => {
   server.route({
     schema,
-    url: '/accessToken/refresh',
-    method: 'GET',
+    url: "/accessToken/refresh",
+    method: "GET",
     handler: async ({}, reply) => {
       const accessToken = await server.accessToken.getFreshAccessToken();
-      const refreshStatusMessage = server.accessToken.cacheAccessToken(accessToken);
+      const refreshStatusMessage = await server.accessToken.cacheAccessToken(
+        accessToken
+      );
       return reply.code(200).send({
         status: 200,
-        message: refreshStatusMessage,
+        message: refreshStatusMessage
       });
-    },
+    }
   });
   next();
 });

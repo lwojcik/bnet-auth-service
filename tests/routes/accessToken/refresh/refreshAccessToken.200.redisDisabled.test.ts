@@ -1,5 +1,6 @@
 const fastify = require('fastify');
 const fp = require('fastify-plugin');
+const fastifyRedis = require('fastify-redis-mock');
 const server = require('../../../../src/index');
 
 const config = {
@@ -11,25 +12,26 @@ const config = {
     region: 'us',
     apiKey: 'key',
     apiSecret: 'secret',
-  }
-}
-
-const redisDisabled = {
+  },
   redis: {
     enable: false,
+    cacheSegment: 'test',
+    replyCachePeriod: 100
   }
 }
 
 describe('/accessToken/refresh (Redis disabled)', () => {
   const fastifyServer = fastify();
 
-  beforeAll(() => {
-    fastifyServer.register(server, { ...config, ...redisDisabled });
-  });
-
-  beforeEach(() => {
-    jest.clearAllMocks();
-    jest.resetModules();
+  beforeAll(async () => {
+    fastifyServer.register(fastifyRedis, {
+      host: '127.0.0.1',
+      port: '6379',
+      password: '',
+      enableReadyCheck: true,
+      dropBufferSupport: false,
+    });
+    fastifyServer.register(server, config);
   });
 
   afterEach(() => {
@@ -40,7 +42,6 @@ describe('/accessToken/refresh (Redis disabled)', () => {
     const res = await fastifyServer.inject({ method: 'GET', url: '/accessToken/refresh', });
     expect(res.statusCode).toBe(200);
   });
-
 
   it('returns correct response', async () => {
     const res = await fastifyServer.inject({ method: 'GET', url: '/accessToken/refresh', });
