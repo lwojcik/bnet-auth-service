@@ -46,15 +46,13 @@ When in development mode, the API can load environment variables from `.env` fil
 git clone https://github.com/lukemnet/bnet-auth-service.git
 cd bnet-auth-service
 npm install
-npm run lint
-npm test
-npm start
+npm build
 ```
 
 ## Start server
 
 ```
-node start.js
+npm start
 ```
 
 ## Available endpoints
