@@ -85,7 +85,7 @@ const opts = {
     port: process.env.BAS_REDIS_PORT || '6379',
     password: process.env.BAS_REDIS_PASSWORD || '',
     db: process.env.BAS_REDIS_DB || '0',
-    replyCachePeriod: process.env.BAS_REDIS_CACHE_PERIOD || 1000 * 60 * 5,
+    replyCachePeriod: process.env.BAS_REDIS_CACHE_PERIOD || 2000,
     cacheSegment: process.env.BAS_REDIS_CACHE_SEGMENT || 'bas',
   },
   bnet: {
