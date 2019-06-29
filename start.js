@@ -107,16 +107,17 @@ fastifyInstance.register(fastifyEnv, {
   },
 });
 
-fastifyInstance.register(fastifyRedis, {
-  host: opts.redis.host,
-  port: opts.redis.port,
-  password: opts.redis.password,
-  enableReadyCheck: true,
-  dropBufferSupport: false,
-});
+if (process.env.BAS_REDIS_ENABLE === 'true') {
+  fastifyInstance.register(fastifyRedis, {
+    host: opts.redis.host,
+    port: opts.redis.port,
+    password: opts.redis.password,
+    enableReadyCheck: true,
+    dropBufferSupport: false,
+  });
+}
 
 fastifyInstance.register(server, opts);
-
 fastifyInstance.register(fastifyBlipp);
 
 const start = () => fastifyInstance.listen(opts.app.port, (err) => {

@@ -1,4 +1,5 @@
 import { FastifyInstance } from "fastify";
+import fp from "fastify-plugin";
 import * as routes from "./routes";
 import accessToken from "./plugins/accessToken";
 
@@ -22,17 +23,15 @@ interface ServerOptions {
   };
 }
 
-const api = async (
-  fastify: FastifyInstance,
-  opts: ServerOptions,
-  next: Function
-) => {
-  fastify.register(routes.status);
-  fastify.register(routes.getAccessToken, opts.bnet);
-  fastify.register(routes.refreshAccessToken, opts.bnet);
-  await fastify.register(accessToken, { bnet: opts.bnet, redis: opts.redis });
+const server = fp(
+  (fastify: FastifyInstance, opts: ServerOptions, next: Function) => {
+    fastify.register(routes.status);
+    fastify.register(routes.getAccessToken, opts.bnet);
+    fastify.register(routes.refreshAccessToken, opts.bnet);
+    fastify.register(accessToken, { bnet: opts.bnet, redis: opts.redis });
 
-  next();
-};
+    next();
+  }
+);
 
-export default api;
+export = server;
