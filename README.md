@@ -91,7 +91,7 @@ Get access token from Battle.net (skipping Redis cache)
 
 ### `GET /accessToken/refresh`
 
-Refresh access token stored in Redis cache. Triggering this method will cause next `GET /accessToken/get` 
+Refresh access token stored in Redis cache. Triggering this method will cause next `GET /accessToken/get` to load access token from Redis cache.
 
 ```
 {"status":200,"message":"Access token refreshed successfully"}
