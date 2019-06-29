@@ -2,7 +2,7 @@
 [![Travis CI Build Status](https://travis-ci.org/lukemnet/bnet-auth-service.svg?branch=master)](https://travis-ci.org/lukemnet/bnet-auth-service)
 [![AppVeyor Build status](https://ci.appveyor.com/api/projects/status/ci1n4338v95ygpdi?svg=true)](https://ci.appveyor.com/project/lwojcik/bnet-auth-service)
 [![Maintainability](https://api.codeclimate.com/v1/badges/e988aeb1b13e096f989c/maintainability)](https://codeclimate.com/github/lukemnet/bnet-auth-service/maintainability)
-[![Test Coverage](https://api.codeclimate.com/v1/badges/e988aeb1b13e096f989c/test_coverage)](https://codeclimate.com/github/lukemnet/bnet-auth-service/test_coverage)
+[![Test Coverage](https://api.codeclimate.com/v1/badges/e988aeb1b13e096f989c/test_coverage)](https://codeclimate.com/github/lukemnet/bnet-auth-service/test_coverage) [![Greenkeeper badge](https://badges.greenkeeper.io/lukemnet/bnet-auth-service.svg)](https://greenkeeper.io/)
 
 REST API retrieving and caching OAuth access tokens from Blizzard Battle.net.
 
@@ -99,4 +99,4 @@ Refresh access token stored in Redis cache. Triggering this method will cause ne
 
 ## License
 
-Code is available under MIT license. See [LICENSE](https://raw.githubusercontent.com/lukemsc/sc2profile-twitch-extension-api/master/LICENSE) for more information.
+Code is available under MIT license. See [LICENSE](https://raw.githubusercontent.com/lukemnet/bnet-auth-service/master/LICENSE) for more information.
