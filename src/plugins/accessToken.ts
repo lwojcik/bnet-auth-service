@@ -32,12 +32,10 @@ export default fp(
     const getFreshAccessToken = () =>
       new BlizzAPI(region, apiKey, apiSecret).getAccessToken();
 
-    const getCachedAccessToken = () => {
-      return server.redis.get(cacheSegment);
-    };
+    const getCachedAccessToken = () => server.redis.get(cacheSegment);
 
     const isAccessTokenCached = async () => {
-      if (server.redis) {
+      if (server.redis && enable) {
         return (await server.redis.get(cacheSegment)) ? true : false;
       }
       return Promise.resolve(false);
