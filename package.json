@@ -12,7 +12,7 @@
     "dev": "tsc-watch --onSuccess \"npm start\" | pino-pretty",
     "test": "jest",
     "clearTestCache": "jest --clearCache",
-    "start": "node start.js"
+    "start": "node scripts/start.js"
   },
   "repository": {
     "type": "git",

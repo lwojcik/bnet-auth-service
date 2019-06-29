@@ -3,7 +3,7 @@ const fastify = require('fastify');
 const fastifyBlipp = require('fastify-blipp');
 const fastifyRedis = require('fastify-redis');
 const fastifyEnv = require('fastify-env');
-const server = require('./dist/index');
+const server = require('../dist/index');
 
 const envSchema = {
   type: 'object',
