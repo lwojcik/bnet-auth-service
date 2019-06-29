@@ -79,7 +79,7 @@ Get access token from Redis cache. If no access token is cached, API will reach 
 
 ### `GET /accessToken/get?refresh=true`
 
-Get access token from Battle.net (skipping Redis cache)
+Get access token from Battle.net skipping Redis cache regardless of its state.
 
 **Sample response:**
 
