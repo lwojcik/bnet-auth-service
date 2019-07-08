@@ -48,14 +48,13 @@ export default fp(
       return "Access token refreshed successfully";
     };
 
-    const getAccessToken = async (refresh: Boolean) => {
+    const getAccessToken = async (refresh?: Boolean) => {
       const noKeyInCache = !(await isAccessTokenCached());
       if (noKeyInCache || refresh) {
         const accessToken = await getFreshAccessToken();
         cacheAccessToken(accessToken);
         return accessToken;
       }
-
       return getCachedAccessToken();
     };
 
