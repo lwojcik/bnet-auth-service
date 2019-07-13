@@ -7,7 +7,7 @@ const { BlizzAPI } = require('blizzapi');
 BlizzAPI.prototype.getAccessToken = () => '';
 
 describe('/accessToken/get 400 (Redis enabled)', () => {
-  const fastifyServer = fastify();
+  const fastifyServer = fastify() as any;
 
   beforeAll(() => {
     fastifyServer.register(fastifyRedis, {
@@ -30,5 +30,11 @@ describe('/accessToken/get 400 (Redis enabled)', () => {
   it('returns correct response', async () => {
     const res = await fastifyServer.inject({ method: 'GET', url: '/accessToken/get', });
     expect(JSON.parse(res.payload)).toEqual({"status":400});
+  });
+
+  it('response is not cached', async () => {
+    await fastifyServer.inject({ method: 'GET', url: '/accessToken/get?refresh=true', });
+    const cachedResponse = await fastifyServer.redis.get(getConfig(true).redis.cacheSegment);
+    expect(cachedResponse).toBeFalsy();
   });
 });
