@@ -6,7 +6,7 @@ import getConfig from '../../../helper';
 describe('/accessToken/refresh (Redis disabled)', () => {
   const fastifyServer = fastify();
 
-  beforeAll(async () => {
+  beforeAll(() => {
     fastifyServer.register(fastifyRedis, {
       host: '127.0.0.1',
       port: '6379',
@@ -17,9 +17,7 @@ describe('/accessToken/refresh (Redis disabled)', () => {
     fastifyServer.register(server, getConfig(false));
   });
 
-  afterEach(() => {
-    fastifyServer.close();
-  });
+  afterAll(() => fastifyServer.close());
  
   it('returns 200', async () => {
     const res = await fastifyServer.inject({ method: 'GET', url: '/accessToken/refresh', });

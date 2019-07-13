@@ -6,7 +6,7 @@ import getConfig from '../../../helper';
 describe('/accessToken/get 200 (Redis enabled)', () => {
   const fastifyServer = fastify();
 
-  beforeAll(async () => {
+  beforeAll(() => {
     fastifyServer.register(fastifyRedis, {
       host: '127.0.0.1',
       port: '6379',
@@ -14,12 +14,10 @@ describe('/accessToken/get 200 (Redis enabled)', () => {
       enableReadyCheck: true,
       dropBufferSupport: false,
     });
-    await fastifyServer.register(server, getConfig(true));
+    fastifyServer.register(server, getConfig(true));
   });
 
-  afterAll(() => {
-    fastifyServer.close();
-  });
+  afterAll(() => fastifyServer.close());
 
   it('returns 200', async () => {
     const res = await fastifyServer.inject({ method: 'GET', url: '/accessToken/get', });
