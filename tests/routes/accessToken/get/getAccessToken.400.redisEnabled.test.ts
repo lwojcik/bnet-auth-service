@@ -9,7 +9,7 @@ BlizzAPI.prototype.getAccessToken = () => '';
 describe('/accessToken/get 400 (Redis enabled)', () => {
   const fastifyServer = fastify() as any;
 
-  beforeAll(async () => {
+  beforeAll(() => {
     fastifyServer.register(fastifyRedis, {
       host: '127.0.0.1',
       port: '6379',
@@ -20,9 +20,7 @@ describe('/accessToken/get 400 (Redis enabled)', () => {
     fastifyServer.register(server, getConfig(true));
   });
 
-  afterEach(() => {
-    fastifyServer.close();
-  });
+  afterAll(() => fastifyServer.close());
 
   it('returns 400', async () => {
     const res = await fastifyServer.inject({ method: 'GET', url: '/accessToken/get', });
