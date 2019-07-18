@@ -90,8 +90,8 @@ const opts = {
   },
   bnet: {
     region: process.env.BAS_BATTLENET_REGION,
-    apiKey: process.env.BAS_BATTLENET_KEY,
-    apiSecret: process.env.BAS_BATTLENET_SECRET,
+    clientId: process.env.BAS_BATTLENET_KEY,
+    clientSecret: process.env.BAS_BATTLENET_SECRET,
   }
 }
 

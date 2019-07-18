@@ -6,8 +6,8 @@ const getConfig = (enableRedis: boolean) => {
     },
     bnet: {
       region: 'us',
-      apiKey: 'key',
-      apiSecret: 'secret',
+      clientId: 'key',
+      clientSecret: 'secret',
     },
     redis: {
       enable: enableRedis,

@@ -18,8 +18,8 @@ interface ServerOptions {
   };
   bnet: {
     region: string;
-    apiKey: string;
-    apiSecret: string;
+    clientId: string;
+    clientSecret: string;
   };
 }
 

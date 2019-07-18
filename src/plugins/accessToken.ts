@@ -1,12 +1,12 @@
 import fp from "fastify-plugin";
 import { FastifyInstance } from "fastify";
-import { BlizzAPI } from "blizzapi";
+import BlizzAPI from "blizzapi";
 
 interface BnetConfig {
   [key: string]: string | number | boolean;
   region: string;
-  apiKey: string;
-  apiSecret: string;
+  clientId: string;
+  clientSecret: string;
 }
 
 interface RedisConfig {
@@ -25,12 +25,12 @@ interface AccessTokenOptions {
 export default fp(
   (server: FastifyInstance, opts: AccessTokenOptions, next: Function) => {
     const { bnet, redis } = opts;
-    const { region, apiKey, apiSecret } = bnet;
+    const { region, clientId, clientSecret } = bnet;
     const { enable, cacheSegment, replyCachePeriod } = redis;
     const cache = server.redis;
 
     const getFreshAccessToken = () =>
-      new BlizzAPI(region, apiKey, apiSecret).getAccessToken();
+      new BlizzAPI({ region, clientId, clientSecret }).getAccessToken();
 
     const getCachedAccessToken = () => server.redis.get(cacheSegment);
 

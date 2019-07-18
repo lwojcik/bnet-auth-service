@@ -8,6 +8,4 @@ class BlizzAPI {
   }
 }
 
-export {
-  BlizzAPI,
-}
+export default BlizzAPI;

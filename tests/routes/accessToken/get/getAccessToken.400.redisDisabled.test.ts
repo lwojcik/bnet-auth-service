@@ -1,6 +1,8 @@
 import fastify from 'fastify';
 import fastifyRedis from 'fastify-redis-mock';
 import server from '../../../../src/index';
+import BlizzAPI from 'blizzapi';
+BlizzAPI.prototype.getAccessToken = () => Promise.resolve('');
 
 const config = {
   app: {
@@ -9,8 +11,8 @@ const config = {
   },
   bnet: {
     region: 'us',
-    apiKey: 'key',
-    apiSecret: 'secret',
+    clientId: 'key',
+    clientSecret: 'secret',
   },
   redis: {
     enable: false,
@@ -24,9 +26,6 @@ const config = {
     dropBufferSupport: false,
   }
 }
-
-const { BlizzAPI } = require('blizzapi');
-BlizzAPI.prototype.getAccessToken = () => '';
 
 describe('/accessToken/get 400 (Redis disabled)', () => {
   const fastifyServer = fastify();

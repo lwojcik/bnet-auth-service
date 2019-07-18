@@ -2,9 +2,9 @@ import fastify from 'fastify';
 import fastifyRedis from 'fastify-redis-mock';
 import server from '../../../../src/index';
 import getConfig from '../../../helper';
+import BlizzAPI from 'blizzapi';
 
-const { BlizzAPI } = require('blizzapi');
-BlizzAPI.prototype.getAccessToken = () => '';
+BlizzAPI.prototype.getAccessToken = () => Promise.resolve('');
 
 describe('/accessToken/get 400 (Redis enabled)', () => {
   const fastifyServer = fastify() as any;
