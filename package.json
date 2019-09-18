@@ -51,7 +51,7 @@
     "prettier": "1.18.2",
     "rimraf": "3.0.0",
     "ts-jest": "24.1.0",
-    "tsc-watch": "3.0.1",
+    "tsc-watch": "4.0.0",
     "tslint": "5.18.0",
     "tslint-config-airbnb": "5.11.1",
     "tslint-config-prettier": "1.18.0",
