@@ -48,7 +48,7 @@
     "fastify-redis-mock": "1.0.0",
     "jest": "24.8.0",
     "pino-pretty": "3.3.0",
-    "prettier": "1.18.2",
+    "prettier": "1.19.1",
     "rimraf": "3.0.0",
     "ts-jest": "24.1.0",
     "tsc-watch": "4.0.0",
