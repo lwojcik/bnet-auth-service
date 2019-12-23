@@ -32,7 +32,7 @@
   },
   "homepage": "https://github.com/lukemnet/bnet-auth-service#readme",
   "dependencies": {
-    "blizzapi": "1.1.2",
+    "blizzapi": "1.1.3",
     "fastify": "2.11.0",
     "fastify-blipp": "2.1.0",
     "fastify-caching": "5.0.0",
