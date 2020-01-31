@@ -44,7 +44,7 @@
   },
   "devDependencies": {
     "@types/jest": "25.1.0",
-    "@types/node": "13.1.7",
+    "@types/node": "13.7.0",
     "fastify-redis-mock": "1.0.0",
     "jest": "24.8.0",
     "pino-pretty": "3.5.0",
