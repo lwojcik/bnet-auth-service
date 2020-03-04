@@ -33,17 +33,17 @@
   "homepage": "https://github.com/lukemnet/bnet-auth-service#readme",
   "dependencies": {
     "blizzapi": "1.1.4",
-    "fastify": "2.12.0",
+    "fastify": "2.12.1",
     "fastify-blipp": "2.1.0",
     "fastify-caching": "5.0.0",
     "fastify-env": "1.0.1",
     "fastify-ioredis": "0.1.1",
     "fastify-log": "1.2.1",
-    "fastify-plugin": "1.6.0",
+    "fastify-plugin": "1.6.1",
     "fastify-redis": "3.1.1"
   },
   "devDependencies": {
-    "@types/jest": "25.1.2",
+    "@types/jest": "25.1.3",
     "@types/node": "13.7.7",
     "fastify-redis-mock": "1.0.0",
     "jest": "24.8.0",
