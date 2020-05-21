@@ -40,7 +40,7 @@
     "fastify-ioredis": "0.1.1",
     "fastify-log": "1.2.1",
     "fastify-plugin": "1.6.1",
-    "fastify-redis": "3.1.1"
+    "fastify-redis": "3.2.0"
   },
   "devDependencies": {
     "@types/jest": "25.1.3",
