@@ -1,11 +1,11 @@
-import fp from "fastify-plugin";
-import schema from "./schema";
+import fp from 'fastify-plugin';
+import schema from './schema';
 
 export default fp((server, {}, next) => {
-  server.get("/status", { schema }, ({}, reply) => {
+  server.get('/status', { schema }, ({}, reply) => {
     reply.code(200).send({
       status: 200,
-      message: "ok"
+      message: 'ok',
     });
   });
   next();

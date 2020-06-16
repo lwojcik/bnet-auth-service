@@ -1,15 +1,15 @@
-import fp from "fastify-plugin";
-import schema from "./schema";
+import fp from 'fastify-plugin';
+import schema from './schema';
 
 export default fp((server, {}, next) => {
-  server.get("/accessToken/refresh", { schema }, async ({}, reply) => {
+  server.get('/accessToken/refresh', { schema }, async ({}, reply) => {
     const accessToken = await server.accessToken.getFreshAccessToken();
     const refreshStatusMessage = await server.accessToken.cacheAccessToken(
-      accessToken
+      accessToken,
     );
     reply.code(200).send({
       status: 200,
-      message: refreshStatusMessage
+      message: refreshStatusMessage,
     });
   });
   next();

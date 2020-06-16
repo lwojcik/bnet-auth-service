@@ -1,7 +1,7 @@
-import { FastifyInstance } from "fastify";
-import fp from "fastify-plugin";
-import * as routes from "./routes";
-import accessToken from "./plugins/accessToken";
+import { FastifyInstance } from 'fastify';
+import fp from 'fastify-plugin';
+import * as routes from './routes';
+import accessToken from './plugins/accessToken';
 
 interface ServerOptions {
   app: {
@@ -31,7 +31,7 @@ const server = fp(
     fastify.register(accessToken, { bnet: opts.bnet, redis: opts.redis });
 
     next();
-  }
+  },
 );
 
 export = server;
