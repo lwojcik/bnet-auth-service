@@ -9,7 +9,8 @@
     "build": "npm run lint && npm run test && npm run clean && tsc",
     "format": "prettier --write \"src/**/*.ts\" \"src/**/*.js\"",
     "lint": "tslint --project tsconfig.json",
-    "dev": "tsc-watch --onSuccess \"npm start\" | pino-pretty",
+    "watch": "tsc-watch --onSuccess \"npm start\"",
+    "dev": "npm run watch | pino-pretty",
     "test": "jest",
     "clearTestCache": "jest --clearCache",
     "start": "node scripts/start.js"
