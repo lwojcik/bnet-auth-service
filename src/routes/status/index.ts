@@ -6,6 +6,7 @@ export default fp((server, {}, next) => {
     reply.code(200).send({
       status: 200,
       message: 'ok',
+      timestamp: new Date(),
     });
   });
   next();
