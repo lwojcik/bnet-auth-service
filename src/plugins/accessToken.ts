@@ -1,6 +1,6 @@
-import fp from "fastify-plugin";
-import { FastifyInstance } from "fastify";
-import BlizzAPI from "blizzapi";
+import fp from 'fastify-plugin';
+import { FastifyInstance } from 'fastify';
+import BlizzAPI from 'blizzapi';
 
 interface BnetConfig {
   [key: string]: string | number | boolean;
@@ -42,10 +42,10 @@ export default fp(
     };
 
     const cacheAccessToken = async (accessToken: string) => {
-      if (!enable) return "Access token not refreshed (Redis disabled)";
+      if (!enable) return 'Access token not refreshed (Redis disabled)';
       await cache.set(cacheSegment, accessToken);
       await cache.expire(cacheSegment, replyCachePeriod);
-      return "Access token refreshed successfully";
+      return 'Access token refreshed successfully';
     };
 
     const getAccessToken = async (refresh?: Boolean) => {
@@ -58,14 +58,14 @@ export default fp(
       return getCachedAccessToken();
     };
 
-    server.decorate("accessToken", {
+    server.decorate('accessToken', {
       getAccessToken,
       getFreshAccessToken,
       getCachedAccessToken,
       isAccessTokenCached,
-      cacheAccessToken
+      cacheAccessToken,
     });
 
     next();
-  }
+  },
 );
