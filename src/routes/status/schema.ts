@@ -4,6 +4,7 @@ const response = {
     properties: {
       status: { type: 'number' },
       message: { type: 'string' },
+      timestamp: { type: 'string' },
     },
   },
   400: {
