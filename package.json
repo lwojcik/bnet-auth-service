@@ -51,7 +51,7 @@
     "pino-pretty": "4.0.0",
     "rimraf": "3.0.2",
     "ts-jest": "26.1.0",
-    "tsc-watch": "4.2.8",
+    "tsc-watch": "4.2.9",
     "tslint": "6.1.2",
     "tslint-config-airbnb": "5.11.2",
     "tslint-eslint-rules": "5.4.0",
