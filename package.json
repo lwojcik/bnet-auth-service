@@ -48,7 +48,7 @@
     "@types/node": "14.0.24",
     "fastify-redis-mock": "1.0.0",
     "jest": "26.1.0",
-    "pino-pretty": "4.0.1",
+    "pino-pretty": "4.1.0",
     "rimraf": "3.0.2",
     "ts-jest": "26.1.2",
     "tsc-watch": "4.2.9",
