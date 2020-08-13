@@ -1,8 +1,14 @@
 import fp from 'fastify-plugin';
 import schema from './schema';
 
+interface RouteQueryString {
+  refresh: boolean;
+}
+
 export default fp((server, {}, next) => {
-  server.get('/accessToken/get', { schema }, async (request, reply) => {
+  server.get<{
+    Querystring: RouteQueryString,
+  }>('/accessToken/get', { schema }, async (request, reply) => {
     const { refresh } = request.query;
     const accessToken = await server.accessToken.getAccessToken(refresh);
 
