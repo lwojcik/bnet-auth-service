@@ -58,3 +58,5 @@ docs/
 .node-dev.json
 
 .vscode/*
+
+package-lock.json

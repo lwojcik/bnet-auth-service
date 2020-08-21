@@ -2,7 +2,7 @@
   "name": "bnet-auth-service",
   "version": "1.0.0",
   "private": true,
-  "description": "Battle.net authentication service",
+  "description": "Battle.net authentication microservice",
   "main": "dist/index.js",
   "scripts": {
     "clean": "rimraf dist/*",
@@ -17,7 +17,10 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/lukemnet/bnet-auth-service.git"
+    "url": "git+https://github.com/sc2pte/bnet-auth-service.git"
+  },
+  "publishConfig": {
+    "registry": "https://npm.pkg.github.com/"
   },
   "keywords": [
     "battlenet",
@@ -29,9 +32,9 @@
   "author": "Łukasz Wójcik",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/lukemnet/bnet-auth-service/issues"
+    "url": "https://github.com/sc2pte/bnet-auth-service/issues"
   },
-  "homepage": "https://github.com/lukemnet/bnet-auth-service#readme",
+  "homepage": "https://github.com/sc2pte/bnet-auth-service#readme",
   "dependencies": {
     "blizzapi": "1.1.7",
     "fastify": "3.2.0",
