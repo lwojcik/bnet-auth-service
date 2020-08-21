@@ -1,0 +1,11 @@
+src/
+tests/
+coverage/
+.travis.yml
+jest.config.js
+README.md
+tsconfig.json
+tslint.json
+.mergify.yml
+.env.sample
+.env
