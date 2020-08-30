@@ -39,6 +39,8 @@ See also `.env.sample` for a dotenv template.
 
 When in development mode, the API can load environment variables from `.env` file in root directory.
 
+Installation can also be automated with an [Ansible role](https://github.com/sc2pte/ansible-role-bnet-auth-service).
+
 ## Build and install
 
 ```
