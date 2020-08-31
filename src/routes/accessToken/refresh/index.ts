@@ -1,7 +1,8 @@
+import { FastifyPlugin } from 'fastify';
 import fp from 'fastify-plugin';
 import schema from './schema';
 
-export default fp((server, {}, next) => {
+const route: FastifyPlugin = (server, {}, next) => {
   server.get('/accessToken/refresh', { schema }, async ({}, reply) => {
     const accessToken = await server.accessToken.getFreshAccessToken();
     const refreshStatusMessage = await server.accessToken.cacheAccessToken(
@@ -13,4 +14,6 @@ export default fp((server, {}, next) => {
     });
   });
   next();
-});
+};
+
+export default fp(route);

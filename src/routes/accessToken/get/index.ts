@@ -1,3 +1,4 @@
+import { FastifyPlugin } from 'fastify';
 import fp from 'fastify-plugin';
 import schema from './schema';
 
@@ -5,7 +6,7 @@ interface RouteQueryString {
   refresh: boolean;
 }
 
-export default fp((server, {}, next) => {
+const route: FastifyPlugin = (server, {}, next) => {
   server.get<{
     Querystring: RouteQueryString,
   }>('/accessToken/get', { schema }, async (request, reply) => {
@@ -27,4 +28,6 @@ export default fp((server, {}, next) => {
     });
   });
   next();
-});
+};
+
+export default fp(route);
