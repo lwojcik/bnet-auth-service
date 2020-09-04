@@ -1,7 +1,7 @@
 # bnet-auth-service
 [![Travis CI Build Status](https://travis-ci.org/sc2pte/bnet-auth-service.svg?branch=master)](https://travis-ci.org/sc2pte/bnet-auth-service)
-[![Maintainability](https://api.codeclimate.com/v1/badges/e988aeb1b13e096f989c/maintainability)](https://codeclimate.com/github/sc2pte/bnet-auth-service/maintainability)
-[![Test Coverage](https://api.codeclimate.com/v1/badges/e988aeb1b13e096f989c/test_coverage)](https://codeclimate.com/github/sc2pte/bnet-auth-service/test_coverage) 
+[![Maintainability](https://api.codeclimate.com/v1/badges/5fa7999cca831e7cf70f/maintainability)](https://codeclimate.com/github/sc2pte/bnet-auth-service/maintainability)
+[![Test Coverage](https://api.codeclimate.com/v1/badges/5fa7999cca831e7cf70f/test_coverage)](https://codeclimate.com/github/sc2pte/bnet-auth-service/test_coverage)
 
 REST API service retrieving and caching OAuth access tokens from [Blizzard Battle.net API](https://develop.battle.net/).
 
