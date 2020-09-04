@@ -26,7 +26,7 @@ The following environment variables must be set up:
 * `BAS_REDIS_HOST` - Redis hostname (default: `'localhost'`)
 * `BAS_REDIS_PORT` - Redis port (default: `'6379'`)
 * `BAS_REDIS_PASSWORD` - Redis password (optional)
-* `BAS_REDIS_TTL` - cache TTL in seconds (Time To Live, time for which objects will be cached). Access tokens issued by Battle.net API are valid for 24 hours, so it is not advisable to set TTL longer than 86400 seconds (default: `2000`).
+* `BAS_REDIS_TTL_SECS` - cache TTL in seconds (Time To Live, time for which objects will be cached). Access tokens issued by Battle.net API are valid for 24 hours, so it is not advisable to set TTL longer than 86400 seconds (default: `2000`).
 * `BAS_REDIS_DB` - Redis database index to use
 * `BAS_REDIS_CACHE_SEGMENT` - Redis cache segment used to identify keys in database (default: `'bas'`)
 * `BAS_BATTLENET_REGION` - Battle.net API region to authorize against (`'us'`, `'eu'`, `'kr'` or `'ch'`, required)
