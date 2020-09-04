@@ -14,7 +14,7 @@ const envSchema = {
     'BAS_REDIS_HOST',
     'BAS_REDIS_PORT',
     'BAS_REDIS_PASSWORD',
-    'BAS_REDIS_TTL',
+    'BAS_REDIS_TTL_SECS',
     'BAS_REDIS_DB',
     'BAS_REDIS_CACHE_SEGMENT',
     'BAS_BATTLENET_REGION',
@@ -50,7 +50,7 @@ const envSchema = {
       type: 'string',
       default: '',
     },
-    BAS_REDIS_TTL: {
+    BAS_REDIS_TTL_SECS: {
       type: 'string',
       default: '2000',
     },
@@ -85,7 +85,7 @@ const opts = {
     port: process.env.BAS_REDIS_PORT || '6379',
     password: process.env.BAS_REDIS_PASSWORD || '',
     db: process.env.BAS_REDIS_DB || '0',
-    replyCachePeriod: process.env.BAS_REDIS_CACHE_PERIOD || 2000,
+    replyCachePeriod: process.env.BAS_REDIS_TTL_SECS || 2000,
     cacheSegment: process.env.BAS_REDIS_CACHE_SEGMENT || 'bas',
   },
   bnet: {
