@@ -33,7 +33,7 @@
   "homepage": "https://github.com/sc2pte/bnet-auth-service#readme",
   "dependencies": {
     "@types/jest": "26.0.14",
-    "@types/node": "14.10.3",
+    "@types/node": "14.11.1",
     "blizzapi": "1.1.8",
     "fastify": "3.4.1",
     "fastify-blipp": "3.0.0",
