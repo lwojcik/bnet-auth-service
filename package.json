@@ -53,6 +53,6 @@
     "tslint-config-airbnb": "5.11.2",
     "tslint-eslint-rules": "5.4.0",
     "tslint-immutable": "6.0.1",
-    "typescript": "4.0.2"
+    "typescript": "4.0.3"
   }
 }
