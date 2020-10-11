@@ -1,0 +1,3 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`/accessToken/get 200 (Redis disabled) returns correct response 1`] = `"{\\"status\\":200,\\"data\\":{\\"accessToken\\":\\"sample access token\\"}}"`;

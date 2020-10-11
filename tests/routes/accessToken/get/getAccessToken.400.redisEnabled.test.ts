@@ -1,8 +1,8 @@
 import fastify from 'fastify';
 import fastifyRedis from 'fastify-redis-mock';
+import BlizzAPI from 'blizzapi';
 import server from '../../../../src/index';
 import getConfig from '../../../helper';
-import BlizzAPI from 'blizzapi';
 
 BlizzAPI.prototype.getAccessToken = () => Promise.resolve('');
 
@@ -23,18 +23,39 @@ describe('/accessToken/get 400 (Redis enabled)', () => {
   afterAll(() => fastifyServer.close());
 
   it('returns 400', async () => {
-    const res = await fastifyServer.inject({ method: 'GET', url: '/accessToken/get', });
+    expect.assertions(1);
+
+    const res = await fastifyServer.inject({
+      method: 'GET',
+      url: '/accessToken/get',
+    });
+
     expect(res.statusCode).toBe(400);
   });
 
   it('returns correct response', async () => {
-    const res = await fastifyServer.inject({ method: 'GET', url: '/accessToken/get', });
-    expect(JSON.parse(res.payload)).toEqual({"status":400});
+    expect.assertions(1);
+
+    const res = await fastifyServer.inject({
+      method: 'GET',
+      url: '/accessToken/get',
+    });
+
+    expect(res.payload).toMatchSnapshot();
   });
 
   it('response is not cached', async () => {
-    await fastifyServer.inject({ method: 'GET', url: '/accessToken/get?refresh=true', });
-    const cachedResponse = await fastifyServer.redis.get(getConfig(true).redis.cacheSegment);
+    expect.assertions(1);
+
+    await fastifyServer.inject({
+      method: 'GET',
+      url: '/accessToken/get?refresh=true',
+    });
+
+    const cachedResponse = await fastifyServer.redis.get(
+      getConfig(true).redis.cacheSegment,
+    );
+
     expect(cachedResponse).toBeFalsy();
   });
 });

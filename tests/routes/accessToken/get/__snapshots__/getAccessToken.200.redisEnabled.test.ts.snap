@@ -1,0 +1,7 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`/accessToken/get 200 (Redis enabled) returns correct response 1`] = `"{\\"status\\":200,\\"data\\":{\\"accessToken\\":\\"sample access token\\"}}"`;
+
+exports[`/accessToken/get 200 (Redis enabled) returns correct response refresh parameter is sent 1`] = `"{\\"status\\":200,\\"data\\":{\\"accessToken\\":\\"sample access token\\"}}"`;
+
+exports[`/accessToken/get 200 (Redis enabled) returns correct response when access token is cached 1`] = `"{\\"status\\":200,\\"data\\":{\\"accessToken\\":\\"sample cached access token\\"}}"`;

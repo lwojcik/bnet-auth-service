@@ -1,7 +1,8 @@
 import fastify from 'fastify';
 import fastifyRedis from 'fastify-redis-mock';
-import server from '../../../../src/index';
 import BlizzAPI from 'blizzapi';
+import server from '../../../../src/index';
+
 BlizzAPI.prototype.getAccessToken = () => Promise.resolve('');
 
 const config = {
@@ -24,8 +25,8 @@ const config = {
     password: '',
     enableReadyCheck: true,
     dropBufferSupport: false,
-  }
-}
+  },
+};
 
 describe('/accessToken/get 400 (Redis disabled)', () => {
   const fastifyServer = fastify();
@@ -44,12 +45,24 @@ describe('/accessToken/get 400 (Redis disabled)', () => {
   afterAll(() => fastifyServer.close());
 
   it('returns 400', async () => {
-    const res = await fastifyServer.inject({ method: 'GET', url: '/accessToken/get', });
+    expect.assertions(1);
+
+    const res = await fastifyServer.inject({
+      method: 'GET',
+      url: '/accessToken/get',
+    });
+
     expect(res.statusCode).toBe(400);
   });
 
   it('returns correct response', async () => {
-    const res = await fastifyServer.inject({ method: 'GET', url: '/accessToken/get', });
-    expect(JSON.parse(res.payload)).toEqual({"status":400});
+    expect.assertions(1);
+
+    const res = await fastifyServer.inject({
+      method: 'GET',
+      url: '/accessToken/get',
+    });
+
+    expect(res.payload).toMatchSnapshot();
   });
 });

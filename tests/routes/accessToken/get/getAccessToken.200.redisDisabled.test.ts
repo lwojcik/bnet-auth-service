@@ -20,12 +20,24 @@ describe('/accessToken/get 200 (Redis disabled)', () => {
   afterAll(() => fastifyServer.close());
 
   it('returns 200', async () => {
-    const res = await fastifyServer.inject({ method: 'GET', url: '/accessToken/get', });
+    expect.assertions(1);
+
+    const res = await fastifyServer.inject({
+      method: 'GET',
+      url: '/accessToken/get',
+    });
+
     expect(res.statusCode).toBe(200);
   });
 
   it('returns correct response', async () => {
-    const res = await fastifyServer.inject({ method: 'GET', url: '/accessToken/get', });
-    expect(JSON.parse(res.payload)).toEqual({"status":200,"data":{ accessToken: "sample access token" }});
+    expect.assertions(1);
+
+    const res = await fastifyServer.inject({
+      method: 'GET',
+      url: '/accessToken/get',
+    });
+
+    expect(res.payload).toMatchSnapshot();
   });
 });

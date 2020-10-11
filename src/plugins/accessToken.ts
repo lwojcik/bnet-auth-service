@@ -36,7 +36,7 @@ export default fp(
 
     const isAccessTokenCached = async () => {
       if (server.redis && enable) {
-        return (await server.redis.get(cacheSegment)) ? true : false;
+        return Boolean(await server.redis.get(cacheSegment));
       }
       return Promise.resolve(false);
     };
