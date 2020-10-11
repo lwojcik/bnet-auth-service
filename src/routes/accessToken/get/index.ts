@@ -12,7 +12,7 @@ const route: FastifyPluginCallback = (server, {}, next) => {
     Querystring: RouteQueryString,
   }>('/accessToken/get', { schema }, async (request, reply) => {
     const { refresh } = request.query;
-    const accessToken = await server.accessToken.getAccessToken(refresh);
+    const accessToken = await (server as any).accessToken.getAccessToken(refresh);
 
     if (!accessToken || accessToken.length === 0) {
       reply.code(400).send({

@@ -27,16 +27,16 @@ export default fp(
     const { bnet, redis } = opts;
     const { region, clientId, clientSecret } = bnet;
     const { enable, cacheSegment, replyCachePeriod } = redis;
-    const cache = server.redis;
+    const cache = (server as any).redis;
 
     const getFreshAccessToken = () =>
       new BlizzAPI({ region, clientId, clientSecret }).getAccessToken();
 
-    const getCachedAccessToken = () => server.redis.get(cacheSegment);
+    const getCachedAccessToken = () => (server as any).redis.get(cacheSegment);
 
     const isAccessTokenCached = async () => {
-      if (server.redis && enable) {
-        return Boolean(await server.redis.get(cacheSegment));
+      if ((server as any).redis && enable) {
+        return Boolean(await (server as any).redis.get(cacheSegment));
       }
       return Promise.resolve(false);
     };

@@ -3,7 +3,7 @@ import fp from 'fastify-plugin';
 import schema from './schema';
 
 // eslint-disable-next-line no-empty-pattern
-const route: FastifyPluginCallback = (server, {}, next) => {
+const route: FastifyPluginCallback<{}> = (server, {}, next) => {
   // eslint-disable-next-line no-empty-pattern
   server.get('/status', { schema }, ({}, reply) => {
     reply.code(200).send({
