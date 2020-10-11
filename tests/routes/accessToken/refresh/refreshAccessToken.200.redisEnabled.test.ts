@@ -18,15 +18,26 @@ describe('/accessToken/refresh (Redis enabled)', () => {
   });
 
   afterAll(() => fastifyServer.close());
- 
+
   it('returns 200', async () => {
-    const res = await fastifyServer.inject({ method: 'GET', url: '/accessToken/refresh', });
+    expect.assertions(1);
+
+    const res = await fastifyServer.inject({
+      method: 'GET',
+      url: '/accessToken/refresh',
+    });
+
     expect(res.statusCode).toBe(200);
   });
 
-
   it('returns correct response', async () => {
-    const res = await fastifyServer.inject({ method: 'GET', url: '/accessToken/refresh', });
-    expect(JSON.parse(res.payload)).toEqual({ status:200, message: "Access token refreshed successfully"});
+    expect.assertions(1);
+
+    const res = await fastifyServer.inject({
+      method: 'GET',
+      url: '/accessToken/refresh',
+    });
+
+    expect(res.payload).toMatchSnapshot();
   });
 });

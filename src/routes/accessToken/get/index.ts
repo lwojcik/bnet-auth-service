@@ -1,4 +1,4 @@
-import { FastifyPlugin } from 'fastify';
+import { FastifyPluginCallback } from 'fastify';
 import fp from 'fastify-plugin';
 import schema from './schema';
 
@@ -6,12 +6,13 @@ interface RouteQueryString {
   refresh: boolean;
 }
 
-const route: FastifyPlugin = (server, {}, next) => {
+// eslint-disable-next-line no-empty-pattern
+const route: FastifyPluginCallback = (server, {}, next) => {
   server.get<{
     Querystring: RouteQueryString,
   }>('/accessToken/get', { schema }, async (request, reply) => {
     const { refresh } = request.query;
-    const accessToken = await server.accessToken.getAccessToken(refresh);
+    const accessToken = await (server as any).accessToken.getAccessToken(refresh);
 
     if (!accessToken || accessToken.length === 0) {
       reply.code(400).send({
