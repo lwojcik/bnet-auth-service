@@ -9,6 +9,7 @@ describe('Server (Redis disabled)', () => {
   });
 
   it('starts and stops without throwing', async () => {
+    expect.assertions(1);
 
     expect(async () => {
       const fastifyServer = fastify();

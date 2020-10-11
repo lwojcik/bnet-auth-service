@@ -58,7 +58,7 @@ export default fp(
       return getCachedAccessToken();
     };
 
-    server.decorate('accessToken', {
+    (server as any).decorate('accessToken', {
       getAccessToken,
       getFreshAccessToken,
       getCachedAccessToken,
