@@ -50,7 +50,7 @@
     "fastify-plugin": "2.3.4",
     "fastify-redis": "4.0.3",
     "fastify-redis-mock": "1.0.0",
-    "jest": "26.5.3",
+    "jest": "26.6.0",
     "pino-pretty": "4.3.0",
     "rimraf": "3.0.2",
     "ts-jest": "26.4.1",
