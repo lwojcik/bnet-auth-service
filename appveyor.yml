@@ -5,17 +5,17 @@ environment:
     - nodejs_version: 'lts'
 
 init:
-  - curl -L https://codeclimate.com/downloads/test-reporter/test-reporter-latest-linux-amd64 > ./cc-test-reporter
-  - chmod +x ./cc-test-reporter
-  - ./cc-test-reporter before-build
+  - node --version
+  - npm --version
 
 install:
   - npm install
   - npm install -g codecov
+  - curl -L https://codeclimate.com/downloads/test-reporter/test-reporter-latest-linux-amd64 > ./cc-test-reporter
+  - chmod +x ./cc-test-reporter
+  - ./cc-test-reporter before-build
 
 test_script:
-  - node --version
-  - npm --version
   - npm test
 
 build_script:
