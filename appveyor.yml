@@ -1,0 +1,16 @@
+image: Ubuntu2004
+platform: x64
+stack: node lts/*
+
+install:
+  - npm install -g codecov
+  - npm install
+
+test_script:
+  - npm test
+
+build_script:
+  - npm run build
+  - codecov
+
+# build: off
