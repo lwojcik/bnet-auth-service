@@ -8,10 +8,10 @@ init:
   - curl -L https://codeclimate.com/downloads/test-reporter/test-reporter-latest-linux-amd64 > ./cc-test-reporter
   - chmod +x ./cc-test-reporter
   - ./cc-test-reporter before-build
-  - npm install -g codecov
 
 install:
   - npm install
+  - npm install -g codecov
 
 test_script:
   - node --version
@@ -23,4 +23,4 @@ build_script:
   - codecov
   - ./cc-test-reporter after-build --exit-code $TRAVIS_TEST_RESULT
 
-build: off
+# build: off
