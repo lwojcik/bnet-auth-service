@@ -2,10 +2,8 @@ image: Ubuntu2004
 platform: x64
 stack: node lts/*
 
-init:
-  - npm install -g codecov
-
 install:
+  - npm install -g codecov
   - npm install
 
 build_script:
