@@ -1,7 +1,6 @@
 image: Ubuntu2004
 platform: x64
-environment:
-  nodejs_version: 'lts'
+stack: node lts
 
 init:
   - node --version
