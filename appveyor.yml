@@ -2,14 +2,13 @@ image: Ubuntu2004
 platform: x64
 stack: node lts/*
 
-install:
+init:
   - node --version
   - npm --version
-  - npm install
   - npm install -g codecov
-  - curl -L https://codeclimate.com/downloads/test-reporter/test-reporter-latest-linux-amd64 > ./cc-test-reporter
-  - chmod +x ./cc-test-reporter
-  - ./cc-test-reporter before-build
+
+install:
+  - npm install
 
 test_script:
   - npm test
@@ -17,6 +16,5 @@ test_script:
 build_script:
   - npm run build
   - codecov
-  - ./cc-test-reporter after-build --exit-code $TRAVIS_TEST_RESULT
 
 # build: off
