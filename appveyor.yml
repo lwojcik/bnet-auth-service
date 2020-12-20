@@ -1,8 +1,7 @@
 image: Ubuntu2004
 platform: x64
 environment:
-  matrix:
-    - nodejs_version: 'lts'
+  - nodejs_version: 'lts'
 
 init:
   - node --version
@@ -11,11 +10,16 @@ init:
 install:
   - npm install
   - npm install -g codecov
-  # - curl -L https://codeclimate.com/downloads/test-reporter/test-reporter-latest-linux-amd64 > ./cc-test-reporter
-  # - chmod +x ./cc-test-reporter
-  # - ./cc-test-reporter before-build
+  - curl -L https://codeclimate.com/downloads/test-reporter/test-reporter-latest-linux-amd64 > ./cc-test-reporter
+  - chmod +x ./cc-test-reporter
+  - ./cc-test-reporter before-build
+
+test_script:
   - npm test
+
+build_script:
   - npm run build
   - codecov
+  - ./cc-test-reporter after-build --exit-code $TRAVIS_TEST_RESULT
 
-build: off
+# build: off
