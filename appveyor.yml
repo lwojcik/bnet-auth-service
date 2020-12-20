@@ -6,11 +6,6 @@ install:
   - npm install -g codecov
   - npm install
 
-test_script:
-  - npm test
-
 build_script:
   - npm run build
   - codecov
-
-# build: off
