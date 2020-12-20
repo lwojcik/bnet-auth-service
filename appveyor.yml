@@ -1,12 +1,10 @@
 image: Ubuntu2004
 platform: x64
-stack: node lts
-
-init:
-  - node --version
-  - npm --version
+stack: node lts/*
 
 install:
+  - node --version
+  - npm --version
   - npm install
   - npm install -g codecov
   - curl -L https://codeclimate.com/downloads/test-reporter/test-reporter-latest-linux-amd64 > ./cc-test-reporter
