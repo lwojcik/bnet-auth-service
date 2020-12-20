@@ -1,7 +1,7 @@
 image: Ubuntu2004
 platform: x64
 environment:
-  - nodejs_version: 'lts'
+  nodejs_version: 'lts'
 
 init:
   - node --version
