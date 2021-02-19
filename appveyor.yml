@@ -3,11 +3,10 @@ platform: x64
 stack: node lts/*
 
 install:
-  - npm install -g codecov
   - npm install
 
 build_script:
   - npm run build
 
 test_script:
-  - codecov
+  - npx codecov
