@@ -1,6 +1,6 @@
 import fp from 'fastify-plugin';
 import { FastifyInstance } from 'fastify';
-import BlizzAPI from 'blizzapi';
+import { BlizzAPI } from 'blizzapi';
 
 interface BnetConfig {
   [key: string]: string | number | boolean;

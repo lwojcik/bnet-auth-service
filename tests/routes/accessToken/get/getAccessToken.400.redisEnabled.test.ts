@@ -1,10 +1,14 @@
 import fastify from 'fastify';
 import fastifyRedis from 'fastify-redis-mock';
-import BlizzAPI from 'blizzapi';
+// import { BlizzAPI } from 'blizzapi';
 import server from '../../../../src/index';
 import getConfig from '../../../helper';
 
-BlizzAPI.prototype.getAccessToken = () => Promise.resolve('');
+jest.mock('blizzapi', () => ({
+  BlizzAPI: jest.fn().mockImplementation(() => ({
+    getAccessToken: () => Promise.resolve(''),
+  })),
+}));
 
 describe('/accessToken/get 400 (Redis enabled)', () => {
   const fastifyServer = fastify() as any;
