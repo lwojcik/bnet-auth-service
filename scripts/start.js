@@ -1,4 +1,6 @@
+/* eslint-disable */
 (process.env.NODE_ENV !== 'production') && require('dotenv').config();
+/* eslint-enable */
 const fastify = require('fastify');
 const fastifyBlipp = require('fastify-blipp');
 const fastifyRedis = require('fastify-redis');
@@ -19,7 +21,7 @@ const envSchema = {
     'BAS_REDIS_CACHE_SEGMENT',
     'BAS_BATTLENET_REGION',
     'BAS_BATTLENET_KEY',
-    'BAS_BATTLENET_SECRET'
+    'BAS_BATTLENET_SECRET',
   ],
   properties: {
     NODE_ENV: {
@@ -70,9 +72,9 @@ const envSchema = {
     },
     BAS_BATTLENET_SECRET: {
       type: 'string',
-    }
-  }
-}
+    },
+  },
+};
 
 const opts = {
   app: {
@@ -92,18 +94,18 @@ const opts = {
     region: process.env.BAS_BATTLENET_REGION,
     clientId: process.env.BAS_BATTLENET_KEY,
     clientSecret: process.env.BAS_BATTLENET_SECRET,
-  }
-}
+  },
+};
 
 const fastifyInstance = fastify({
-  logger: opts.app.nodeEnv === 'development'
+  logger: opts.app.nodeEnv === 'development',
 });
 
 fastifyInstance.register(fastifyEnv, {
   schema: envSchema,
   dotenv: {
-      path: `${__dirname}/.env`,
-      debug: process.env.NODE_ENV === 'development'
+    path: `${__dirname}/.env`,
+    debug: process.env.NODE_ENV === 'development',
   },
 });
 

@@ -1,9 +1,12 @@
 import fastify from 'fastify';
 import fastifyRedis from 'fastify-redis-mock';
-import BlizzAPI from 'blizzapi';
 import server from '../../../../src/index';
 
-BlizzAPI.prototype.getAccessToken = () => Promise.resolve('');
+jest.mock('blizzapi', () => ({
+  BlizzAPI: jest.fn().mockImplementation(() => ({
+    getAccessToken: () => Promise.resolve(''),
+  })),
+}));
 
 const config = {
   app: {

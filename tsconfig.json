@@ -4,7 +4,6 @@
     "module": "commonjs",
     "rootDir": "src",
     "outDir": "./dist/",
-    "sourceMap": false,
     "lib": ["es2017"],
     "forceConsistentCasingInFileNames": true,
     "declaration": false,
