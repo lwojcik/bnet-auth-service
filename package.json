@@ -42,7 +42,7 @@
     "eslint-plugin-import": "2.22.1",
     "eslint-plugin-jest": "24.3.6",
     "fastify": "3.16.1",
-    "fastify-blipp": "3.0.0",
+    "fastify-blipp": "3.1.0",
     "fastify-caching": "6.1.0",
     "fastify-env": "2.1.1",
     "fastify-ioredis": "0.1.1",
