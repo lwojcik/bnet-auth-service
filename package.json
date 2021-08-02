@@ -35,7 +35,7 @@
     "@types/jest": "26.0.24",
     "@types/node": "^16.3.1",
     "@typescript-eslint/eslint-plugin": "^4.28.2",
-    "@typescript-eslint/parser": "^4.28.2",
+    "@typescript-eslint/parser": "^4.28.3",
     "blizzapi": "2.0.2",
     "eslint": "7.30.0",
     "eslint-config-airbnb-typescript": "12.3.1",
