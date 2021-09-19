@@ -33,9 +33,8 @@
   "homepage": "https://github.com/sc2pte/bnet-auth-service#readme",
   "dependencies": {
     "@types/jest": "26.0.24",
-    "@types/node": "^16.4.0",
     "@typescript-eslint/eslint-plugin": "^4.29.3",
-    "@typescript-eslint/parser": "^4.28.3",
+    "@typescript-eslint/parser": "^4.28.4",
     "blizzapi": "2.0.2",
     "eslint": "7.32.0",
     "eslint-config-airbnb-typescript": "12.3.1",
