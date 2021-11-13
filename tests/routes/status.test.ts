@@ -30,8 +30,8 @@ describe('/status (Redis enabled)', () => {
     });
     const response = JSON.parse(res.payload);
 
-    expect(response.status).toStrictEqual(200);
-    expect(response.message).toStrictEqual('ok');
+    expect(response.status).toBe(200);
+    expect(response.message).toBe('ok');
     expect(response.timestamp).toHaveLength(24);
   });
 });
@@ -64,8 +64,8 @@ describe('/status (Redis disabled)', () => {
     });
     const response = JSON.parse(res.payload);
 
-    expect(response.status).toStrictEqual(200);
-    expect(response.message).toStrictEqual('ok');
+    expect(response.status).toBe(200);
+    expect(response.message).toBe('ok');
     expect(response.timestamp).toHaveLength(24);
   });
 });
