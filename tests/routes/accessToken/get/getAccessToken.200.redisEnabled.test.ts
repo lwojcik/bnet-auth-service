@@ -91,6 +91,6 @@ describe('/accessToken/get 200 (Redis enabled)', () => {
       getConfig(true).redis.cacheSegment,
     );
 
-    expect(cachedResponse).toStrictEqual('sample access token');
+    expect(cachedResponse).toBe('sample access token');
   });
 });
