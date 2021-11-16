@@ -24,6 +24,7 @@
       }
     ],
     "jest/no-hooks": "off",
-    "import/prefer-default-export": "off"
+    "import/prefer-default-export": "off",
+    "jest/prefer-lowercase-title": "off"
   }
 }
