@@ -122,7 +122,7 @@ if (process.env.BAS_REDIS_ENABLE === 'true') {
 fastifyInstance.register(server, opts);
 fastifyInstance.register(fastifyBlipp);
 
-const start = () => fastifyInstance.listen(opts.app.port, (err) => {
+const start = () => fastifyInstance.listen(opts.app.port, '0.0.0.0', (err) => {
   if (err) throw err;
   fastifyInstance.blipp();
   fastifyInstance.log.info(`Redis cache enabled: ${!!opts.redis.enable}`);
