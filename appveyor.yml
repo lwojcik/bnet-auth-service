@@ -1,12 +1,15 @@
 image: Ubuntu2004
 platform: x64
 stack: node lts/*
+services:
+  - docker
 
 install:
   - npm install
 
 build_script:
   - npm run build
+  - docker build -t bnet-auth-service . --no-cache
 
 test_script:
   - npx codecov
