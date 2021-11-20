@@ -101,6 +101,7 @@ const fastifyInstance = fastify({
   logger: opts.app.nodeEnv === 'development',
 });
 
+// eslint-disable-next-line jest/require-hook
 fastifyInstance.register(fastifyEnv, {
   schema: envSchema,
   dotenv: {
@@ -119,13 +120,16 @@ if (process.env.BAS_REDIS_ENABLE === 'true') {
   });
 }
 
+// eslint-disable-next-line jest/require-hook
 fastifyInstance.register(server, opts);
+// eslint-disable-next-line jest/require-hook
 fastifyInstance.register(fastifyBlipp);
 
-const start = () => fastifyInstance.listen(opts.app.port, (err) => {
+const start = () => fastifyInstance.listen(opts.app.port, '0.0.0.0', (err) => {
   if (err) throw err;
   fastifyInstance.blipp();
   fastifyInstance.log.info(`Redis cache enabled: ${!!opts.redis.enable}`);
 });
 
+// eslint-disable-next-line jest/require-hook
 start();
