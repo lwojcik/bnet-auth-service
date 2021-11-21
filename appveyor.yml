@@ -16,4 +16,4 @@ test_script:
 
 after_build:
   - if [[ "%APPVEYOR_REPO_BRANCH%" == "master" ]]; then echo "${DOCKER_PASSWORD}" | docker login -u "${DOCKER_USERNAME}" --password-stdin; fi
-#  - if "%APPVEYOR_REPO_BRANCH%"=="master" docker push "${DOCKER_TAG}"
+  - if [[ "%APPVEYOR_REPO_BRANCH%" == "master" ]]; then docker push "${DOCKER_TAG}"; fi
