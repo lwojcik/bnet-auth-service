@@ -1,4 +1,4 @@
-image: Ubuntu2004
+image: Ubuntu
 platform: x64
 stack: node lts/*
 services:
@@ -15,7 +15,5 @@ test_script:
   - npx codecov
 
 after_build:
-- echo "${APPVEYOR_REPO_BRANCH}"
-- if [[ $env:APPVEYOR_REPO_BRANCH == "master" ]]; then echo "test"; fi
-#  - if [[ "%APPVEYOR_REPO_BRANCH%" == "master" ]]; then echo "${DOCKER_PASSWORD}" | docker login -u "${DOCKER_USERNAME}" --password-stdin; fi
-#  - if [[ "%APPVEYOR_REPO_BRANCH%" == "master" ]]; then docker push "${DOCKER_TAG}"; fi
+  - if [[ "${APPVEYOR_REPO_BRANCH}" == "master" ]]; then echo "${DOCKER_PASSWORD}" | docker login -u "${DOCKER_USERNAME}" --password-stdin; fi
+  - if [[ "${APPVEYOR_REPO_BRANCH}" == "master" ]]; then docker push "${DOCKER_TAG}"; fi
