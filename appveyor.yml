@@ -23,7 +23,7 @@ after_build:
   - echo ${APPVEYOR_PULL_REQUEST_NUMBER}
   - echo "${DOCKER_PASSWORD}" | docker login "${DOCKER_REGISTRY}" --username "${DOCKER_USERNAME}" --password-stdin
   - if [[ "${APPVEYOR_REPO_BRANCH}" != "master" ]] || [[ ! -z "${APPVEYOR_PULL_REQUEST_NUMBER}" ]]; then docker build -t "${DOCKER_REGISTRY}/${APPVEYOR_REPO_NAME}:v${APPVEYOR_BUILD_VERSION}" . --no-cache; fi
-  - if [[ "${APPVEYOR_REPO_BRANCH}" != "master" ]] || [[ ! -z "${APPVEYOR_PULL_REQUEST_NUMBER}" ]] then docker push "${DOCKER_REGISTRY}/${APPVEYOR_REPO_NAME}:v${APPVEYOR_BUILD_VERSION}"; fi
+  - if [[ "${APPVEYOR_REPO_BRANCH}" != "master" ]] || [[ ! -z "${APPVEYOR_PULL_REQUEST_NUMBER}" ]]; then docker push "${DOCKER_REGISTRY}/${APPVEYOR_REPO_NAME}:v${APPVEYOR_BUILD_VERSION}"; fi
   - if [[ "${APPVEYOR_REPO_BRANCH}" == "master" ]] && [[ -z "${APPVEYOR_PULL_REQUEST_NUMBER}" ]]; then docker build -t "${DOCKER_REGISTRY}/${APPVEYOR_REPO_NAME}:v${APPVEYOR_BUILD_VERSION}" -t "${DOCKER_REGISTRY}/${APPVEYOR_REPO_NAME}:latest" . --no-cache; fi
   - if [[ "${APPVEYOR_REPO_BRANCH}" == "master" ]] && [[ -z "${APPVEYOR_PULL_REQUEST_NUMBER}" ]]; then docker push "${DOCKER_REGISTRY}/${APPVEYOR_REPO_NAME}:v${APPVEYOR_BUILD_VERSION}"; fi
   - docker push "${DOCKER_REGISTRY}/${APPVEYOR_REPO_NAME}" --all-tags
