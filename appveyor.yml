@@ -5,16 +5,16 @@ services:
   - docker
 
 install:
-  - npm install
+  - npm ci --only=production
 
 build_script:
   - npm run build
-  - docker build -t $DOCKER_TAG . --no-cache
+  - docker build -t %DOCKER_TAG% . --no-cache
 
 test_script:
   - npx codecov
 
 after_build:
   - IF %APPVEYOR_REPO_BRANCH%==master 
-    - docker login $DOCKER_REGISTRY -u $DOCKER_USER -p $DOCKER_PASSWORD
-    - docker push $DOCKER_TAG
+    - docker login ${DOCKER_REGISTRY} -u ${DOCKER_USER} -p ${DOCKER_PASSWORD}
+    - docker push ${DOCKER_TAG}
