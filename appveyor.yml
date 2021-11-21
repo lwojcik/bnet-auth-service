@@ -1,12 +1,18 @@
 image: Ubuntu2004
 platform: x64
 stack: node lts/*
+services:
+  - docker
 
 install:
   - npm install
 
 build_script:
   - npm run build
+  - docker build -t "${DOCKER_TAG}" . --no-cache
 
 test_script:
   - npx codecov
+
+after_build:
+  - if "%APPVEYOR_REPO_BRANCH%"=="master"; then docker login "${DOCKER_REGISTRY}" -u "{$DOCKER_USER}" -p "${DOCKER_PASSWORD}"; docker push "${DOCKER_TAG}"; fi
