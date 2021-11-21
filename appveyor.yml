@@ -15,5 +15,5 @@ test_script:
   - npx codecov
 
 after_build:
-  - if "%APPVEYOR_REPO_BRANCH%"=="master" echo "${DOCKER_PASSWORD}" | docker login -u "${DOCKER_USERNAME}" --password-stdin;
-  - if "%APPVEYOR_REPO_BRANCH%"=="master" docker push "${DOCKER_TAG}";
+  - if [[ "%APPVEYOR_REPO_BRANCH%" == "master" ]]; then echo "${DOCKER_PASSWORD}" | docker login -u "${DOCKER_USERNAME}" --password-stdin; fi
+#  - if "%APPVEYOR_REPO_BRANCH%"=="master" docker push "${DOCKER_TAG}"
