@@ -19,6 +19,7 @@ after_build:
   - echo ${DOCKER_USERNAME}
   - echo ${APPVEYOR_REPO_NAME}
   - echo ${APPVEYOR_BUILD_VERSION}
+  - echo ${APPVEYOR_PULL_REQUEST_HEAD_REPO_BRANCH}
   - echo "${DOCKER_PASSWORD}" | docker login "${DOCKER_REGISTRY}" --username "${DOCKER_USERNAME}" --password-stdin
   - docker build -t "${DOCKER_REGISTRY}/${APPVEYOR_REPO_NAME}:v${APPVEYOR_BUILD_VERSION}" . --no-cache
   - docker push "${DOCKER_REGISTRY}/${APPVEYOR_REPO_NAME}:v${APPVEYOR_BUILD_VERSION}"
