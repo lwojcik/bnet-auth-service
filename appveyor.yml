@@ -9,7 +9,7 @@ install:
 
 build_script:
   - npm run build
-  - docker build -t "$env:${DOCKER_TAG}" . --no-cache
+  - docker build -t "${DOCKER_TAG}" . --no-cache
 
 test_script:
   - npx codecov
