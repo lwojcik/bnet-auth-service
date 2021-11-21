@@ -19,8 +19,8 @@ after_build:
   - echo ${DOCKER_USERNAME}
   - echo ${APPVEYOR_REPO_NAME}
   - echo ${APPVEYOR_BUILD_VERSION}
-  - docker build -t "${DOCKER_REGISTRY}/${APPVEYOR_REPO_NAME}:v${APPVEYOR_BUILD_VERSION}" . --no-cache
-  - if [[ "${APPVEYOR_REPO_BRANCH}" == "master" ]]; then docker build -t "${DOCKER_REGISTRY}/${APPVEYOR_REPO_NAME}:latest" .; fi
   - echo "${DOCKER_PASSWORD}" | docker login "${DOCKER_REGISTRY}" --username "${DOCKER_USERNAME}" --password-stdin
+  - docker build -t "${DOCKER_REGISTRY}/${APPVEYOR_REPO_NAME}:v${APPVEYOR_BUILD_VERSION}" . --no-cache
   - docker push "${DOCKER_REGISTRY}/${APPVEYOR_REPO_NAME}:v${APPVEYOR_BUILD_VERSION}"
+  - if [[ "${APPVEYOR_REPO_BRANCH}" == "master" ]]; then docker build -t "${DOCKER_REGISTRY}/${APPVEYOR_REPO_NAME}:latest" .; fi
   - if [[ "${APPVEYOR_REPO_BRANCH}" == "master" ]]; then docker push "${DOCKER_REGISTRY}/${APPVEYOR_REPO_NAME}:latest"; fi
