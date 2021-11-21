@@ -5,7 +5,7 @@ services:
   - docker
 
 install:
-  - npm ci --only=production
+  - npm install
 
 build_script:
   - npm run build
