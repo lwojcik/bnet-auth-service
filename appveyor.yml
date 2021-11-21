@@ -9,12 +9,12 @@ install:
 
 build_script:
   - npm run build
-  - docker build -t "$env:DOCKER_TAG" . --no-cache
+  - docker build -t "$env:${DOCKER_TAG}" . --no-cache
 
 test_script:
   - npx codecov
 
-after_build:
-  - IF %APPVEYOR_REPO_BRANCH%==master 
-    - docker login "$env:DOCKER_REGISTRY" -u "$env:DOCKER_USER" -p "$env:DOCKER_PASSWORD"
-    - docker push "$env:DOCKER_TAG"
+# after_build:
+#   - IF %APPVEYOR_REPO_BRANCH%==master 
+#     - docker login ${DOCKER_REGISTRY} -u {$env:DOCKER_USER" -p "$env:DOCKER_PASSWORD"
+#     - docker push "$env:DOCKER_TAG"
