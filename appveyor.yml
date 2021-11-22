@@ -15,7 +15,7 @@ test_script:
 
 after_build:
   # Login to GitHub Container Registry
-  - echo "${GHCR_PASSWORD}" | docker login "${GHCR_REGISTRY}" --username "${GHCR_USERNAME}" --password-stdin; fi
+  - echo "${GHCR_PASSWORD}" | docker login "${GHCR_REGISTRY}" --username "${GHCR_USERNAME}" --password-stdin
   # Build images from development branches and PRs
   - if [[ "${APPVEYOR_REPO_BRANCH}" != "master" ]] || [[ ! -z "${APPVEYOR_PULL_REQUEST_NUMBER}" ]]; then docker build -t "${GHCR_REGISTRY}/${APPVEYOR_REPO_NAME}:v${APPVEYOR_BUILD_VERSION}" .; fi
   # Build images from master branch
