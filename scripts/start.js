@@ -125,6 +125,30 @@ fastifyInstance.register(server, opts);
 // eslint-disable-next-line jest/require-hook
 fastifyInstance.register(fastifyBlipp);
 
+const handle = (signal) => {
+  // eslint-disable-next-line no-console
+  console.log(`*^!@4=> Received event: ${signal}`);
+};
+
+// eslint-disable-next-line jest/require-hook
+process.on('SIGHUP', handle);
+
+const closeGracefully = async (signal) => {
+  // eslint-disable-next-line no-console
+  console.log(`*^!@4=> Received signal to terminate: ${signal}`);
+
+  await fastifyInstance.close();
+  // await db.close() if we have a db connection in this app
+  // await other things we should cleanup nicely
+  process.exit();
+};
+
+// eslint-disable-next-line jest/require-hook
+process.on('SIGINT', closeGracefully);
+
+// eslint-disable-next-line jest/require-hook
+process.on('SIGTERM', closeGracefully);
+
 const start = () => fastifyInstance.listen(opts.app.port, '0.0.0.0', (err) => {
   if (err) throw err;
   fastifyInstance.blipp();
