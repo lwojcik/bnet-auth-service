@@ -3,6 +3,8 @@ platform: x64
 stack: node lts/*
 services:
   - docker
+environment:
+  - DOCKER_BUILDKIT: 1
 
 install:
   - npm install
