@@ -14,7 +14,6 @@ test_script:
   - npx codecov
 
 after_build:
-  - echo ${APPVEYOR_REPO_NAME}
   # Build images from development branches and PRs
   - if [[ "${APPVEYOR_REPO_BRANCH}" != "master" ]] || [[ ! -z "${APPVEYOR_PULL_REQUEST_NUMBER}" ]]; then docker build -t "${GHCR_REGISTRY}/${APPVEYOR_REPO_NAME}:v${APPVEYOR_BUILD_VERSION}" -t "${APPVEYOR_REPO_NAME}:v${APPVEYOR_BUILD_VERSION}" . --no-cache; fi
   # Build images from master branch
