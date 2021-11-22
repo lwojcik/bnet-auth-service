@@ -78,7 +78,7 @@ Pull a pre-built image from [Docker Hub](https://hub.docker.com/r/sc2pte/bnet-au
 docker pull sc2pte/bnet-auth-service:latest
 ```
 
-Images tagged as `vX.X.X-master` are built from the master branch and they are considered production-ready.
+Images tagged as `1` and `latest` are built from the master branch and they are considered production-ready.
 
 ## Available endpoints
 
