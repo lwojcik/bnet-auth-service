@@ -4,6 +4,9 @@ stack: node lts/*
 services:
   - docker
 
+environment:
+  IMAGE_STABLE_TAG: 1
+
 install:
   - npm install
 
@@ -17,9 +20,9 @@ after_build:
   # Login to GitHub Container Registry
   - echo "${GHCR_PASSWORD}" | docker login "${GHCR_REGISTRY}" --username "${GHCR_USERNAME}" --password-stdin
   # Build images from development branches and PRs
-  - if [[ "${APPVEYOR_REPO_BRANCH}" != "master" ]] || [[ ! -z "${APPVEYOR_PULL_REQUEST_NUMBER}" ]]; then docker build -t "${GHCR_REGISTRY}/${APPVEYOR_REPO_NAME}:v${APPVEYOR_BUILD_VERSION}" .; fi
+  - if [[ "${APPVEYOR_REPO_BRANCH}" != "master" ]] || [[ ! -z "${APPVEYOR_PULL_REQUEST_NUMBER}" ]]; then docker build -t "${GHCR_REGISTRY}/${APPVEYOR_REPO_NAME}:${APPVEYOR_BUILD_VERSION}" .; fi
   # Build images from master branch
-  - if [[ "${APPVEYOR_REPO_BRANCH}" == "master" ]] && [[ -z "${APPVEYOR_PULL_REQUEST_NUMBER}" ]]; then docker build -t "${GHCR_REGISTRY}/${APPVEYOR_REPO_NAME}:v${APPVEYOR_BUILD_VERSION}-master" -t "${GHCR_REGISTRY}/${APPVEYOR_REPO_NAME}:latest" .; fi
+  - if [[ "${APPVEYOR_REPO_BRANCH}" == "master" ]] && [[ -z "${APPVEYOR_PULL_REQUEST_NUMBER}" ]]; then docker build -t "${GHCR_REGISTRY}/${APPVEYOR_REPO_NAME}:${APPVEYOR_BUILD_VERSION}" -t "${GHCR_REGISTRY}/${APPVEYOR_REPO_NAME}:${IMAGE_STABLE_TAG}" -t "${GHCR_REGISTRY}/${APPVEYOR_REPO_NAME}:latest" .; fi
   # Push all images
   - docker push "${GHCR_REGISTRY}/${APPVEYOR_REPO_NAME}" --all-tags
   # Logout
@@ -27,9 +30,9 @@ after_build:
   # Login to Docker Hub
   - echo "${DH_PASSWORD}" | docker login --username "${DH_USERNAME}" --password-stdin
   # Build images from development branches and PRs
-  - if [[ "${APPVEYOR_REPO_BRANCH}" != "master" ]] || [[ ! -z "${APPVEYOR_PULL_REQUEST_NUMBER}" ]]; then docker build -t "${APPVEYOR_REPO_NAME}:v${APPVEYOR_BUILD_VERSION}" .; fi
+  - if [[ "${APPVEYOR_REPO_BRANCH}" != "master" ]] || [[ ! -z "${APPVEYOR_PULL_REQUEST_NUMBER}" ]]; then docker build -t "${APPVEYOR_REPO_NAME}:${APPVEYOR_BUILD_VERSION}" .; fi
   # Build images from master branch
-  - if [[ "${APPVEYOR_REPO_BRANCH}" == "master" ]] && [[ -z "${APPVEYOR_PULL_REQUEST_NUMBER}" ]]; then docker build -t "${APPVEYOR_REPO_NAME}:v${APPVEYOR_BUILD_VERSION}-master" -t "${APPVEYOR_REPO_NAME}:latest" .; fi
+  - if [[ "${APPVEYOR_REPO_BRANCH}" == "master" ]] && [[ -z "${APPVEYOR_PULL_REQUEST_NUMBER}" ]]; then docker build -t "${APPVEYOR_REPO_NAME}:${APPVEYOR_BUILD_VERSION}" -t "${APPVEYOR_REPO_NAME}:${IMAGE_STABLE_TAG}" -t "${APPVEYOR_REPO_NAME}:latest" .; fi
   # Push all images
   - docker push "${APPVEYOR_REPO_NAME}" --all-tags
   # Logout
