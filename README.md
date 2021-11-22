@@ -43,7 +43,7 @@ Installation can also be automated with an [Ansible role](https://github.com/sc2
 ## Build and install
 
 ```
-git clone https://github.com/lukemnet/bnet-auth-service.git
+git clone https://github.com/sc2pte/bnet-auth-service.git
 cd bnet-auth-service
 npm install
 npm run build
@@ -54,6 +54,25 @@ npm run build
 ```
 npm start
 ```
+
+## Via Docker
+
+Build and run a Docker image locally in development mode:
+
+```
+git clone https://github.com/sc2pte/bnet-auth-service.git
+cd bnet-auth-service
+docker build -t bnet-auth-service:latest .
+docker run -e NODE_ENV=development -p 8083:8083 bnet-auth-service:latest
+```
+
+Pull a pre-built image from [GitHub Container Registry](https://github.com/orgs/sc2pte/packages/container/package/bnet-auth-service):
+
+```
+docker pull ghcr.io/sc2pte/bnet-auth-service:latest
+```
+
+Images tagged as `vX.X.X-master` are built from the master branch and they are considered production-ready.
 
 ## Available endpoints
 
