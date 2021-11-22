@@ -15,14 +15,16 @@ test_script:
 
 after_build:
   # Build images from development branches and PRs
-  - if [[ "${APPVEYOR_REPO_BRANCH}" != "master" ]] || [[ ! -z "${APPVEYOR_PULL_REQUEST_NUMBER}" ]]; then docker build -t "${GHCR_REGISTRY}/${APPVEYOR_REPO_NAME}:v${APPVEYOR_BUILD_VERSION}" -t "${APPVEYOR_REPO_NAME}:v${APPVEYOR_BUILD_VERSION}" .; fi
+  # - if [[ "${APPVEYOR_REPO_BRANCH}" != "master" ]] || [[ ! -z "${APPVEYOR_PULL_REQUEST_NUMBER}" ]]; then docker build -t "${GHCR_REGISTRY}/${APPVEYOR_REPO_NAME}:v${APPVEYOR_BUILD_VERSION}" -t "${APPVEYOR_REPO_NAME}:v${APPVEYOR_BUILD_VERSION}" .; fi
+  - if [[ "${APPVEYOR_REPO_BRANCH}" != "master" ]] || [[ ! -z "${APPVEYOR_PULL_REQUEST_NUMBER}" ]]; then docker build -t "${GHCR_REGISTRY}/${APPVEYOR_REPO_NAME}:v${APPVEYOR_BUILD_VERSION}" .; fi
   # Build images from master branch
-  - if [[ "${APPVEYOR_REPO_BRANCH}" == "master" ]] && [[ -z "${APPVEYOR_PULL_REQUEST_NUMBER}" ]]; then docker build -t "${GHCR_REGISTRY}/${APPVEYOR_REPO_NAME}:v${APPVEYOR_BUILD_VERSION}-master" -t "${GHCR_REGISTRY}/${APPVEYOR_REPO_NAME}:latest" -t "${APPVEYOR_REPO_NAME}:v${APPVEYOR_BUILD_VERSION}-master" -t "${APPVEYOR_REPO_NAME}:latest" .; fi
+  # - if [[ "${APPVEYOR_REPO_BRANCH}" == "master" ]] && [[ -z "${APPVEYOR_PULL_REQUEST_NUMBER}" ]]; then docker build -t "${GHCR_REGISTRY}/${APPVEYOR_REPO_NAME}:v${APPVEYOR_BUILD_VERSION}-master" -t "${GHCR_REGISTRY}/${APPVEYOR_REPO_NAME}:latest" -t "${APPVEYOR_REPO_NAME}:v${APPVEYOR_BUILD_VERSION}-master" -t "${APPVEYOR_REPO_NAME}:latest" .; fi
+  - if [[ "${APPVEYOR_REPO_BRANCH}" == "master" ]] && [[ -z "${APPVEYOR_PULL_REQUEST_NUMBER}" ]]; then docker build -t "${GHCR_REGISTRY}/${APPVEYOR_REPO_NAME}:v${APPVEYOR_BUILD_VERSION}-master" -t "${GHCR_REGISTRY}/${APPVEYOR_REPO_NAME}:latest" .; fi
   # Login and push image to GitHub Container Registry
   - echo "${GHCR_PASSWORD}" | docker login "${GHCR_REGISTRY}" --username "${GHCR_USERNAME}" --password-stdin
   - docker push "${GHCR_REGISTRY}/${APPVEYOR_REPO_NAME}" --all-tags
   - docker logout
   # Login and push image to Docker Hub
-  - echo "${DH_PASSWORD}" | docker login --username "${DH_USERNAME}" --password-stdin
-  - docker push "${APPVEYOR_REPO_NAME}" --all-tags
-  - docker logout
+  # - echo "${DH_PASSWORD}" | docker login --username "${DH_USERNAME}" --password-stdin
+  # - docker push "${APPVEYOR_REPO_NAME}" --all-tags
+  # - docker logout
