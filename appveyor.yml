@@ -44,7 +44,7 @@ deploy:
   description: 'v$(APPVEYOR_BUILD_VERSION)'
   provider: GitHub
   auth_token:
-    secure: ${GH_RELEASE_TOKEN} # your encrypted token from GitHub
+    secure: LZivqelZnFmrHH+iuzgusfnKcf0TpgR9aa4JAhkfD4M4i1+1ABtPnUAL2CtlpzCT
   draft: false
   prerelease: false
   on:
