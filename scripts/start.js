@@ -137,7 +137,7 @@ const closeGracefully = async (signal) => {
   // eslint-disable-next-line no-console
   console.log(`*^!@4=> Received signal to terminate: ${signal}`);
 
-  await fastify.close();
+  await fastifyInstance.close();
   // await db.close() if we have a db connection in this app
   // await other things we should cleanup nicely
   process.exit();
