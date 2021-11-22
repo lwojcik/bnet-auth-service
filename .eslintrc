@@ -3,7 +3,8 @@
   "parser": "@typescript-eslint/parser",
   "plugins": [
     "@typescript-eslint",
-    "jest"
+    "jest",
+    "import"
   ],
   "extends": [
     "airbnb-typescript/base",
