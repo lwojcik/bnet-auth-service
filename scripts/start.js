@@ -34,7 +34,7 @@ const envSchema = {
     },
     BAS_NODE_PORT: {
       type: 'string',
-      default: '8083',
+      default: '8082',
     },
     BAS_REDIS_ENABLE: {
       type: 'string',
@@ -79,7 +79,7 @@ const envSchema = {
 const opts = {
   app: {
     nodeEnv: process.env.NODE_ENV || 'development',
-    port: process.env.BAS_NODE_PORT || '8083',
+    port: process.env.BAS_NODE_PORT || '8082',
   },
   redis: {
     enable: process.env.BAS_REDIS_ENABLE === 'true' || false,
