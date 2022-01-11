@@ -38,7 +38,7 @@
     "@typescript-eslint/parser": "5.4.0",
     "blizzapi": "2.0.4",
     "eslint": "8.3.0",
-    "eslint-config-airbnb-typescript": "16.0.0",
+    "eslint-config-airbnb-typescript": "16.1.0",
     "eslint-plugin-import": "2.25.3",
     "eslint-plugin-jest": "25.2.4",
     "fastify": "3.24.0",
