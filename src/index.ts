@@ -1,4 +1,5 @@
 import { FastifyInstance } from 'fastify';
+import { RegionIdOrName } from 'blizzapi';
 import fp from 'fastify-plugin';
 import accessToken from './plugins/accessToken';
 import * as routes from './routes';
@@ -17,7 +18,7 @@ interface ServerOptions {
     cacheSegment: string;
   };
   bnet: {
-    region: string;
+    region: RegionIdOrName;
     clientId: string;
     clientSecret: string;
   };

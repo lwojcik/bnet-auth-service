@@ -1,10 +1,10 @@
 import fp from 'fastify-plugin';
 import { FastifyInstance } from 'fastify';
-import { BlizzAPI } from 'blizzapi';
+import { BlizzAPI, RegionIdOrName } from 'blizzapi';
 
 interface BnetConfig {
   [key: string]: string | number | boolean;
-  region: string;
+  region: RegionIdOrName;
   clientId: string;
   clientSecret: string;
 }
@@ -67,5 +67,4 @@ export default fp(
     });
 
     next();
-  },
-);
+  });
