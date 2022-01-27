@@ -1,4 +1,5 @@
 import fastify from 'fastify';
+import { RegionIdOrName } from 'blizzapi';
 import fastifyRedis from 'fastify-redis-mock';
 import server from '../../../../src/index';
 
@@ -14,7 +15,7 @@ const config = {
     port: '8123',
   },
   bnet: {
-    region: 'us',
+    region: 'us' as RegionIdOrName,
     clientId: 'key',
     clientSecret: 'secret',
   },
