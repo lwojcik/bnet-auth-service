@@ -1,9 +1,9 @@
-import fastify from 'fastify';
-import server from '../src/index';
-import getConfig from './helper';
+import fastify from "fastify";
+import server from "../src/index";
+import getConfig from "./helper";
 
-describe('Server (Redis enabled)', () => {
-  it('starts and stops without throwing', async () => {
+describe("Server (Redis enabled)", () => {
+  it("starts and stops without throwing", async () => {
     expect.assertions(1);
     expect(() => {
       const fastifyServer = fastify();

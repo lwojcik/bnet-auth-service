@@ -1,1 +1,1 @@
-declare module 'fastify-redis-mock';
+declare module "fastify-redis-mock";

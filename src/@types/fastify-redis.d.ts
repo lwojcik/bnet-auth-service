@@ -1,1 +1,1 @@
-declare module 'fastify-redis';
+declare module "fastify-redis";

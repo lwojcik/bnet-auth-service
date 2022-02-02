@@ -1,8 +1,8 @@
-import { FastifyInstance } from 'fastify';
-import { RegionIdOrName } from 'blizzapi';
-import fp from 'fastify-plugin';
-import accessToken from './plugins/accessToken';
-import * as routes from './routes';
+import { FastifyInstance } from "fastify";
+import { RegionIdOrName } from "blizzapi";
+import fp from "fastify-plugin";
+import accessToken from "./plugins/accessToken";
+import * as routes from "./routes";
 
 interface ServerOptions {
   app: {
@@ -25,13 +25,14 @@ interface ServerOptions {
 }
 
 const server = fp(
+  // eslint-disable-next-line @typescript-eslint/ban-types
   (fastify: FastifyInstance, opts: ServerOptions, next: Function) => {
     fastify.register(accessToken, { bnet: opts.bnet, redis: opts.redis });
     fastify.register(routes.status);
     fastify.register(routes.getAccessToken);
     fastify.register(routes.refreshAccessToken);
     next();
-  },
+  }
 );
 
 export = server;
