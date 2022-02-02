@@ -1,30 +1,30 @@
 const querystring = {
-  refresh: { type: 'string' },
+  refresh: { type: "string" },
 };
 
 const response = {
   200: {
-    type: 'object',
+    type: "object",
     properties: {
-      status: { type: 'number' },
+      status: { type: "number" },
       data: {
-        type: 'object',
+        type: "object",
         properties: {
-          accessToken: { type: 'string' },
+          accessToken: { type: "string" },
         },
       },
     },
   },
   400: {
-    type: 'object',
+    type: "object",
     properties: {
-      status: { type: 'number' },
+      status: { type: "number" },
     },
   },
   500: {
-    type: 'object',
+    type: "object",
     properties: {
-      status: { type: 'number' },
+      status: { type: "number" },
     },
   },
 };

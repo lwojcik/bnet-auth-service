@@ -1,23 +1,23 @@
-import { RegionIdOrName } from 'blizzapi';
+import { RegionIdOrName } from "blizzapi";
 
 const getConfig = (enableRedis: boolean) => ({
   app: {
-    nodeEnv: 'test',
-    port: '8123',
+    nodeEnv: "test",
+    port: "8123",
   },
   bnet: {
-    region: 'us' as RegionIdOrName,
-    clientId: 'key',
-    clientSecret: 'secret',
+    region: "us" as RegionIdOrName,
+    clientId: "key",
+    clientSecret: "secret",
   },
   redis: {
     enable: enableRedis,
-    host: '127.0.0.1',
-    port: '6379',
-    db: '0',
+    host: "127.0.0.1",
+    port: "6379",
+    db: "0",
     replyCachePeriod: 100,
-    cacheSegment: 'test',
-    password: '',
+    cacheSegment: "test",
+    password: "",
     enableReadyCheck: true,
     dropBufferSupport: false,
   },

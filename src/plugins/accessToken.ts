@@ -1,6 +1,7 @@
-import fp from 'fastify-plugin';
-import { FastifyInstance } from 'fastify';
-import { BlizzAPI, RegionIdOrName } from 'blizzapi';
+/* eslint-disable @typescript-eslint/no-explicit-any */
+import fp from "fastify-plugin";
+import { FastifyInstance } from "fastify";
+import { BlizzAPI, RegionIdOrName } from "blizzapi";
 
 interface BnetConfig {
   [key: string]: string | number | boolean;
@@ -23,6 +24,7 @@ interface AccessTokenOptions {
 }
 
 export default fp(
+  // eslint-disable-next-line @typescript-eslint/ban-types
   (server: FastifyInstance, opts: AccessTokenOptions, next: Function) => {
     const { bnet, redis } = opts;
     const { region, clientId, clientSecret } = bnet;
@@ -42,13 +44,13 @@ export default fp(
     };
 
     const cacheAccessToken = async (accessToken: string) => {
-      if (!enable) return 'Access token not refreshed (Redis disabled)';
+      if (!enable) return "Access token not refreshed (Redis disabled)";
       await cache.set(cacheSegment, accessToken);
       await cache.expire(cacheSegment, replyCachePeriod);
-      return 'Access token refreshed successfully';
+      return "Access token refreshed successfully";
     };
 
-    const getAccessToken = async (refresh?: Boolean) => {
+    const getAccessToken = async (refresh?: boolean) => {
       const noKeyInCache = !(await isAccessTokenCached());
       if (noKeyInCache || refresh) {
         const accessToken = await getFreshAccessToken();
@@ -58,7 +60,7 @@ export default fp(
       return getCachedAccessToken();
     };
 
-    (server as any).decorate('accessToken', {
+    (server as any).decorate("accessToken", {
       getAccessToken,
       getFreshAccessToken,
       getCachedAccessToken,
@@ -67,4 +69,5 @@ export default fp(
     });
 
     next();
-  });
+  }
+);
