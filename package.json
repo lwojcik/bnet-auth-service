@@ -38,7 +38,7 @@
     "blizzapi": "2.1.0",
     "eslint": "8.7.0",
     "eslint-config-airbnb-typescript-prettier": "5.0.0",
-    "eslint-plugin-jest": "25.3.4",
+    "eslint-plugin-jest": "25.7.0",
     "fastify": "3.25.3",
     "fastify-blipp": "3.1.0",
     "fastify-caching": "6.2.0",
