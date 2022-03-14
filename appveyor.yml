@@ -53,7 +53,7 @@ deploy:
   description: '${APPVEYOR_BUILD_VERSION}'
   provider: GitHub
   auth_token:
-    secure: LZivqelZnFmrHH+iuzgusfnKcf0TpgR9aa4JAhkfD4M4i1+1ABtPnUAL2CtlpzCT
+    secure: DPltQ5Cp0HOliwPUPLFA9qLSNYmBjlTF6zzMV8+b6k+ParCpO2gCBvW8SXYh4BhI
   draft: false
   prerelease: false
   on:
