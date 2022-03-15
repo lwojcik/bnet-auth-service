@@ -48,7 +48,7 @@
     "fastify-plugin": "3.0.1",
     "fastify-redis": "4.3.3",
     "fastify-redis-mock": "1.1.0",
-    "jest": "27.5.0",
+    "jest": "27.5.1",
     "pino-pretty": "7.5.1",
     "prettier": "^2.5.1",
     "rimraf": "3.0.2",
