@@ -42,7 +42,7 @@
     "fastify": "3.28.0",
     "fastify-blipp": "3.1.0",
     "fastify-caching": "6.3.0",
-    "fastify-env": "2.1.1",
+    "fastify-env": "2.2.0",
     "fastify-ioredis": "0.1.1",
     "fastify-log": "1.2.1",
     "fastify-plugin": "3.0.1",
