@@ -1,3 +1,6 @@
 {
-  "extends": "lukemnet"
+  "extends": "lukemnet",
+  "rules": {
+    "import/no-default-export": "off"
+  }
 }
