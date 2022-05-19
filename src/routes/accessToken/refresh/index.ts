@@ -20,4 +20,5 @@ const route: FastifyPluginCallback = (server, {}, next) => {
   next();
 };
 
+// eslint-disable-next-line import/no-default-export
 export default fp(route);
