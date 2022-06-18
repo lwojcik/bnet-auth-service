@@ -1,7 +1,7 @@
 {
   "name": "bnet-auth-service",
   "version": "2.0.0",
-  "description": "Battle.net authentication and access token retrieval microservice",
+  "description": "Battle.net access token retrieval microservice",
   "author": "Łukasz Wójcik",
   "license": "MIT",
   "private": true,
