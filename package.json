@@ -1,10 +1,26 @@
 {
   "name": "bnet-auth-service",
-  "version": "0.0.1",
-  "description": "",
-  "author": "",
+  "version": "2.0.0",
+  "description": "Battle.net authentication and access token retrieval microservice",
+  "author": "Łukasz Wójcik",
+  "license": "MIT",
   "private": true,
-  "license": "UNLICENSED",
+  "keywords": [
+    "battlenet",
+    "bnet",
+    "authentication",
+    "api",
+    "backend",
+    "microservice"
+  ],
+  "homepage": "https://github.com/sc2pte/bnet-auth-service#readme",
+  "bugs": {
+    "url": "https://github.com/sc2pte/bnet-auth-service/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/sc2pte/bnet-auth-service.git"
+  },
   "scripts": {
     "prebuild": "rimraf dist",
     "build": "nest build",
@@ -23,7 +39,7 @@
   "dependencies": {
     "@nestjs/common": "^8.0.0",
     "@nestjs/core": "^8.0.0",
-    "@nestjs/platform-express": "^8.0.0",
+    "@nestjs/platform-fastify": "^8.4.7",
     "reflect-metadata": "^0.1.13",
     "rimraf": "^3.0.2",
     "rxjs": "^7.2.0"
