@@ -5,7 +5,7 @@ import {
 } from "@nestjs/platform-fastify";
 import { ConfigService } from "@nestjs/config";
 import { AppModule } from "./app.module";
-import { HOST, PORT } from "./common/common.constants";
+import { APP } from "./common/common.constants";
 
 async function bootstrap() {
   const app = await NestFactory.create<NestFastifyApplication>(
@@ -13,9 +13,9 @@ async function bootstrap() {
     new FastifyAdapter()
   );
   const configService = app.get(ConfigService);
-  const port = configService.get(PORT);
-  const hostname = configService.get(HOST);
+  const port = configService.get(APP.port);
+  const host = configService.get(APP.host);
 
-  await app.listen(port, hostname);
+  await app.listen(port, host);
 }
 bootstrap();
