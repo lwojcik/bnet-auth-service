@@ -5,7 +5,7 @@ import { ConfigModule } from "@nestjs/config";
 import { AppController } from "./app.controller";
 import { AppService } from "./app.service";
 import appConfig from "./config/app.config";
-import { NODE_ENV, Environment, DEFAULTS } from "./common/common.constants";
+import { Environment, DEFAULTS, APP } from "./common/common.constants";
 
 @Module({
   imports: [
@@ -16,11 +16,11 @@ import { NODE_ENV, Environment, DEFAULTS } from "./common/common.constants";
       pinoHttp: {
         genReqId: () => v4().toString(),
         level:
-          process.env[NODE_ENV] !== Environment.production
+          process.env[APP.env] !== Environment.production
             ? DEFAULTS.logLevel.development
             : DEFAULTS.logLevel.production,
         transport:
-          process.env[NODE_ENV] !== Environment.production
+          process.env[APP.env] !== Environment.production
             ? {
                 target: "pino-pretty",
                 options: {
