@@ -64,6 +64,7 @@
     "@nestjs/config": "^2.1.0",
     "@nestjs/core": "^8.0.0",
     "@nestjs/platform-fastify": "^8.4.7",
+    "blizzapi": "^2.1.1",
     "joi": "^17.6.0",
     "nestjs-pino": "^2.6.0",
     "reflect-metadata": "^0.1.13",

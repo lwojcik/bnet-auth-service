@@ -1,4 +1,5 @@
 import * as Joi from "joi";
+import { BlizzAPI } from "blizzapi";
 
 export enum Environment {
   production = "production",
@@ -103,7 +104,18 @@ export const configValidationSchema = Joi.object({
     then: Joi.string().default(DEFAULTS.redis.cacheSegment),
     otherwise: Joi.optional(),
   }),
-  [BATTLENET.region]: Joi.string().required(),
+  [BATTLENET.region]: Joi.string()
+    .required()
+    .custom((value) => {
+      const allowedRegionNames = BlizzAPI.getAllRegionNames().join(", ");
+      const validRegionName = BlizzAPI.validateRegionName(value);
+      if (!validRegionName) {
+        throw new RangeError(
+          `'${value}' is not a valid Battle.net region. Available regions: ${allowedRegionNames}`
+        );
+      }
+      return validRegionName;
+    }),
   [BATTLENET.key]: Joi.string().required(),
   [BATTLENET.secret]: Joi.string().required(),
 });
