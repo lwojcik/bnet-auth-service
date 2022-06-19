@@ -5,12 +5,18 @@ import { ConfigModule } from "@nestjs/config";
 import { AppController } from "./app.controller";
 import { AppService } from "./app.service";
 import appConfig from "./config/app.config";
-import { Environment, DEFAULTS, APP } from "./common/common.constants";
+import {
+  Environment,
+  DEFAULTS,
+  APP,
+  configValidationSchema,
+} from "./common/common.constants";
 
 @Module({
   imports: [
     ConfigModule.forRoot({
       load: [appConfig],
+      validationSchema: configValidationSchema,
     }),
     LoggerModule.forRoot({
       pinoHttp: {

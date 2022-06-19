@@ -40,7 +40,7 @@
   },
   "lint-staged": {
     "package.json": "sort-package-json",
-    "*.ts": "eslint --cache --fix"
+    "*.ts": "eslint --cache --fix --cache-file=node_modules/.cache/.eslintcache"
   },
   "jest": {
     "collectCoverageFrom": [
@@ -64,6 +64,7 @@
     "@nestjs/config": "^2.1.0",
     "@nestjs/core": "^8.0.0",
     "@nestjs/platform-fastify": "^8.4.7",
+    "joi": "^17.6.0",
     "nestjs-pino": "^2.6.0",
     "reflect-metadata": "^0.1.13",
     "rimraf": "^3.0.2",

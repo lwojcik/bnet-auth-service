@@ -1,3 +1,5 @@
+import * as Joi from "joi";
+
 export enum Environment {
   production = "production",
   development = "development",
@@ -25,8 +27,8 @@ export enum LogLevelValue {
 
 export const APP = {
   env: "NODE_ENV",
-  host: "BAS_HOST",
-  port: "BAS_PORT",
+  host: "BAS_APP_HOST",
+  port: "BAS_APP_PORT",
 };
 
 export const REDIS = {
@@ -46,6 +48,7 @@ export const BATTLENET = {
 };
 
 export const DEFAULTS = {
+  env: "production",
   host: "0.0.0.0",
   port: 3000,
   environment: Environment.development,
@@ -63,3 +66,44 @@ export const DEFAULTS = {
     cacheSegment: "bas",
   },
 };
+
+export const configValidationSchema = Joi.object({
+  [APP.env]: Joi.string().default(DEFAULTS.env),
+  [APP.host]: Joi.string().default(DEFAULTS.host),
+  [APP.port]: Joi.string().default(DEFAULTS.port),
+  [REDIS.enable]: Joi.string().default("true"),
+  [REDIS.host]: Joi.any().when(`${REDIS.enable}`, {
+    is: "true",
+    then: Joi.string().default(DEFAULTS.redis.host),
+    otherwise: Joi.optional(),
+  }),
+  [REDIS.host]: Joi.any().when(REDIS.enable, {
+    is: "true",
+    then: Joi.string().default(DEFAULTS.redis.host),
+    otherwise: Joi.optional(),
+  }),
+  [REDIS.port]: Joi.any().when(REDIS.enable, {
+    is: "true",
+    then: Joi.string().default(DEFAULTS.redis.port),
+    otherwise: Joi.optional(),
+  }),
+  [REDIS.password]: Joi.optional(),
+  [REDIS.ttlSecs]: Joi.any().when(REDIS.enable, {
+    is: "true",
+    then: Joi.string().default(DEFAULTS.redis.ttlSecs),
+    otherwise: Joi.optional(),
+  }),
+  [REDIS.db]: Joi.any().when(REDIS.enable, {
+    is: "true",
+    then: Joi.string().default(DEFAULTS.redis.db),
+    otherwise: Joi.optional(),
+  }),
+  [REDIS.cacheSegment]: Joi.any().when(REDIS.enable, {
+    is: "true",
+    then: Joi.string().default(DEFAULTS.redis.cacheSegment),
+    otherwise: Joi.optional(),
+  }),
+  [BATTLENET.region]: Joi.string().required(),
+  [BATTLENET.key]: Joi.string().required(),
+  [BATTLENET.secret]: Joi.string().required(),
+});
