@@ -2,7 +2,7 @@
 FROM node:latest AS build
 WORKDIR /usr/src/app
 COPY package*.json /usr/src/app/
-RUN npm ci --omit=dev
+RUN npm ci --omit=dev --ignore-scripts
  
 # Production image
 FROM node:lts-alpine
