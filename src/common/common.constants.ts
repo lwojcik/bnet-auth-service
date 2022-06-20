@@ -108,8 +108,12 @@ export const configValidationSchema = Joi.object({
   [BATTLENET.region]: Joi.string()
     .required()
     .custom((value) => {
-      const allowedRegionNames = BlizzAPI.getAllRegionNames().join(', ');
+      const allowedRegionNames = BlizzAPI.getAllRegionNames()
+        .filter((region) => region !== 'tw')
+        .join(', ');
+
       const validRegionName = BlizzAPI.validateRegionName(value);
+
       if (!validRegionName) {
         throw new RangeError(
           `'${value}' is not a valid Battle.net region. Available regions: ${allowedRegionNames}`
