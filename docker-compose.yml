@@ -3,7 +3,7 @@ services:
     container_name: bnet-auth-service
     build:
       context: .
-      target: development
+      target: build
     volumes:
       - .:/usr/src/app
       - /usr/src/app/node_modules

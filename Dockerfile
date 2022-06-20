@@ -1,5 +1,5 @@
-# Build image
-FROM node:latest AS build
+# Development image
+FROM node:lts-alpine AS build
 WORKDIR /usr/src/app
 COPY package*.json /usr/src/app/
 RUN npm ci --omit=dev --ignore-scripts
