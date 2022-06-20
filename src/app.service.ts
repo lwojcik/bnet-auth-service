@@ -1,15 +1,15 @@
-import { Injectable } from "@nestjs/common";
-import { InjectPinoLogger, PinoLogger } from "nestjs-pino";
+import { Injectable } from '@nestjs/common';
+import { ConfigService } from '@nestjs/config';
+// import { ConfigService } from '@nestjs/config';
 
 @Injectable()
 export class AppService {
-  constructor(
-    @InjectPinoLogger(AppService.name)
-    private readonly logger: PinoLogger
-  ) {}
+  constructor(private readonly configService: ConfigService) {}
 
-  getHello(): string {
-    this.logger.debug("AppService.getHello()");
-    return "Hello World!";
+  getMain() {
+    return {
+      name: 'bnet-auth-service',
+      endpoints: this.configService.get('endpoints'),
+    };
   }
 }

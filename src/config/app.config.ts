@@ -1,4 +1,4 @@
-import { APP, BATTLENET, DEFAULTS, REDIS } from "../common/common.constants";
+import { APP, BATTLENET, DEFAULTS, REDIS } from '../common/common.constants';
 
 const { env } = process;
 
@@ -21,5 +21,9 @@ export default () => ({
     region: env[BATTLENET.region],
     key: env[BATTLENET.key],
     secret: env[BATTLENET.secret],
+  },
+  endpoints: {
+    status: '/status',
+    accesstoken: '/accesstoken',
   },
 });
