@@ -1,27 +1,15 @@
-# build for local development
-FROM node:lts-alpine AS development
+# Build image
+FROM node:latest AS build
 WORKDIR /usr/src/app
-COPY --chown=node:node package*.json ./
-RUN npm ci
-COPY --chown=node:node . .
-USER node
-
-# build for production
-FROM node:lts-alpine AS build
-WORKDIR /usr/src/app
-COPY --chown=node:node --from=development /usr/src/app/node_modules ./node_modules
-COPY --chown=node:node . .
-RUN npm run build
-ENV NODE_ENV production
-RUN npm ci --only=production && npm cache clean --force
-USER node
-
-# production image
-FROM node:lts-alpine AS production
+COPY package*.json /usr/src/app/
+RUN npm ci --omit=dev
+ 
+# Production image
+FROM node:lts-alpine
 RUN apk add dumb-init
 ENV NODE_ENV production
 USER node
 WORKDIR /usr/src/app
-COPY --chown=node:node --from=build /usr/src/app/node_modules ./node_modules
-COPY --chown=node:node --from=build /usr/src/app/dist ./dist
+COPY --chown=node:node --from=build /usr/src/app/node_modules /usr/src/app/node_modules
+COPY --chown=node:node . /usr/src/app
 CMD ["dumb-init", "node", "dist/main.js"]
