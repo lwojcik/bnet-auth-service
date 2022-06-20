@@ -10,14 +10,14 @@ import {
   APP,
   configValidationSchema,
 } from './common/common.constants';
-import { StatusModule } from './status/status.module';
-
 import {
   appConfig,
   endpointsConfig,
   redisConfig,
   battleNetConfig,
 } from './config';
+import { StatusModule } from './status/status.module';
+import { AccessTokenModule } from './accesstoken/accesstoken.module';
 
 @Module({
   imports: [
@@ -51,6 +51,7 @@ import {
       },
     }),
     StatusModule,
+    AccessTokenModule,
   ],
   controllers: [AppController],
   providers: [AppService],
