@@ -1,6 +1,7 @@
 import { Controller, Get } from '@nestjs/common';
 import { InjectPinoLogger, PinoLogger } from 'nestjs-pino';
 import { AppService } from './app.service';
+import { MainResponse } from './types';
 
 @Controller()
 export class AppController {
@@ -10,8 +11,8 @@ export class AppController {
   ) {}
 
   @Get()
-  getHello() {
-    this.logger.debug('AppController.getHello()');
+  getMain(): MainResponse {
+    this.logger.debug('AppController.getMain()');
     return this.appService.getMain();
   }
 }

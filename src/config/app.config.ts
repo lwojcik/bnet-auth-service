@@ -1,29 +1,12 @@
-import { APP, BATTLENET, DEFAULTS, REDIS } from '../common/common.constants';
+import { registerAs } from '@nestjs/config';
+import { APP, DEFAULTS } from '../common/common.constants';
 
 const { env } = process;
+const defaultValue = DEFAULTS.app;
 
-export default () => ({
-  app: {
-    environment: env[APP.env] || DEFAULTS.environment,
-    host: env[APP.host] || DEFAULTS.host,
-    port: parseInt(env[APP.port], 10) || DEFAULTS.port,
-  },
-  redis: {
-    enable: env[REDIS.enable] || DEFAULTS.redis.enable,
-    host: env[REDIS.host] || DEFAULTS.redis.host,
-    port: env[REDIS.port] || DEFAULTS.redis.port,
-    password: env[REDIS.password] || DEFAULTS.redis.password,
-    ttlSecs: env[REDIS.ttlSecs] || DEFAULTS.redis.ttlSecs,
-    db: env[REDIS.db] || DEFAULTS.redis.db,
-    cacheSegment: env[REDIS.cacheSegment] || DEFAULTS.redis.cacheSegment,
-  },
-  battlenet: {
-    region: env[BATTLENET.region],
-    key: env[BATTLENET.key],
-    secret: env[BATTLENET.secret],
-  },
-  endpoints: {
-    status: '/status',
-    accesstoken: '/accesstoken',
-  },
-});
+export const appConfig = registerAs('app', () => ({
+  name: 'bnet-auth-service',
+  environment: env[APP.env] || defaultValue.environment,
+  host: env[APP.host] || defaultValue.host,
+  port: parseInt(env[APP.port], 10) || defaultValue.port,
+}));

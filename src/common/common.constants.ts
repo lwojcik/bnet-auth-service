@@ -44,15 +44,16 @@ export const REDIS = {
 
 export const BATTLENET = {
   region: 'BAS_BATTLENET_REGION',
-  key: 'BAS_BATTLENET_KEY',
+  clientId: 'BAS_BATTLENET_CLIENT_ID',
   secret: 'BAS_BATTLENET_SECRET',
 };
 
 export const DEFAULTS = {
-  env: 'production',
-  host: '0.0.0.0',
-  port: 3000,
-  environment: Environment.development,
+  app: {
+    host: '0.0.0.0',
+    port: 3000,
+    environment: Environment.development,
+  },
   logLevel: {
     production: LogLevel.error,
     development: LogLevel.debug,
@@ -69,9 +70,9 @@ export const DEFAULTS = {
 };
 
 export const configValidationSchema = Joi.object({
-  [APP.env]: Joi.string().default(DEFAULTS.env),
-  [APP.host]: Joi.string().default(DEFAULTS.host),
-  [APP.port]: Joi.string().default(DEFAULTS.port),
+  [APP.env]: Joi.string().default(DEFAULTS.app.environment),
+  [APP.host]: Joi.string().default(DEFAULTS.app.host),
+  [APP.port]: Joi.string().default(DEFAULTS.app.port),
   [REDIS.enable]: Joi.string().default('true'),
   [REDIS.host]: Joi.any().when(`${REDIS.enable}`, {
     is: 'true',
@@ -116,6 +117,6 @@ export const configValidationSchema = Joi.object({
       }
       return validRegionName;
     }),
-  [BATTLENET.key]: Joi.string().required(),
+  [BATTLENET.clientId]: Joi.string().required(),
   [BATTLENET.secret]: Joi.string().required(),
 });

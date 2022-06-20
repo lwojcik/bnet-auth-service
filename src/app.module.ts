@@ -4,7 +4,6 @@ import { v4 } from 'uuid';
 import { ConfigModule } from '@nestjs/config';
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
-import appConfig from './config/app.config';
 import {
   Environment,
   DEFAULTS,
@@ -13,11 +12,22 @@ import {
 } from './common/common.constants';
 import { StatusModule } from './status/status.module';
 
+import {
+  appConfig,
+  endpointsConfig,
+  redisConfig,
+  battleNetConfig,
+} from './config';
+
 @Module({
   imports: [
     ConfigModule.forRoot({
-      load: [appConfig],
+      cache: true,
+      load: [appConfig, endpointsConfig, redisConfig, battleNetConfig],
       validationSchema: configValidationSchema,
+      validationOptions: {
+        abortEarly: true,
+      },
     }),
     LoggerModule.forRoot({
       pinoHttp: {

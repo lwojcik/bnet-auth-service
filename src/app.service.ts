@@ -1,15 +1,24 @@
-import { Injectable } from '@nestjs/common';
-import { ConfigService } from '@nestjs/config';
-// import { ConfigService } from '@nestjs/config';
+import { Inject, Injectable } from '@nestjs/common';
+import { ConfigType } from '@nestjs/config';
+import { InjectPinoLogger, PinoLogger } from 'nestjs-pino';
+import { appConfig, endpointsConfig } from './config';
+import { MainResponse } from './types';
 
 @Injectable()
 export class AppService {
-  constructor(private readonly configService: ConfigService) {}
+  constructor(
+    @InjectPinoLogger(AppService.name) private readonly logger: PinoLogger,
+    @Inject(endpointsConfig.KEY)
+    private endpoints: ConfigType<typeof endpointsConfig>,
+    @Inject(appConfig.KEY)
+    private app: ConfigType<typeof appConfig>
+  ) {}
 
-  getMain() {
+  getMain(): MainResponse {
+    this.logger.debug('AppService.getMain()');
     return {
-      name: 'bnet-auth-service',
-      endpoints: this.configService.get('endpoints'),
+      name: this.app.name,
+      endpoints: this.endpoints,
     };
   }
 }
