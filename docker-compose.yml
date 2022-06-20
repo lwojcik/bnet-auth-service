@@ -1,0 +1,14 @@
+services:
+  bnet-auth-service:
+    container_name: bnet-auth-service
+    build:
+      context: .
+      target: development
+    volumes:
+      - .:/usr/src/app
+      - /usr/src/app/node_modules
+    ports:
+      - ${BAS_APP_PORT}:${BAS_APP_PORT}
+    command: npm run start:dev
+    env_file:
+      - .env
