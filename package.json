@@ -45,7 +45,7 @@
     "blizzapi": "2.1.1",
     "eslint": "8.16.0",
     "eslint-config-lukemnet": "1.0.1",
-    "eslint-plugin-jest": "26.4.5",
+    "eslint-plugin-jest": "26.4.6",
     "fastify": "3.29.0",
     "fastify-blipp": "3.1.0",
     "fastify-caching": "6.3.0",
