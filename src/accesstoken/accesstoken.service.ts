@@ -1,10 +1,9 @@
 import { HttpException, Inject, Injectable } from '@nestjs/common';
 import { InjectPinoLogger, PinoLogger } from 'nestjs-pino';
-import { REQUEST } from '@nestjs/core';
-import { FastifyRequest } from 'fastify';
 import { RedisService } from '@liaoliaots/nestjs-redis';
 import Redis from 'ioredis';
 import { ConfigType } from '@nestjs/config';
+import { RequestContext } from 'nestjs-request-context';
 import { redisConfig } from '../config';
 import {
   AccessTokenError,
@@ -21,7 +20,6 @@ export class AccessTokenService {
   constructor(
     private readonly battleNetService: BattleNetService,
     private readonly redisService: RedisService,
-    @Inject(REQUEST) private request: FastifyRequest,
     @Inject(redisConfig.KEY)
     private redisConf: ConfigType<typeof redisConfig>,
     @InjectPinoLogger(BattleNetService.name) private readonly logger: PinoLogger
@@ -36,7 +34,7 @@ export class AccessTokenService {
       throw new HttpException(
         {
           ...accessToken,
-          requestId: this.request.raw.id,
+          id: RequestContext.currentContext.req.id,
         },
         (accessToken as AccessTokenError).statusCode
       );

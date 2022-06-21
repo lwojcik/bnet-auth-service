@@ -17,7 +17,7 @@ export interface AccessTokenError {
   error: boolean;
   statusCode: number;
   message: string;
-  accessToken: never;
+  id: string;
 }
 
 export type AccessTokenObject = {

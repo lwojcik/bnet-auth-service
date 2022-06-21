@@ -1,6 +1,7 @@
 import { RedisModule } from '@liaoliaots/nestjs-redis';
 import { Module } from '@nestjs/common';
 import { ConfigModule, ConfigService } from '@nestjs/config';
+import { RequestContextModule } from 'nestjs-request-context';
 import { redisConfig } from '../config';
 import { REDIS } from '../common/common.constants';
 import { BattleNetModule } from '../battlenet/battlenet.module';
@@ -11,6 +12,7 @@ import { AccessTokenService } from './accesstoken.service';
   imports: [
     ConfigModule.forFeature(redisConfig),
     BattleNetModule,
+    RequestContextModule,
     RedisModule.forRootAsync({
       imports: [ConfigModule],
       useFactory: (configService: ConfigService) => ({
