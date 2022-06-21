@@ -60,13 +60,12 @@
     }
   },
   "dependencies": {
+    "@liaoliaots/nestjs-redis": "^8.2.1",
     "@nestjs/common": "^8.0.0",
     "@nestjs/config": "^2.1.0",
     "@nestjs/core": "^8.0.0",
     "@nestjs/platform-fastify": "^8.4.7",
     "blizzapi": "^2.1.1",
-    "cache-manager": "^4.0.1",
-    "cache-manager-redis-store": "^2.0.0",
     "joi": "^17.6.0",
     "luxon": "^2.4.0",
     "nestjs-pino": "^2.6.0",
@@ -87,6 +86,7 @@
     "eslint": "^8.0.1",
     "eslint-config-lukemnet": "^1.0.1",
     "husky": "^8.0.1",
+    "ioredis": "^5.0.6",
     "jest": "^27.2.5",
     "lint-staged": "^13.0.2",
     "module-alias": "^2.2.2",
