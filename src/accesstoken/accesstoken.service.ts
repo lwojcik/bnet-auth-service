@@ -4,6 +4,8 @@ import { REQUEST } from '@nestjs/core';
 import { FastifyRequest } from 'fastify';
 import { RedisService } from '@liaoliaots/nestjs-redis';
 import Redis from 'ioredis';
+import { ConfigType } from '@nestjs/config';
+import { redisConfig } from '../config';
 import {
   AccessTokenError,
   AccessTokenObject,
@@ -20,9 +22,32 @@ export class AccessTokenService {
     private readonly battleNetService: BattleNetService,
     private readonly redisService: RedisService,
     @Inject(REQUEST) private request: FastifyRequest,
+    @Inject(redisConfig.KEY)
+    private redisConf: ConfigType<typeof redisConfig>,
     @InjectPinoLogger(BattleNetService.name) private readonly logger: PinoLogger
   ) {
     this.cache = this.redisService.getClient();
+  }
+
+  private async getAccessTokenFromBattleNet() {
+    const accessToken = await this.battleNetService.getAccessToken();
+
+    if ((accessToken as AccessTokenError).error) {
+      throw new HttpException(
+        {
+          ...accessToken,
+          requestId: this.request.raw.id,
+        },
+        (accessToken as AccessTokenError).statusCode
+      );
+    }
+
+    return accessToken as AccessTokenObject;
+  }
+
+  private getAccessTokenFromCache() {
+    // return this.cache.getAccessToken()
+    return Promise.resolve('todo');
   }
 
   async getAccessToken(
@@ -35,19 +60,9 @@ export class AccessTokenService {
 
     // const { refresh } = getAccessTokenDto;
 
-    const accessTokenResponse = await this.battleNetService.getAccessToken();
-    // await this.cache.set('foo123', 'bar456');
-
-    if ((accessTokenResponse as AccessTokenError).error) {
-      throw new HttpException(
-        {
-          ...accessTokenResponse,
-          requestId: this.request.raw.id,
-        },
-        (accessTokenResponse as AccessTokenError).statusCode
-      );
-    }
-
-    return accessTokenResponse as AccessTokenObject;
+    // const getAccessTokenFromCache = await this.getAccessTokenFromCache();
+    const accessTokenFromBattleNet = await this.getAccessTokenFromBattleNet();
+    return accessTokenFromBattleNet;
+    // await this.cache.set('foo123', 'bar456', 'EX', this.redisConf.ttlSecs);
   }
 }

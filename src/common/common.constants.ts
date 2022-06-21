@@ -37,7 +37,7 @@ export const REDIS = {
   host: 'BAS_REDIS_HOST',
   port: 'BAS_REDIS_PORT',
   password: 'BAS_REDIS_PASSWORD',
-  ttlSecs: 'BAS_REDIS_TTLE_SECS',
+  ttlSecs: 'BAS_REDIS_TTL_SECS',
   db: 'BAS_REDIS_DB',
   cacheSegment: 'BAS_REDIS_CACHE_SEGMENT',
 };
