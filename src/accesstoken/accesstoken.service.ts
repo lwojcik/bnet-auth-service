@@ -31,6 +31,7 @@ export class AccessTokenService {
     this.logger.debug(
       `AccessTokenService.getAccessToken(${JSON.stringify(getAccessTokenDto)})`
     );
+    // TODO: move Redis logic to a separate 'cache' module
 
     // const { refresh } = getAccessTokenDto;
 
