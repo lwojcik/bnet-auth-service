@@ -45,7 +45,7 @@ export const REDIS = {
 export const BATTLENET = {
   region: 'BAS_BATTLENET_REGION',
   clientId: 'BAS_BATTLENET_CLIENT_ID',
-  secret: 'BAS_BATTLENET_SECRET',
+  clientSecret: 'BAS_BATTLENET_CLIENT_SECRET',
 };
 
 export const DEFAULTS = {
@@ -122,5 +122,5 @@ export const configValidationSchema = Joi.object({
       return validRegionName;
     }),
   [BATTLENET.clientId]: Joi.string().required(),
-  [BATTLENET.secret]: Joi.string().required(),
+  [BATTLENET.clientSecret]: Joi.string().required(),
 });

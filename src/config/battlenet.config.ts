@@ -6,5 +6,5 @@ const { env } = process;
 export const battleNetConfig = registerAs('battlenet', () => ({
   region: env[BATTLENET.region],
   clientId: env[BATTLENET.clientId],
-  secret: env[BATTLENET.secret],
+  clientSecret: env[BATTLENET.clientSecret],
 }));
