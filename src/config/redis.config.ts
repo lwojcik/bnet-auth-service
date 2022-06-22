@@ -11,5 +11,6 @@ export const redisConfig = registerAs('redis', () => ({
   password: env[REDIS.password] || defaultValue.password,
   ttlSecs: env[REDIS.ttlSecs] || defaultValue.ttlSecs,
   db: env[REDIS.db] || defaultValue.db,
-  cacheSegment: env[REDIS.cacheSegment] || defaultValue.cacheSegment,
+  keyName: env[REDIS.keyName] || defaultValue.keyName,
+  keyPrefix: env[REDIS.keyPrefix] || defaultValue.keyPrefix,
 }));

@@ -2,11 +2,7 @@ import { Inject, Injectable } from '@nestjs/common';
 import { ConfigType } from '@nestjs/config';
 import { BlizzAPI, RegionName } from 'blizzapi';
 import { InjectPinoLogger, PinoLogger } from 'nestjs-pino';
-import {
-  AccessTokenError,
-  AccessTokenObject,
-  AccessTokenResponse,
-} from '../types';
+import { AccessTokenError } from '../types';
 import { battleNetConfig } from '../config';
 
 @Injectable()
@@ -25,7 +21,7 @@ export class BattleNetService {
     });
   }
 
-  async getAccessToken(): Promise<AccessTokenResponse> {
+  async getAccessToken(): Promise<string | AccessTokenError> {
     try {
       this.logger.debug('BattleNetService.getAccessToken()');
       this.logger.debug(
@@ -41,7 +37,7 @@ export class BattleNetService {
         `BattleNetService.getAccessToken(): Received access token: ${accessToken}`
       );
 
-      return { accessToken } as AccessTokenObject;
+      return accessToken;
     } catch (error) {
       this.logger.error(error);
 

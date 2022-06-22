@@ -1,15 +1,15 @@
 import { Test, TestingModule } from '@nestjs/testing';
-import { AccessTokenService } from './accesstoken.service';
+import { CacheService } from './cache.service';
 
-describe('AccessTokenService', () => {
-  let service: AccessTokenService;
+describe('CacheService', () => {
+  let service: CacheService;
 
   beforeEach(async () => {
     const module: TestingModule = await Test.createTestingModule({
-      providers: [AccessTokenService],
+      providers: [CacheService],
     }).compile();
 
-    service = module.get<AccessTokenService>(AccessTokenService);
+    service = module.get<CacheService>(CacheService);
   });
 
   it('should be defined', () => {

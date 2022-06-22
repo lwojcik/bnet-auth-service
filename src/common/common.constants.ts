@@ -39,7 +39,8 @@ export const REDIS = {
   password: 'BAS_REDIS_PASSWORD',
   ttlSecs: 'BAS_REDIS_TTL_SECS',
   db: 'BAS_REDIS_DB',
-  cacheSegment: 'BAS_REDIS_CACHE_SEGMENT',
+  keyPrefix: 'BAS_REDIS_KEY_PREFIX',
+  keyName: 'BAS_REDIS_KEY_NAME',
 };
 
 export const BATTLENET = {
@@ -65,7 +66,8 @@ export const DEFAULTS = {
     password: '',
     ttlSecs: 2000,
     db: 0,
-    cacheSegment: 'bas',
+    keyPrefix: 'bas',
+    keyName: 'accesstoken',
   },
 };
 
@@ -100,9 +102,14 @@ export const configValidationSchema = Joi.object({
     then: Joi.string().default(DEFAULTS.redis.db),
     otherwise: Joi.optional(),
   }),
-  [REDIS.cacheSegment]: Joi.any().when(REDIS.enable, {
+  [REDIS.keyPrefix]: Joi.any().when(REDIS.enable, {
     is: 'true',
-    then: Joi.string().default(DEFAULTS.redis.cacheSegment),
+    then: Joi.string().default(DEFAULTS.redis.keyPrefix),
+    otherwise: Joi.optional(),
+  }),
+  [REDIS.keyName]: Joi.any().when(REDIS.enable, {
+    is: 'true',
+    then: Joi.string().default(DEFAULTS.redis.keyName),
     otherwise: Joi.optional(),
   }),
   [BATTLENET.region]: Joi.string()
