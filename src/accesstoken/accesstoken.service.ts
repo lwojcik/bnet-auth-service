@@ -20,7 +20,7 @@ export class AccessTokenService {
     this.logger.setLoggedMethod(this.getAccessTokenFromBattleNet.name);
 
     this.logger.debug();
-    console.log(RequestContext.currentContext);
+
     const accessToken = await this.battleNetService.getAccessToken();
 
     if ((accessToken as AccessTokenError).error) {
