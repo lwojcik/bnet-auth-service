@@ -6,6 +6,7 @@ export const DEFAULTS = {
     host: '0.0.0.0',
     port: 3000,
     environment: Environment.development,
+    enableSwagger: false,
   },
   logLevel: {
     production: LogLevel.error,

@@ -1,5 +1,5 @@
 import { Controller, Get, Query } from '@nestjs/common';
-import { InjectPinoLogger, PinoLogger } from 'nestjs-pino';
+import { LoggerService } from '../logger/logger.service';
 import { AccessTokenService } from './accesstoken.service';
 import { GetAccessTokenDto } from './dto/get-access-token.dto';
 
@@ -7,17 +7,15 @@ import { GetAccessTokenDto } from './dto/get-access-token.dto';
 export class AccessTokenController {
   constructor(
     private readonly accessTokenService: AccessTokenService,
-    @InjectPinoLogger(AccessTokenController.name)
-    private readonly logger: PinoLogger
-  ) {}
+    private readonly logger: LoggerService
+  ) {
+    this.logger.setLoggedClass(AccessTokenController.name);
+  }
 
   @Get()
   getAccessToken(@Query() getAccessTokenDto: GetAccessTokenDto) {
-    this.logger.debug(
-      `AccessTokenController.getAccessToken(${JSON.stringify(
-        getAccessTokenDto
-      )})`
-    );
+    this.logger.setLoggedMethod(this.getAccessToken.name, getAccessTokenDto);
+    this.logger.debug();
     return this.accessTokenService.getAccessToken(getAccessTokenDto);
   }
 }

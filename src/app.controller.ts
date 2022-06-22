@@ -1,5 +1,5 @@
 import { Controller, Get } from '@nestjs/common';
-import { InjectPinoLogger, PinoLogger } from 'nestjs-pino';
+import { PinoLogger } from 'nestjs-pino';
 import { AppService } from './app.service';
 import { MainResponse } from './types';
 
@@ -7,7 +7,7 @@ import { MainResponse } from './types';
 export class AppController {
   constructor(
     private readonly appService: AppService,
-    @InjectPinoLogger(AppController.name) private readonly logger: PinoLogger
+    private readonly logger: PinoLogger
   ) {}
 
   @Get()

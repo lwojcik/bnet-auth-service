@@ -1,16 +1,18 @@
 import { Injectable } from '@nestjs/common';
-import { InjectPinoLogger, PinoLogger } from 'nestjs-pino';
-import { formatTime } from '../utils/formatTime';
+import { formatTime } from '../utils';
 import { StatusResponse } from '../types';
+import { LoggerService } from '../logger/logger.service';
 
 @Injectable()
 export class StatusService {
-  constructor(
-    @InjectPinoLogger(StatusService.name) private readonly logger: PinoLogger
-  ) {}
+  constructor(private readonly logger: LoggerService) {
+    this.logger.setLoggedClass(StatusService.name);
+  }
 
   getStatus(): StatusResponse {
-    this.logger.debug('StatusService.getStatus()');
+    this.logger.setLoggedMethod(this.getStatus.name);
+    this.logger.debug();
+
     return {
       status: 'ok',
       uptime: formatTime(process.uptime()),

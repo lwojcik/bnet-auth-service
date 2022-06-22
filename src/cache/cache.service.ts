@@ -2,8 +2,9 @@ import { RedisService } from '@liaoliaots/nestjs-redis';
 import { Inject, Injectable } from '@nestjs/common';
 import { ConfigType } from '@nestjs/config';
 import Redis from 'ioredis';
-import { InjectPinoLogger, PinoLogger } from 'nestjs-pino';
+import { LoggerService } from '../logger/logger.service';
 import { redisConfig } from '../config';
+import { PHRASES } from '../common/constants';
 
 @Injectable()
 export class CacheService {
@@ -15,38 +16,37 @@ export class CacheService {
     private readonly redisService: RedisService,
     @Inject(redisConfig.KEY)
     private redisConf: ConfigType<typeof redisConfig>,
-    @InjectPinoLogger(CacheService.name) private readonly logger: PinoLogger
+    private readonly logger: LoggerService
   ) {
     this.cache = this.redisService.getClient();
     this.cacheKey = `:${this.redisConf.keyName}`;
+    this.logger.setLoggedClass(CacheService.name);
   }
 
   saveAccessToken(accessToken: string) {
-    this.logger.debug(`CacheService.saveAccessToken('${accessToken}')`);
+    this.logger.setLoggedMethod(this.saveAccessToken.name, accessToken);
+    this.logger.debug();
 
     this.logger.debug(
-      `CacheService.getAccessToken(): Using Redis key: ${this.redisConf.keyPrefix}${this.cacheKey}`
+      `${PHRASES.redis.usingKey}: ${this.redisConf.keyPrefix}${this.cacheKey}`
     );
 
-    this.logger.debug(
-      `CacheService.getAccessToken(): Using TTL in seconds: ${this.redisConf.ttlSecs}`
-    );
+    this.logger.debug(`${PHRASES.redis.usingTTL} ${this.redisConf.ttlSecs}`);
 
     this.cache.set(this.cacheKey, accessToken, 'EX', this.redisConf.ttlSecs);
   }
 
   async getAccessToken() {
-    this.logger.debug('CacheService.getAccessToken()');
+    this.logger.setLoggedMethod(this.getAccessToken.name);
+    this.logger.debug();
 
     this.logger.debug(
-      `CacheService.getAccessToken(): Using Redis key: ${this.redisConf.keyPrefix}${this.cacheKey}`
+      `${PHRASES.redis.usingKey}: ${this.redisConf.keyPrefix}${this.cacheKey}`
     );
 
     const accessToken = await this.cache.get(this.cacheKey);
 
-    this.logger.debug(
-      `CacheService.getAccessToken(): Received access token: ${accessToken}`
-    );
+    this.logger.debug(`${PHRASES.accessToken.received}: ${accessToken}`);
 
     return accessToken;
   }

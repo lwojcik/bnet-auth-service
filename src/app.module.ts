@@ -1,11 +1,8 @@
 import { Module } from '@nestjs/common';
-import { LoggerModule } from 'nestjs-pino';
-import { v4 } from 'uuid';
 import { ConfigModule } from '@nestjs/config';
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
-import { DEFAULTS, APP, CONFIG_VALIDATION_SCHEMA } from './common/constants';
-import { Environment } from './common/types/Environment';
+import { CONFIG_VALIDATION_SCHEMA } from './common/constants';
 import {
   appConfig,
   endpointsConfig,
@@ -14,6 +11,7 @@ import {
 } from './config';
 import { StatusModule } from './status/status.module';
 import { AccessTokenModule } from './accesstoken/accesstoken.module';
+import { LoggerModule } from './logger/logger.module';
 
 @Module({
   imports: [
@@ -25,27 +23,7 @@ import { AccessTokenModule } from './accesstoken/accesstoken.module';
         abortEarly: true,
       },
     }),
-    LoggerModule.forRoot({
-      pinoHttp: {
-        genReqId: () => v4().toString(),
-        level:
-          process.env[APP.env] !== Environment.production
-            ? DEFAULTS.logLevel.development
-            : DEFAULTS.logLevel.production,
-        transport:
-          process.env[APP.env] !== Environment.production
-            ? {
-                target: 'pino-pretty',
-                options: {
-                  colorize: true,
-                  translateTime: 'SYS:dd/mm/yyyy, HH:MM:ss',
-                  ignore: 'req,res,pid,context,responseTime',
-                  singleLine: true,
-                },
-              }
-            : undefined,
-      },
-    }),
+    LoggerModule,
     StatusModule,
     AccessTokenModule,
   ],

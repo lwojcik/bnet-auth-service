@@ -1,5 +1,7 @@
+import { ENV_VAR_PREFIX } from './ENV_VAR_PREFIX';
+
 export const BATTLENET = {
-  region: 'BAS_BATTLENET_REGION',
-  clientId: 'BAS_BATTLENET_CLIENT_ID',
-  clientSecret: 'BAS_BATTLENET_CLIENT_SECRET',
+  region: `${ENV_VAR_PREFIX}_BATTLENET_REGION`,
+  clientId: `${ENV_VAR_PREFIX}_BATTLENET_CLIENT_ID`,
+  clientSecret: `${ENV_VAR_PREFIX}_BATTLENET_CLIENT_SECRET`,
 };

@@ -1,21 +1,25 @@
 import { Inject, Injectable } from '@nestjs/common';
 import { ConfigType } from '@nestjs/config';
-import { InjectPinoLogger, PinoLogger } from 'nestjs-pino';
 import { appConfig, endpointsConfig } from './config';
+import { LoggerService } from './logger/logger.service';
 import { MainResponse } from './types';
 
 @Injectable()
 export class AppService {
   constructor(
-    @InjectPinoLogger(AppService.name) private readonly logger: PinoLogger,
+    private readonly logger: LoggerService,
     @Inject(endpointsConfig.KEY)
     private endpoints: ConfigType<typeof endpointsConfig>,
     @Inject(appConfig.KEY)
     private app: ConfigType<typeof appConfig>
-  ) {}
+  ) {
+    this.logger.setLoggedClass(AppService.name);
+  }
 
   getMain(): MainResponse {
-    this.logger.debug('AppService.getMain()');
+    this.logger.setLoggedMethod(this.getMain.name);
+    this.logger.debug();
+
     return {
       name: this.app.name,
       endpoints: this.endpoints,

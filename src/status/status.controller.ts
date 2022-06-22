@@ -1,5 +1,5 @@
 import { Controller, Get } from '@nestjs/common';
-import { InjectPinoLogger, PinoLogger } from 'nestjs-pino';
+import { LoggerService } from '../logger/logger.service';
 import { StatusResponse } from '../types';
 import { StatusService } from './status.service';
 
@@ -7,12 +7,15 @@ import { StatusService } from './status.service';
 export class StatusController {
   constructor(
     private readonly statusService: StatusService,
-    @InjectPinoLogger(StatusController.name) private readonly logger: PinoLogger
-  ) {}
+    private readonly logger: LoggerService
+  ) {
+    this.logger.setLoggedClass(StatusController.name);
+  }
 
   @Get()
   getStatus(): StatusResponse {
-    this.logger.debug('StatusController.getStatus()');
+    this.logger.setLoggedMethod(this.getStatus.name);
+    this.logger.debug();
     return this.statusService.getStatus();
   }
 }

@@ -1,9 +1,9 @@
 import { Inject, Injectable } from '@nestjs/common';
 import { ConfigType } from '@nestjs/config';
 import { BlizzAPI, RegionName } from 'blizzapi';
-import { InjectPinoLogger, PinoLogger } from 'nestjs-pino';
 import { AccessTokenError } from '../types';
 import { battleNetConfig } from '../config';
+import { LoggerService } from '../logger/logger.service';
 
 @Injectable()
 export class BattleNetService {
@@ -12,23 +12,25 @@ export class BattleNetService {
   constructor(
     @Inject(battleNetConfig.KEY)
     private bnetConfig: ConfigType<typeof battleNetConfig>,
-    @InjectPinoLogger(BattleNetService.name) private readonly logger: PinoLogger
+    private readonly logger: LoggerService
   ) {
     this.blizzApi = new BlizzAPI({
       region: this.bnetConfig.region as RegionName,
       clientId: this.bnetConfig.clientId,
       clientSecret: this.bnetConfig.clientSecret,
     });
+    this.logger.setLoggedClass(BattleNetService.name);
   }
 
   async getAccessToken(): Promise<string | AccessTokenError> {
+    this.logger.setLoggedMethod(this.getAccessToken.name);
     try {
-      this.logger.debug('BattleNetService.getAccessToken()');
+      this.logger.debug();
       this.logger.debug(
-        `BattleNetService.getAccessToken(): Using Battle.net client id: ${this.bnetConfig.clientId}`
+        `Using Battle.net client id: ${this.bnetConfig.clientId}`
       );
       this.logger.debug(
-        `BattleNetService.getAccessToken(): Using Battle.net client secret: ${this.bnetConfig.clientSecret}`
+        `Using Battle.net client secret: ${this.bnetConfig.clientSecret}`
       );
 
       const accessToken = await this.blizzApi.getAccessToken();
