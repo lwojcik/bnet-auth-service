@@ -1,7 +1,7 @@
 import { Injectable } from '@nestjs/common';
 import { formatTime } from '../utils';
-import { StatusResponse } from '../types';
 import { LoggerService } from '../logger/logger.service';
+import { StatusResponse } from '../common/types';
 
 @Injectable()
 export class StatusService {

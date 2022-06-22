@@ -2,7 +2,7 @@ import { Inject, Injectable } from '@nestjs/common';
 import { ConfigType } from '@nestjs/config';
 import { appConfig, endpointsConfig } from './config';
 import { LoggerService } from './logger/logger.service';
-import { MainResponse } from './types';
+import { MainResponse } from './common/types';
 
 @Injectable()
 export class AppService {

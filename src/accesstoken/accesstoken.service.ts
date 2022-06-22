@@ -1,6 +1,6 @@
 import { HttpException, Injectable } from '@nestjs/common';
 import { RequestContext } from 'nestjs-request-context';
-import { AccessTokenError, AccessTokenObject } from '../types';
+import { AccessTokenError, AccessTokenObject } from '../common/types';
 import { BattleNetService } from '../battlenet/battlenet.service';
 import { GetAccessTokenDto } from './dto/get-access-token.dto';
 import { CacheService } from '../cache/cache.service';

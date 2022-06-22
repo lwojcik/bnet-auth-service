@@ -1,6 +1,6 @@
 import { Controller, Get } from '@nestjs/common';
 import { LoggerService } from '../logger/logger.service';
-import { StatusResponse } from '../types';
+import { StatusResponse } from '../common/types';
 import { StatusService } from './status.service';
 
 @Controller('status')
