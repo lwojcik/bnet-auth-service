@@ -18,12 +18,3 @@ services:
     ports:
       - ${BAS_REDIS_PORT}:${BAS_REDIS_PORT}
     env_file: .env
-  redis-commander:
-    image: rediscommander/redis-commander:latest
-    environment:
-      - REDIS_HOSTS=local:redis:${BAS_REDIS_PORT}
-    env_file: .env
-    ports:
-      - ${BAS_REDIS_COMMANDER_PORT}:${BAS_REDIS_COMMANDER_PORT}
-    depends_on:
-      - redis
