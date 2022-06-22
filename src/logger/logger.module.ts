@@ -19,6 +19,7 @@ import { LoggerService } from './logger.service';
             ? {
                 target: 'pino-pretty',
                 options: {
+                  messageFormat: '[{req.url}] {res.status} {msg}',
                   colorize: true,
                   translateTime: 'SYS:dd/mm/yyyy, HH:MM:ss',
                   ignore: 'req,res,pid,context,responseTime',
