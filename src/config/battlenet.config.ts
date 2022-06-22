@@ -1,5 +1,5 @@
 import { registerAs } from '@nestjs/config';
-import { BATTLENET } from '../common/common.constants';
+import { BATTLENET } from '../common/constants';
 
 const { env } = process;
 

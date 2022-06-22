@@ -1,5 +1,5 @@
 import { registerAs } from '@nestjs/config';
-import { APP, DEFAULTS } from '../common/common.constants';
+import { APP, DEFAULTS } from '../common/constants';
 
 const { env } = process;
 const defaultValue = DEFAULTS.app;

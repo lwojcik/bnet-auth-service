@@ -1,77 +1,9 @@
-import * as Joi from 'joi';
 import { BlizzAPI } from 'blizzapi';
+import * as Joi from 'joi';
+import { APP, BATTLENET, REDIS } from './environment';
+import { DEFAULTS } from './DEFAULTS';
 
-export enum Environment {
-  production = 'production',
-  development = 'development',
-}
-
-export enum LogLevel {
-  trace = 'trace',
-  debug = 'debug',
-  info = 'info',
-  warn = 'warn',
-  error = 'error',
-  fatal = 'fatal',
-  silent = 'silent',
-}
-
-export enum LogLevelValue {
-  trace = 10,
-  debug = 20,
-  info = 30,
-  warn = 40,
-  error = 50,
-  fatal = 60,
-  silent = 'Infinity',
-}
-
-export const APP = {
-  env: 'NODE_ENV',
-  host: 'BAS_APP_HOST',
-  port: 'BAS_APP_PORT',
-};
-
-export const REDIS = {
-  enable: 'BAS_REDIS_ENABLE',
-  host: 'BAS_REDIS_HOST',
-  port: 'BAS_REDIS_PORT',
-  password: 'BAS_REDIS_PASSWORD',
-  ttlSecs: 'BAS_REDIS_TTL_SECS',
-  db: 'BAS_REDIS_DB',
-  keyPrefix: 'BAS_REDIS_KEY_PREFIX',
-  keyName: 'BAS_REDIS_KEY_NAME',
-};
-
-export const BATTLENET = {
-  region: 'BAS_BATTLENET_REGION',
-  clientId: 'BAS_BATTLENET_CLIENT_ID',
-  clientSecret: 'BAS_BATTLENET_CLIENT_SECRET',
-};
-
-export const DEFAULTS = {
-  app: {
-    host: '0.0.0.0',
-    port: 3000,
-    environment: Environment.development,
-  },
-  logLevel: {
-    production: LogLevel.error,
-    development: LogLevel.debug,
-  },
-  redis: {
-    enable: true,
-    host: '127.0.0.1',
-    port: 6379,
-    password: '',
-    ttlSecs: 2000,
-    db: 0,
-    keyPrefix: 'bas',
-    keyName: 'accesstoken',
-  },
-};
-
-export const configValidationSchema = Joi.object({
+export const CONFIG_VALIDATION_SCHEMA = Joi.object({
   [APP.env]: Joi.string().default(DEFAULTS.app.environment),
   [APP.host]: Joi.string().default(DEFAULTS.app.host),
   [APP.port]: Joi.string().default(DEFAULTS.app.port),

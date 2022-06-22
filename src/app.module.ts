@@ -4,12 +4,8 @@ import { v4 } from 'uuid';
 import { ConfigModule } from '@nestjs/config';
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
-import {
-  Environment,
-  DEFAULTS,
-  APP,
-  configValidationSchema,
-} from './common/common.constants';
+import { DEFAULTS, APP, CONFIG_VALIDATION_SCHEMA } from './common/constants';
+import { Environment } from './common/types/Environment';
 import {
   appConfig,
   endpointsConfig,
@@ -24,7 +20,7 @@ import { AccessTokenModule } from './accesstoken/accesstoken.module';
     ConfigModule.forRoot({
       cache: true,
       load: [appConfig, endpointsConfig, redisConfig, battleNetConfig],
-      validationSchema: configValidationSchema,
+      validationSchema: CONFIG_VALIDATION_SCHEMA,
       validationOptions: {
         abortEarly: true,
       },

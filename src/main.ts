@@ -5,7 +5,7 @@ import {
 } from '@nestjs/platform-fastify';
 import { ConfigService } from '@nestjs/config';
 import { AppModule } from './app.module';
-import { APP } from './common/common.constants';
+import { APP } from './common/constants';
 
 async function bootstrap() {
   const app = await NestFactory.create<NestFastifyApplication>(

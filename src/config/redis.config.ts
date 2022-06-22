@@ -1,5 +1,5 @@
 import { registerAs } from '@nestjs/config';
-import { DEFAULTS, REDIS } from '../common/common.constants';
+import { REDIS, DEFAULTS } from '../common/constants';
 
 const { env } = process;
 const defaultValue = DEFAULTS.redis;
