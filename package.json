@@ -57,7 +57,7 @@
     "fastify-redis-mock": "1.1.0",
     "husky": "8.0.1",
     "jest": "28.1.0",
-    "lint-staged": "12.4.3",
+    "lint-staged": "13.0.0",
     "pino-pretty": "7.6.1",
     "prettier": "2.6.2",
     "rimraf": "3.0.2",
