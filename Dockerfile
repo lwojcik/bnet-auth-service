@@ -7,7 +7,7 @@ COPY --chown=node:node . .
 USER node
 
 # production build
-FROM node:lts-alpine As build
+FROM node:lts-alpine AS build
 WORKDIR /app
 COPY --chown=node:node package*.json ./
 COPY --chown=node:node --from=development /app/node_modules ./node_modules
