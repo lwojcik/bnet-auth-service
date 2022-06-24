@@ -6,7 +6,8 @@ import {
 import { SwaggerModule, DocumentBuilder } from '@nestjs/swagger';
 import { ConfigService } from '@nestjs/config';
 import { AppModule } from './app.module';
-import { APP } from './common/constants';
+import { APP, APP_INFO } from './common/constants';
+import { Environment } from './common/types';
 
 async function bootstrap() {
   const app = await NestFactory.create<NestFastifyApplication>(
@@ -14,17 +15,18 @@ async function bootstrap() {
     new FastifyAdapter()
   );
   const configService = app.get(ConfigService);
-  const port = configService.get(APP.port);
-  const host = configService.get(APP.host);
+  const port = configService.get<string>(APP.port);
+  const host = configService.get<string>(APP.host);
 
-  const swaggerConfig = new DocumentBuilder()
-    .setTitle('Cats example')
-    .setDescription('The cats API description')
-    .setVersion('1.0')
-    .addTag('cats')
-    .build();
-  const document = SwaggerModule.createDocument(app, swaggerConfig);
-  SwaggerModule.setup('api', app, document);
+  if (process.env[APP.environment] !== Environment.production) {
+    const swaggerConfig = new DocumentBuilder()
+      .setTitle(APP_INFO.name)
+      .setDescription(APP_INFO.description)
+      .setVersion(APP_INFO.version)
+      .build();
+    const document = SwaggerModule.createDocument(app, swaggerConfig);
+    SwaggerModule.setup('api', app, document);
+  }
 
   await app.listen(port, host);
 }

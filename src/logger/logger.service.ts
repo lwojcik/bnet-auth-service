@@ -5,7 +5,7 @@ import { Environment } from '../common/types/Environment';
 
 @Injectable({
   scope:
-    process.env[APP.env] !== Environment.production
+    process.env[APP.environment] !== Environment.production
       ? Scope.TRANSIENT
       : Scope.DEFAULT,
 })

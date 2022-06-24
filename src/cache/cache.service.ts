@@ -27,26 +27,35 @@ export class CacheService {
     this.logger.setLoggedMethod(this.saveAccessToken.name, accessToken);
     this.logger.debug();
 
-    this.logger.debug(
-      `${PHRASES.redis.usingKey}: ${this.redisConf.keyPrefix}${this.cacheKey}`
-    );
+    if (!this.redisConf.enable) {
+      this.logger.debug(PHRASES.cache.accessKeyNotSaved);
+    } else {
+      this.logger.debug(
+        PHRASES.cache.usingKey(`${this.redisConf.keyPrefix}${this.cacheKey}`)
+      );
 
-    this.logger.debug(`${PHRASES.redis.usingTTL} ${this.redisConf.ttlSecs}`);
+      this.logger.debug(PHRASES.cache.usingTTL(this.redisConf.ttlSecs));
 
-    this.cache.set(this.cacheKey, accessToken, 'EX', this.redisConf.ttlSecs);
+      this.cache.set(this.cacheKey, accessToken, 'EX', this.redisConf.ttlSecs);
+    }
   }
 
   async getAccessToken() {
     this.logger.setLoggedMethod(this.getAccessToken.name);
     this.logger.debug();
 
+    if (!this.redisConf.enable) {
+      this.logger.debug(PHRASES.cache.cacheServiceDisabled);
+      return null;
+    }
+
     this.logger.debug(
-      `${PHRASES.redis.usingKey}: ${this.redisConf.keyPrefix}${this.cacheKey}`
+      PHRASES.cache.usingKey(`${this.redisConf.keyPrefix}${this.cacheKey}`)
     );
 
     const accessToken = await this.cache.get(this.cacheKey);
 
-    this.logger.debug(`${PHRASES.accessToken.received}: ${accessToken}`);
+    this.logger.debug(`${PHRASES.accessToken.received(accessToken)}`);
 
     return accessToken;
   }

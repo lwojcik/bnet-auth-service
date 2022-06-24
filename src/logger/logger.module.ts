@@ -11,11 +11,11 @@ import { LoggerService } from './logger.service';
       pinoHttp: {
         genReqId: () => v4().toString(),
         level:
-          process.env[APP.env] !== Environment.production
+          process.env[APP.environment] !== Environment.production
             ? DEFAULTS.logLevel.development
             : DEFAULTS.logLevel.production,
         transport:
-          process.env[APP.env] !== Environment.production
+          process.env[APP.environment] !== Environment.production
             ? {
                 target: 'pino-pretty',
                 options: {

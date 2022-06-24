@@ -1,7 +1,7 @@
 import { Injectable } from '@nestjs/common';
 import { formatTime } from '../utils';
 import { LoggerService } from '../logger/logger.service';
-import { StatusResponse } from '../common/types';
+import { ApiStatus, StatusResponse } from '../common/types';
 
 @Injectable()
 export class StatusService {
@@ -14,7 +14,7 @@ export class StatusService {
     this.logger.debug();
 
     return {
-      status: 'ok',
+      status: ApiStatus.ok,
       uptime: formatTime(process.uptime()),
       timestamp: new Date().toISOString(),
     };

@@ -4,7 +4,7 @@ import { APP, BATTLENET, REDIS } from './environment';
 import { DEFAULTS } from './DEFAULTS';
 
 export const CONFIG_VALIDATION_SCHEMA = Joi.object({
-  [APP.env]: Joi.string().default(DEFAULTS.app.environment),
+  [APP.environment]: Joi.string().default(DEFAULTS.app.environment),
   [APP.host]: Joi.string().default(DEFAULTS.app.host),
   [APP.port]: Joi.string().default(DEFAULTS.app.port),
   [REDIS.enable]: Joi.string().default('true'),

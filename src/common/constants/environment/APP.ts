@@ -1,6 +1,15 @@
+import { APP_INFO } from '../APP_INFO';
+import { getEnvVar } from '../../../utils';
+import { AppEnvVariable, FeaturePrefix } from '../../types';
+
+const { appPrefix } = APP_INFO;
+const featurePrefix = FeaturePrefix.app;
+
+const prop = (property: string) =>
+  getEnvVar({ appPrefix, featurePrefix, property });
+
 export const APP = {
-  env: 'NODE_ENV',
-  host: 'BAS_APP_HOST',
-  port: 'BAS_APP_PORT',
-  enableSwagger: 'BAS_ENABLE_SWAGGER',
+  environment: AppEnvVariable.environment,
+  host: prop(AppEnvVariable.host),
+  port: prop(AppEnvVariable.port),
 };

@@ -1,17 +1,16 @@
 import { Inject, Injectable } from '@nestjs/common';
 import { ConfigType } from '@nestjs/config';
-import { appConfig, endpointsConfig } from './config';
+import { endpointsConfig } from './config';
 import { LoggerService } from './logger/logger.service';
 import { MainResponse } from './common/types';
+import { APP_INFO } from './common/constants';
 
 @Injectable()
 export class AppService {
   constructor(
     private readonly logger: LoggerService,
     @Inject(endpointsConfig.KEY)
-    private endpoints: ConfigType<typeof endpointsConfig>,
-    @Inject(appConfig.KEY)
-    private app: ConfigType<typeof appConfig>
+    private endpoints: ConfigType<typeof endpointsConfig>
   ) {
     this.logger.setLoggedClass(AppService.name);
   }
@@ -21,7 +20,8 @@ export class AppService {
     this.logger.debug();
 
     return {
-      name: this.app.name,
+      name: APP_INFO.name,
+      version: APP_INFO.version,
       endpoints: this.endpoints,
     };
   }

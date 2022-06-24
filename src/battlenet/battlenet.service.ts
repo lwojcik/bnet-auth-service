@@ -1,6 +1,7 @@
 import { Inject, Injectable } from '@nestjs/common';
 import { ConfigType } from '@nestjs/config';
 import { BlizzAPI, RegionName } from 'blizzapi';
+import { PHRASES } from '../common/constants';
 import { AccessTokenError } from '../common/types';
 import { battleNetConfig } from '../config';
 import { LoggerService } from '../logger/logger.service';
@@ -24,20 +25,19 @@ export class BattleNetService {
 
   async getAccessToken(): Promise<string | AccessTokenError> {
     this.logger.setLoggedMethod(this.getAccessToken.name);
+    this.logger.debug();
+
     try {
-      this.logger.debug();
       this.logger.debug(
-        `Using Battle.net client id: ${this.bnetConfig.clientId}`
+        PHRASES.battlenet.usingClientId(this.bnetConfig.clientId)
       );
       this.logger.debug(
-        `Using Battle.net client secret: ${this.bnetConfig.clientSecret}`
+        PHRASES.battlenet.usingClientSecret(this.bnetConfig.clientSecret)
       );
 
       const accessToken = await this.blizzApi.getAccessToken();
 
-      this.logger.debug(
-        `BattleNetService.getAccessToken(): Received access token: ${accessToken}`
-      );
+      this.logger.debug(PHRASES.battlenet.receivedAccessToken(accessToken));
 
       return accessToken;
     } catch (error) {

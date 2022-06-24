@@ -1,12 +1,20 @@
-import { ENV_VAR_PREFIX } from './ENV_VAR_PREFIX';
+import { APP_INFO } from '../APP_INFO';
+import { getEnvVar } from '../../../utils';
+import { FeaturePrefix } from '../../types';
+
+const { appPrefix } = APP_INFO;
+const featurePrefix = FeaturePrefix.redis;
+
+const prop = (property: string) =>
+  getEnvVar({ appPrefix, featurePrefix, property });
 
 export const REDIS = {
-  enable: `${ENV_VAR_PREFIX}_REDIS_ENABLE`,
-  host: `${ENV_VAR_PREFIX}_REDIS_HOST`,
-  port: `${ENV_VAR_PREFIX}_REDIS_PORT`,
-  password: `${ENV_VAR_PREFIX}_REDIS_PASSWORD`,
-  ttlSecs: `${ENV_VAR_PREFIX}_REDIS_TTL_SECS`,
-  db: `${ENV_VAR_PREFIX}_REDIS_DB`,
-  keyPrefix: `${ENV_VAR_PREFIX}_REDIS_KEY_PREFIX`,
-  keyName: `${ENV_VAR_PREFIX}_REDIS_KEY_NAME`,
+  enable: prop('ENABLE'),
+  host: prop('HOST'),
+  port: prop('PORT'),
+  password: prop('PASSWORD'),
+  ttlSecs: prop('TTL_SECS'),
+  db: prop('DB'),
+  keyPrefix: prop('KEY_PREFIX'),
+  keyName: prop('KEY_NAME'),
 };

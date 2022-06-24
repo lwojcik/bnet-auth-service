@@ -1,7 +1,16 @@
-import { ENV_VAR_PREFIX } from './ENV_VAR_PREFIX';
+import { APP_INFO } from '../APP_INFO';
+import { getEnvVar } from '../../../utils';
+import { BattleNetEnvVariable } from '../../types/BattleNetEnvVariable';
+import { FeaturePrefix } from '../../types/FeaturePrefix';
+
+const { appPrefix } = APP_INFO;
+const featurePrefix = FeaturePrefix.battlenet;
+
+const prop = (name: string) =>
+  getEnvVar({ appPrefix, featurePrefix, property: name });
 
 export const BATTLENET = {
-  region: `${ENV_VAR_PREFIX}_BATTLENET_REGION`,
-  clientId: `${ENV_VAR_PREFIX}_BATTLENET_CLIENT_ID`,
-  clientSecret: `${ENV_VAR_PREFIX}_BATTLENET_CLIENT_SECRET`,
+  region: prop(BattleNetEnvVariable.region),
+  clientId: prop(BattleNetEnvVariable.clientId),
+  clientSecret: prop(BattleNetEnvVariable.clientSecret),
 };
