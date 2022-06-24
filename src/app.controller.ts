@@ -11,7 +11,7 @@ import { MainResponse } from './main/dto/main-response.dto';
 import { LoggerService } from './logger/logger.service';
 import { MainService } from './main/main.service';
 
-@ApiTags('index')
+@ApiTags('main')
 @Controller()
 export class AppController {
   constructor(
@@ -25,6 +25,7 @@ export class AppController {
   @ApiOperation({ summary: 'App name and list of available endpoints' })
   @ApiOkResponse({
     description: ApiResponse.ok,
+    type: MainResponse,
   })
   @ApiBadRequestResponse({
     description: ApiResponse.badRequest,
