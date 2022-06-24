@@ -2,7 +2,7 @@ import { Inject, Injectable } from '@nestjs/common';
 import { ConfigType } from '@nestjs/config';
 import { BlizzAPI, RegionName } from 'blizzapi';
 import { PHRASES } from '../common/constants';
-import { AccessTokenError } from '../common/types';
+import { AccessTokenError } from '../accesstoken/dto/access-token-error.dto';
 import { battleNetConfig } from '../config';
 import { LoggerService } from '../logger/logger.service';
 

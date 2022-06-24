@@ -2,7 +2,11 @@ import { REDIS } from './environment';
 
 export const PHRASES = {
   accessToken: {
+    readingFromCache: 'Checking for cached access token',
+    noCachedAccessToken:
+      'Found no cached access token or "refresh" option was used',
     received: (token: string) => `Received access token: ${token}`,
+    cachingAccessToken: (token: string) => `Caching access token: ${token}`,
   },
   battlenet: {
     usingClientId: (clientId: string) =>
@@ -18,7 +22,6 @@ export const PHRASES = {
     cacheServiceDisabled: `${REDIS.enable} set to false - returning 'null' as access key`,
   },
   errors: {
-    invalidRegion: (region: string, allowedRegionNames: string) =>
-      `'${region}' is not a valid Battle.net region. Available regions: ${allowedRegionNames}`,
+    accessToken: 'Received access token error',
   },
 };

@@ -1,7 +1,15 @@
 import { Controller, Get, Query } from '@nestjs/common';
-import { ApiOperation, ApiTags } from '@nestjs/swagger';
+import {
+  ApiOkResponse,
+  ApiOperation,
+  ApiTags,
+  ApiUnauthorizedResponse,
+} from '@nestjs/swagger';
+import { ApiResponse } from '../common/types';
 import { LoggerService } from '../logger/logger.service';
 import { AccessTokenService } from './accesstoken.service';
+import { AccessTokenError } from './dto/access-token-error.dto';
+import { AccessTokenObject } from './dto/access-token-object.dto';
 import { GetAccessTokenDto } from './dto/get-access-token.dto';
 
 @ApiTags('accesstoken')
@@ -15,6 +23,14 @@ export class AccessTokenController {
   }
 
   @Get()
+  @ApiOkResponse({
+    description: ApiResponse.ok,
+    type: AccessTokenObject,
+  })
+  @ApiUnauthorizedResponse({
+    description: ApiResponse.unauthorized,
+    type: AccessTokenError,
+  })
   @ApiOperation({
     summary: 'Get Battle.net access token for supplied client credentials',
   })

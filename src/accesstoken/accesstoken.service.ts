@@ -1,10 +1,13 @@
 import { HttpException, Injectable } from '@nestjs/common';
 import { RequestContext } from 'nestjs-request-context';
-import { AccessTokenError, AccessTokenObject } from '../common/types';
+import { Source } from '../common/types';
 import { BattleNetService } from '../battlenet/battlenet.service';
 import { GetAccessTokenDto } from './dto/get-access-token.dto';
 import { CacheService } from '../cache/cache.service';
 import { LoggerService } from '../logger/logger.service';
+import { PHRASES } from '../common/constants';
+import { AccessTokenError } from './dto/access-token-error.dto';
+import { AccessTokenObject } from './dto/access-token-object.dto';
 
 @Injectable()
 export class AccessTokenService {
@@ -24,7 +27,7 @@ export class AccessTokenService {
     const accessToken = await this.battleNetService.getAccessToken();
 
     if ((accessToken as AccessTokenError).error) {
-      this.logger.debug(`Received access token error`);
+      this.logger.debug(PHRASES.errors.accessToken);
 
       this.logger.error((accessToken as AccessTokenError).error);
 
@@ -45,7 +48,7 @@ export class AccessTokenService {
 
     const accessToken = await this.cacheService.getAccessToken();
 
-    this.logger.debug(`Received access token: ${accessToken}`);
+    this.logger.debug(PHRASES.accessToken.received(accessToken));
 
     return accessToken;
   }
@@ -66,33 +69,36 @@ export class AccessTokenService {
 
     const { refresh } = getAccessTokenDto;
 
+    this.logger.debug(PHRASES.accessToken.readingFromCache);
     const accessTokenFromCache = await this.getAccessTokenFromCache();
 
     if (refresh || !accessTokenFromCache) {
-      this.logger.debug(
-        'Found no cached access key or "refresh" option was used'
-      );
+      this.logger.debug(PHRASES.accessToken.noCachedAccessToken);
 
       const accessTokenFromBattleNet = await this.getAccessTokenFromBattleNet();
 
       if ((accessTokenFromBattleNet as AccessTokenError).error) {
-        this.logger.error('Received access token error');
+        this.logger.error(PHRASES.errors.accessToken);
         return accessTokenFromBattleNet as AccessTokenError;
       }
 
       this.logger.debug(
-        `Caching received access token: ${accessTokenFromBattleNet}`
+        PHRASES.accessToken.cachingAccessToken(
+          accessTokenFromBattleNet as string
+        )
       );
 
       this.cacheAccessToken(accessTokenFromBattleNet as string);
 
       return {
         accessToken: accessTokenFromBattleNet as string,
-      } as AccessTokenObject;
+        source: Source.battlenet,
+      };
     }
 
     return {
       accessToken: accessTokenFromCache,
+      source: Source.cache,
     };
   }
 }

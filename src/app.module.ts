@@ -1,28 +1,28 @@
 import { Module } from '@nestjs/common';
 import { ConfigModule } from '@nestjs/config';
 import { AppController } from './app.controller';
-import { AppService } from './app.service';
 import { CONFIG_VALIDATION_SCHEMA } from './common/constants';
-import { endpointsConfig } from './config';
 import { StatusModule } from './status/status.module';
 import { AccessTokenModule } from './accesstoken/accesstoken.module';
 import { LoggerModule } from './logger/logger.module';
+import { MainModule } from './main/main.module';
+import { endpointsConfig, redisConfig } from './config';
 
 @Module({
   imports: [
     ConfigModule.forRoot({
+      load: [endpointsConfig, redisConfig],
       cache: true,
-      load: [endpointsConfig],
       validationSchema: CONFIG_VALIDATION_SCHEMA,
       validationOptions: {
         abortEarly: true,
       },
     }),
     LoggerModule,
+    MainModule,
     StatusModule,
     AccessTokenModule,
   ],
   controllers: [AppController],
-  providers: [AppService],
 })
 export class AppModule {}

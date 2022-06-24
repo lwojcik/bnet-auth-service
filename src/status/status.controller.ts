@@ -1,7 +1,14 @@
 import { Controller, Get } from '@nestjs/common';
-import { ApiOperation, ApiTags } from '@nestjs/swagger';
+import {
+  ApiBadRequestResponse,
+  ApiOkResponse,
+  ApiOperation,
+  ApiTags,
+  ApiUnauthorizedResponse,
+} from '@nestjs/swagger';
 import { LoggerService } from '../logger/logger.service';
-import { StatusResponse } from '../common/types';
+import { ApiResponse } from '../common/types';
+import { StatusResponse } from './dto/status-response.dto';
 import { StatusService } from './status.service';
 
 @ApiTags('status')
@@ -16,7 +23,17 @@ export class StatusController {
 
   @Get()
   @ApiOperation({ summary: 'Check app health and uptime' })
-  getStatus(): StatusResponse {
+  @ApiOkResponse({
+    description: ApiResponse.ok,
+    type: StatusResponse,
+  })
+  @ApiBadRequestResponse({
+    description: ApiResponse.badRequest,
+  })
+  @ApiUnauthorizedResponse({
+    description: ApiResponse.unauthorized,
+  })
+  getStatus() {
     this.logger.setLoggedMethod(this.getStatus.name);
     this.logger.debug();
     return this.statusService.getStatus();

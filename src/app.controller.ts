@@ -1,14 +1,21 @@
 import { Controller, Get } from '@nestjs/common';
-import { ApiOperation, ApiTags } from '@nestjs/swagger';
-import { AppService } from './app.service';
-import { MainResponse } from './common/types';
+import {
+  ApiBadRequestResponse,
+  ApiOkResponse,
+  ApiOperation,
+  ApiTags,
+  ApiUnauthorizedResponse,
+} from '@nestjs/swagger';
+import { ApiResponse } from './common/types';
+import { MainResponse } from './main/dto/main-response.dto';
 import { LoggerService } from './logger/logger.service';
+import { MainService } from './main/main.service';
 
 @ApiTags('index')
 @Controller()
 export class AppController {
   constructor(
-    private readonly appService: AppService,
+    private readonly mainService: MainService,
     private readonly logger: LoggerService
   ) {
     this.logger.setLoggedClass(AppController.name);
@@ -16,9 +23,18 @@ export class AppController {
 
   @Get()
   @ApiOperation({ summary: 'App name and list of available endpoints' })
+  @ApiOkResponse({
+    description: ApiResponse.ok,
+  })
+  @ApiBadRequestResponse({
+    description: ApiResponse.badRequest,
+  })
+  @ApiUnauthorizedResponse({
+    description: ApiResponse.unauthorized,
+  })
   getMain(): MainResponse {
     this.logger.setLoggedMethod(this.getMain.name);
     this.logger.debug();
-    return this.appService.getMain();
+    return this.mainService.getMain();
   }
 }
