@@ -6,6 +6,8 @@ export const DEFAULTS = {
     host: '0.0.0.0',
     port: 3000,
     environment: Environment.development,
+    enableCors: false,
+    corsOrigin: '',
   },
   logLevel: {
     production: LogLevel.error,

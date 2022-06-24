@@ -7,6 +7,8 @@ export const CONFIG_VALIDATION_SCHEMA = Joi.object({
   [APP.environment]: Joi.string().default(DEFAULTS.app.environment),
   [APP.host]: Joi.string().default(DEFAULTS.app.host),
   [APP.port]: Joi.string().default(DEFAULTS.app.port),
+  [APP.enableCors]: Joi.string().default('false'),
+  [APP.corsOrigin]: Joi.optional().default(''),
   [REDIS.enable]: Joi.string().default('true'),
   [REDIS.host]: Joi.any().when(`${REDIS.enable}`, {
     is: 'true',

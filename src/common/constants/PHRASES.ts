@@ -17,4 +17,8 @@ export const PHRASES = {
     accessKeyNotSaved: `${REDIS.enable} set to false - access key not saved`,
     cacheServiceDisabled: `${REDIS.enable} set to false - returning 'null' as access key`,
   },
+  errors: {
+    invalidRegion: (region: string, allowedRegionNames: string) =>
+      `'${region}' is not a valid Battle.net region. Available regions: ${allowedRegionNames}`,
+  },
 };

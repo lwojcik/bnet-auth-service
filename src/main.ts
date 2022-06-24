@@ -18,6 +18,15 @@ async function bootstrap() {
   const port = configService.get<string>(APP.port);
   const host = configService.get<string>(APP.host);
 
+  if (process.env[APP.enableCors] === 'true') {
+    const corsConfig = process.env[APP.corsOrigin]
+      ? {
+          origin: process.env[APP.corsOrigin],
+        }
+      : undefined;
+    app.enableCors(corsConfig);
+  }
+
   if (process.env[APP.environment] !== Environment.production) {
     const swaggerConfig = new DocumentBuilder()
       .setTitle(APP_INFO.name)

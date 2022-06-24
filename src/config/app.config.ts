@@ -9,4 +9,6 @@ export const appConfig = registerAs('app', () => ({
   environment: env[APP.environment] || defaultValue.environment,
   host: env[APP.host] || defaultValue.host,
   port: parseInt(env[APP.port], 10) || defaultValue.port,
+  enableCors: env[APP.enableCors] === 'true',
+  corsOrigin: env[APP.corsOrigin] || defaultValue.corsOrigin,
 }));

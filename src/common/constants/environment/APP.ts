@@ -12,4 +12,6 @@ export const APP = {
   environment: AppEnvVariable.environment,
   host: prop(AppEnvVariable.host),
   port: prop(AppEnvVariable.port),
+  enableCors: prop(AppEnvVariable.enableCors),
+  corsOrigin: prop(AppEnvVariable.corsOrigin),
 };
