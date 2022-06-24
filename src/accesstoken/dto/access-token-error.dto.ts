@@ -17,6 +17,7 @@ export class AccessTokenError {
 
   @ApiProperty({
     description: 'Error message',
+    example: 'Request failed with status code 401',
   })
   @IsString()
   message: string;
