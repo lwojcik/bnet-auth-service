@@ -1,6 +1,12 @@
 import { registerAs } from '@nestjs/config';
 
 export const endpointsConfig = registerAs('endpoints', () => ({
-  status: '/status',
-  accesstoken: '/accesstoken',
+  status: {
+    url: '/status',
+    method: 'GET',
+  },
+  accesstoken: {
+    url: '/accesstoken',
+    method: 'GET',
+  },
 }));

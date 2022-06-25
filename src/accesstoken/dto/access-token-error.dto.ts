@@ -1,12 +1,14 @@
 import { ApiProperty } from '@nestjs/swagger';
-import { IsBoolean, IsNumber, IsString, IsUUID } from 'class-validator';
+import { IsNumber, IsString, IsUUID } from 'class-validator';
+import { ApiErrorCode } from '../../common/types/ApiErrorCode.enum';
 
 export class AccessTokenError {
   @ApiProperty({
-    description: 'Did error occured?',
+    description:
+      'Error code used to denote the issue was caused by Battle.net API',
+    example: ApiErrorCode.bnetApiError,
   })
-  @IsBoolean()
-  error: boolean;
+  error: ApiErrorCode;
 
   @ApiProperty({
     description: 'Error code',

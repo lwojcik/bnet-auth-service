@@ -39,7 +39,7 @@ export class AppController {
     description: ApiResponse.tooManyRequests,
     type: TooManyRequestsError,
   })
-  getMain(): MainResponse {
+  getMain() {
     this.logger.setLoggedMethod(this.getMain.name);
     this.logger.debug();
     return this.mainService.getMain();

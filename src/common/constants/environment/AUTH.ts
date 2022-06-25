@@ -10,6 +10,6 @@ const prop = (name: string) =>
 
 export const AUTH = {
   enable: prop(AuthEnvVariable.enable),
+  username: prop(AuthEnvVariable.username),
   jwtSecret: prop(AuthEnvVariable.jwtSecret),
-  ignoreExpiration: prop(AuthEnvVariable.ignoreExpiration),
 };

@@ -3,7 +3,6 @@ import { ConfigType } from '@nestjs/config';
 import { APP_INFO } from '../common/constants';
 import { endpointsConfig, redisConfig } from '../config';
 import { LoggerService } from '../logger/logger.service';
-import { MainResponse } from './dto/main-response.dto';
 
 @Injectable()
 export class MainService {
@@ -17,7 +16,7 @@ export class MainService {
     this.logger.setLoggedClass(MainService.name);
   }
 
-  getMain(): MainResponse {
+  getMain() {
     this.logger.setLoggedMethod(this.getMain.name);
     this.logger.debug();
 

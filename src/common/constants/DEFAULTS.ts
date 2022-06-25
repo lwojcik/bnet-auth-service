@@ -28,7 +28,8 @@ export const DEFAULTS = {
   },
   auth: {
     enable: false,
+    username: '',
     jwtSecret: '',
-    ignoreExpiration: false,
+    ignoreExpiration: true,
   },
 };

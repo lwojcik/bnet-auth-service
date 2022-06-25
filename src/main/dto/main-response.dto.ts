@@ -1,5 +1,6 @@
 import { ApiProperty } from '@nestjs/swagger';
 import { IsString, IsBoolean } from 'class-validator';
+import { endpointsConfig } from '../../config';
 import { APP_INFO } from '../../common/constants';
 import { Endpoints } from '../../common/types';
 
@@ -27,11 +28,7 @@ export class MainResponse {
 
   @ApiProperty({
     description: 'List of available endpoints',
-    example: {
-      status: '/status',
-      accesstoken: '/accesstoken',
-    },
+    example: endpointsConfig,
   })
-  @IsString({ each: true })
   endpoints: Endpoints;
 }

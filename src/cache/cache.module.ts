@@ -12,6 +12,7 @@ import { LoggerModule } from '../logger/logger.module';
     LoggerModule,
     RedisModule.forRootAsync({
       imports: [ConfigModule],
+      inject: [ConfigService],
       useFactory: (configService: ConfigService) => ({
         readyLog: true,
         config: {
@@ -22,7 +23,6 @@ import { LoggerModule } from '../logger/logger.module';
           keyPrefix: configService.get(REDIS.keyPrefix),
         },
       }),
-      inject: [ConfigService],
     }),
   ],
   providers: [CacheService],

@@ -5,7 +5,7 @@ import { Source } from '../../common/types';
 export class AccessTokenObject {
   @ApiProperty({
     description: 'Access token retrieved from Battle.net',
-    example: 'USBiUBWRM443mOQM3anfLivSl3a84PGNIo',
+    example: 'USBiUBW34n43mOQM3anfLivSl3a84PGNIo',
   })
   @IsString()
   accessToken: string;

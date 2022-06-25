@@ -1,26 +1,34 @@
-import { Module } from '@nestjs/common';
+import { Module, Provider } from '@nestjs/common';
 import { ConfigModule, ConfigService } from '@nestjs/config';
 import { JwtModule } from '@nestjs/jwt';
 import { authConfig } from '../config';
 import { AUTH } from '../common/constants';
 import { AuthService } from './auth.service';
 import { JwtStrategy } from './strategies/jwt.strategy';
+import { LoggerModule } from '../logger/logger.module';
 
-@Module({
-  imports: [
-    ConfigModule.forFeature(authConfig),
+const imports = [ConfigModule.forFeature(authConfig), LoggerModule];
+const providers: Provider[] = [AuthService];
+
+if (process.env[AUTH.enable] === 'true') {
+  imports.push(
     JwtModule.registerAsync({
       imports: [ConfigModule],
       inject: [ConfigService],
       useFactory: (config: ConfigService) => ({
         secret: config.get<string>(AUTH.jwtSecret),
         verifyOptions: {
-          ignoreExpiration: config.get(AUTH.ignoreExpiration),
+          ignoreExpiration: true,
         },
       }),
-    }),
-  ],
-  providers: [AuthService, JwtStrategy],
+    })
+  );
+  providers.push(JwtStrategy);
+}
+
+@Module({
+  imports,
+  providers,
   exports: [AuthService],
 })
 export class AuthModule {}

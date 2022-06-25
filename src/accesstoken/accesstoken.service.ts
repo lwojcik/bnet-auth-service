@@ -1,4 +1,4 @@
-import { HttpException, Injectable } from '@nestjs/common';
+import { Injectable } from '@nestjs/common';
 import { RequestContext } from 'nestjs-request-context';
 import { Source } from '../common/types';
 import { BattleNetService } from '../battlenet/battlenet.service';
@@ -31,13 +31,11 @@ export class AccessTokenService {
 
       this.logger.error((accessToken as AccessTokenError).error);
 
-      throw new HttpException(
-        {
-          ...(accessToken as AccessTokenError),
-          id: RequestContext.currentContext.req.id,
-        },
-        (accessToken as AccessTokenError).statusCode
-      );
+      return {
+        ...(accessToken as AccessTokenError),
+        id: RequestContext.currentContext.req.id,
+        statusCode: (accessToken as AccessTokenError).statusCode,
+      };
     }
 
     return accessToken;

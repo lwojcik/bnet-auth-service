@@ -1,3 +1,9 @@
+import { RequestMethod } from '@nestjs/common';
+
 export interface Endpoints {
-  [key: string]: string;
+  [key: string]: {
+    name: string;
+    method: RequestMethod;
+    url: string;
+  };
 }

@@ -1,3 +1,4 @@
+export * from './ApiErrorCode.enum';
 export * from './ApiResponse.enum';
 export * from './ApiStatus.enum';
 export * from './AuthEnvVariable.enum';

@@ -1,14 +1,17 @@
 import { BlizzAPI } from 'blizzapi';
 import * as Joi from 'joi';
-import { APP, BATTLENET, REDIS, THROTTLE } from './environment';
+import { APP, AUTH, BATTLENET, REDIS, THROTTLE } from './environment';
 import { DEFAULTS } from './DEFAULTS';
 
-export const CONFIG_VALIDATION_SCHEMA = Joi.object({
+const appSchema = {
   [APP.environment]: Joi.string().default(DEFAULTS.app.environment),
   [APP.host]: Joi.string().default(DEFAULTS.app.host),
   [APP.port]: Joi.string().default(DEFAULTS.app.port),
   [APP.enableCors]: Joi.string().default('false'),
-  [APP.corsOrigin]: Joi.optional().default(''),
+  [APP.corsOrigin]: Joi.optional(),
+};
+
+const redisSchema = {
   [REDIS.enable]: Joi.string().default('true'),
   [REDIS.host]: Joi.any().when(`${REDIS.enable}`, {
     is: 'true',
@@ -46,6 +49,9 @@ export const CONFIG_VALIDATION_SCHEMA = Joi.object({
     then: Joi.string().default(DEFAULTS.redis.keyName),
     otherwise: Joi.optional(),
   }),
+};
+
+const battlenetSchema = {
   [BATTLENET.region]: Joi.string()
     .required()
     .custom((value) => {
@@ -64,6 +70,31 @@ export const CONFIG_VALIDATION_SCHEMA = Joi.object({
     }),
   [BATTLENET.clientId]: Joi.string().required(),
   [BATTLENET.clientSecret]: Joi.string().required(),
+};
+
+const throttleSchema = {
   [THROTTLE.limit]: Joi.string().default(DEFAULTS.throttle.limit),
   [THROTTLE.ttlSecs]: Joi.string().default(DEFAULTS.throttle.ttlSecs),
+};
+
+const authSchema = {
+  [AUTH.enable]: Joi.string().default(DEFAULTS.auth.enable),
+  [AUTH.username]: Joi.any().when(AUTH.enable, {
+    is: 'true',
+    then: Joi.string().required(),
+    otherwise: Joi.optional(),
+  }),
+  [AUTH.jwtSecret]: Joi.any().when(AUTH.enable, {
+    is: 'true',
+    then: Joi.string().required(),
+    otherwise: Joi.optional(),
+  }),
+};
+
+export const CONFIG_VALIDATION_SCHEMA = Joi.object({
+  ...appSchema,
+  ...redisSchema,
+  ...battlenetSchema,
+  ...throttleSchema,
+  ...authSchema,
 });

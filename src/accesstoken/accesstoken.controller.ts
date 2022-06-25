@@ -26,7 +26,8 @@ export class AccessTokenController {
 
   @Get()
   @ApiOkResponse({
-    description: ApiResponse.ok,
+    description:
+      'Successful response. Note that in case of Battle.net errors the application will still return status code 200 and AccessTokenError response.',
     type: AccessTokenObject,
   })
   @ApiUnauthorizedResponse({
@@ -40,7 +41,9 @@ export class AccessTokenController {
   @ApiOperation({
     summary: 'Get Battle.net access token for supplied client credentials',
   })
-  getAccessToken(@Query() getAccessTokenDto: GetAccessTokenDto) {
+  getAccessToken(
+    @Query() getAccessTokenDto: GetAccessTokenDto
+  ): Promise<AccessTokenObject | AccessTokenError> {
     this.logger.setLoggedMethod(this.getAccessToken.name, getAccessTokenDto);
     this.logger.debug();
     return this.accessTokenService.getAccessToken(getAccessTokenDto);

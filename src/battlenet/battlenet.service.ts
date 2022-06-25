@@ -1,8 +1,8 @@
 import { Inject, Injectable } from '@nestjs/common';
 import { ConfigType } from '@nestjs/config';
 import { BlizzAPI, RegionName } from 'blizzapi';
+import { ApiErrorCode } from '../common/types';
 import { PHRASES } from '../common/constants';
-import { AccessTokenError } from '../accesstoken/dto/access-token-error.dto';
 import { battleNetConfig } from '../config';
 import { LoggerService } from '../logger/logger.service';
 
@@ -23,7 +23,7 @@ export class BattleNetService {
     this.logger.setLoggedClass(BattleNetService.name);
   }
 
-  async getAccessToken(): Promise<string | AccessTokenError> {
+  async getAccessToken() {
     this.logger.setLoggedMethod(this.getAccessToken.name);
     this.logger.debug();
 
@@ -44,10 +44,10 @@ export class BattleNetService {
       this.logger.error(error);
 
       return {
-        error: true,
+        error: ApiErrorCode.bnetApiError,
         statusCode: error.response.status,
         message: error.message,
-      } as AccessTokenError;
+      };
     }
   }
 }
