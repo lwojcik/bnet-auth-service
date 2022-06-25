@@ -14,16 +14,13 @@ export class AuthService {
   }
 
   validate(username: string) {
-    console.log(username);
     this.logger.setLoggedMethod(this.validate.name, username);
     this.logger.debug();
 
-    if (this.authConf.enable) {
-      if (username === this.authConf.username) {
-        return username;
-      }
-      return null;
+    if (!this.authConf.enable || username === this.authConf.username) {
+      return username;
     }
-    return 'valid_user';
+
+    return null;
   }
 }

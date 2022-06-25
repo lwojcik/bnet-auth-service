@@ -7,6 +7,7 @@ import { authConfig } from '../../config';
 type AuthPayload = {
   username: string;
 };
+
 @Injectable()
 export class JwtStrategy extends PassportStrategy(Strategy) {
   constructor(

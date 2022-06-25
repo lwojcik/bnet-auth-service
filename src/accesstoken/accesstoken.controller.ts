@@ -1,4 +1,4 @@
-import { Controller, Get, Query } from '@nestjs/common';
+import { Controller, Get, Query, UseGuards } from '@nestjs/common';
 import {
   ApiOkResponse,
   ApiOperation,
@@ -6,6 +6,8 @@ import {
   ApiTooManyRequestsResponse,
   ApiUnauthorizedResponse,
 } from '@nestjs/swagger';
+import { JwtAuthGuard, PassthroughGuard } from '../auth/guards';
+import { AUTH } from '../common/constants';
 import { TooManyRequestsError } from '../common/dto/too-many-requests-error.dto';
 import { ApiResponse } from '../common/types';
 import { LoggerService } from '../logger/logger.service';
@@ -25,6 +27,9 @@ export class AccessTokenController {
   }
 
   @Get()
+  @UseGuards(
+    process.env[AUTH.enable] === 'true' ? JwtAuthGuard : PassthroughGuard
+  )
   @ApiOkResponse({
     description:
       'Successful response. Note that in case of Battle.net errors the application will still return status code 200 and AccessTokenError response.',
