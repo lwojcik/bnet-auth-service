@@ -1,5 +1,6 @@
 export * from './ApiResponse';
 export * from './ApiStatus';
+export * from './AuthEnvVariable';
 export * from './Endpoints';
 export * from './Environment';
 export * from './AppEnvVariable';
@@ -7,6 +8,7 @@ export * from './BattleNetEnvVariable';
 export * from './FeaturePrefix';
 export * from './LogLevel';
 export * from './LogLevelValue';
+export * from './RedisEnvVariable';
 export * from './Source';
 export * from './StatusReponse';
 export * from './ThrottleEnvVariable';

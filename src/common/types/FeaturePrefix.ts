@@ -3,4 +3,5 @@ export enum FeaturePrefix {
   battlenet = 'BATTLENET',
   redis = 'REDIS',
   throttle = 'THROTTLE',
+  auth = 'AUTH',
 }

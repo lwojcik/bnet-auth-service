@@ -9,6 +9,7 @@ import { AccessTokenModule } from './accesstoken/accesstoken.module';
 import { LoggerModule } from './logger/logger.module';
 import { MainModule } from './main/main.module';
 import { endpointsConfig, redisConfig } from './config';
+import { AuthModule } from './auth/auth.module';
 
 @Module({
   imports: [
@@ -28,6 +29,7 @@ import { endpointsConfig, redisConfig } from './config';
         limit: config.get(THROTTLE.limit),
       }),
     }),
+    AuthModule,
     LoggerModule,
     MainModule,
     StatusModule,

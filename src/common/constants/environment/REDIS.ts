@@ -1,7 +1,6 @@
 import { APP_INFO } from '../APP_INFO';
 import { getEnvVar } from '../../../utils';
-import { FeaturePrefix } from '../../types';
-import { RedisEnvVariable } from '../../types/RedisEnvVariable';
+import { FeaturePrefix, RedisEnvVariable } from '../../types';
 
 const { appPrefix } = APP_INFO;
 const featurePrefix = FeaturePrefix.redis;

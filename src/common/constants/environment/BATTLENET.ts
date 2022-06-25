@@ -1,7 +1,6 @@
 import { APP_INFO } from '../APP_INFO';
 import { getEnvVar } from '../../../utils';
-import { BattleNetEnvVariable } from '../../types/BattleNetEnvVariable';
-import { FeaturePrefix } from '../../types/FeaturePrefix';
+import { FeaturePrefix, BattleNetEnvVariable } from '../../types';
 
 const { appPrefix } = APP_INFO;
 const featurePrefix = FeaturePrefix.battlenet;
