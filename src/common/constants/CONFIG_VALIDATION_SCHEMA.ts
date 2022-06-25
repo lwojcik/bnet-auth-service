@@ -1,6 +1,6 @@
 import { BlizzAPI } from 'blizzapi';
 import * as Joi from 'joi';
-import { APP, AUTH, BATTLENET, REDIS, THROTTLE } from './environment';
+import { APP, AUTH, BATTLENET, HTTPS, REDIS, THROTTLE } from './environment';
 import { DEFAULTS } from './DEFAULTS';
 
 const appSchema = {
@@ -91,10 +91,25 @@ const authSchema = {
   }),
 };
 
+const httpsSchema = {
+  [HTTPS.enable]: Joi.string().default(DEFAULTS.https.enable),
+  [HTTPS.keyPath]: Joi.any().when(HTTPS.enable, {
+    is: 'true',
+    then: Joi.string().required(),
+    otherwise: Joi.optional(),
+  }),
+  [HTTPS.certPath]: Joi.any().when(HTTPS.enable, {
+    is: 'true',
+    then: Joi.string().required(),
+    otherwise: Joi.optional(),
+  }),
+};
+
 export const CONFIG_VALIDATION_SCHEMA = Joi.object({
   ...appSchema,
   ...redisSchema,
   ...battlenetSchema,
   ...throttleSchema,
   ...authSchema,
+  ...httpsSchema,
 });

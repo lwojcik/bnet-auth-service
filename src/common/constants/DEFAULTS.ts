@@ -32,4 +32,9 @@ export const DEFAULTS = {
     jwtSecret: '',
     ignoreExpiration: true,
   },
+  https: {
+    enable: false,
+    keyPath: '',
+    certPath: '',
+  },
 };

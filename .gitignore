@@ -40,3 +40,4 @@ yarn.lock
 .eslintcache
 .node-dev.json
 .env
+certs/

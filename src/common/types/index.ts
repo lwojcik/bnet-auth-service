@@ -7,6 +7,7 @@ export * from './Environment.enum';
 export * from './AppEnvVariable.enum';
 export * from './BattleNetEnvVariable.enum';
 export * from './FeaturePrefix.enum';
+export * from './HttpsEnvVariable.enum';
 export * from './LogLevel.enum';
 export * from './LogLevelValue.enum';
 export * from './RedisEnvVariable.enum';

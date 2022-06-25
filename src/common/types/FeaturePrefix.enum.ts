@@ -4,4 +4,5 @@ export enum FeaturePrefix {
   redis = 'REDIS',
   throttle = 'THROTTLE',
   auth = 'AUTH',
+  https = 'HTTPS',
 }
