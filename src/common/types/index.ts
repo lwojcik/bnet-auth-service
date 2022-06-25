@@ -10,5 +10,4 @@ export * from './LogLevel';
 export * from './LogLevelValue';
 export * from './RedisEnvVariable';
 export * from './Source';
-export * from './StatusReponse';
 export * from './ThrottleEnvVariable';
