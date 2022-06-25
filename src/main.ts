@@ -12,7 +12,6 @@ import { APP, APP_INFO, HTTPS } from './common/constants';
 import { Environment } from './common/types';
 
 async function bootstrap() {
-  console.log(process.env[HTTPS.enable]);
   const app = await NestFactory.create<NestFastifyApplication>(
     AppModule,
     new FastifyAdapter(
