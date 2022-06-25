@@ -1,20 +1,21 @@
 import { APP_INFO } from '../APP_INFO';
 import { getEnvVar } from '../../../utils';
 import { FeaturePrefix } from '../../types';
+import { RedisEnvVariable } from '../../types/RedisEnvVariable';
 
 const { appPrefix } = APP_INFO;
 const featurePrefix = FeaturePrefix.redis;
 
-const prop = (property: string) =>
-  getEnvVar({ appPrefix, featurePrefix, property });
+const prop = (name: string) =>
+  getEnvVar({ appPrefix, featurePrefix, property: name });
 
 export const REDIS = {
-  enable: prop('ENABLE'),
-  host: prop('HOST'),
-  port: prop('PORT'),
-  password: prop('PASSWORD'),
-  ttlSecs: prop('TTL_SECS'),
-  db: prop('DB'),
-  keyPrefix: prop('KEY_PREFIX'),
-  keyName: prop('KEY_NAME'),
+  enable: prop(RedisEnvVariable.enable),
+  host: prop(RedisEnvVariable.host),
+  port: prop(RedisEnvVariable.port),
+  password: prop(RedisEnvVariable.password),
+  ttlSecs: prop(RedisEnvVariable.ttlSecs),
+  db: prop(RedisEnvVariable.db),
+  keyPrefix: prop(RedisEnvVariable.keyPrefix),
+  keyName: prop(RedisEnvVariable.keyName),
 };

@@ -13,6 +13,10 @@ export const DEFAULTS = {
     production: LogLevel.error,
     development: LogLevel.debug,
   },
+  throttle: {
+    limit: 300,
+    ttlSecs: 60,
+  },
   redis: {
     enable: true,
     host: 'redis',

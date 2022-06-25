@@ -4,12 +4,14 @@ import {
   ApiOkResponse,
   ApiOperation,
   ApiTags,
+  ApiTooManyRequestsResponse,
   ApiUnauthorizedResponse,
 } from '@nestjs/swagger';
 import { LoggerService } from '../logger/logger.service';
 import { ApiResponse } from '../common/types';
 import { StatusResponse } from './dto/status-response.dto';
 import { StatusService } from './status.service';
+import { TooManyRequestsError } from '../common/dto/too-many-requests-error.dto';
 
 @ApiTags('status')
 @Controller('status')
@@ -32,6 +34,10 @@ export class StatusController {
   })
   @ApiUnauthorizedResponse({
     description: ApiResponse.unauthorized,
+  })
+  @ApiTooManyRequestsResponse({
+    description: ApiResponse.tooManyRequests,
+    type: TooManyRequestsError,
   })
   getStatus() {
     this.logger.setLoggedMethod(this.getStatus.name);

@@ -1,6 +1,6 @@
 import { BlizzAPI } from 'blizzapi';
 import * as Joi from 'joi';
-import { APP, BATTLENET, REDIS } from './environment';
+import { APP, BATTLENET, REDIS, THROTTLE } from './environment';
 import { DEFAULTS } from './DEFAULTS';
 
 export const CONFIG_VALIDATION_SCHEMA = Joi.object({
@@ -64,4 +64,6 @@ export const CONFIG_VALIDATION_SCHEMA = Joi.object({
     }),
   [BATTLENET.clientId]: Joi.string().required(),
   [BATTLENET.clientSecret]: Joi.string().required(),
+  [THROTTLE.limit]: Joi.string().default(DEFAULTS.throttle.limit),
+  [THROTTLE.ttlSecs]: Joi.string().default(DEFAULTS.throttle.ttlSecs),
 });

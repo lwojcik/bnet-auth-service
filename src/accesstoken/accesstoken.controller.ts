@@ -3,8 +3,10 @@ import {
   ApiOkResponse,
   ApiOperation,
   ApiTags,
+  ApiTooManyRequestsResponse,
   ApiUnauthorizedResponse,
 } from '@nestjs/swagger';
+import { TooManyRequestsError } from '../common/dto/too-many-requests-error.dto';
 import { ApiResponse } from '../common/types';
 import { LoggerService } from '../logger/logger.service';
 import { AccessTokenService } from './accesstoken.service';
@@ -30,6 +32,10 @@ export class AccessTokenController {
   @ApiUnauthorizedResponse({
     description: ApiResponse.unauthorized,
     type: AccessTokenError,
+  })
+  @ApiTooManyRequestsResponse({
+    description: ApiResponse.tooManyRequests,
+    type: TooManyRequestsError,
   })
   @ApiOperation({
     summary: 'Get Battle.net access token for supplied client credentials',
