@@ -2,7 +2,7 @@ import { Module } from '@nestjs/common';
 import { LoggerModule as PinoLoggerModule } from 'nestjs-pino';
 import { v4 } from 'uuid';
 import { APP, DEFAULTS } from '../common/constants';
-import { Environment } from '../common/types/Environment';
+import { Environment } from '../common/types';
 import { LoggerService } from './logger.service';
 
 @Module({

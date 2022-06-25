@@ -1,7 +1,7 @@
 import { Injectable, Scope } from '@nestjs/common';
 import { InjectPinoLogger, PinoLogger } from 'nestjs-pino';
 import { APP } from '../common/constants';
-import { Environment } from '../common/types/Environment';
+import { Environment } from '../common/types';
 
 @Injectable({
   scope:

@@ -16,7 +16,6 @@ services:
 
   redis:
     image: 'redis:alpine'
-    restart: 'always'
     ports:
       - ${BAS_REDIS_PORT}:${BAS_REDIS_PORT}
     env_file: .env

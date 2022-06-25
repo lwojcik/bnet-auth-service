@@ -1,7 +1,6 @@
 import { APP_INFO } from '../APP_INFO';
 import { getEnvVar } from '../../../utils';
-import { ThrottleEnvVariable } from '../../types';
-import { FeaturePrefix } from '../../types/FeaturePrefix';
+import { FeaturePrefix, ThrottleEnvVariable } from '../../types';
 
 const { appPrefix } = APP_INFO;
 const featurePrefix = FeaturePrefix.throttle;

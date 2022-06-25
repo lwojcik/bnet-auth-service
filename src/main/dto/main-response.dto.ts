@@ -1,18 +1,19 @@
 import { ApiProperty } from '@nestjs/swagger';
 import { IsString, IsBoolean } from 'class-validator';
+import { APP_INFO } from '../../common/constants';
 import { Endpoints } from '../../common/types';
 
 export class MainResponse {
   @ApiProperty({
     description: 'Application name',
-    example: 'bnet-auth-service',
+    example: APP_INFO.name,
   })
   @IsString()
   name: string;
 
   @ApiProperty({
     description: 'Application version',
-    example: '2.0.0',
+    example: APP_INFO.version,
   })
   @IsString()
   version: string;

@@ -1,5 +1,4 @@
-import { Environment } from '../types/Environment';
-import { LogLevel } from '../types/LogLevel';
+import { LogLevel, Environment } from '../types';
 
 export const DEFAULTS = {
   app: {
@@ -26,5 +25,10 @@ export const DEFAULTS = {
     db: 0,
     keyPrefix: 'bas',
     keyName: 'accesstoken',
+  },
+  auth: {
+    enable: false,
+    jwtSecret: '',
+    ignoreExpiration: false,
   },
 };

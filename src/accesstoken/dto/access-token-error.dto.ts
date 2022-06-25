@@ -1,5 +1,5 @@
 import { ApiProperty } from '@nestjs/swagger';
-import { IsBoolean, IsNumber, IsString } from 'class-validator';
+import { IsBoolean, IsNumber, IsString, IsUUID } from 'class-validator';
 
 export class AccessTokenError {
   @ApiProperty({
@@ -26,6 +26,6 @@ export class AccessTokenError {
     description: 'Request id saved in error logs (UUID v4)',
     example: '6bc-043d-4d58-b28b-72a6605dcf78',
   })
-  @IsString()
+  @IsUUID(4)
   id: string;
 }
