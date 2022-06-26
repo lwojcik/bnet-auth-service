@@ -20539,6 +20539,7 @@ Object {
     "logLevel": Object {
       "development": "debug",
       "production": "error",
+      "test": "silent",
     },
     "redis": Object {
       "db": 0,

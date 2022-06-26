@@ -13,10 +13,12 @@ import { LoggerService } from './logger.service';
         genReqId: // istanbul ignore next
           () => v4().toString(),
         level:
-          process.env[APP.environment] !== Environment.production
+          // eslint-disable-next-line no-nested-ternary
+          process.env[APP.environment] === Environment.production
+            ? DEFAULTS.logLevel.production
+            : process.env[APP.environment] === Environment.development
             ? DEFAULTS.logLevel.development
-            : // istanbul ignore next
-              DEFAULTS.logLevel.production,
+            : DEFAULTS.logLevel.test,
         transport:
           process.env[APP.environment] !== Environment.production
             ? {

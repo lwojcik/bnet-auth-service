@@ -5,10 +5,13 @@ import { Environment } from '../common/types';
 
 @Injectable({
   scope:
+    // istanbul ignore next
+    // eslint-disable-next-line no-nested-ternary
     process.env[APP.environment] !== Environment.production
-      ? Scope.TRANSIENT
-      : // istanbul ignore next
-        Scope.DEFAULT,
+      ? process.env[APP.environment] === Environment.test
+        ? Scope.DEFAULT
+        : Scope.TRANSIENT
+      : Scope.DEFAULT,
 })
 export class LoggerService {
   private loggedClass: string;

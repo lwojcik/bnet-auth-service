@@ -11,6 +11,7 @@ export const DEFAULTS = {
   logLevel: {
     production: LogLevel.error,
     development: LogLevel.debug,
+    test: LogLevel.silent,
   },
   throttle: {
     limit: 300,
