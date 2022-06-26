@@ -13,6 +13,8 @@ install:
   - npm install
 
 build_script:
+  - npm run lint:check
+  - npm run format:check
   - npm test
   - npm run test:e2e
   - npm run build
