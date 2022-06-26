@@ -9,8 +9,9 @@ import { LoggerService } from './logger.service';
   imports: [
     PinoLoggerModule.forRoot({
       pinoHttp: {
-        // istanbul ignore next
-        genReqId: () => v4().toString(),
+        // prettier-ignore
+        genReqId: // istanbul ignore next
+          () => v4().toString(),
         level:
           process.env[APP.environment] !== Environment.production
             ? DEFAULTS.logLevel.development
