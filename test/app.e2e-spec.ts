@@ -7,6 +7,7 @@ describe('AppModule (e2e)', () => {
   let app: INestApplication;
 
   beforeEach(async () => {
+    // TODO: create a factory here
     const moduleFixture: TestingModule = await Test.createTestingModule({
       imports: [AppModule],
     }).compile();
