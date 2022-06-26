@@ -9,11 +9,13 @@ import { LoggerService } from './logger.service';
   imports: [
     PinoLoggerModule.forRoot({
       pinoHttp: {
+        // istanbul ignore next
         genReqId: () => v4().toString(),
         level:
           process.env[APP.environment] !== Environment.production
             ? DEFAULTS.logLevel.development
-            : DEFAULTS.logLevel.production,
+            : // istanbul ignore next
+              DEFAULTS.logLevel.production,
         transport:
           process.env[APP.environment] !== Environment.production
             ? {
@@ -26,7 +28,8 @@ import { LoggerService } from './logger.service';
                   singleLine: true,
                 },
               }
-            : undefined,
+            : // istanbul ignore next
+              undefined,
       },
     }),
   ],
