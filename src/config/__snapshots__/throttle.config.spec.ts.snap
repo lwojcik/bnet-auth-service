@@ -1,0 +1,8 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`appConfig should create app config 1`] = `
+Object {
+  "limit": 300,
+  "ttlSecs": 60,
+}
+`;

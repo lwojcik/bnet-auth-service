@@ -2,6 +2,7 @@ import { ApiProperty } from '@nestjs/swagger';
 import { IsBoolean, IsOptional } from 'class-validator';
 import { Transform } from 'class-transformer';
 import { REDIS } from '../../common/constants';
+import { trueStringToBoolean } from '../../utils/trueStringToBoolean';
 
 export class GetAccessTokenDto {
   @ApiProperty({
@@ -10,6 +11,6 @@ export class GetAccessTokenDto {
   })
   @IsOptional()
   @IsBoolean()
-  @Transform(({ value }) => value === 'true')
+  @Transform(trueStringToBoolean)
   refresh?: boolean;
 }
