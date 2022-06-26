@@ -11,11 +11,18 @@ describe('AccessTokenController', () => {
       providers: [
         {
           provide: AccessTokenService,
-          useFactory: jest.fn(),
+          useValue: {
+            getAccessToken: jest.fn(),
+          },
         },
         {
           provide: LoggerService,
-          useFactory: jest.fn(),
+          useValue: {
+            debug: jest.fn(),
+            log: jest.fn(),
+            setLoggedClass: jest.fn(),
+            setLoggedMethod: jest.fn(),
+          },
         },
       ],
       controllers: [AccessTokenController],
@@ -26,5 +33,11 @@ describe('AccessTokenController', () => {
 
   it('should be defined', () => {
     expect(controller).toBeDefined();
+  });
+
+  it('should implement getAccessToken method', () => {
+    expect(() => {
+      controller.getAccessToken({});
+    }).not.toThrow();
   });
 });
