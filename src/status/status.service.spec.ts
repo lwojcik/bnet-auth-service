@@ -38,7 +38,7 @@ describe('StatusService', () => {
     expect(service.getStatus()).toMatchSnapshot();
   });
 
-  it('should generate logs', () => {
+  it('getStatus() should generate logs', () => {
     service.getStatus();
     expect(logger.setLoggedClass).toHaveBeenCalledWith(StatusService.name);
     expect(logger.setLoggedMethod).toHaveBeenCalledWith(
