@@ -28,6 +28,7 @@ export class StatusController {
   }
 
   @UseGuards(
+    /* istanbul ignore next */
     process.env[AUTH.enable] === 'true' ? JwtAuthGuard : PassthroughGuard
   )
   @Get()

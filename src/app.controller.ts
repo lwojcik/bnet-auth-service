@@ -27,6 +27,7 @@ export class AppController {
 
   @Get()
   @UseGuards(
+    /* istanbul ignore next */
     process.env[AUTH.enable] === 'true' ? JwtAuthGuard : PassthroughGuard
   )
   @ApiOperation({ summary: 'App name and list of available endpoints' })
