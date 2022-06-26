@@ -3,12 +3,11 @@ import { ConfigModule, ConfigService } from '@nestjs/config';
 import { JwtModule } from '@nestjs/jwt';
 import { authConfig } from '../config';
 import { AUTH } from '../common/constants';
-import { AuthService } from './auth.service';
 import { JwtStrategy } from './strategies/jwt.strategy';
 import { LoggerModule } from '../logger/logger.module';
 
 const imports = [ConfigModule.forFeature(authConfig), LoggerModule];
-const providers: Provider[] = [AuthService];
+const providers: Provider[] = [];
 
 if (process.env[AUTH.enable] === 'true') {
   imports.push(
@@ -29,6 +28,5 @@ if (process.env[AUTH.enable] === 'true') {
 @Module({
   imports,
   providers,
-  exports: [AuthService],
 })
 export class AuthModule {}
