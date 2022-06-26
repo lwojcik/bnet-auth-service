@@ -45,6 +45,7 @@ import { JwtAuthGuard, PassthroughGuard } from './auth/guards';
     {
       provide: APP_GUARD,
       useClass:
+        // istanbul ignore next
         process.env[AUTH.enable] === 'true' ? JwtAuthGuard : PassthroughGuard,
     },
   ],

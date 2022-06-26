@@ -1,18 +1,13 @@
-import { Test, TestingModule } from '@nestjs/testing';
+import { Test } from '@nestjs/testing';
+import { AppController } from './app.controller';
 import { AppModule } from './app.module';
 
 describe('AppModule', () => {
-  let appModule: AppModule;
-
-  beforeEach(async () => {
-    const module: TestingModule = await Test.createTestingModule({
+  it('should compile the module', async () => {
+    const module = await Test.createTestingModule({
       imports: [AppModule],
     }).compile();
 
-    appModule = module.get<AppModule>(AppModule);
-  });
-
-  it('should be defined', () => {
-    expect(appModule).toBeDefined();
+    expect(module.get(AppController)).toBeInstanceOf(AppController);
   });
 });
