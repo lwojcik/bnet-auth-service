@@ -1,4 +1,4 @@
-import { Controller, Get, UseGuards } from '@nestjs/common';
+import { Controller, Get } from '@nestjs/common';
 import {
   ApiBadRequestResponse,
   ApiOkResponse,
@@ -12,9 +12,6 @@ import { ApiResponse } from '../common/types';
 import { StatusResponse } from './dto/status-response.dto';
 import { StatusService } from './status.service';
 import { TooManyRequestsError } from '../common/dto/too-many-requests-error.dto';
-import { JwtAuthGuard } from '../auth/guards/jwt-auth.guard';
-import { PassthroughGuard } from '../auth/guards/passthrough.guard';
-import { AUTH } from '../common/constants';
 import { UnauthorizedError } from '../common/dto/unauthorized-error.dto';
 
 @ApiTags('status')
@@ -27,10 +24,6 @@ export class StatusController {
     this.logger.setLoggedClass(StatusController.name);
   }
 
-  @UseGuards(
-    /* istanbul ignore next */
-    process.env[AUTH.enable] === 'true' ? JwtAuthGuard : PassthroughGuard
-  )
   @Get()
   @ApiOperation({ summary: 'Check app health and uptime' })
   @ApiOkResponse({

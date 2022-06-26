@@ -1,4 +1,4 @@
-import { Controller, Get, UseGuards } from '@nestjs/common';
+import { Controller, Get } from '@nestjs/common';
 import {
   ApiBadRequestResponse,
   ApiOkResponse,
@@ -12,8 +12,6 @@ import { MainResponse } from './main/dto/main-response.dto';
 import { LoggerService } from './logger/logger.service';
 import { MainService } from './main/main.service';
 import { TooManyRequestsError } from './common/dto/too-many-requests-error.dto';
-import { AUTH } from './common/constants';
-import { JwtAuthGuard, PassthroughGuard } from './auth/guards';
 
 @ApiTags('main')
 @Controller()
@@ -26,10 +24,6 @@ export class AppController {
   }
 
   @Get()
-  @UseGuards(
-    /* istanbul ignore next */
-    process.env[AUTH.enable] === 'true' ? JwtAuthGuard : PassthroughGuard
-  )
   @ApiOperation({ summary: 'App name and list of available endpoints' })
   @ApiOkResponse({
     description: ApiResponse.ok,

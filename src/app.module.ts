@@ -3,13 +3,14 @@ import { ConfigModule, ConfigService } from '@nestjs/config';
 import { ThrottlerGuard, ThrottlerModule } from '@nestjs/throttler';
 import { APP_GUARD } from '@nestjs/core';
 import { AppController } from './app.controller';
-import { CONFIG_VALIDATION_SCHEMA, THROTTLE } from './common/constants';
+import { AUTH, CONFIG_VALIDATION_SCHEMA, THROTTLE } from './common/constants';
 import { StatusModule } from './status/status.module';
 import { AccessTokenModule } from './accesstoken/accesstoken.module';
 import { LoggerModule } from './logger/logger.module';
 import { MainModule } from './main/main.module';
 import { endpointsConfig, redisConfig } from './config';
 import { AuthModule } from './auth/auth.module';
+import { JwtAuthGuard, PassthroughGuard } from './auth/guards';
 
 @Module({
   imports: [
@@ -40,6 +41,11 @@ import { AuthModule } from './auth/auth.module';
     {
       provide: APP_GUARD,
       useClass: ThrottlerGuard,
+    },
+    {
+      provide: APP_GUARD,
+      useClass:
+        process.env[AUTH.enable] === 'true' ? JwtAuthGuard : PassthroughGuard,
     },
   ],
 })
