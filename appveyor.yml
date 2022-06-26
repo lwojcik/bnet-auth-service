@@ -10,7 +10,7 @@ environment:
 skip_tags: true
 
 install:
-  - npm install
+  - npm ci --ignore-scripts
 
 build_script:
   - npm run lint:check
