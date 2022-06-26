@@ -27,6 +27,7 @@ export class LoggerService {
   }
 
   private isPrefixSet() {
+    // istanbul ignore next
     return this.loggedClass || this.loggedMethod;
   }
 

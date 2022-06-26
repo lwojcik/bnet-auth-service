@@ -60,18 +60,35 @@ describe('LoggerService', () => {
   });
 
   it('should implement debug method', () => {
-    expect(service.debug).toBeDefined();
+    expect(() => {
+      service.setLoggedClass('testClass');
+      service.debug();
+    }).not.toThrow();
+
+    expect(() => {
+      service.setLoggedMethod('testMethod');
+      service.debug('test');
+    }).not.toThrow();
   });
 
   it('should implement error method', () => {
-    expect(service.error).toBeDefined();
+    expect(() => {
+      service.setLoggedMethod('testMethod');
+      service.error({});
+    }).not.toThrow();
   });
 
   it('should implement warn method', () => {
-    expect(service.warn).toBeDefined();
+    expect(() => {
+      service.setLoggedClass(undefined);
+      service.setLoggedMethod('testMethod');
+      service.warn('');
+    }).not.toThrow();
   });
 
   it('should implement info method', () => {
-    expect(service.info).toBeDefined();
+    expect(() => {
+      service.info('');
+    }).not.toThrow();
   });
 });

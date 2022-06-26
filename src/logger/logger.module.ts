@@ -15,9 +15,11 @@ import { LoggerService } from './logger.service';
         level:
           // eslint-disable-next-line no-nested-ternary
           process.env[APP.environment] === Environment.production
-            ? DEFAULTS.logLevel.production
+            ? // istanbul ignore next
+              DEFAULTS.logLevel.production
             : process.env[APP.environment] === Environment.development
-            ? DEFAULTS.logLevel.development
+            ? // istanbul ignore next
+              DEFAULTS.logLevel.development
             : DEFAULTS.logLevel.test,
         transport:
           process.env[APP.environment] !== Environment.production
