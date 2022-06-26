@@ -7,7 +7,8 @@ import { Environment } from '../common/types';
   scope:
     process.env[APP.environment] !== Environment.production
       ? Scope.TRANSIENT
-      : Scope.DEFAULT,
+      : // istanbul ignore next
+        Scope.DEFAULT,
 })
 export class LoggerService {
   private loggedClass: string;
