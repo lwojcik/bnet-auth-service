@@ -1,4 +1,5 @@
 import { Test, TestingModule } from '@nestjs/testing';
+import { PinoLogger, LoggerModule as PinoLoggerModule } from 'nestjs-pino';
 import { LoggerService } from './logger.service';
 
 describe('LoggerService', () => {
@@ -6,10 +7,11 @@ describe('LoggerService', () => {
 
   beforeEach(async () => {
     const module: TestingModule = await Test.createTestingModule({
-      providers: [LoggerService],
+      imports: [PinoLoggerModule.forRoot()],
+      providers: [PinoLogger, LoggerService],
     }).compile();
 
-    service = module.get<LoggerService>(LoggerService);
+    service = await module.resolve<LoggerService>(LoggerService);
   });
 
   it('should be defined', () => {

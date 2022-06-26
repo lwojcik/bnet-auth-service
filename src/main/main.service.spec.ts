@@ -1,18 +1,33 @@
-import { ConfigModule } from '@nestjs/config';
+import { ConfigModule, registerAs } from '@nestjs/config';
 import { Test, TestingModule } from '@nestjs/testing';
-import { endpointsConfig, redisConfig } from '../config';
 import { LoggerService } from '../logger/logger.service';
 import { MainService } from './main.service';
 
 describe('MainService', () => {
   let service: MainService;
-  let logger: LoggerService;
 
   beforeEach(async () => {
     const module: TestingModule = await Test.createTestingModule({
       imports: [
-        ConfigModule.forFeature(endpointsConfig),
-        ConfigModule.forFeature(redisConfig),
+        ConfigModule.forFeature(
+          registerAs('endpoints', () => ({
+            testEndpoint1: {
+              name: 'testEndpoint1',
+              url: '/testEndpoint1',
+              method: 'TEST_METHOD_1',
+            },
+            testEndpoint2: {
+              name: 'testEndpoint2',
+              url: '/testEndpoint2',
+              method: 'TEST_METHOD_2',
+            },
+          }))
+        ),
+        ConfigModule.forFeature(
+          registerAs('redis', () => ({
+            enable: false,
+          }))
+        ),
       ],
       providers: [
         {
@@ -30,7 +45,6 @@ describe('MainService', () => {
     }).compile();
 
     service = module.get<MainService>(MainService);
-    logger = module.get<LoggerService>(LoggerService);
   });
 
   it('should be defined', () => {
@@ -39,14 +53,5 @@ describe('MainService', () => {
 
   it('should get status', () => {
     expect(service.getMain()).toMatchSnapshot();
-  });
-
-  it('should generate logs', () => {
-    service.getMain();
-    expect(logger.setLoggedClass).toHaveBeenCalledWith(MainService.name);
-    expect(logger.setLoggedMethod).toHaveBeenCalledWith(
-      MainService.prototype.getMain.name
-    );
-    expect(logger.debug).toHaveBeenCalledTimes(1);
   });
 });

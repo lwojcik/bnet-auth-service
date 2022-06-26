@@ -1,7 +1,6 @@
-import { ConfigModule } from '@nestjs/config';
+import { ConfigModule, registerAs } from '@nestjs/config';
 import { Test, TestingModule } from '@nestjs/testing';
 import { AppController } from './app.controller';
-import { endpointsConfig, redisConfig } from './config';
 import { LoggerService } from './logger/logger.service';
 import { MainService } from './main/main.service';
 
@@ -11,8 +10,25 @@ describe('AppController', () => {
   beforeEach(async () => {
     const app: TestingModule = await Test.createTestingModule({
       imports: [
-        ConfigModule.forFeature(endpointsConfig),
-        ConfigModule.forFeature(redisConfig),
+        ConfigModule.forFeature(
+          registerAs('endpoints', () => ({
+            testEndpoint1: {
+              name: 'testEndpoint1',
+              url: '/testEndpoint1',
+              method: 'TEST_METHOD_1',
+            },
+            testEndpoint2: {
+              name: 'testEndpoint2',
+              url: '/testEndpoint2',
+              method: 'TEST_METHOD_2',
+            },
+          }))
+        ),
+        ConfigModule.forFeature(
+          registerAs('redis', () => ({
+            enable: false,
+          }))
+        ),
       ],
       controllers: [AppController],
       providers: [
