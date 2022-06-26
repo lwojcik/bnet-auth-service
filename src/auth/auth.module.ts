@@ -9,6 +9,7 @@ import { LoggerModule } from '../logger/logger.module';
 const imports = [ConfigModule.forFeature(authConfig), LoggerModule];
 const providers: Provider[] = [];
 
+// istanbul ignore next
 if (process.env[AUTH.enable] === 'true') {
   imports.push(
     JwtModule.registerAsync({

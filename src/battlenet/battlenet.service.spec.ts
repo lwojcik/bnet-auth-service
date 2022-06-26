@@ -38,6 +38,11 @@ describe('BattleNetService', () => {
     service = module.get<BattleNetService>(BattleNetService);
   });
 
+  afterAll(() => {
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    (BlizzAPI as any).mockClear();
+  });
+
   it('should be defined', () => {
     expect(service).toBeDefined();
   });
