@@ -49,6 +49,10 @@
       "**/*.(t|j)s"
     ],
     "coverageDirectory": "../coverage",
+    "coveragePathIgnorePatterns": [
+      "jest.setup.redis-mock.ts",
+      "<rootDir>/main.ts"
+    ],
     "moduleFileExtensions": [
       "js",
       "json",
@@ -56,7 +60,7 @@
     ],
     "rootDir": "src",
     "setupFilesAfterEnv": [
-      "../jest.setup.redis-mock.ts"
+      "<rootDir>/../jest.setup.redis-mock.ts"
     ],
     "testEnvironment": "node",
     "testRegex": ".*\\.spec\\.ts$",
