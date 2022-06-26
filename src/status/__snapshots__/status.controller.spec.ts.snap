@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`StatusController (authentication disabled) should get status 1`] = `
+exports[`StatusController should get status 1`] = `
 Object {
   "testStatusProperty": "testStatusValue",
 }

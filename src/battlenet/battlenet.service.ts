@@ -12,7 +12,7 @@ export class BattleNetService {
 
   constructor(
     @Inject(battleNetConfig.KEY)
-    private bnetConfig: ConfigType<typeof battleNetConfig>,
+    private readonly bnetConfig: ConfigType<typeof battleNetConfig>,
     private readonly logger: LoggerService
   ) {
     this.blizzApi = new BlizzAPI({

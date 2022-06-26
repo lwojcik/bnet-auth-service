@@ -9,9 +9,9 @@ export class MainService {
   constructor(
     private readonly logger: LoggerService,
     @Inject(endpointsConfig.KEY)
-    private endpoints: ConfigType<typeof endpointsConfig>,
+    private readonly endpoints: ConfigType<typeof endpointsConfig>,
     @Inject(redisConfig.KEY)
-    private redisConf: ConfigType<typeof redisConfig>
+    private readonly redisConf: ConfigType<typeof redisConfig>
   ) {
     this.logger.setLoggedClass(MainService.name);
   }

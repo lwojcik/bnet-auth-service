@@ -15,7 +15,7 @@ export class CacheService {
   constructor(
     private readonly redisService: RedisService,
     @Inject(redisConfig.KEY)
-    private redisConf: ConfigType<typeof redisConfig>,
+    private readonly redisConf: ConfigType<typeof redisConfig>,
     private readonly logger: LoggerService
   ) {
     this.cache = this.redisService.getClient();
