@@ -14,7 +14,7 @@ COPY --chown=node:node --from=development /app/node_modules ./node_modules
 COPY --chown=node:node . .
 RUN npm run build
 ENV NODE_ENV production
-RUN npm ci --omit-dev --ignore-scripts && npm cache clean
+RUN npm ci --omit-dev --ignore-scripts && npm cache clean --force
 USER node
 
 # production image
