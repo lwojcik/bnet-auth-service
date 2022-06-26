@@ -1,7 +1,7 @@
 import { Test, TestingModule } from '@nestjs/testing';
 import { AccessTokenController } from './accesstoken.controller';
 
-describe('AccesstokenController', () => {
+describe('AccessTokenController', () => {
   let controller: AccessTokenController;
 
   beforeEach(async () => {

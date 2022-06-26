@@ -1,7 +1,7 @@
-import { BlizzAPI } from 'blizzapi';
 import * as Joi from 'joi';
 import { APP, AUTH, BATTLENET, HTTPS, REDIS, THROTTLE } from './environment';
 import { DEFAULTS } from './DEFAULTS';
+import { validateRegionName } from '../validators/validateRegionName.validator';
 
 const appSchema = {
   [APP.environment]: Joi.string().default(DEFAULTS.app.environment),
@@ -52,22 +52,7 @@ const redisSchema = {
 };
 
 const battlenetSchema = {
-  [BATTLENET.region]: Joi.string()
-    .required()
-    .custom((value) => {
-      const allowedRegionNames = BlizzAPI.getAllRegionNames()
-        .filter((region) => region !== 'tw')
-        .join(', ');
-
-      const validRegionName = BlizzAPI.validateRegionName(value);
-
-      if (!validRegionName) {
-        throw new RangeError(
-          `'${value}' is not a valid Battle.net region. Available regions: ${allowedRegionNames}`
-        );
-      }
-      return validRegionName;
-    }),
+  [BATTLENET.region]: Joi.string().required().custom(validateRegionName),
   [BATTLENET.clientId]: Joi.string().required(),
   [BATTLENET.clientSecret]: Joi.string().required(),
 };

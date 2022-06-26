@@ -1,0 +1,40 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Phrases should be defined 1`] = `
+Object {
+  "accessToken": Object {
+    "cachingAccessToken": [Function],
+    "noCachedAccessToken": "Found no cached access token or \\"refresh\\" option was used",
+    "readingFromCache": "Checking for cached access token",
+    "received": [Function],
+  },
+  "battlenet": Object {
+    "receivedAccessToken": [Function],
+    "usingClientId": [Function],
+    "usingClientSecret": [Function],
+  },
+  "cache": Object {
+    "accessKeyNotSaved": "BAS_REDIS_ENABLE set to false - access key not saved",
+    "cacheServiceDisabled": "BAS_REDIS_ENABLE set to false - returning 'null' as access key",
+    "usingKey": [Function],
+    "usingTTL": [Function],
+  },
+  "errors": Object {
+    "accessToken": "Received access token error",
+  },
+}
+`;
+
+exports[`Phrases should format phrases correctly 1`] = `"Received access token: receivedTestAccessToken"`;
+
+exports[`Phrases should format phrases correctly 2`] = `"Caching access token: testAccessTokenToCache"`;
+
+exports[`Phrases should format phrases correctly 3`] = `"Using Battle.net client id: testCliendId"`;
+
+exports[`Phrases should format phrases correctly 4`] = `"Using Battle.net client secret: testClientSecret"`;
+
+exports[`Phrases should format phrases correctly 5`] = `"Received access token: receivedTestAccessToken,"`;
+
+exports[`Phrases should format phrases correctly 6`] = `"Using Redis key: testCacheKey"`;
+
+exports[`Phrases should format phrases correctly 7`] = `"Set TTL to testTTLinSecs seconds"`;
