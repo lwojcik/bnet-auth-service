@@ -12,10 +12,10 @@ const providers: Provider[] = [];
 if (process.env[AUTH.enable] === 'true') {
   imports.push(
     JwtModule.registerAsync({
-      imports: [ConfigModule],
+      imports: [ConfigModule.forFeature(authConfig)],
       inject: [ConfigService],
       useFactory: (config: ConfigService) => ({
-        secret: config.get<string>(AUTH.jwtSecret),
+        secret: config.get(AUTH.jwtSecret),
         verifyOptions: {
           ignoreExpiration: true,
         },
