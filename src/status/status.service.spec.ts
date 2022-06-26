@@ -14,6 +14,7 @@ describe('StatusService', () => {
           useValue: {
             debug: jest.fn(),
             log: jest.fn(),
+            error: jest.fn(),
             setLoggedClass: jest.fn(),
             setLoggedMethod: jest.fn(),
           },
