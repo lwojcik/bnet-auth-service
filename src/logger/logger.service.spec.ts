@@ -8,7 +8,13 @@ describe('LoggerService', () => {
   beforeEach(async () => {
     const module: TestingModule = await Test.createTestingModule({
       imports: [PinoLoggerModule.forRoot()],
-      providers: [PinoLogger, LoggerService],
+      providers: [
+        {
+          provide: PinoLogger,
+          useValue: jest.fn(),
+        },
+        LoggerService,
+      ],
     }).compile();
 
     service = await module.resolve<LoggerService>(LoggerService);
