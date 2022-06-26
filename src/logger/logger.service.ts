@@ -1,3 +1,4 @@
+/* istanbul ignore file */
 import { Injectable, Scope } from '@nestjs/common';
 import { InjectPinoLogger, PinoLogger } from 'nestjs-pino';
 import { APP } from '../common/constants';
@@ -5,7 +6,6 @@ import { Environment } from '../common/types';
 
 @Injectable({
   scope:
-    // istanbul ignore next
     // eslint-disable-next-line no-nested-ternary
     process.env[APP.environment] !== Environment.production
       ? process.env[APP.environment] === Environment.test
@@ -27,7 +27,6 @@ export class LoggerService {
   }
 
   private isPrefixSet() {
-    // istanbul ignore next
     return this.loggedClass || this.loggedMethod;
   }
 
