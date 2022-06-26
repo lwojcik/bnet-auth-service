@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`AppController root should return name and list of routes 1`] = `
+exports[`AppController should return name and list of routes 1`] = `
 Object {
   "caching": true,
   "endpoints": Object {

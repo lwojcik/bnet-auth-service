@@ -32,9 +32,7 @@ describe('AppController', () => {
     appController = app.get<AppController>(AppController);
   });
 
-  describe('root', () => {
-    it('should return name and list of routes', () => {
-      expect(appController.getMain()).toMatchSnapshot();
-    });
+  it('should return name and list of routes', () => {
+    expect(appController.getMain()).toMatchSnapshot();
   });
 });
