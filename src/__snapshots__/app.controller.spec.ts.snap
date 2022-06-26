@@ -1,0 +1,19 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`AppController root should return name and list of routes 1`] = `
+Object {
+  "caching": true,
+  "endpoints": Object {
+    "accesstoken": Object {
+      "method": "GET",
+      "url": "/accesstoken",
+    },
+    "status": Object {
+      "method": "GET",
+      "url": "/status",
+    },
+  },
+  "name": "bnet-auth-service",
+  "version": "2.0.0",
+}
+`;
