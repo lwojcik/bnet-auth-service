@@ -1,105 +1,58 @@
 import { Test, TestingModule } from '@nestjs/testing';
 import { INestApplication } from '@nestjs/common';
-// import request from 'supertest';
+import request from 'supertest';
 import { AppModule } from '../src/app.module';
+import { minimalSetup, testCases } from './fixtures';
+
+// eslint-disable-next-line global-require
+jest.mock('ioredis', () => require('ioredis-mock'));
 
 describe('AppModule (e2e)', () => {
   let app: INestApplication;
-
-  beforeEach(async () => {
-    // TODO: create a factory here
-    const moduleFixture: TestingModule = await Test.createTestingModule({
-      imports: [AppModule],
-    }).compile();
-
-    app = moduleFixture.createNestApplication();
-    await app.init();
-  });
-
+  let OLD_ENV;
   // it('/ (GET)', () =>
   //   request(app.getHttpServer()).get('/').expect(200).expect('Hello World!'));
 
-  describe('Authorization enabled', () => {
-    it.todo('/ (GET)');
-    it.todo('/status (GET)');
-    it.todo('/accesstoken (GET)');
-    it.todo('/accesstoken?refresh=true (GET)');
-  });
+  testCases.map((feature) =>
+    feature.states.forEach((state) => {
+      describe(`${feature.name} ${state.name}`, () => {
+        beforeAll(async () => {
+          OLD_ENV = process.env;
 
-  describe('Authorization disabled', () => {
-    it.todo('/ (GET)');
-    it.todo('/status (GET)');
-    it.todo('/accesstoken (GET)');
-    it.todo('/accesstoken?refresh=true (GET)');
-  });
+          minimalSetup.forEach((variable) => {
+            process.env[variable.name] = variable.value;
+          });
 
-  describe('Redis cache enabled', () => {
-    it.todo('/ (GET)');
-    it.todo('/status (GET)');
-    it.todo('/accesstoken (GET)');
-    it.todo('/accesstoken?refresh=true (GET)');
-  });
+          if (state.env_vars.length > 0) {
+            state.env_vars.forEach((variable) => {
+              process.env[variable.name] = variable.value;
+            });
+          }
 
-  describe('Redis cache disabled', () => {
-    it.todo('/ (GET)');
-    it.todo('/status (GET)');
-    it.todo('/accesstoken (GET)');
-    it.todo('/accesstoken?refresh=true (GET)');
-  });
+          // TODO: create a factory here
+          const moduleFixture: TestingModule = await Test.createTestingModule({
+            imports: [AppModule],
+          }).compile();
 
-  describe('HTTPS enabled', () => {
-    it.todo('/ (GET)');
-    it.todo('/status (GET)');
-    it.todo('/accesstoken (GET)');
-    it.todo('/accesstoken?refresh=true (GET)');
-  });
+          app = moduleFixture.createNestApplication();
+          await app.init();
+        });
 
-  describe('HTTPS disabled', () => {
-    it.todo('/ (GET)');
-    it.todo('/status (GET)');
-    it.todo('/accesstoken (GET)');
-    it.todo('/accesstoken?refresh=true (GET)');
-  });
+        afterAll(async () => {
+          process.env = { ...OLD_ENV };
+          await app.close();
+        });
 
-  describe('Rate limiting enabled', () => {
-    it.todo('/ (GET)');
-    it.todo('/status (GET)');
-    it.todo('/accesstoken (GET)');
-    it.todo('/accesstoken?refresh=true (GET)');
-  });
+        it('/ (GET)', async () =>
+          request(app.getHttpServer())
+            .get('/')
+            .expect(200)
+            .expect(state.response.main));
 
-  describe('Rate limiting disabled', () => {
-    it.todo('/ (GET)');
-    it.todo('/status (GET)');
-    it.todo('/accesstoken (GET)');
-    it.todo('/accesstoken?refresh=true (GET)');
-  });
-
-  describe('CORS enabled', () => {
-    it.todo('/ (GET)');
-    it.todo('/status (GET)');
-    it.todo('/accesstoken (GET)');
-    it.todo('/accesstoken?refresh=true (GET)');
-  });
-
-  describe('CORS disabled', () => {
-    it.todo('/ (GET)');
-    it.todo('/status (GET)');
-    it.todo('/accesstoken (GET)');
-    it.todo('/accesstoken?refresh=true (GET)');
-  });
-
-  describe('Battle.net credentials configured', () => {
-    it.todo('/ (GET)');
-    it.todo('/status (GET)');
-    it.todo('/accesstoken (GET)');
-    it.todo('/accesstoken?refresh=true (GET)');
-  });
-
-  describe('Battle.net credentials not configured', () => {
-    it.todo('/ (GET)');
-    it.todo('/status (GET)');
-    it.todo('/accesstoken (GET)');
-    it.todo('/accesstoken?refresh=true (GET)');
-  });
+        it.todo('/status (GET)');
+        it.todo('/accesstoken (GET)');
+        it.todo('/accesstoken?refresh=true (GET)');
+      });
+    })
+  );
 });
