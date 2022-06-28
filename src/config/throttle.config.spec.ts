@@ -1,7 +1,7 @@
 import { throttleConfig } from './throttle.config';
 
-describe('appConfig', () => {
-  it('should create app config', () => {
+describe('throttleConfig', () => {
+  it('should create throttle config', () => {
     expect(throttleConfig()).toMatchSnapshot();
   });
 });

@@ -1,8 +1,10 @@
-import { authorization } from './test-cases/authorization';
+import { auth } from './test-cases/auth';
+import { battlenet } from './test-cases/battlenet';
 import { TestCaseConfig } from './types';
 
 export const testCases: TestCaseConfig[] = [
-  ...[authorization],
+  ...[auth],
+  ...[battlenet],
   // {
   //   name: 'Redis cache',
   //   states: [

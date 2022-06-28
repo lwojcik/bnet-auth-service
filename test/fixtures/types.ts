@@ -10,8 +10,18 @@ export enum Endpoint {
   accesstokenrefresh = 'accesstokenrefresh',
 }
 
+export interface ResponseType<StatusCode = number, DataType = object> {
+  statusCode: StatusCode;
+  data?: DataType;
+  properties?: string[];
+}
+
 type ResponseConfig = {
-  [key in Endpoint]: object;
+  [key in Endpoint]?: ResponseType;
+};
+
+type PropertyConfig = {
+  [key in Endpoint]?: string[];
 };
 
 export type FeatureState =
@@ -23,7 +33,12 @@ export type FeatureState =
 export interface FeatureStateConfig {
   name: FeatureState;
   env_vars: EnvironmentVariableConfig[];
-  response: ResponseConfig;
+  variants: {
+    name?: string;
+    headers?: object;
+    response?: ResponseConfig;
+    properties?: PropertyConfig;
+  }[];
 }
 
 export interface TestCaseConfig {

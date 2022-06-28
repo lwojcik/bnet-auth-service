@@ -5,7 +5,7 @@ const { env } = process;
 const defaultValue = DEFAULTS.auth;
 
 export const authConfig = registerAs('auth', () => ({
-  enable: env[AUTH.enable] || defaultValue.enable,
+  enable: env[AUTH.enable] === 'true' || defaultValue.enable,
   username: env[AUTH.username] || defaultValue.username,
   jwtSecret: env[AUTH.jwtSecret] || defaultValue.jwtSecret,
 }));

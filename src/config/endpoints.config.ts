@@ -6,7 +6,11 @@ export const endpointsConfig = registerAs('endpoints', () => ({
     method: 'GET',
   },
   accesstoken: {
-    url: '/accesstoken[refresh=true]',
+    url: '/accesstoken',
+    method: 'GET',
+  },
+  accesstokenrefresh: {
+    url: '/accesstoken?refresh=true',
     method: 'GET',
   },
 }));
