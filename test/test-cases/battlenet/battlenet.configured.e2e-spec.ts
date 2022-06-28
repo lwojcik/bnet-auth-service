@@ -3,7 +3,7 @@ import { NestFastifyApplication } from '@nestjs/platform-fastify';
 //   mainResponse,
 //   accessTokenFromApiResponse,
 //   statusProperties,
-// } from '../../fixtures';
+// } from '../../responses';
 import {
   prepareMinimalSetup,
   setupEnvVariables,

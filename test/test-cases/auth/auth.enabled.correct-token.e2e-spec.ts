@@ -3,7 +3,7 @@ import {
   mainResponse,
   accessTokenFromApiResponse,
   statusProperties,
-} from '../../fixtures';
+} from '../../responses';
 import {
   prepareMinimalSetup,
   setupEnvVariables,

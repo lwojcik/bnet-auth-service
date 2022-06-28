@@ -1,5 +1,5 @@
 import { NestFastifyApplication } from '@nestjs/platform-fastify';
-import { unauthorizedResponse } from '../../fixtures';
+import { unauthorizedResponse } from '../../responses';
 import {
   prepareMinimalSetup,
   setupEnvVariables,
