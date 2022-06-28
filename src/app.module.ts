@@ -11,6 +11,7 @@ import { MainModule } from './main/main.module';
 import { endpointsConfig, redisConfig } from './config';
 import { AuthModule } from './auth/auth.module';
 import { JwtAuthGuard, PassthroughGuard } from './auth/guards';
+import { trueStringToBoolean } from './utils/trueStringToBoolean';
 
 @Module({
   imports: [
@@ -46,7 +47,9 @@ import { JwtAuthGuard, PassthroughGuard } from './auth/guards';
       provide: APP_GUARD,
       useClass:
         // istanbul ignore next
-        process.env[AUTH.enable] === 'true' ? JwtAuthGuard : PassthroughGuard,
+        trueStringToBoolean({ value: process.env[AUTH.enable] })
+          ? JwtAuthGuard
+          : PassthroughGuard,
     },
   ],
 })

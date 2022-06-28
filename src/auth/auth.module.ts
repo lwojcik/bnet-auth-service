@@ -5,12 +5,13 @@ import { authConfig } from '../config';
 import { AUTH } from '../common/constants';
 import { JwtStrategy } from './strategies/jwt.strategy';
 import { LoggerModule } from '../logger/logger.module';
+import { trueStringToBoolean } from '../utils/trueStringToBoolean';
 
 const imports = [ConfigModule.forFeature(authConfig), LoggerModule];
 const providers: Provider[] = [];
 
 // istanbul ignore next
-if (process.env[AUTH.enable] === 'true') {
+if (trueStringToBoolean({ value: process.env[AUTH.enable] })) {
   imports.push(
     JwtModule.registerAsync({
       imports: [ConfigModule.forFeature(authConfig)],

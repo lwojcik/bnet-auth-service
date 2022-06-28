@@ -10,12 +10,13 @@ import { ConfigService } from '@nestjs/config';
 import { AppModule } from './app.module';
 import { APP, APP_INFO, HTTPS } from './common/constants';
 import { Environment } from './common/types';
+import { trueStringToBoolean } from './utils/trueStringToBoolean';
 
 async function bootstrap() {
   const app = await NestFactory.create<NestFastifyApplication>(
     AppModule,
     new FastifyAdapter(
-      process.env[HTTPS.enable] === 'true'
+      trueStringToBoolean({ value: process.env[HTTPS.enable] })
         ? {
             https: {
               key: fs.readFileSync(process.env[HTTPS.keyPath]),
@@ -29,7 +30,7 @@ async function bootstrap() {
   const port = configService.get<string>(APP.port);
   const host = configService.get<string>(APP.host);
 
-  if (process.env[APP.enableCors] === 'true') {
+  if (trueStringToBoolean({ value: process.env[APP.enableCors] })) {
     const corsConfig = process.env[APP.corsOrigin]
       ? {
           origin: process.env[APP.corsOrigin],

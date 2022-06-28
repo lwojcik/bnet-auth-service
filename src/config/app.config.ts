@@ -1,4 +1,5 @@
 import { registerAs } from '@nestjs/config';
+import { trueStringToBoolean } from '../utils/trueStringToBoolean';
 import { APP, APP_INFO, DEFAULTS } from '../common/constants';
 
 const { env } = process;
@@ -9,6 +10,8 @@ export const appConfig = registerAs('app', () => ({
   environment: env[APP.environment],
   host: env[APP.host] || defaultValue.host,
   port: parseInt(env[APP.port], 10) || defaultValue.port,
-  enableCors: env[APP.enableCors] === 'true' || defaultValue.enableCors,
+  enableCors:
+    trueStringToBoolean({ value: env[APP.enableCors] }) ||
+    defaultValue.enableCors,
   corsOrigin: env[APP.corsOrigin] || defaultValue.corsOrigin,
 }));
