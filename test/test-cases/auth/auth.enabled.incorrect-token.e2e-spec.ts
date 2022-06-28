@@ -1,9 +1,5 @@
 import { NestFastifyApplication } from '@nestjs/platform-fastify';
-import {
-  mainResponse,
-  accessTokenFromApiResponse,
-  statusProperties,
-} from '../../fixtures';
+import { unauthorizedResponse } from '../../fixtures';
 import {
   prepareMinimalSetup,
   setupEnvVariables,
@@ -21,7 +17,7 @@ jest.mock('blizzapi', () => ({
   })),
 }));
 
-describe('Authorization disabled', () => {
+describe('Authorization enabled (incorrect JWT token)', () => {
   let app: NestFastifyApplication;
   let OLD_ENV;
 
@@ -33,7 +29,15 @@ describe('Authorization disabled', () => {
     setupEnvVariables([
       {
         name: 'BAS_AUTH_ENABLE',
-        value: 'false',
+        value: 'true',
+      },
+      {
+        name: 'BAS_AUTH_USERNAME',
+        value: 'test_user',
+      },
+      {
+        name: 'BAS_AUTH_JWT_SECRET',
+        value: 'test_jwt_secret',
       },
     ]);
 
@@ -53,15 +57,21 @@ describe('Authorization disabled', () => {
     await stopTestServer(app);
   });
 
+  const incorrectJwt =
+    'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ImluY29ycmVjdF90ZXN0X3VzZXIifQ.NCxZ13IwvAp6v8z5OCgQ9H-V30KadASq0IASdgzmeu0';
+
   it('/ (GET)', () =>
     app
       .inject({
         method: 'GET',
         url: '/',
+        headers: {
+          Authorization: `Bearer ${incorrectJwt}`,
+        },
       })
       .then((result) => {
-        expect(result.statusCode).toEqual(200);
-        expect(JSON.parse(result.payload)).toEqual(mainResponse);
+        expect(result.statusCode).toEqual(401);
+        expect(JSON.parse(result.payload)).toEqual(unauthorizedResponse);
       }));
 
   it('/status (GET)', () =>
@@ -69,13 +79,13 @@ describe('Authorization disabled', () => {
       .inject({
         method: 'GET',
         url: '/status',
+        headers: {
+          Authorization: `Bearer ${incorrectJwt}`,
+        },
       })
       .then((result) => {
-        expect(result.statusCode).toEqual(200);
-
-        statusProperties.forEach((property) => {
-          expect(JSON.parse(result.payload)).toHaveProperty(property);
-        });
+        expect(result.statusCode).toEqual(401);
+        expect(JSON.parse(result.payload)).toEqual(unauthorizedResponse);
       }));
 
   it('/accesstoken (GET)', () =>
@@ -83,10 +93,13 @@ describe('Authorization disabled', () => {
       .inject({
         method: 'GET',
         url: '/accesstoken',
+        headers: {
+          Authorization: `Bearer ${incorrectJwt}`,
+        },
       })
       .then((result) => {
-        expect(result.statusCode).toEqual(200);
-        expect(JSON.parse(result.payload)).toEqual(accessTokenFromApiResponse);
+        expect(result.statusCode).toEqual(401);
+        expect(JSON.parse(result.payload)).toEqual(unauthorizedResponse);
       }));
 
   it('/accesstoken?refresh=true (GET)', () =>
@@ -94,9 +107,12 @@ describe('Authorization disabled', () => {
       .inject({
         method: 'GET',
         url: '/accesstoken?refresh=true',
+        headers: {
+          Authorization: `Bearer ${incorrectJwt}`,
+        },
       })
       .then((result) => {
-        expect(result.statusCode).toEqual(200);
-        expect(JSON.parse(result.payload)).toEqual(accessTokenFromApiResponse);
+        expect(result.statusCode).toEqual(401);
+        expect(JSON.parse(result.payload)).toEqual(unauthorizedResponse);
       }));
 });

@@ -6,6 +6,7 @@ import {
 } from '@nestjs/platform-fastify';
 import { Test, TestingModule } from '@nestjs/testing';
 import { LoggerModule } from 'nestjs-pino';
+import { Provider } from '@nestjs/common';
 import { AppController } from '../../src/app.controller';
 import { AuthModule } from '../../src/auth/auth.module';
 import { JwtAuthGuard, PassthroughGuard } from '../../src/auth/guards';
@@ -13,6 +14,7 @@ import { MainModule } from '../../src/main/main.module';
 import { StatusModule } from '../../src/status/status.module';
 import { AccessTokenModule } from '../../src/accesstoken/accesstoken.module';
 import { LoggerService } from '../../src/logger/logger.service';
+import { JwtStrategy } from '../../src/auth/strategies/jwt.strategy';
 
 interface TestServerParams {
   auth: {
@@ -26,8 +28,22 @@ type TestingModuleFactory = (
   params: TestServerParams
 ) => Promise<TestingModule>;
 
-const createTestingModule: TestingModuleFactory = (params: TestServerParams) =>
-  Test.createTestingModule({
+const createTestingModule: TestingModuleFactory = (
+  params: TestServerParams
+) => {
+  const providers: Provider[] = [
+    LoggerService,
+    {
+      provide: APP_GUARD,
+      useClass: params.auth.enable ? JwtAuthGuard : PassthroughGuard,
+    },
+  ];
+
+  if (params.auth.enable) {
+    providers.push(JwtStrategy);
+  }
+
+  return Test.createTestingModule({
     imports: [
       ConfigModule.forRoot({
         load: [
@@ -45,14 +61,9 @@ const createTestingModule: TestingModuleFactory = (params: TestServerParams) =>
       AccessTokenModule,
     ],
     controllers: [AppController],
-    providers: [
-      LoggerService,
-      {
-        provide: APP_GUARD,
-        useClass: params.auth.enable ? JwtAuthGuard : PassthroughGuard,
-      },
-    ],
+    providers,
   }).compile();
+};
 
 export const createTestServer = async (params: TestServerParams) => {
   const moduleFixture = await createTestingModule(params);

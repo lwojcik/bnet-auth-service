@@ -21,7 +21,9 @@ jest.mock('blizzapi', () => ({
   })),
 }));
 
-describe('Authorization disabled', () => {
+// TODO battlenet (configured / unconfigured), redis (on / off), rate-limiting (on /off), https (on / off), cors (on / off)
+
+describe('Authorization enabled (correct JWT token)', () => {
   let app: NestFastifyApplication;
   let OLD_ENV;
 
@@ -33,7 +35,15 @@ describe('Authorization disabled', () => {
     setupEnvVariables([
       {
         name: 'BAS_AUTH_ENABLE',
-        value: 'false',
+        value: 'true',
+      },
+      {
+        name: 'BAS_AUTH_USERNAME',
+        value: 'test_user',
+      },
+      {
+        name: 'BAS_AUTH_JWT_SECRET',
+        value: 'test_jwt_secret',
       },
     ]);
 
@@ -53,11 +63,17 @@ describe('Authorization disabled', () => {
     await stopTestServer(app);
   });
 
+  const correctJwt =
+    'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6InRlc3RfdXNlciJ9.JHLBIx8oU_0fp_in1iy_DKYAJ4sO5EvlexoJq7JhIbI';
+
   it('/ (GET)', () =>
     app
       .inject({
         method: 'GET',
         url: '/',
+        headers: {
+          Authorization: `Bearer ${correctJwt}`,
+        },
       })
       .then((result) => {
         expect(result.statusCode).toEqual(200);
@@ -69,6 +85,9 @@ describe('Authorization disabled', () => {
       .inject({
         method: 'GET',
         url: '/status',
+        headers: {
+          Authorization: `Bearer ${correctJwt}`,
+        },
       })
       .then((result) => {
         expect(result.statusCode).toEqual(200);
@@ -83,6 +102,9 @@ describe('Authorization disabled', () => {
       .inject({
         method: 'GET',
         url: '/accesstoken',
+        headers: {
+          Authorization: `Bearer ${correctJwt}`,
+        },
       })
       .then((result) => {
         expect(result.statusCode).toEqual(200);
@@ -94,6 +116,9 @@ describe('Authorization disabled', () => {
       .inject({
         method: 'GET',
         url: '/accesstoken?refresh=true',
+        headers: {
+          Authorization: `Bearer ${correctJwt}`,
+        },
       })
       .then((result) => {
         expect(result.statusCode).toEqual(200);

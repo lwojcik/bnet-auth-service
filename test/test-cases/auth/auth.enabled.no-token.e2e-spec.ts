@@ -1,9 +1,5 @@
 import { NestFastifyApplication } from '@nestjs/platform-fastify';
-import {
-  mainResponse,
-  accessTokenFromApiResponse,
-  statusProperties,
-} from '../../fixtures';
+import { unauthorizedResponse } from '../../fixtures';
 import {
   prepareMinimalSetup,
   setupEnvVariables,
@@ -21,7 +17,7 @@ jest.mock('blizzapi', () => ({
   })),
 }));
 
-describe('Authorization disabled', () => {
+describe('Authorization enabled (no JWT token)', () => {
   let app: NestFastifyApplication;
   let OLD_ENV;
 
@@ -33,7 +29,15 @@ describe('Authorization disabled', () => {
     setupEnvVariables([
       {
         name: 'BAS_AUTH_ENABLE',
-        value: 'false',
+        value: 'true',
+      },
+      {
+        name: 'BAS_AUTH_USERNAME',
+        value: 'test_user',
+      },
+      {
+        name: 'BAS_AUTH_JWT_SECRET',
+        value: 'test_jwt_secret',
       },
     ]);
 
@@ -60,8 +64,8 @@ describe('Authorization disabled', () => {
         url: '/',
       })
       .then((result) => {
-        expect(result.statusCode).toEqual(200);
-        expect(JSON.parse(result.payload)).toEqual(mainResponse);
+        expect(result.statusCode).toEqual(401);
+        expect(JSON.parse(result.payload)).toEqual(unauthorizedResponse);
       }));
 
   it('/status (GET)', () =>
@@ -71,11 +75,8 @@ describe('Authorization disabled', () => {
         url: '/status',
       })
       .then((result) => {
-        expect(result.statusCode).toEqual(200);
-
-        statusProperties.forEach((property) => {
-          expect(JSON.parse(result.payload)).toHaveProperty(property);
-        });
+        expect(result.statusCode).toEqual(401);
+        expect(JSON.parse(result.payload)).toEqual(unauthorizedResponse);
       }));
 
   it('/accesstoken (GET)', () =>
@@ -85,8 +86,8 @@ describe('Authorization disabled', () => {
         url: '/accesstoken',
       })
       .then((result) => {
-        expect(result.statusCode).toEqual(200);
-        expect(JSON.parse(result.payload)).toEqual(accessTokenFromApiResponse);
+        expect(result.statusCode).toEqual(401);
+        expect(JSON.parse(result.payload)).toEqual(unauthorizedResponse);
       }));
 
   it('/accesstoken?refresh=true (GET)', () =>
@@ -96,7 +97,7 @@ describe('Authorization disabled', () => {
         url: '/accesstoken?refresh=true',
       })
       .then((result) => {
-        expect(result.statusCode).toEqual(200);
-        expect(JSON.parse(result.payload)).toEqual(accessTokenFromApiResponse);
+        expect(result.statusCode).toEqual(401);
+        expect(JSON.parse(result.payload)).toEqual(unauthorizedResponse);
       }));
 });
