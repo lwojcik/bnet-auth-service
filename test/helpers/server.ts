@@ -17,10 +17,15 @@ import { LoggerService } from '../../src/logger/logger.service';
 import { JwtStrategy } from '../../src/auth/strategies/jwt.strategy';
 
 interface TestServerParams {
-  auth: {
-    enable: boolean;
-    username: string;
-    jwtSecret: string;
+  auth?: {
+    enable?: boolean;
+    username?: string;
+    jwtSecret?: string;
+  };
+  battlenet?: {
+    region?: string;
+    clientId?: string;
+    clientSecret?: string;
   };
 }
 
@@ -29,17 +34,17 @@ type TestingModuleFactory = (
 ) => Promise<TestingModule>;
 
 const createTestingModule: TestingModuleFactory = (
-  params: TestServerParams
+  params?: TestServerParams
 ) => {
   const providers: Provider[] = [
     LoggerService,
     {
       provide: APP_GUARD,
-      useClass: params.auth.enable ? JwtAuthGuard : PassthroughGuard,
+      useClass: params?.auth?.enable ? JwtAuthGuard : PassthroughGuard,
     },
   ];
 
-  if (params.auth.enable) {
+  if (params?.auth?.enable) {
     providers.push(JwtStrategy);
   }
 
@@ -48,9 +53,14 @@ const createTestingModule: TestingModuleFactory = (
       ConfigModule.forRoot({
         load: [
           registerAs('auth', () => ({
-            enable: params.auth.enable,
-            username: params.auth.username,
-            jwtSecret: params.auth.jwtSecret,
+            enable: params?.auth?.enable,
+            username: params?.auth?.username,
+            jwtSecret: params?.auth?.jwtSecret,
+          })),
+          registerAs('battlenet', () => ({
+            region: params?.battlenet?.region,
+            clientId: params?.battlenet?.clientId,
+            clientSecret: params?.battlenet?.clientSecret,
           })),
         ],
       }),
@@ -65,7 +75,7 @@ const createTestingModule: TestingModuleFactory = (
   }).compile();
 };
 
-export const createTestServer = async (params: TestServerParams) => {
+export const createTestServer = async (params?: TestServerParams) => {
   const moduleFixture = await createTestingModule(params);
 
   const app = moduleFixture.createNestApplication<NestFastifyApplication>(

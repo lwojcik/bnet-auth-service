@@ -41,7 +41,7 @@ const minimalSetup: EnvironmentVariable[] = [
     value: 'bas',
   },
   {
-    name: 'BES_REDIS_KEY_NAME',
+    name: 'BAS_REDIS_KEY_NAME',
     value: '',
   },
 ];
