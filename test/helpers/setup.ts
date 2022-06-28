@@ -1,6 +1,9 @@
-import { EnvironmentVariableConfig } from './types';
+type EnvironmentVariable = {
+  name: string;
+  value: string | undefined;
+};
 
-export const minimalSetup: EnvironmentVariableConfig[] = [
+const minimalSetup: EnvironmentVariable[] = [
   {
     name: 'NODE_ENV',
     value: 'test',
@@ -42,3 +45,15 @@ export const minimalSetup: EnvironmentVariableConfig[] = [
     value: '',
   },
 ];
+
+export const setupEnvVariable = (variableName: string, variableValue) => {
+  process.env[variableName] = variableValue;
+};
+
+export const setupEnvVariables = (envVariables: EnvironmentVariable[]) => {
+  envVariables.forEach((variable) => {
+    setupEnvVariable(variable.name, variable.value);
+  });
+};
+
+export const prepareMinimalSetup = () => setupEnvVariables(minimalSetup);

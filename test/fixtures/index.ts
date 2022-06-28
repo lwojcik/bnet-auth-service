@@ -1,2 +1,2 @@
-export * from './minimal-setup';
-export * from './test-cases';
+export * from './endpoints';
+export * from './responses';

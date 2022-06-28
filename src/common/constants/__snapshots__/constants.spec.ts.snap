@@ -4,7 +4,7 @@ exports[`constants should be defined 1`] = `
 Object {
   "APP": Object {
     "corsOrigin": "BAS_APP_CORS_ORIGIN",
-    "enableCors": "BAS_APP_ENABLE_CORS",
+    "enableCors": "BAS_APP_CORS_ENABLE",
     "environment": "NODE_ENV",
     "host": "BAS_APP_HOST",
     "port": "BAS_APP_PORT",
@@ -737,7 +737,7 @@ Object {
           },
         },
         Object {
-          "key": "BAS_APP_ENABLE_CORS",
+          "key": "BAS_APP_CORS_ENABLE",
           "schema": Object {
             "$_root": Object {
               "ValidationError": [Function],
@@ -10903,8 +10903,8 @@ Object {
             "type": "string",
           },
         },
-        "BAS_APP_ENABLE_CORS" => Object {
-          "id": "BAS_APP_ENABLE_CORS",
+        "BAS_APP_CORS_ENABLE" => Object {
+          "id": "BAS_APP_CORS_ENABLE",
           "schema": Object {
             "$_root": Object {
               "ValidationError": [Function],

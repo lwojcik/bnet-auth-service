@@ -2,6 +2,6 @@ export enum AppEnvVariable {
   environment = 'NODE_ENV',
   host = 'HOST',
   port = 'PORT',
-  enableCors = 'ENABLE_CORS',
+  enableCors = 'CORS_ENABLE',
   corsOrigin = 'CORS_ORIGIN',
 }

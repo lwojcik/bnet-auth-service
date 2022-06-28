@@ -4,7 +4,7 @@ exports[`environment constants should be defined 1`] = `
 Object {
   "APP": Object {
     "corsOrigin": "BAS_APP_CORS_ORIGIN",
-    "enableCors": "BAS_APP_ENABLE_CORS",
+    "enableCors": "BAS_APP_CORS_ENABLE",
     "environment": "NODE_ENV",
     "host": "BAS_APP_HOST",
     "port": "BAS_APP_PORT",
