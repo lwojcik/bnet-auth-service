@@ -3,11 +3,6 @@ import {
   accessTokenFromApiResponse,
   accessTokenFromCacheResponse,
 } from '../../responses';
-// import {
-//   mainResponse,
-//   accessTokenFromApiResponse,
-//   statusProperties,
-// } from '../../responses';
 import {
   prepareMinimalSetup,
   setupEnvVariables,
@@ -66,10 +61,14 @@ describe('Redis enabled', () => {
     ]);
 
     app = await createTestServer({
-      auth: {
-        enable: process.env.BAS_AUTH_ENABLE === 'true',
-        username: process.env.BAS_AUTH_USERNAME,
-        jwtSecret: process.env.BAS_AUTH_JWT_SECRET,
+      redis: {
+        enable: process.env.BAS_REDIS_ENABLE === 'true',
+        host: process.env.BAS_REDIS_HOST,
+        port: process.env.BAS_REDIS_PORT,
+        ttlSecs: process.env.BAS_REDIS_TTL_SECS,
+        db: process.env.BAS_REDIS_DB,
+        keyPrefix: process.env.BAS_REDIS_KEY_PREFIX,
+        keyName: process.env.BAS_REDIS_KEY_NAME,
       },
     });
 
@@ -87,15 +86,19 @@ describe('Redis enabled', () => {
         method: 'GET',
         url: '/accesstoken',
       })
-      .then(async () => {
+      .then(async (firstResult) => {
         await app
           .inject({
             method: 'GET',
             url: '/accesstoken',
           })
-          .then((result) => {
-            expect(result.statusCode).toEqual(200);
-            expect(JSON.parse(result.payload)).toEqual(
+          .then((secondResult) => {
+            expect(firstResult.statusCode).toEqual(200);
+            expect(JSON.parse(firstResult.payload)).toEqual(
+              accessTokenFromApiResponse
+            );
+            expect(secondResult.statusCode).toEqual(200);
+            expect(JSON.parse(secondResult.payload)).toEqual(
               accessTokenFromCacheResponse
             );
           });
@@ -114,17 +117,16 @@ describe('Redis enabled', () => {
             url: '/accesstoken',
           })
           .then(async (cachedResult) => {
-            const cachedStatusCode = cachedResult.statusCode;
-            const cachedPayload = JSON.parse(cachedResult.payload);
-
             await app
               .inject({
                 method: 'GET',
                 url: '/accesstoken?refresh=true',
               })
               .then((refreshedResult) => {
-                expect(cachedStatusCode).toEqual(200);
-                expect(cachedPayload).toEqual(accessTokenFromCacheResponse);
+                expect(cachedResult.statusCode).toEqual(200);
+                expect(JSON.parse(cachedResult.payload)).toEqual(
+                  accessTokenFromCacheResponse
+                );
 
                 expect(refreshedResult.statusCode).toEqual(200);
                 expect(JSON.parse(refreshedResult.payload)).toEqual(

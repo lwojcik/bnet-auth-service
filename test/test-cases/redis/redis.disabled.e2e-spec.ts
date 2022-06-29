@@ -1,9 +1,5 @@
 import { NestFastifyApplication } from '@nestjs/platform-fastify';
-// import {
-//   mainResponse,
-//   accessTokenFromApiResponse,
-//   statusProperties,
-// } from '../../responses';
+import { accessTokenFromApiResponse } from '../../responses';
 import {
   prepareMinimalSetup,
   setupEnvVariables,
@@ -25,36 +21,53 @@ describe('Redis disabled', () => {
   let app: NestFastifyApplication;
   let OLD_ENV;
 
-  beforeAll(async () => {
+  beforeEach(async () => {
+    jest.clearAllMocks();
+
     OLD_ENV = process.env;
 
     prepareMinimalSetup();
 
     setupEnvVariables([
       {
-        name: 'BAS_AUTH_ENABLE',
+        name: 'BAS_REDIS_ENABLE',
         value: 'false',
       },
     ]);
 
     app = await createTestServer({
-      auth: {
-        enable: process.env.BAS_AUTH_ENABLE === 'true',
-        username: process.env.BAS_AUTH_USERNAME,
-        jwtSecret: process.env.BAS_AUTH_JWT_SECRET,
+      redis: {
+        enable: process.env.BAS_REDIS_ENABLE === 'true',
       },
     });
 
     await startTestServer(app);
   });
 
-  afterAll(async () => {
+  afterEach(async () => {
     process.env = { ...OLD_ENV };
     await stopTestServer(app);
   });
 
-  it.todo('/ (GET)');
-  it.todo('/status (GET)');
-  it.todo('/accesstoken (GET)');
-  it.todo('/accesstoken?refresh=true (GET)');
+  it('/accesstoken (GET)', () =>
+    app
+      .inject({
+        method: 'GET',
+        url: '/accesstoken',
+      })
+      .then(async (result) => {
+        expect(result.statusCode).toEqual(200);
+        expect(JSON.parse(result.payload)).toEqual(accessTokenFromApiResponse);
+      }));
+
+  it('/accesstoken?refresh=true (GET)', () =>
+    app
+      .inject({
+        method: 'GET',
+        url: '/accesstoken?refresh=true',
+      })
+      .then((result) => {
+        expect(result.statusCode).toEqual(200);
+        expect(JSON.parse(result.payload)).toEqual(accessTokenFromApiResponse);
+      }));
 });

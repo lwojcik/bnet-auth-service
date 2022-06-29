@@ -42,7 +42,7 @@ interface TestServerParams {
     host?: string;
     port?: string;
     ttlSecs?: string;
-    db?: 0;
+    db?: string;
     keyPrefix?: string;
     keyName?: string;
   };
@@ -80,6 +80,15 @@ const createTestingModule: TestingModuleFactory = (
             region: params?.battlenet?.region,
             clientId: params?.battlenet?.clientId,
             clientSecret: params?.battlenet?.clientSecret,
+          })),
+          registerAs('redis', () => ({
+            enable: params?.redis?.enable,
+            host: params?.redis?.host,
+            port: params?.redis?.port,
+            ttlSecs: params?.redis?.ttlSecs,
+            db: params?.redis?.db,
+            keyPrefix: params?.redis?.keyPrefix,
+            keyName: params?.redis?.keyName,
           })),
         ],
       }),
