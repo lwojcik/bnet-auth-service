@@ -37,6 +37,15 @@ interface TestServerParams {
     key?: string;
     cert?: string;
   };
+  redis?: {
+    enable?: boolean;
+    host?: string;
+    port?: string;
+    ttlSecs?: string;
+    db?: 0;
+    keyPrefix?: string;
+    keyName?: string;
+  };
 }
 
 type TestingModuleFactory = (

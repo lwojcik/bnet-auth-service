@@ -4,6 +4,6 @@ export const accessTokenFromApiResponse = {
 };
 
 export const accessTokenFromCacheResponse = {
-  accessToken: 'sample_access_token_from_mocked_redis_cache',
-  source: 'battlenet',
+  accessToken: 'sample_access_token_from_mocked_blizzapi',
+  source: 'cache',
 };
