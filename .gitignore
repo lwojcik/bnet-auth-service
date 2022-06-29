@@ -41,3 +41,4 @@ yarn.lock
 .node-dev.json
 .env
 certs/
+!test/certs/

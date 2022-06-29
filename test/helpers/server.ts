@@ -1,3 +1,4 @@
+import fs from 'fs';
 import { ConfigModule, registerAs } from '@nestjs/config';
 import { APP_GUARD } from '@nestjs/core';
 import {
@@ -30,6 +31,11 @@ interface TestServerParams {
   cors?: {
     enable?: boolean;
     origin?: string;
+  };
+  https?: {
+    enable?: boolean;
+    key?: string;
+    cert?: string;
   };
 }
 
@@ -82,8 +88,17 @@ const createTestingModule: TestingModuleFactory = (
 export const createTestServer = async (params?: TestServerParams) => {
   const moduleFixture = await createTestingModule(params);
 
+  const adapterConfig = params?.https?.enable
+    ? {
+        https: {
+          key: fs.readFileSync(params.https.key),
+          cert: fs.readFileSync(params.https.cert),
+        },
+      }
+    : undefined;
+
   const app = moduleFixture.createNestApplication<NestFastifyApplication>(
-    new FastifyAdapter()
+    new FastifyAdapter(adapterConfig)
   );
 
   if (params?.cors?.enable) {

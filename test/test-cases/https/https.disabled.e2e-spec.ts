@@ -1,9 +1,9 @@
 import { NestFastifyApplication } from '@nestjs/platform-fastify';
-// import {
-//   mainResponse,
-//   accessTokenFromApiResponse,
-//   statusProperties,
-// } from '../../responses';
+import {
+  accessTokenFromApiResponse,
+  mainResponse,
+  statusProperties,
+} from '../../responses';
 import {
   prepareMinimalSetup,
   setupEnvVariables,
@@ -32,16 +32,14 @@ describe('HTTPS disabled', () => {
 
     setupEnvVariables([
       {
-        name: 'BAS_AUTH_ENABLE',
+        name: 'BAS_HTTPS_ENABLE',
         value: 'false',
       },
     ]);
 
     app = await createTestServer({
-      auth: {
-        enable: process.env.BAS_AUTH_ENABLE === 'true',
-        username: process.env.BAS_AUTH_USERNAME,
-        jwtSecret: process.env.BAS_AUTH_JWT_SECRET,
+      https: {
+        enable: process.env.BAS_HTTPS_ENABLE === 'true',
       },
     });
 
@@ -53,8 +51,50 @@ describe('HTTPS disabled', () => {
     await stopTestServer(app);
   });
 
-  it.todo('/ (GET)');
-  it.todo('/status (GET)');
-  it.todo('/accesstoken (GET)');
-  it.todo('/accesstoken?refresh=true (GET)');
+  it('/ (GET)', () =>
+    app
+      .inject({
+        method: 'GET',
+        url: '/',
+      })
+      .then((result) => {
+        expect(result.statusCode).toEqual(200);
+        expect(JSON.parse(result.payload)).toEqual(mainResponse);
+      }));
+
+  it('/status (GET)', () =>
+    app
+      .inject({
+        method: 'GET',
+        url: '/status',
+      })
+      .then((result) => {
+        expect(result.statusCode).toEqual(200);
+
+        statusProperties.forEach((property) => {
+          expect(JSON.parse(result.payload)).toHaveProperty(property);
+        });
+      }));
+
+  it('/accesstoken (GET)', () =>
+    app
+      .inject({
+        method: 'GET',
+        url: '/accesstoken',
+      })
+      .then((result) => {
+        expect(result.statusCode).toEqual(200);
+        expect(JSON.parse(result.payload)).toEqual(accessTokenFromApiResponse);
+      }));
+
+  it('/accesstoken?refresh=true (GET)', () =>
+    app
+      .inject({
+        method: 'GET',
+        url: '/accesstoken?refresh=true',
+      })
+      .then((result) => {
+        expect(result.statusCode).toEqual(200);
+        expect(JSON.parse(result.payload)).toEqual(accessTokenFromApiResponse);
+      }));
 });
