@@ -1,9 +1,5 @@
 import { NestFastifyApplication } from '@nestjs/platform-fastify';
-// import {
-//   mainResponse,
-//   accessTokenFromApiResponse,
-//   statusProperties,
-// } from '../../responses';
+import { accessTokenFromApiResponse } from '../../responses';
 import {
   prepareMinimalSetup,
   setupEnvVariables,
@@ -32,16 +28,14 @@ describe('CORS disabled', () => {
 
     setupEnvVariables([
       {
-        name: 'BAS_AUTH_ENABLE',
+        name: 'BAS_APP_CORS_ENABLE',
         value: 'false',
       },
     ]);
 
     app = await createTestServer({
-      auth: {
-        enable: process.env.BAS_AUTH_ENABLE === 'true',
-        username: process.env.BAS_AUTH_USERNAME,
-        jwtSecret: process.env.BAS_AUTH_JWT_SECRET,
+      cors: {
+        enable: process.env.BAS_APP_CORS_ENABLE === 'true',
       },
     });
 
@@ -53,8 +47,47 @@ describe('CORS disabled', () => {
     await stopTestServer(app);
   });
 
-  it.todo('/ (GET)');
-  it.todo('/status (GET)');
-  it.todo('/accesstoken (GET)');
-  it.todo('/accesstoken?refresh=true (GET)');
+  it('/ (GET)', () =>
+    app
+      .inject({
+        method: 'GET',
+        url: '/',
+      })
+      .then((result) => {
+        expect(result.headers.origin).toBeUndefined();
+        expect(result.headers['access-control-allow-origin']).toBeUndefined();
+      }));
+
+  it('/status (GET)', () =>
+    app
+      .inject({
+        method: 'GET',
+        url: '/status',
+      })
+      .then((result) => {
+        expect(result.headers.origin).toBeUndefined();
+        expect(result.headers['access-control-allow-origin']).toBeUndefined();
+      }));
+
+  it('/accesstoken (GET)', () =>
+    app
+      .inject({
+        method: 'GET',
+        url: '/accesstoken',
+      })
+      .then((result) => {
+        expect(result.statusCode).toEqual(200);
+        expect(JSON.parse(result.payload)).toEqual(accessTokenFromApiResponse);
+      }));
+
+  it('/accesstoken?refresh=true (GET)', () =>
+    app
+      .inject({
+        method: 'GET',
+        url: '/accesstoken?refresh=true',
+      })
+      .then((result) => {
+        expect(result.statusCode).toEqual(200);
+        expect(JSON.parse(result.payload)).toEqual(accessTokenFromApiResponse);
+      }));
 });

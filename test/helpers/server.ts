@@ -27,6 +27,10 @@ interface TestServerParams {
     clientId?: string;
     clientSecret?: string;
   };
+  cors?: {
+    enable?: boolean;
+    origin?: string;
+  };
 }
 
 type TestingModuleFactory = (
@@ -81,6 +85,12 @@ export const createTestServer = async (params?: TestServerParams) => {
   const app = moduleFixture.createNestApplication<NestFastifyApplication>(
     new FastifyAdapter()
   );
+
+  if (params?.cors?.enable) {
+    app.enableCors({
+      origin: params.cors.origin,
+    });
+  }
 
   return app;
 };

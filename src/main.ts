@@ -34,6 +34,7 @@ async function bootstrap() {
     const corsConfig = process.env[APP.corsOrigin]
       ? {
           origin: process.env[APP.corsOrigin],
+          methods: ['GET'],
         }
       : undefined;
     app.enableCors(corsConfig);

@@ -1,9 +1,4 @@
 import { NestFastifyApplication } from '@nestjs/platform-fastify';
-// import {
-//   mainResponse,
-//   accessTokenFromApiResponse,
-//   statusProperties,
-// } from '../../responses';
 import {
   prepareMinimalSetup,
   setupEnvVariables,
@@ -21,9 +16,11 @@ jest.mock('blizzapi', () => ({
   })),
 }));
 
-describe('CORS enabled', () => {
+describe('CORS disabled', () => {
   let app: NestFastifyApplication;
   let OLD_ENV;
+
+  const testOrigin = 'http://some-foreign-testing-origin.tld';
 
   beforeAll(async () => {
     OLD_ENV = process.env;
@@ -32,16 +29,19 @@ describe('CORS enabled', () => {
 
     setupEnvVariables([
       {
-        name: 'BAS_AUTH_ENABLE',
-        value: 'false',
+        name: 'BAS_APP_CORS_ENABLE',
+        value: 'true',
+      },
+      {
+        name: 'BAS_APP_CORS_ORIGIN',
+        value: testOrigin,
       },
     ]);
 
     app = await createTestServer({
-      auth: {
-        enable: process.env.BAS_AUTH_ENABLE === 'true',
-        username: process.env.BAS_AUTH_USERNAME,
-        jwtSecret: process.env.BAS_AUTH_JWT_SECRET,
+      cors: {
+        enable: process.env.BAS_APP_CORS_ENABLE === 'true',
+        origin: process.env.BAS_APP_CORS_ORIGIN,
       },
     });
 
@@ -53,8 +53,55 @@ describe('CORS enabled', () => {
     await stopTestServer(app);
   });
 
-  it.todo('/ (GET)');
-  it.todo('/status (GET)');
-  it.todo('/accesstoken (GET)');
-  it.todo('/accesstoken?refresh=true (GET)');
+  it('/ (GET)', () =>
+    app
+      .inject({
+        method: 'GET',
+        url: '/',
+      })
+      .then((result) => {
+        expect(result.headers['access-control-allow-origin']).toEqual(
+          testOrigin
+        );
+        expect(result.headers.vary).toEqual('Origin');
+      }));
+
+  it('/status (GET)', () =>
+    app
+      .inject({
+        method: 'GET',
+        url: '/status',
+      })
+      .then((result) => {
+        expect(result.headers['access-control-allow-origin']).toEqual(
+          testOrigin
+        );
+        expect(result.headers.vary).toEqual('Origin');
+      }));
+
+  it('/accesstoken (GET)', () =>
+    app
+      .inject({
+        method: 'GET',
+        url: '/accesstoken',
+      })
+      .then((result) => {
+        expect(result.headers['access-control-allow-origin']).toEqual(
+          testOrigin
+        );
+        expect(result.headers.vary).toEqual('Origin');
+      }));
+
+  it('/accesstoken?refresh=true (GET)', () =>
+    app
+      .inject({
+        method: 'GET',
+        url: '/accesstoken?refresh=true',
+      })
+      .then((result) => {
+        expect(result.headers['access-control-allow-origin']).toEqual(
+          testOrigin
+        );
+        expect(result.headers.vary).toEqual('Origin');
+      }));
 });
