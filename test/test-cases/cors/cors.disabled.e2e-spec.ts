@@ -1,5 +1,4 @@
 import { NestFastifyApplication } from '@nestjs/platform-fastify';
-import { accessTokenFromApiResponse } from '../../responses';
 import {
   prepareMinimalSetup,
   setupEnvVariables,
@@ -76,8 +75,8 @@ describe('CORS disabled', () => {
         url: '/accesstoken',
       })
       .then((result) => {
-        expect(result.statusCode).toEqual(200);
-        expect(JSON.parse(result.payload)).toEqual(accessTokenFromApiResponse);
+        expect(result.headers.origin).toBeUndefined();
+        expect(result.headers['access-control-allow-origin']).toBeUndefined();
       }));
 
   it('/accesstoken?refresh=true (GET)', () =>
@@ -87,7 +86,7 @@ describe('CORS disabled', () => {
         url: '/accesstoken?refresh=true',
       })
       .then((result) => {
-        expect(result.statusCode).toEqual(200);
-        expect(JSON.parse(result.payload)).toEqual(accessTokenFromApiResponse);
+        expect(result.headers.origin).toBeUndefined();
+        expect(result.headers['access-control-allow-origin']).toBeUndefined();
       }));
 });
