@@ -22,8 +22,6 @@ describe('Redis disabled', () => {
   let OLD_ENV;
 
   beforeEach(async () => {
-    jest.clearAllMocks();
-
     OLD_ENV = process.env;
 
     prepareMinimalSetup();
