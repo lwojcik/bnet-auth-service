@@ -8,6 +8,7 @@ import {
 import { Test, TestingModule } from '@nestjs/testing';
 import { LoggerModule } from 'nestjs-pino';
 import { Provider } from '@nestjs/common';
+import { ThrottlerModule } from '@nestjs/throttler';
 import { AppController } from '../../src/app.controller';
 import { AuthModule } from '../../src/auth/auth.module';
 import { JwtAuthGuard, PassthroughGuard } from '../../src/auth/guards';
@@ -46,6 +47,10 @@ interface TestServerParams {
     keyPrefix?: string;
     keyName?: string;
   };
+  throttle?: {
+    ttlSecs?: string;
+    limit?: string;
+  };
 }
 
 type TestingModuleFactory = (
@@ -67,37 +72,52 @@ const createTestingModule: TestingModuleFactory = (
     providers.push(JwtStrategy);
   }
 
+  const imports = [
+    ConfigModule.forRoot({
+      load: [
+        registerAs('auth', () => ({
+          enable: params?.auth?.enable,
+          username: params?.auth?.username,
+          jwtSecret: params?.auth?.jwtSecret,
+        })),
+        registerAs('battlenet', () => ({
+          region: params?.battlenet?.region,
+          clientId: params?.battlenet?.clientId,
+          clientSecret: params?.battlenet?.clientSecret,
+        })),
+        registerAs('redis', () => ({
+          enable: params?.redis?.enable,
+          host: params?.redis?.host,
+          port: params?.redis?.port,
+          ttlSecs: params?.redis?.ttlSecs,
+          db: params?.redis?.db,
+          keyPrefix: params?.redis?.keyPrefix,
+          keyName: params?.redis?.keyName,
+        })),
+        registerAs('throttle', () => ({
+          ttl: parseInt(params?.throttle?.ttlSecs, 10) || 999999,
+          limit: parseInt(params?.throttle?.limit, 10) || 999999,
+        })),
+      ],
+    }),
+    LoggerModule,
+    AuthModule,
+    MainModule,
+    StatusModule,
+    AccessTokenModule,
+  ];
+
+  if (params.throttle) {
+    imports.push(
+      ThrottlerModule.forRoot({
+        ttl: parseInt(params?.throttle?.ttlSecs, 10),
+        limit: parseInt(params?.throttle?.limit, 10),
+      })
+    );
+  }
+
   return Test.createTestingModule({
-    imports: [
-      ConfigModule.forRoot({
-        load: [
-          registerAs('auth', () => ({
-            enable: params?.auth?.enable,
-            username: params?.auth?.username,
-            jwtSecret: params?.auth?.jwtSecret,
-          })),
-          registerAs('battlenet', () => ({
-            region: params?.battlenet?.region,
-            clientId: params?.battlenet?.clientId,
-            clientSecret: params?.battlenet?.clientSecret,
-          })),
-          registerAs('redis', () => ({
-            enable: params?.redis?.enable,
-            host: params?.redis?.host,
-            port: params?.redis?.port,
-            ttlSecs: params?.redis?.ttlSecs,
-            db: params?.redis?.db,
-            keyPrefix: params?.redis?.keyPrefix,
-            keyName: params?.redis?.keyName,
-          })),
-        ],
-      }),
-      LoggerModule,
-      AuthModule,
-      MainModule,
-      StatusModule,
-      AccessTokenModule,
-    ],
+    imports,
     controllers: [AppController],
     providers,
   }).compile();
