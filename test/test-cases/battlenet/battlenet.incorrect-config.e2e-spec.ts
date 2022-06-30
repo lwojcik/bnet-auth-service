@@ -1,5 +1,5 @@
 import { NestFastifyApplication } from '@nestjs/platform-fastify';
-import { mainResponse, statusProperties } from '../../responses';
+import { mainResponseWithoutCaching, statusProperties } from '../../responses';
 import {
   prepareMinimalSetup,
   setupEnvVariables,
@@ -73,7 +73,7 @@ describe('Battle.net API (incorrect config)', () => {
       })
       .then((result) => {
         expect(result.statusCode).toEqual(200);
-        expect(JSON.parse(result.payload)).toEqual(mainResponse);
+        expect(JSON.parse(result.payload)).toEqual(mainResponseWithoutCaching);
       }));
 
   it('/status (GET)', () =>

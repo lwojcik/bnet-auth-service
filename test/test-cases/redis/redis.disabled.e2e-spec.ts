@@ -1,5 +1,8 @@
 import { NestFastifyApplication } from '@nestjs/platform-fastify';
-import { accessTokenFromApiResponse } from '../../responses';
+import {
+  accessTokenFromApiResponse,
+  mainResponseWithoutCaching,
+} from '../../responses';
 import {
   prepareMinimalSetup,
   setupEnvVariables,
@@ -47,15 +50,40 @@ describe('Redis disabled', () => {
     await stopTestServer(app);
   });
 
+  it('/ (GET)', () =>
+    app
+      .inject({
+        method: 'GET',
+        url: '/',
+      })
+      .then((result) => {
+        expect(result.statusCode).toEqual(200);
+        expect(JSON.parse(result.payload)).toEqual(mainResponseWithoutCaching);
+      }));
+
   it('/accesstoken (GET)', () =>
     app
       .inject({
         method: 'GET',
         url: '/accesstoken',
       })
-      .then(async (result) => {
-        expect(result.statusCode).toEqual(200);
-        expect(JSON.parse(result.payload)).toEqual(accessTokenFromApiResponse);
+      .then(async (firstResult) => {
+        await app
+          .inject({
+            method: 'GET',
+            url: '/accesstoken',
+          })
+          .then((secondResult) => {
+            expect(firstResult.statusCode).toEqual(200);
+            expect(JSON.parse(firstResult.payload)).toEqual(
+              accessTokenFromApiResponse
+            );
+
+            expect(secondResult.statusCode).toEqual(200);
+            expect(JSON.parse(secondResult.payload)).toEqual(
+              accessTokenFromApiResponse
+            );
+          });
       }));
 
   it('/accesstoken?refresh=true (GET)', () =>
@@ -64,8 +92,22 @@ describe('Redis disabled', () => {
         method: 'GET',
         url: '/accesstoken?refresh=true',
       })
-      .then((result) => {
-        expect(result.statusCode).toEqual(200);
-        expect(JSON.parse(result.payload)).toEqual(accessTokenFromApiResponse);
+      .then(async (firstResult) => {
+        await app
+          .inject({
+            method: 'GET',
+            url: '/accesstoken',
+          })
+          .then((secondResult) => {
+            expect(firstResult.statusCode).toEqual(200);
+            expect(JSON.parse(firstResult.payload)).toEqual(
+              accessTokenFromApiResponse
+            );
+
+            expect(secondResult.statusCode).toEqual(200);
+            expect(JSON.parse(secondResult.payload)).toEqual(
+              accessTokenFromApiResponse
+            );
+          });
       }));
 });

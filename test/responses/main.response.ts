@@ -1,7 +1,7 @@
-export const mainResponse = {
+const mainResponse = (caching: boolean) => ({
   name: 'bnet-auth-service',
   version: '2.0.0',
-  caching: true,
+  caching,
   endpoints: {
     status: {
       url: '/status',
@@ -16,4 +16,8 @@ export const mainResponse = {
       method: 'GET',
     },
   },
-};
+});
+
+export const mainResponseWithCaching = mainResponse(true);
+
+export const mainResponseWithoutCaching = mainResponse(false);
