@@ -1,0 +1,37 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`AccessTokenService (Cache enabled) Access token saved in cache should get access token from Battle.net when refresh is true 1`] = `
+Object {
+  "accessToken": "mocked_access_token_from_battlenet",
+  "source": "battlenet",
+}
+`;
+
+exports[`AccessTokenService (Cache enabled) Access token saved in cache should get access token from cache 1`] = `
+Object {
+  "accessToken": "test_access_token_from_redis_cache",
+  "source": "cache",
+}
+`;
+
+exports[`AccessTokenService (Cache enabled) No access token saved in cache should get access token from Battle.net 1`] = `
+Object {
+  "accessToken": "mocked_access_token_from_battlenet",
+  "source": "battlenet",
+}
+`;
+
+exports[`AccessTokenService (Cache enabled) No access token saved in cache should get access token from Battle.net if refresh is set to true 1`] = `
+Object {
+  "accessToken": "mocked_access_token_from_battlenet",
+  "source": "battlenet",
+}
+`;
+
+exports[`AccessTokenService (Cache enabled) No access token saved in cache should return access token error if Battle.net API returns an error 1`] = `
+Object {
+  "error": "Mocked error response",
+  "id": "sample_mocked_request_id",
+  "statusCode": "Mocked error status code",
+}
+`;

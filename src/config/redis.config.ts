@@ -6,8 +6,7 @@ const { env } = process;
 const defaultValue = DEFAULTS.redis;
 
 export const redisConfig = registerAs('redis', () => ({
-  enable:
-    trueStringToBoolean({ value: env[REDIS.enable] }) || defaultValue.enable,
+  enable: trueStringToBoolean({ value: env[REDIS.enable] }),
   host: env[REDIS.host] || defaultValue.host,
   port: parseInt(env[REDIS.port], 10) || defaultValue.port,
   password: env[REDIS.password] || defaultValue.password,

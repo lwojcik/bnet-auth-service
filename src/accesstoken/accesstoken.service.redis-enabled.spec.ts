@@ -1,4 +1,5 @@
 import { Test, TestingModule } from '@nestjs/testing';
+import { ConfigModule, registerAs } from '@nestjs/config';
 import { CacheService } from '../cache/cache.service';
 import { BattleNetService } from '../battlenet/battlenet.service';
 import { AccessTokenService } from './accesstoken.service';
@@ -17,7 +18,10 @@ jest.mock(
   })
 );
 
-describe('AccessTokenService', () => {
+// eslint-disable-next-line global-require
+jest.mock('ioredis', () => require('ioredis-mock'));
+
+describe('AccessTokenService (Cache enabled)', () => {
   let serviceWithWarmCache: AccessTokenService;
   let serviceWithEmptyCache: AccessTokenService;
   let serviceWithBattleNetError: AccessTokenService;
@@ -31,6 +35,13 @@ describe('AccessTokenService', () => {
       battleNetError?: boolean;
     }) => Promise<TestingModule> = ({ accessTokenInCache, battleNetError }) =>
       Test.createTestingModule({
+        imports: [
+          ConfigModule.forFeature(
+            registerAs('redis', () => ({
+              enable: true,
+            }))
+          ),
+        ],
         providers: [
           {
             provide: BattleNetService,
@@ -80,14 +91,18 @@ describe('AccessTokenService', () => {
     ).get<AccessTokenService>(AccessTokenService);
   });
 
-  it('should be defined', () => {
-    expect(serviceWithWarmCache).toBeDefined();
-  });
-
   describe('Access token saved in cache', () => {
     it('should get access token from cache', async () => {
       expect.assertions(1);
       const accessToken = await serviceWithWarmCache.getAccessToken({});
+      expect(accessToken).toMatchSnapshot();
+    });
+
+    it('should get access token from Battle.net when refresh is true', async () => {
+      expect.assertions(1);
+      const accessToken = await serviceWithWarmCache.getAccessToken({
+        refresh: true,
+      });
       expect(accessToken).toMatchSnapshot();
     });
   });
@@ -104,12 +119,10 @@ describe('AccessTokenService', () => {
       const accessToken = await serviceWithBattleNetError.getAccessToken({});
       expect(accessToken).toMatchSnapshot();
     });
-  });
 
-  describe('Refresh option set to true', () => {
-    it('should get access token from Battle.net', async () => {
+    it('should get access token from Battle.net if refresh is set to true', async () => {
       expect.assertions(1);
-      const accessToken = await serviceWithWarmCache.getAccessToken({
+      const accessToken = await serviceWithEmptyCache.getAccessToken({
         refresh: true,
       });
       expect(accessToken).toMatchSnapshot();

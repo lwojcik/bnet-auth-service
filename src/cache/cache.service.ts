@@ -4,7 +4,7 @@ import { ConfigType } from '@nestjs/config';
 import Redis from 'ioredis';
 import { LoggerService } from '../logger/logger.service';
 import { redisConfig } from '../config';
-import { PHRASES } from '../common/constants';
+import { REDIS } from '../common/constants';
 
 @Injectable()
 export class CacheService {
@@ -28,13 +28,13 @@ export class CacheService {
     this.logger.debug();
 
     if (!this.redisConf.enable) {
-      this.logger.debug(PHRASES.cache.accessKeyNotSaved);
+      this.logger.debug(`${REDIS.enable} set to false - access key not saved`);
     } else {
       this.logger.debug(
-        PHRASES.cache.usingKey(`${this.redisConf.keyPrefix}${this.cacheKey}`)
+        `Using Redis key: ${this.redisConf.keyPrefix}${this.cacheKey}`
       );
 
-      this.logger.debug(PHRASES.cache.usingTTL(this.redisConf.ttlSecs));
+      this.logger.debug(`Set TTL to ${this.redisConf.ttlSecs} seconds`);
 
       this.cache.set(this.cacheKey, accessToken, 'EX', this.redisConf.ttlSecs);
     }
@@ -45,17 +45,19 @@ export class CacheService {
     this.logger.debug();
 
     if (!this.redisConf.enable) {
-      this.logger.debug(PHRASES.cache.cacheServiceDisabled);
+      this.logger.debug(
+        `${REDIS.enable} set to false - returning 'null' as access key`
+      );
       return null;
     }
 
     this.logger.debug(
-      PHRASES.cache.usingKey(`${this.redisConf.keyPrefix}${this.cacheKey}`)
+      `Using Redis key: ${this.redisConf.keyPrefix}${this.cacheKey}`
     );
 
     const accessToken = await this.cache.get(this.cacheKey);
 
-    this.logger.debug(`${PHRASES.accessToken.received(accessToken)}`);
+    this.logger.debug(`Received access token: ${accessToken}`);
 
     return accessToken;
   }

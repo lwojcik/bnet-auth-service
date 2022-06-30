@@ -1,19 +1,22 @@
-import { Injectable } from '@nestjs/common';
+import { Inject, Injectable } from '@nestjs/common';
 import { RequestContext } from 'nestjs-request-context';
+import { ConfigType } from '@nestjs/config';
 import { Source } from '../common/types';
 import { BattleNetService } from '../battlenet/battlenet.service';
 import { GetAccessTokenDto } from './dto/get-access-token.dto';
 import { CacheService } from '../cache/cache.service';
 import { LoggerService } from '../logger/logger.service';
-import { PHRASES } from '../common/constants';
 import { AccessTokenError } from './dto/access-token-error.dto';
 import { AccessTokenObject } from './dto/access-token-object.dto';
+import { redisConfig } from '../config';
 
 @Injectable()
 export class AccessTokenService {
   constructor(
     private readonly battleNetService: BattleNetService,
     private readonly cacheService: CacheService,
+    @Inject(redisConfig.KEY)
+    private readonly redisConf: ConfigType<typeof redisConfig>,
     private readonly logger: LoggerService
   ) {
     this.logger.setLoggedClass(AccessTokenService.name);
@@ -27,8 +30,7 @@ export class AccessTokenService {
     const accessToken = await this.battleNetService.getAccessToken();
 
     if ((accessToken as AccessTokenError).error) {
-      this.logger.debug(PHRASES.errors.accessToken);
-
+      this.logger.debug('Received access token error');
       this.logger.error((accessToken as AccessTokenError).error);
 
       return {
@@ -46,7 +48,7 @@ export class AccessTokenService {
 
     const accessToken = await this.cacheService.getAccessToken();
 
-    this.logger.debug(PHRASES.accessToken.received(accessToken));
+    this.logger.debug(`Received access token: ${accessToken}`);
 
     return accessToken;
   }
@@ -62,41 +64,46 @@ export class AccessTokenService {
     getAccessTokenDto: GetAccessTokenDto
   ): Promise<AccessTokenObject | AccessTokenError> {
     this.logger.setLoggedMethod(this.getAccessToken.name, getAccessTokenDto);
-
     this.logger.debug();
 
     const { refresh } = getAccessTokenDto;
 
-    this.logger.debug(PHRASES.accessToken.readingFromCache);
-    const accessTokenFromCache = await this.getAccessTokenFromCache();
+    if (this.redisConf.enable && !refresh) {
+      this.logger.debug('Redis cache is enabled');
+      this.logger.debug('Checking for cached access token...');
 
-    if (refresh || !accessTokenFromCache) {
-      this.logger.debug(PHRASES.accessToken.noCachedAccessToken);
+      const accessTokenFromCache = await this.getAccessTokenFromCache();
 
-      const accessTokenFromBattleNet = await this.getAccessTokenFromBattleNet();
+      if (accessTokenFromCache) {
+        this.logger.debug(`Found cached access token ${accessTokenFromCache}`);
 
-      if ((accessTokenFromBattleNet as AccessTokenError).error) {
-        this.logger.error(PHRASES.errors.accessToken);
-        return accessTokenFromBattleNet as AccessTokenError;
+        return {
+          accessToken: accessTokenFromCache,
+          source: Source.cache,
+        };
       }
 
-      this.logger.debug(
-        PHRASES.accessToken.cachingAccessToken(
-          accessTokenFromBattleNet as string
-        )
-      );
+      this.logger.debug('No cached access token found!');
+    }
 
+    this.logger.debug('Redis cache is disabled OR refresh was triggered');
+    this.logger.debug('Getting access token from Battle.net...');
+
+    const accessTokenFromBattleNet = await this.getAccessTokenFromBattleNet();
+
+    if ((accessTokenFromBattleNet as AccessTokenError).error) {
+      this.logger.error('Received access token error!');
+      return accessTokenFromBattleNet as AccessTokenError;
+    }
+
+    if (this.redisConf.enable) {
+      this.logger.debug(`Caching access token: ${accessTokenFromBattleNet}...`);
       this.cacheAccessToken(accessTokenFromBattleNet as string);
-
-      return {
-        accessToken: accessTokenFromBattleNet as string,
-        source: Source.battlenet,
-      };
     }
 
     return {
-      accessToken: accessTokenFromCache,
-      source: Source.cache,
+      accessToken: accessTokenFromBattleNet as string,
+      source: Source.battlenet,
     };
   }
 }

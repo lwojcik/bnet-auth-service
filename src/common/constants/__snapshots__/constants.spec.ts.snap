@@ -20561,28 +20561,6 @@ Object {
     "enable": "BAS_HTTPS_ENABLE",
     "keyPath": "BAS_HTTPS_KEY_PATH",
   },
-  "PHRASES": Object {
-    "accessToken": Object {
-      "cachingAccessToken": [Function],
-      "noCachedAccessToken": "Found no cached access token or \\"refresh\\" option was used",
-      "readingFromCache": "Checking for cached access token",
-      "received": [Function],
-    },
-    "battlenet": Object {
-      "receivedAccessToken": [Function],
-      "usingClientId": [Function],
-      "usingClientSecret": [Function],
-    },
-    "cache": Object {
-      "accessKeyNotSaved": "BAS_REDIS_ENABLE set to false - access key not saved",
-      "cacheServiceDisabled": "BAS_REDIS_ENABLE set to false - returning 'null' as access key",
-      "usingKey": [Function],
-      "usingTTL": [Function],
-    },
-    "errors": Object {
-      "accessToken": "Received access token error",
-    },
-  },
   "REDIS": Object {
     "db": "BAS_REDIS_DB",
     "enable": "BAS_REDIS_ENABLE",
