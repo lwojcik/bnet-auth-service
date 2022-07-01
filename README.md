@@ -19,7 +19,8 @@ Docker and Docker-compose are preferred ways of setting up the project.
 git clone https://github.com/sc2pte/bnet-auth-service.git
 cd bnet-auth-service
 npm install
-docker-compose up --build
+docker-compose build
+docker-compose up
 ```
 
 Alternatively, you can pull a pre-built image from [GitHub Container Registry](https://github.com/orgs/sc2pte/packages/container/package/bnet-auth-service):
