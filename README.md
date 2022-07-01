@@ -3,13 +3,13 @@
 [![Build status](https://ci.appveyor.com/api/projects/status/5lunfkv0ot8rh3yt/branch/master?svg=true)](https://ci.appveyor.com/project/lwojcik/bnet-auth-service/branch/master)
 [![codecov](https://codecov.io/gh/sc2pte/bnet-auth-service/branch/master/graph/badge.svg?token=sFEmFjKiRo)](https://codecov.io/gh/sc2pte/bnet-auth-service)
 
-**This is version 2 of the project and it's incompatible with previous version. If you're looking for version 1, head to [v1 branch](https://github.com/sc2pte/bnet-auth-service/tree/v1).**
+**This is version 2 of the project and it's incompatible with previous version. If you're looking for the previous version, head to [v1 branch](https://github.com/sc2pte/bnet-auth-service/tree/v1).**
 
 REST microservice retrieving and caching OAuth access tokens from [Blizzard Battle.net API](https://develop.battle.net/).
 
 Under the hood it uses [NestJS](https://nestjs.com/), [Fastify](https://www.fastify.io/) and [BlizzAPI](https://www.npmjs.com/package/blizzapi).
 
-While the primary purpose for this service is to be run inside secure API infrastructure, it can be configured to run standalone and be exposed with to the public internet with modest level of security. However, be informed that access tokens are intimate parts of OAuth authentication process and they should not run in the wild.
+While the primary purpose for this service is to be run inside secure API infrastructure, it can be configured to run standalone and be exposed to the public internet with modest level of security. However, be informed that access tokens are intimate parts of OAuth authentication process and they should not run in the wild. It is your responsibility to keep your service as secure as possible. :)
 
 ## Setup
 
@@ -42,6 +42,8 @@ Production installation can be automated with an [Ansible role](https://github.c
 
 Environment variable names follow the following format: `BAS_[feature name]_[feature property]`.
 
+When in development mode, the API can load environment variables from `.env` file in root directory.
+
 See also `.env.sample` for a dotenv template.
 
 ### App setup
@@ -56,7 +58,7 @@ General app setup necessary to launch the service.
 
 ### Battle.net setup
 
-To obtain Battle.net API credentials log in to [Blizzard Battle.net Developer Portal](https://develop.battle.net/access/).and [create a new client](https://develop.battle.net/access/clients/create).
+This part of setup is mandatory. To obtain Battle.net API credentials log in to [Blizzard Battle.net Developer Portal](https://develop.battle.net/access/).and [create a new client](https://develop.battle.net/access/clients/create).
 
 - `BAS_BATTLENET_REGION` - Battle.net API region to authorize against (`'us'`, `'eu'`, `'kr'` or `'ch'`, required). API credentials and generated access tokens are valid across all regions.
 - `BAS_BATTLENET_CLIENT_ID` = Battle.net API application key
@@ -64,9 +66,9 @@ To obtain Battle.net API credentials log in to [Blizzard Battle.net Developer Po
 
 ### Redis setup
 
-Enabling Redis allows for caching access tokens in order to minimize the number of requests to Battle.net API.
+This setup is optional. Enabling Redis allows for caching access tokens in order to minimize the number of requests to Battle.net API. 
 
-- `BAS_REDIS_ENABLE` - enable Redis caching (default `'true'`)
+- `BAS_REDIS_ENABLE` - enable Redis caching (default `'true'`). If you pass `false`, configuring other Redis-related environment variables is not necessary.
 - `BAS_REDIS_HOST` - Redis hostname (default: `'redis'`)
 - `BAS_REDIS_PORT` - Redis port (default: `'6379'`)
 - `BAS_REDIS_PASSWORD` - Redis password (optional)
@@ -79,12 +81,8 @@ Enabling Redis allows for caching access tokens in order to minimize the number 
 
 Rate limiting is always on. To effectively disable it, set high values for TTL and limit. Default limits are significantly below limits of Battle.net API (36,000 requests per hour / 100 requests per second) and they shouldn't trigger 429 Too Many Requests errors.
 
-- `BAS_THROTTLE_TTL_SECS` - how long throttling is effective per client (default: 60 seconds)
+- `BAS_THROTTLE_TTL_SECS` - how long throttling is effective per single client (default: 60 seconds)
 - `BAS_THROTTLE_LIMIT`- limit of requests per client within alloted TTL (default: 300)
-
-To obtain Battle.net API credentials (key and secret) visit
-
-When in development mode, the API can load environment variables from `.env` file in root directory.
 
 ### Authorization
 
