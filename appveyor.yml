@@ -5,7 +5,7 @@ services:
   - docker
 
 environment:
-  IMAGE_STABLE_TAG: 1
+  IMAGE_STABLE_TAG: 2
   BAS_BATTLENET_REGION: us
   BAS_BATTLENET_CLIENT_ID: test-client-id
   BAS_BATTLENET_CLIENT_SECRET: test-client-secret
