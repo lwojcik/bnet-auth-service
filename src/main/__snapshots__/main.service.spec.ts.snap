@@ -1,0 +1,21 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`MainService should get status 1`] = `
+Object {
+  "caching": false,
+  "endpoints": Object {
+    "testEndpoint1": Object {
+      "method": "TEST_METHOD_1",
+      "name": "testEndpoint1",
+      "url": "/testEndpoint1",
+    },
+    "testEndpoint2": Object {
+      "method": "TEST_METHOD_2",
+      "name": "testEndpoint2",
+      "url": "/testEndpoint2",
+    },
+  },
+  "name": "bnet-auth-service",
+  "version": "2.0.0",
+}
+`;

@@ -1,0 +1,43 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`environment constants should be defined 1`] = `
+Object {
+  "APP": Object {
+    "corsOrigin": "BAS_APP_CORS_ORIGIN",
+    "enableCors": "BAS_APP_CORS_ENABLE",
+    "environment": "NODE_ENV",
+    "host": "BAS_APP_HOST",
+    "port": "BAS_APP_PORT",
+  },
+  "AUTH": Object {
+    "enable": "BAS_AUTH_ENABLE",
+    "jwtSecret": "BAS_AUTH_JWT_SECRET",
+    "username": "BAS_AUTH_USERNAME",
+  },
+  "BATTLENET": Object {
+    "clientId": "BAS_BATTLENET_CLIENT_ID",
+    "clientSecret": "BAS_BATTLENET_CLIENT_SECRET",
+    "region": "BAS_BATTLENET_REGION",
+  },
+  "HTTPS": Object {
+    "certPath": "BAS_HTTPS_CERT_PATH",
+    "enable": "BAS_HTTPS_ENABLE",
+    "keyPath": "BAS_HTTPS_KEY_PATH",
+  },
+  "REDIS": Object {
+    "db": "BAS_REDIS_DB",
+    "enable": "BAS_REDIS_ENABLE",
+    "host": "BAS_REDIS_HOST",
+    "keyName": "BAS_REDIS_KEY_NAME",
+    "keyPrefix": "BAS_REDIS_KEY_PREFIX",
+    "password": "BAS_REDIS_PASSWORD",
+    "port": "BAS_REDIS_PORT",
+    "ttlSecs": "BAS_REDIS_TTL_SECS",
+  },
+  "THROTTLE": Object {
+    "enable": "BAS_THROTTLE_ENABLE",
+    "limit": "BAS_THROTTLE_LIMIT",
+    "ttlSecs": "BAS_THROTTLE_TTL_SECS",
+  },
+}
+`;

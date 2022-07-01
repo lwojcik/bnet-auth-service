@@ -1,0 +1,15 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`formatTime should format time correctly 1`] = `"00:00:08.000"`;
+
+exports[`formatTime should format time correctly 2`] = `"00:00:16.000"`;
+
+exports[`formatTime should format time correctly 3`] = `"00:00:32.000"`;
+
+exports[`formatTime should format time correctly 4`] = `"00:01:04.000"`;
+
+exports[`formatTime should format time correctly 5`] = `"00:02:08.000"`;
+
+exports[`formatTime should format time correctly 6`] = `"09:06:08.000"`;
+
+exports[`formatTime should format time correctly 7`] = `null`;

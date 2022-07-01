@@ -1,0 +1,12 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`config should be defined 1`] = `
+Object {
+  "appConfig": [Function],
+  "authConfig": [Function],
+  "battleNetConfig": [Function],
+  "endpointsConfig": [Function],
+  "redisConfig": [Function],
+  "throttleConfig": [Function],
+}
+`;

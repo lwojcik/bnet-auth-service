@@ -1,0 +1,7 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`StatusController should get status 1`] = `
+Object {
+  "testStatusProperty": "testStatusValue",
+}
+`;

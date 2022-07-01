@@ -1,0 +1,11 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`BattleNetService should get access token 1`] = `"sample_access_token_from_blizzapi_mock"`;
+
+exports[`BattleNetService should return error object in case of Battle.net API error 1`] = `
+Object {
+  "error": "BnetApiError",
+  "message": "Sample error message from BlizzAPI mock",
+  "statusCode": "Sample error status from BlizzAPI mock",
+}
+`;

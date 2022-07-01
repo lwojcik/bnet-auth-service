@@ -5,14 +5,21 @@ services:
   - docker
 
 environment:
-  IMAGE_STABLE_TAG: 1
+  IMAGE_STABLE_TAG: 2
+  BAS_BATTLENET_REGION: us
+  BAS_BATTLENET_CLIENT_ID: test-client-id
+  BAS_BATTLENET_CLIENT_SECRET: test-client-secret
 
 skip_tags: true
 
 install:
-  - npm install
+  - npm install --ignore-scripts
 
 build_script:
+  - npm run lint:check
+  - npm run format:check
+  - npm test
+  - npm run test:e2e
   - npm run build
 
 test_script:
@@ -46,7 +53,6 @@ after_build:
   - if [[ "${APPVEYOR_REPO_BRANCH}" == "master" ]] && [[ -z "${APPVEYOR_PULL_REQUEST_NUMBER}" ]]; then docker push "${APPVEYOR_REPO_NAME}" --all-tags; fi
   # Logout
   - docker logout
-
 
 deploy:
   release: ${APPVEYOR_BUILD_VERSION}

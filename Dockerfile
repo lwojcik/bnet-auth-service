@@ -1,16 +1,25 @@
-# The build image
-FROM node:latest AS build
-WORKDIR /usr/src/app
-COPY package*.json /usr/src/app/
-RUN npm ci --omit=dev
- 
-# The production image
-FROM node:lts-alpine
-RUN apk add dumb-init
-ENV NODE_ENV production
+# development build
+FROM node:lts-alpine AS development
+WORKDIR /app
+COPY --chown=node:node package*.json ./
+RUN npm ci
+COPY --chown=node:node . .
 USER node
-WORKDIR /usr/src/app
-COPY --chown=node:node --from=build /usr/src/app/node_modules /usr/src/app/node_modules
-COPY --chown=node:node . /usr/src/app
-EXPOSE 8083
-CMD ["dumb-init", "node", "scripts/start.js"]
+
+# production build
+FROM node:lts-alpine AS build
+WORKDIR /app
+COPY --chown=node:node package*.json ./
+COPY --chown=node:node --from=development /app/node_modules ./node_modules
+COPY --chown=node:node . .
+RUN npm run build
+ENV NODE_ENV production
+RUN npm ci --omit-dev --ignore-scripts && npm cache clean --force
+USER node
+
+# production image
+FROM node:lts-alpine AS production
+RUN apk add dumb-init
+COPY --chown=node:node --from=build /app/node_modules ./node_modules
+COPY --chown=node:node --from=build /app/dist ./dist
+CMD ["dumb-init", "node", "dist/main.js"]

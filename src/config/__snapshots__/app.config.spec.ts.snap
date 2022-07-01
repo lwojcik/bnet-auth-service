@@ -1,0 +1,12 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`appConfig should create app config 1`] = `
+Object {
+  "corsOrigin": "",
+  "enableCors": false,
+  "environment": "test",
+  "host": "0.0.0.0",
+  "name": "bnet-auth-service",
+  "port": 3000,
+}
+`;

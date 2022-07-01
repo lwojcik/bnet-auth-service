@@ -1,0 +1,21 @@
+services:
+  bnet-auth-service:
+    container_name: bnet-auth-service
+    build:
+      context: .
+      target: development
+    volumes:
+      - .:/app
+      - /app/node_modules
+    ports:
+      - ${BAS_APP_PORT}:${BAS_APP_PORT}
+    command: npm run start:dev
+    env_file: .env
+    depends_on:
+      - redis
+
+  redis:
+    image: 'redis:alpine'
+    ports:
+      - ${BAS_REDIS_PORT}:${BAS_REDIS_PORT}
+    env_file: .env
