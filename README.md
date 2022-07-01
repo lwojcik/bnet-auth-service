@@ -13,7 +13,7 @@ While the primary purpose for this service is to be run inside secure API infras
 
 ## Setup
 
-Docker and Docker-compose are preferred ways of setting up the project.
+Docker and Docker Compose are preferred ways of setting up the project.
 
 ```bash
 git clone https://github.com/sc2pte/bnet-auth-service.git
