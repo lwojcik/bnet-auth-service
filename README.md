@@ -67,7 +67,7 @@ This part of setup is mandatory. To obtain Battle.net API credentials log in to 
 
 ### Redis setup
 
-This setup is optional. Enabling Redis allows for caching access tokens in order to minimize the number of requests to Battle.net API. 
+This setup is optional. Enabling Redis allows for caching access tokens in order to minimize the number of requests to Battle.net API.
 
 - `BAS_REDIS_ENABLE` - enable Redis caching (default `'true'`). If you pass `false`, configuring other Redis-related environment variables is not necessary.
 - `BAS_REDIS_HOST` - Redis hostname (default: `'redis'`)
@@ -85,6 +85,15 @@ Rate limiting is always on. To effectively disable it, set high values for TTL a
 - `BAS_THROTTLE_TTL_SECS` - how long throttling is effective per single client (default: 60 seconds)
 - `BAS_THROTTLE_LIMIT`- limit of requests per client within alloted TTL (default: 300)
 
+When the limit is reached, the service will return 429 error code with the following body:
+
+```json
+{
+  "statusCode": 429,
+  "message": "ThrottlerException: Too Many Requests"
+}
+```
+
 ### Authorization
 
 Bnet-auth-service supports simplified authorization flow with JWT tokens. If you enable it, each request must contain a JWT token containing pre-configured username (`{ 'username': 'some-user' }`), signed by a pre-configured secret, passed inside a request header:
@@ -99,6 +108,15 @@ Bnet-auth-service supports simplified authorization flow with JWT tokens. If you
 - `BAS_AUTH_USERNAME` - username passed as JWT payload
 - `BAS_AUTH_JWT_SECRET` - secret that should be used to sign and verify JWT token
 
+If the incoming request doesn't contain correct JWT token, all endpoints will return 401 error:
+
+```json
+{
+  "statusCode": 401,
+  "message": "Unauthorized"
+}
+```
+
 ### HTTPS support
 
 Service can run in HTTPS mode using provided key and certificate.
@@ -109,48 +127,104 @@ Service can run in HTTPS mode using provided key and certificate.
 
 ## Available endpoints
 
+### `GET /`
+
+General information about the service.
+
+```json
+{
+  "name": "bnet-auth-service",
+  "version": "2.0.0",
+  "caching": true,
+  "endpoints": {
+    "status": {
+      "url": "/status"
+      "method": "GET"
+    },
+    "accesstoken": {
+      "url": "/accesstoken",
+      "method": "GET"
+    },
+    "accesstokenrefresh": {
+      "url": "/accesstoken?refresh=true",
+      "method": "GET"
+      }
+    }
+  }
+```
+
 ### `GET /status`
 
-API health status.
+Information on service health.
 
-**Sample response:**
-
+```json
+{
+  "status": "ok",
+  "uptime": "00:05:05.313",
+  "timestamp": "2022-07-01T18:39:06.828Z"
+}
 ```
-{"status":200,"message":"ok"}
-```
 
-### `GET /accessToken/get`
+### `GET /accessToken`
 
 Get access token either (1) from Redis cache if there is cached access token available or (2) directly from Battle.net API and cache it in Redis store.
 
-**Sample response:**
+If `BAS_REDIS_ENABLE` is set to `false`, this endpoint always queries Battle.net API for a new access token.
 
-```
-{"status":200,"data":{"accessToken":"access token here"}}
+If `BAS_REDIS_ENABLE` is set to `true`, each access token obtained from Battle.net API is cached in Redis store.
+
+`source` property returns one of two values: `battlenet` or `cache`, depending on where the access token was obtained from.
+
+```json
+{
+  "accessToken": "<access token here>",
+  "source": "cache"
+}
 ```
 
-### `GET /accessToken/get?refresh=true`
+If wrong credentials are used, the service will return 200 OK response with the following body:
+
+```json
+{
+  "error": "BnetApiError",
+  "statusCode": 401,
+  "message": "Request failed with status code 401",
+  "id": "6bc-043d-4d58-b28b-72a6605dcf78"
+}
+```
+
+`id` is the request identifier than can be used to find the error in service logs.
+
+### `GET /accessToken?refresh=true`
 
 Get access token from Battle.net API regardless of Redis cache state and cache it.
 
 This method is meant as a fallback for service consumers to use when access token returned from previous request turns out to be invalid or expired.
 
-**Sample response:**
-
+```json
+{
+  "accessToken": "<access token here>",
+  "source": "battlenet"
+}
 ```
-{"status":200,"data":{"accessToken":"access token here"}}
-```
 
-### `GET /accessToken/refresh`
+## Swagger
 
-Get access token from Battle.net API and store it in Redis cache. Triggering this method will cause next `GET /accessToken/get` to load access token from Redis cache.
+Swagger is available when `NODE_ENV` is set to `development` at `http://service.url.here/api`. When using the service locally, the URL is most likely `http://localhost:3000/api`.
 
-This method is designed to be used by a cron job in order to keep Redis cache warm and minimize number of Battle.net API requests for a new access token.
+## Contributions
 
-```
-{"status":200,"message":"Access token refreshed successfully"}
-```
+`bnet-auth-service` is mostly a complete project and no further features are planned.
+
+The type of contributions that are most welcome:
+
+- bug reports and fixes of any kind
+- documentation improvements
+- suggestions of additional properties returned by any of the existing endpoints
+- error responses that weren't explicitly documented
+
+Before contributing be sure to read [Code of Conduct](https://github.com/sc2pte/bnet-auth-service/blob/master/CODE_OF_CONDUCT.md).
 
 ## License
 
-Code is available under MIT license. See [LICENSE](https://raw.githubusercontent.com/lukemnet/bnet-auth-service/master/LICENSE) for more information.
+Code is available under MIT license. See [LICENSE](https://raw.githubusercontent.com/sc2pte/bnet-auth-service/master/LICENSE) for more information.
