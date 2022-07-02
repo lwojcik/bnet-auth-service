@@ -2,7 +2,6 @@
 
 exports[`MainService should get status 1`] = `
 Object {
-  "caching": false,
   "endpoints": Object {
     "testEndpoint1": Object {
       "method": "TEST_METHOD_1",
@@ -16,6 +15,5 @@ Object {
     },
   },
   "name": "bnet-auth-service",
-  "version": "2.0.0",
 }
 `;

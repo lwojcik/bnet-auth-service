@@ -134,8 +134,6 @@ General information about the service.
 ```json
 {
   "name": "bnet-auth-service",
-  "version": "2.0.0",
-  "caching": true,
   "endpoints": {
     "status": {
       "url": "/status"

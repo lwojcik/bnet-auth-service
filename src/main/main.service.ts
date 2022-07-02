@@ -22,8 +22,6 @@ export class MainService {
 
     return {
       name: APP_INFO.name,
-      version: APP_INFO.version,
-      caching: this.redisConf.enable,
       endpoints: this.endpoints,
     };
   }

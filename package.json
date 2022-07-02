@@ -35,7 +35,7 @@
     "start": "IS_TS_NODE=true ts-node -r tsconfig-paths/register src/main.ts",
     "start:debug": "nest start --debug --watch",
     "start:dev": "nest start --watch",
-    "start:prod": "node dist/main",
+    "start:prod": "node dist/src/main",
     "test": "jest",
     "test:cov": "jest --coverage",
     "test:debug": "node --inspect-brk -r tsconfig-paths/register -r ts-node/register node_modules/.bin/jest --runInBand",
@@ -52,7 +52,7 @@
     ],
     "coverageDirectory": "../coverage",
     "coveragePathIgnorePatterns": [
-      "jest.setup.redis-mock.ts",
+      "jest.setup.redis-mock.js",
       "<rootDir>/main.ts"
     ],
     "moduleFileExtensions": [
@@ -62,7 +62,7 @@
     ],
     "rootDir": "src",
     "setupFilesAfterEnv": [
-      "<rootDir>/../jest.setup.redis-mock.ts"
+      "<rootDir>/../jest.setup.redis-mock.js"
     ],
     "testEnvironment": "node",
     "testRegex": ".*\\.spec\\.ts$",

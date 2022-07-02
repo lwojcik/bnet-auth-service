@@ -44,7 +44,6 @@ async function bootstrap() {
     const swaggerConfig = new DocumentBuilder()
       .setTitle(APP_INFO.name)
       .setDescription(APP_INFO.description)
-      .setVersion(APP_INFO.version)
       .build();
     const document = SwaggerModule.createDocument(app, swaggerConfig);
     SwaggerModule.setup('api', app, document);

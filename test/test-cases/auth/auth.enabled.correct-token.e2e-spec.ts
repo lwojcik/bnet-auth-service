@@ -1,6 +1,6 @@
 import { NestFastifyApplication } from '@nestjs/platform-fastify';
 import {
-  mainResponseWithoutCaching,
+  mainResponse,
   accessTokenFromApiResponse,
   statusProperties,
 } from '../../responses';
@@ -77,7 +77,7 @@ describe('Authorization enabled (correct JWT token)', () => {
       })
       .then((result) => {
         expect(result.statusCode).toEqual(200);
-        expect(JSON.parse(result.payload)).toEqual(mainResponseWithoutCaching);
+        expect(JSON.parse(result.payload)).toEqual(mainResponse);
       }));
 
   it('/status (GET)', () =>

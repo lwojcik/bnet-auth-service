@@ -2,7 +2,7 @@ import { NestFastifyApplication } from '@nestjs/platform-fastify';
 import {
   accessTokenFromApiResponse,
   accessTokenFromCacheResponse,
-  mainResponseWithCaching,
+  mainResponse,
 } from '../../responses';
 import {
   prepareMinimalSetup,
@@ -89,7 +89,7 @@ describe('Redis enabled', () => {
       })
       .then((result) => {
         expect(result.statusCode).toEqual(200);
-        expect(JSON.parse(result.payload)).toEqual(mainResponseWithCaching);
+        expect(JSON.parse(result.payload)).toEqual(mainResponse);
       }));
 
   it('/accesstoken (GET)', () =>
