@@ -1,7 +1,7 @@
 import { NestFastifyApplication } from '@nestjs/platform-fastify';
 import {
   accessTokenFromApiResponse,
-  mainResponseWithoutCaching,
+  mainResponse,
   statusProperties,
 } from '../../responses';
 import {
@@ -69,7 +69,7 @@ describe('HTTPS enabled', () => {
       })
       .then((result) => {
         expect(result.statusCode).toEqual(200);
-        expect(JSON.parse(result.payload)).toEqual(mainResponseWithoutCaching);
+        expect(JSON.parse(result.payload)).toEqual(mainResponse);
       }));
 
   it('/status (GET)', () =>

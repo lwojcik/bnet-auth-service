@@ -2,7 +2,7 @@ import { NestFastifyApplication } from '@nestjs/platform-fastify';
 import {
   accessTokenFromApiResponse,
   statusProperties,
-  mainResponseWithoutCaching,
+  mainResponse,
 } from '../../responses';
 import {
   prepareMinimalSetup,
@@ -61,7 +61,7 @@ describe('Authorization disabled', () => {
       })
       .then((result) => {
         expect(result.statusCode).toEqual(200);
-        expect(JSON.parse(result.payload)).toEqual(mainResponseWithoutCaching);
+        expect(JSON.parse(result.payload)).toEqual(mainResponse);
       }));
 
   it('/status (GET)', () =>

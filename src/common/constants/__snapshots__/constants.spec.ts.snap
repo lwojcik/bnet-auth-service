@@ -13,7 +13,6 @@ Object {
     "appPrefix": "BAS",
     "description": "REST microservice for retrieving and caching OAuth access tokens from Blizzard Battle.net API",
     "name": "bnet-auth-service",
-    "version": "2.0.0",
   },
   "AUTH": Object {
     "enable": "BAS_AUTH_ENABLE",

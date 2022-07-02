@@ -13,13 +13,6 @@ export class MainResponse {
   name: string;
 
   @ApiProperty({
-    description: 'Application version',
-    example: APP_INFO.version,
-  })
-  @IsString()
-  version: string;
-
-  @ApiProperty({
     description: 'Whether Redis caching is enabled in the application',
     example: true,
   })
