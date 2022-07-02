@@ -22,4 +22,4 @@ FROM node:lts-alpine AS production
 RUN apk add dumb-init
 COPY --chown=node:node --from=build /app/node_modules ./node_modules
 COPY --chown=node:node --from=build /app/dist ./dist
-CMD ["dumb-init", "node", "dist/main.js"]
+CMD ["dumb-init", "node", "dist/src/main.js"]
