@@ -21,7 +21,7 @@ export class MainResponse {
 
   @ApiProperty({
     description: 'List of available endpoints',
-    example: endpointsConfig,
+    example: endpointsConfig(),
   })
   endpoints: Endpoints;
 }
