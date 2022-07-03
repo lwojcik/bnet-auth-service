@@ -1,8 +1,8 @@
-import { BlizzAPI, RegionName } from 'blizzapi';
+import { BlizzAPI, RegionName, RegionNameEnum } from 'blizzapi';
 
 export const validateRegionName = (value: string) => {
   const allowedRegionNames = BlizzAPI.getAllRegionNames()
-    .filter((region) => region !== RegionName.tw)
+    .filter((region) => region !== RegionNameEnum.tw)
     .join(', ');
 
   const validRegionName = BlizzAPI.validateRegionName(value as RegionName);

@@ -1,6 +1,6 @@
 import { Inject, Injectable } from '@nestjs/common';
 import { ConfigType } from '@nestjs/config';
-import { BlizzAPI, RegionName } from 'blizzapi';
+import { BlizzAPI } from 'blizzapi';
 import { ApiErrorCode } from '../common/types';
 import { battleNetConfig } from '../config';
 import { LoggerService } from '../logger/logger.service';
@@ -15,7 +15,7 @@ export class BattleNetService {
     private readonly logger: LoggerService
   ) {
     this.blizzApi = new BlizzAPI({
-      region: this.bnetConfig.region as RegionName,
+      region: this.bnetConfig.region,
       clientId: this.bnetConfig.clientId,
       clientSecret: this.bnetConfig.clientSecret,
     });
