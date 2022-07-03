@@ -12,7 +12,6 @@ import { LoggerService } from '../logger/logger.service';
 import { AccessTokenService } from './accesstoken.service';
 import { AccessTokenError } from './dto/access-token-error.dto';
 import { AccessTokenObject } from './dto/access-token-object.dto';
-import { GetAccessTokenDto } from './dto/get-access-token.dto';
 
 @ApiTags('accesstoken')
 @Controller('accesstoken')
@@ -42,10 +41,10 @@ export class AccessTokenController {
     summary: 'Get Battle.net access token for supplied client credentials',
   })
   getAccessToken(
-    @Query() getAccessTokenDto: GetAccessTokenDto
+    @Query('refresh') refresh?: boolean
   ): Promise<AccessTokenObject | AccessTokenError> {
-    this.logger.setLoggedMethod(this.getAccessToken.name, getAccessTokenDto);
+    this.logger.setLoggedMethod(this.getAccessToken.name, refresh);
     this.logger.debug();
-    return this.accessTokenService.getAccessToken(getAccessTokenDto);
+    return this.accessTokenService.getAccessToken(refresh);
   }
 }

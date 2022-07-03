@@ -37,7 +37,7 @@ describe('AccessTokenController', () => {
 
   it('should implement getAccessToken method', () => {
     expect(() => {
-      controller.getAccessToken({});
+      controller.getAccessToken();
     }).not.toThrow();
   });
 });

@@ -94,15 +94,13 @@ describe('AccessTokenService (Cache enabled)', () => {
   describe('Access token saved in cache', () => {
     it('should get access token from cache', async () => {
       expect.assertions(1);
-      const accessToken = await serviceWithWarmCache.getAccessToken({});
+      const accessToken = await serviceWithWarmCache.getAccessToken();
       expect(accessToken).toMatchSnapshot();
     });
 
     it('should get access token from Battle.net when refresh is true', async () => {
       expect.assertions(1);
-      const accessToken = await serviceWithWarmCache.getAccessToken({
-        refresh: true,
-      });
+      const accessToken = await serviceWithWarmCache.getAccessToken(true);
       expect(accessToken).toMatchSnapshot();
     });
   });
@@ -110,21 +108,19 @@ describe('AccessTokenService (Cache enabled)', () => {
   describe('No access token saved in cache', () => {
     it('should get access token from Battle.net', async () => {
       expect.assertions(1);
-      const accessToken = await serviceWithEmptyCache.getAccessToken({});
+      const accessToken = await serviceWithEmptyCache.getAccessToken();
       expect(accessToken).toMatchSnapshot();
     });
 
     it('should return access token error if Battle.net API returns an error', async () => {
       expect.assertions(1);
-      const accessToken = await serviceWithBattleNetError.getAccessToken({});
+      const accessToken = await serviceWithBattleNetError.getAccessToken();
       expect(accessToken).toMatchSnapshot();
     });
 
     it('should get access token from Battle.net if refresh is set to true', async () => {
       expect.assertions(1);
-      const accessToken = await serviceWithEmptyCache.getAccessToken({
-        refresh: true,
-      });
+      const accessToken = await serviceWithEmptyCache.getAccessToken(true);
       expect(accessToken).toMatchSnapshot();
     });
   });

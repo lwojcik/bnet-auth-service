@@ -81,13 +81,13 @@ describe('AccessTokenService', () => {
 
   it('should get access token from Battle.net', async () => {
     expect.assertions(1);
-    const accessToken = await service.getAccessToken({});
+    const accessToken = await service.getAccessToken();
     expect(accessToken).toMatchSnapshot();
   });
 
   it('should return access token error from Battle.net', async () => {
     expect.assertions(1);
-    const accessToken = await serviceWithBattleNetError.getAccessToken({});
+    const accessToken = await serviceWithBattleNetError.getAccessToken();
     expect(accessToken).toMatchSnapshot();
   });
 });
