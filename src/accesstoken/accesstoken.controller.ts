@@ -1,5 +1,6 @@
 import { Controller, Get, Query } from '@nestjs/common';
 import { ApiOkResponse, ApiOperation, ApiTags } from '@nestjs/swagger';
+import { RefreshQueryParam } from '../common/decorators/refresh-query-param.decorator';
 import { UseCommonErrorResponses } from '../common/decorators/common-error-responses.decorator';
 import { LoggerService } from '../logger/logger.service';
 import { AccessTokenService } from './accesstoken.service';
@@ -30,6 +31,7 @@ export class AccessTokenController {
     type: AccessTokenError,
   })
   @UseCommonErrorResponses()
+  @RefreshQueryParam()
   getAccessToken(
     @Query('refresh') refresh?: boolean
   ): Promise<AccessTokenObject | AccessTokenError> {
