@@ -1,13 +1,6 @@
 import { Controller, Get, Query } from '@nestjs/common';
-import {
-  ApiOkResponse,
-  ApiOperation,
-  ApiTags,
-  ApiTooManyRequestsResponse,
-  ApiUnauthorizedResponse,
-} from '@nestjs/swagger';
-import { TooManyRequestsError } from '../common/dto/too-many-requests-error.dto';
-import { ApiResponse } from '../common/types';
+import { ApiOkResponse, ApiOperation, ApiTags } from '@nestjs/swagger';
+import { UseCommonErrorResponses } from '../common/decorators/common-error-responses.decorator';
 import { LoggerService } from '../logger/logger.service';
 import { AccessTokenService } from './accesstoken.service';
 import { AccessTokenError } from './dto/access-token-error.dto';
@@ -24,22 +17,19 @@ export class AccessTokenController {
   }
 
   @Get()
+  @ApiOperation({
+    summary: 'Get Battle.net access token for supplied client credentials',
+  })
   @ApiOkResponse({
     description:
       'Successful response. Note that in case of Battle.net errors the application will still return status code 200 and AccessTokenError response.',
     type: AccessTokenObject,
   })
-  @ApiUnauthorizedResponse({
-    description: ApiResponse.unauthorized,
+  @ApiOkResponse({
+    description: 'Battle.net API error.',
     type: AccessTokenError,
   })
-  @ApiTooManyRequestsResponse({
-    description: ApiResponse.tooManyRequests,
-    type: TooManyRequestsError,
-  })
-  @ApiOperation({
-    summary: 'Get Battle.net access token for supplied client credentials',
-  })
+  @UseCommonErrorResponses()
   getAccessToken(
     @Query('refresh') refresh?: boolean
   ): Promise<AccessTokenObject | AccessTokenError> {
