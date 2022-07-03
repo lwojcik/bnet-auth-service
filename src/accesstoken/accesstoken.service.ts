@@ -3,7 +3,6 @@ import { RequestContext } from 'nestjs-request-context';
 import { ConfigType } from '@nestjs/config';
 import { Source } from '../common/types';
 import { BattleNetService } from '../battlenet/battlenet.service';
-import { GetAccessTokenDto } from './dto/get-access-token.dto';
 import { CacheService } from '../cache/cache.service';
 import { LoggerService } from '../logger/logger.service';
 import { AccessTokenError } from './dto/access-token-error.dto';
@@ -61,12 +60,10 @@ export class AccessTokenService {
   }
 
   async getAccessToken(
-    getAccessTokenDto: GetAccessTokenDto
+    refresh = false
   ): Promise<AccessTokenObject | AccessTokenError> {
-    this.logger.setLoggedMethod(this.getAccessToken.name, getAccessTokenDto);
+    this.logger.setLoggedMethod(this.getAccessToken.name, refresh);
     this.logger.debug();
-
-    const { refresh } = getAccessTokenDto;
 
     if (this.redisConf.enable && !refresh) {
       this.logger.debug('Redis cache is enabled');
