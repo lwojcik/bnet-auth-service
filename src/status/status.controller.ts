@@ -1,18 +1,10 @@
 import { Controller, Get } from '@nestjs/common';
-import {
-  ApiBadRequestResponse,
-  ApiOkResponse,
-  ApiOperation,
-  ApiTags,
-  ApiTooManyRequestsResponse,
-  ApiUnauthorizedResponse,
-} from '@nestjs/swagger';
+import { ApiOkResponse, ApiOperation, ApiTags } from '@nestjs/swagger';
 import { LoggerService } from '../logger/logger.service';
 import { ApiResponse } from '../common/types';
 import { StatusResponse } from './dto/status-response.dto';
 import { StatusService } from './status.service';
-import { TooManyRequestsError } from '../common/dto/too-many-requests-error.dto';
-import { UnauthorizedError } from '../common/dto/unauthorized-error.dto';
+import { UseCommonErrorResponses } from '../common/decorators/common-error-responses.decorator';
 
 @ApiTags('status')
 @Controller('status')
@@ -30,17 +22,7 @@ export class StatusController {
     description: ApiResponse.ok,
     type: StatusResponse,
   })
-  @ApiBadRequestResponse({
-    description: ApiResponse.badRequest,
-  })
-  @ApiUnauthorizedResponse({
-    description: ApiResponse.unauthorized,
-    type: UnauthorizedError,
-  })
-  @ApiTooManyRequestsResponse({
-    description: ApiResponse.tooManyRequests,
-    type: TooManyRequestsError,
-  })
+  @UseCommonErrorResponses()
   getStatus() {
     this.logger.setLoggedMethod(this.getStatus.name);
     this.logger.debug();
