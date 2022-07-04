@@ -27,7 +27,7 @@ jest.mock(
 
 describe('Battle.net API (incorrect config)', () => {
   let app: NestFastifyApplication;
-  let OLD_ENV;
+  let OLD_ENV: NodeJS.ProcessEnv;
 
   beforeAll(async () => {
     OLD_ENV = process.env;

@@ -46,7 +46,10 @@ const minimalSetup: EnvironmentVariable[] = [
   },
 ];
 
-export const setupEnvVariable = (variableName: string, variableValue) => {
+export const setupEnvVariable = (
+  variableName: string,
+  variableValue: string
+) => {
   process.env[variableName] = variableValue;
 };
 

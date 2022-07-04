@@ -23,7 +23,7 @@ jest.mock('blizzapi', () => ({
 
 describe('Authorization disabled', () => {
   let app: NestFastifyApplication;
-  let OLD_ENV;
+  let OLD_ENV: NodeJS.ProcessEnv;
 
   beforeAll(async () => {
     OLD_ENV = process.env;
