@@ -18,9 +18,9 @@ export class CacheService {
     private readonly redisConf: ConfigType<typeof redisConfig>,
     private readonly logger: LoggerService
   ) {
+    this.logger.setLoggedClass(CacheService.name);
     this.cache = this.redisService.getClient();
     this.cacheKey = `:${this.redisConf.keyName}`;
-    this.logger.setLoggedClass(CacheService.name);
   }
 
   saveAccessToken(accessToken: string) {

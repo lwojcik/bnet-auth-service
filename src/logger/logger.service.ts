@@ -37,7 +37,7 @@ export class LoggerService {
     if (typeof args === 'string' && args.length === 0) {
       return '';
     }
-    if (typeof args === 'object' && Object.values(args).length > 0) {
+    if (typeof args === 'object' && Object.values(args as object).length > 0) {
       return JSON.stringify(args);
     }
     return '';
@@ -55,7 +55,7 @@ export class LoggerService {
     return this.pinoLogger.error(obj);
   }
 
-  public debug(msg?: unknown, ...args) {
+  public debug(msg?: unknown, ...args: unknown[]) {
     if (this.isPrefixSet()) {
       this.pinoLogger.debug(
         `${this.getPrefix()}${msg ? `: ${msg}` : ''}`,
