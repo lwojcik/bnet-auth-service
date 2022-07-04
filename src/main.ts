@@ -16,21 +16,21 @@ async function bootstrap() {
   const app = await NestFactory.create<NestFastifyApplication>(
     AppModule,
     new FastifyAdapter(
-      trueStringToBoolean({ value: process.env[HTTPS.enable] })
+      trueStringToBoolean({ value: process.env[HTTPS.enable]! })
         ? {
             https: {
-              key: fs.readFileSync(process.env[HTTPS.keyPath]),
-              cert: fs.readFileSync(process.env[HTTPS.certPath]),
+              key: fs.readFileSync(process.env[HTTPS.keyPath]!),
+              cert: fs.readFileSync(process.env[HTTPS.certPath]!),
             },
           }
         : undefined
     )
   );
   const configService = app.get(ConfigService);
-  const port = configService.get<string>(APP.port);
-  const host = configService.get<string>(APP.host);
+  const port = configService.get<string>(APP.port)!;
+  const host = configService.get<string>(APP.host)!;
 
-  if (trueStringToBoolean({ value: process.env[APP.enableCors] })) {
+  if (trueStringToBoolean({ value: process.env[APP.enableCors]! })) {
     const corsConfig = process.env[APP.corsOrigin]
       ? {
           origin: process.env[APP.corsOrigin],

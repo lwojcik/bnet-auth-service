@@ -6,7 +6,7 @@ import { CONFIG_VALIDATION_SCHEMA } from './common/constants';
 import { endpointsConfig, redisConfig } from './config';
 
 describe('AppModule', () => {
-  let OLD_ENV;
+  let OLD_ENV: NodeJS.ProcessEnv;
 
   beforeAll(() => {
     OLD_ENV = process.env;

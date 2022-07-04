@@ -18,7 +18,7 @@ jest.mock('blizzapi', () => ({
 
 describe('CORS disabled', () => {
   let app: NestFastifyApplication;
-  let OLD_ENV;
+  let OLD_ENV: NodeJS.ProcessEnv;
 
   const testOrigin = 'http://some-foreign-testing-origin.tld';
 

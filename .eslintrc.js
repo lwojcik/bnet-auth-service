@@ -5,5 +5,6 @@ module.exports = {
     'import/no-extraneous-dependencies': 'off',
     'import/no-default-export': 'off',
     'class-methods-use-this': 'off',
+    '@typescript-eslint/no-non-null-assertion': 'off',
   },
 };

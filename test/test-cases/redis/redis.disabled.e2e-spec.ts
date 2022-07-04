@@ -19,7 +19,7 @@ jest.mock('blizzapi', () => ({
 
 describe('Redis disabled', () => {
   let app: NestFastifyApplication;
-  let OLD_ENV;
+  let OLD_ENV: NodeJS.ProcessEnv;
 
   beforeEach(async () => {
     OLD_ENV = process.env;
