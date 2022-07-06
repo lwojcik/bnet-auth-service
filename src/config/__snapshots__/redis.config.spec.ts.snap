@@ -1,0 +1,14 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`redisConfig should create Redis config 1`] = `
+Object {
+  "db": 0,
+  "enable": false,
+  "host": "redis",
+  "keyName": "accesstoken",
+  "keyPrefix": "bas",
+  "password": "",
+  "port": 6379,
+  "ttlSecs": 2000,
+}
+`;

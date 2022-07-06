@@ -4,7 +4,6 @@ import { StatusService } from './status.service';
 
 describe('StatusService', () => {
   let service: StatusService;
-  let logger: LoggerService;
 
   beforeEach(async () => {
     const module: TestingModule = await Test.createTestingModule({
@@ -24,7 +23,6 @@ describe('StatusService', () => {
     }).compile();
 
     service = module.get<StatusService>(StatusService);
-    logger = module.get<LoggerService>(LoggerService);
   });
 
   it('should be defined', () => {
@@ -36,14 +34,5 @@ describe('StatusService', () => {
     jest.useFakeTimers().setSystemTime(new Date('2020-01-01'));
 
     expect(service.getStatus()).toMatchSnapshot();
-  });
-
-  it('getStatus() should generate logs', () => {
-    service.getStatus();
-    expect(logger.setLoggedClass).toHaveBeenCalledWith(StatusService.name);
-    expect(logger.setLoggedMethod).toHaveBeenCalledWith(
-      StatusService.prototype.getStatus.name
-    );
-    expect(logger.debug).toHaveBeenCalledTimes(1);
   });
 });
