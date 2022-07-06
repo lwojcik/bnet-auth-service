@@ -2,7 +2,6 @@ import { Controller, Get, Query } from '@nestjs/common';
 import { ApiOkResponse, ApiOperation, ApiTags } from '@nestjs/swagger';
 import { RefreshQueryParam } from '../common/decorators/refresh-query-param.decorator';
 import { UseCommonErrorResponses } from '../common/decorators/common-error-responses.decorator';
-import { LoggerService } from '../logger/logger.service';
 import { AccessTokenService } from './accesstoken.service';
 import { AccessTokenError } from './dto/access-token-error.dto';
 import { AccessTokenObject } from './dto/access-token-object.dto';
@@ -10,12 +9,7 @@ import { AccessTokenObject } from './dto/access-token-object.dto';
 @ApiTags('accesstoken')
 @Controller('accesstoken')
 export class AccessTokenController {
-  constructor(
-    private readonly accessTokenService: AccessTokenService,
-    private readonly logger: LoggerService
-  ) {
-    this.logger.setLoggedClass(AccessTokenController.name);
-  }
+  constructor(private readonly accessTokenService: AccessTokenService) {}
 
   @Get()
   @ApiOperation({
@@ -35,8 +29,6 @@ export class AccessTokenController {
   getAccessToken(
     @Query('refresh') refresh?: boolean
   ): Promise<AccessTokenObject | AccessTokenError> {
-    this.logger.setLoggedMethod(this.getAccessToken.name, refresh);
-    this.logger.debug();
     return this.accessTokenService.getAccessToken(refresh);
   }
 }

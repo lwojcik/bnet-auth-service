@@ -19,21 +19,10 @@ export class BattleNetService {
       clientId: this.bnetConfig.clientId,
       clientSecret: this.bnetConfig.clientSecret,
     });
-    this.logger.setLoggedClass(BattleNetService.name);
   }
 
   async getAccessToken() {
-    this.logger.setLoggedMethod(this.getAccessToken.name);
-    this.logger.debug();
-
     try {
-      this.logger.debug(
-        `Using Battle.net client id: ${this.bnetConfig.clientId}`
-      );
-      this.logger.debug(
-        `Using Battle.net client secret:${this.bnetConfig.clientSecret}`
-      );
-
       const accessToken = await this.blizzApi.getAccessToken();
 
       this.logger.debug(`Received access token: ${accessToken}`);

@@ -8,7 +8,6 @@ import { StatusModule } from './status/status.module';
 import { AccessTokenModule } from './accesstoken/accesstoken.module';
 import { LoggerModule } from './logger/logger.module';
 import { MainModule } from './main/main.module';
-import { endpointsConfig, redisConfig } from './config';
 import { AuthModule } from './auth/auth.module';
 import { JwtAuthGuard, PassthroughGuard } from './auth/guards';
 import { trueStringToBoolean } from './utils/trueStringToBoolean';
@@ -16,8 +15,6 @@ import { trueStringToBoolean } from './utils/trueStringToBoolean';
 @Module({
   imports: [
     ConfigModule.forRoot({
-      load: [endpointsConfig, redisConfig],
-      cache: true,
       validationSchema: CONFIG_VALIDATION_SCHEMA,
       validationOptions: {
         abortEarly: true,

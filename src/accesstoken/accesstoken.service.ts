@@ -17,15 +17,9 @@ export class AccessTokenService {
     @Inject(redisConfig.KEY)
     private readonly redisConf: ConfigType<typeof redisConfig>,
     private readonly logger: LoggerService
-  ) {
-    this.logger.setLoggedClass(AccessTokenService.name);
-  }
+  ) {}
 
   private async getAccessTokenFromBattleNet() {
-    this.logger.setLoggedMethod(this.getAccessTokenFromBattleNet.name);
-
-    this.logger.debug();
-
     const accessToken = await this.battleNetService.getAccessToken();
 
     if ((accessToken as AccessTokenError).error) {
@@ -43,8 +37,6 @@ export class AccessTokenService {
   }
 
   private async getAccessTokenFromCache(): Promise<string> {
-    this.logger.setLoggedMethod(this.getAccessTokenFromCache.name);
-
     const accessToken = await this.cacheService.getAccessToken();
 
     this.logger.debug(`Received access token: ${accessToken}`);
@@ -53,18 +45,12 @@ export class AccessTokenService {
   }
 
   private cacheAccessToken(accessToken: string) {
-    this.logger.setLoggedMethod(this.cacheAccessToken.name, accessToken);
-    this.logger.debug();
-
     return this.cacheService.saveAccessToken(accessToken);
   }
 
   async getAccessToken(
     refresh = false
   ): Promise<AccessTokenObject | AccessTokenError> {
-    this.logger.setLoggedMethod(this.getAccessToken.name, refresh);
-    this.logger.debug();
-
     if (this.redisConf.enable && !refresh) {
       this.logger.debug('Redis cache is enabled');
       this.logger.debug('Checking for cached access token...');
