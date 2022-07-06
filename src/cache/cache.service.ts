@@ -18,15 +18,11 @@ export class CacheService {
     private readonly redisConf: ConfigType<typeof redisConfig>,
     private readonly logger: LoggerService
   ) {
-    this.logger.setLoggedClass(CacheService.name);
     this.cache = this.redisService.getClient();
     this.cacheKey = `:${this.redisConf.keyName}`;
   }
 
   saveAccessToken(accessToken: string) {
-    this.logger.setLoggedMethod(this.saveAccessToken.name, accessToken);
-    this.logger.debug();
-
     if (!this.redisConf.enable) {
       this.logger.debug(`${REDIS.enable} set to false - access key not saved`);
     } else {
@@ -41,9 +37,6 @@ export class CacheService {
   }
 
   async getAccessToken() {
-    this.logger.setLoggedMethod(this.getAccessToken.name);
-    this.logger.debug();
-
     if (!this.redisConf.enable) {
       this.logger.debug(
         `${REDIS.enable} set to false - returning 'null' as access key`

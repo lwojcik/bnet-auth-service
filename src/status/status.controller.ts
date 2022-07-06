@@ -1,6 +1,5 @@
 import { Controller, Get } from '@nestjs/common';
 import { ApiOkResponse, ApiOperation, ApiTags } from '@nestjs/swagger';
-import { LoggerService } from '../logger/logger.service';
 import { ApiResponse } from '../common/types';
 import { StatusResponse } from './dto/status-response.dto';
 import { StatusService } from './status.service';
@@ -9,12 +8,7 @@ import { UseCommonErrorResponses } from '../common/decorators/common-error-respo
 @ApiTags('status')
 @Controller('status')
 export class StatusController {
-  constructor(
-    private readonly statusService: StatusService,
-    private readonly logger: LoggerService
-  ) {
-    this.logger.setLoggedClass(StatusController.name);
-  }
+  constructor(private readonly statusService: StatusService) {}
 
   @Get()
   @ApiOperation({ summary: 'Check app health and uptime' })
@@ -24,8 +18,6 @@ export class StatusController {
   })
   @UseCommonErrorResponses()
   getStatus() {
-    this.logger.setLoggedMethod(this.getStatus.name);
-    this.logger.debug();
     return this.statusService.getStatus();
   }
 }
