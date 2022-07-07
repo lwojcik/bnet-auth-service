@@ -1,5 +1,13 @@
 import * as Joi from 'joi';
-import { APP, AUTH, BATTLENET, HTTPS, REDIS, THROTTLE } from './environment';
+import {
+  APP,
+  AUTH,
+  BATTLENET,
+  CRON,
+  HTTPS,
+  REDIS,
+  THROTTLE,
+} from './environment';
 import { DEFAULTS } from './DEFAULTS';
 import { validateRegionName } from '../validators/validateRegionName.validator';
 
@@ -90,6 +98,15 @@ const httpsSchema = {
   }),
 };
 
+const cronSchema = {
+  [CRON.enable]: Joi.string().default('false'),
+  [CRON.pattern]: Joi.any().when(CRON.enable, {
+    is: 'true',
+    then: Joi.string().default(DEFAULTS.cron.pattern),
+    otherwise: Joi.optional(),
+  }),
+};
+
 export const CONFIG_VALIDATION_SCHEMA = Joi.object({
   ...appSchema,
   ...redisSchema,
@@ -97,4 +114,5 @@ export const CONFIG_VALIDATION_SCHEMA = Joi.object({
   ...throttleSchema,
   ...authSchema,
   ...httpsSchema,
+  ...cronSchema,
 });

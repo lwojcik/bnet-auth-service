@@ -1,3 +1,4 @@
+import { CronExpression } from '@nestjs/schedule';
 import { LogLevel, Environment } from '../types';
 
 export const DEFAULTS = {
@@ -37,5 +38,9 @@ export const DEFAULTS = {
     enable: false,
     keyPath: '',
     certPath: '',
+  },
+  cron: {
+    enable: false,
+    pattern: CronExpression.EVERY_30_MINUTES,
   },
 };

@@ -30,7 +30,7 @@ export class CacheService {
         `Using Redis key: ${this.redisConf.keyPrefix}${this.cacheKey}`
       );
 
-      this.logger.debug(`Set TTL to ${this.redisConf.ttlSecs} seconds`);
+      this.logger.debug(`TTL set to ${this.redisConf.ttlSecs} seconds`);
 
       this.cache.set(this.cacheKey, accessToken, 'EX', this.redisConf.ttlSecs);
     }
@@ -50,7 +50,7 @@ export class CacheService {
 
     const accessToken = await this.cache.get(this.cacheKey);
 
-    this.logger.debug(`Received access token: ${accessToken}`);
+    this.logger.debug(`Received access token from cache!`);
 
     return accessToken;
   }

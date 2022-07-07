@@ -19,6 +19,10 @@ Object {
     "clientSecret": "BAS_BATTLENET_CLIENT_SECRET",
     "region": "BAS_BATTLENET_REGION",
   },
+  "CRON": Object {
+    "enable": "BAS_CRON_ENABLE",
+    "pattern": "BAS_CRON_PATTERN",
+  },
   "HTTPS": Object {
     "certPath": "BAS_HTTPS_CERT_PATH",
     "enable": "BAS_HTTPS_ENABLE",

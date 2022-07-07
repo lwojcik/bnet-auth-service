@@ -23,7 +23,7 @@ export class AccessTokenService {
     const accessToken = await this.battleNetService.getAccessToken();
 
     if ((accessToken as AccessTokenError).error) {
-      this.logger.debug('Received access token error');
+      this.logger.error('Received access token error from Battle.net!');
       this.logger.error((accessToken as AccessTokenError).error);
 
       return {
@@ -39,7 +39,7 @@ export class AccessTokenService {
   private async getAccessTokenFromCache(): Promise<string> {
     const accessToken = await this.cacheService.getAccessToken();
 
-    this.logger.debug(`Received access token: ${accessToken}`);
+    this.logger.debug(`Received access token from cache!`);
 
     return accessToken;
   }
@@ -58,7 +58,7 @@ export class AccessTokenService {
       const accessTokenFromCache = await this.getAccessTokenFromCache();
 
       if (accessTokenFromCache) {
-        this.logger.debug(`Found cached access token ${accessTokenFromCache}`);
+        this.logger.debug(`Found cached access token!`);
 
         return {
           accessToken: accessTokenFromCache,
@@ -75,12 +75,11 @@ export class AccessTokenService {
     const accessTokenFromBattleNet = await this.getAccessTokenFromBattleNet();
 
     if ((accessTokenFromBattleNet as AccessTokenError).error) {
-      this.logger.error('Received access token error!');
       return accessTokenFromBattleNet as AccessTokenError;
     }
 
     if (this.redisConf.enable) {
-      this.logger.debug(`Caching access token: ${accessTokenFromBattleNet}...`);
+      this.logger.debug(`Caching access token...`);
       this.cacheAccessToken(accessTokenFromBattleNet as string);
     }
 
