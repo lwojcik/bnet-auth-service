@@ -18,5 +18,6 @@ import { redisConfig } from '../config';
   ],
   controllers: [AccessTokenController],
   providers: [AccessTokenService],
+  exports: [AccessTokenService],
 })
 export class AccessTokenModule {}

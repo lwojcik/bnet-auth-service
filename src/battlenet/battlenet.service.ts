@@ -25,7 +25,7 @@ export class BattleNetService {
     try {
       const accessToken = await this.blizzApi.getAccessToken();
 
-      this.logger.debug(`Received access token: ${accessToken}`);
+      this.logger.debug(`Received access token from Battle.net!`);
 
       return accessToken;
     } catch (error) {

@@ -125,6 +125,13 @@ Service can run in HTTPS mode using provided key and certificate.
 - `BAS_HTTPS_KEY_PATH` - path to HTTPS signing key (example: `certs/localhost.key`)
 - `BAS_HTTPS_CERT_PATH` - path to HTTPS certificate (example: `certs/localhost.pem`)
 
+### Refreshing access token via cron
+
+If enabled, service will refresh cached access token on a regular interval using NestJS cron mechanism.
+
+- `BAS_CRON_ENABLE` - enable cron task for refreshing access token (default: `false`)
+- `BAS_CRON_PATTERN` - crontab-compatible pattern to determine how often the task is supposed to run (if enabled, default value is `0 */30 * * * *`, i.e. once every 30 minutes)
+
 ## Available endpoints
 
 ### `GET /`
