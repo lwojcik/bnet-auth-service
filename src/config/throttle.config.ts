@@ -1,10 +1,6 @@
 import { registerAs } from '@nestjs/config';
-import { DEFAULTS, THROTTLE } from '../common/constants';
-
-const { env } = process;
-const defaultValue = DEFAULTS.throttle;
 
 export const throttleConfig = registerAs('throttle', () => ({
-  ttlSecs: env[THROTTLE.ttlSecs] || defaultValue.ttlSecs,
-  limit: env[THROTTLE.limit] || defaultValue.limit,
+  ttlSecs: parseInt(process.env.BAS_THROTTLE_TTL_SECS, 10),
+  limit: parseInt(process.env.BAS_THROTTLE_LIMIT, 10),
 }));

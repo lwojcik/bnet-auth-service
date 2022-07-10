@@ -1,17 +1,10 @@
 import { registerAs } from '@nestjs/config';
-import { trueStringToBoolean } from '../utils/trueStringToBoolean';
-import { APP, APP_INFO, DEFAULTS } from '../common/constants';
-
-const { env } = process;
-const defaultValue = DEFAULTS.app;
 
 export const appConfig = registerAs('app', () => ({
-  name: APP_INFO.name,
-  environment: env[APP.environment],
-  host: env[APP.host] || defaultValue.host,
-  port: parseInt(env[APP.port], 10) || defaultValue.port,
-  enableCors:
-    trueStringToBoolean({ value: env[APP.enableCors] }) ||
-    defaultValue.enableCors,
-  corsOrigin: env[APP.corsOrigin] || defaultValue.corsOrigin,
+  name: 'bnet-auth-service',
+  environment: process.env.NODE_ENV,
+  host: process.env.BAS_APP_HOST,
+  port: parseInt(process.env.BAS_APP_PORT, 10),
+  enableCors: process.env.BAS_APP_CORS_ENABLE === 'true',
+  corsOrigin: process.env.BAS_APP_CORS_ORIGIN,
 }));

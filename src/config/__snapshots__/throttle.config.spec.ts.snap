@@ -2,7 +2,7 @@
 
 exports[`throttleConfig should create throttle config 1`] = `
 Object {
-  "limit": 300,
-  "ttlSecs": 60,
+  "limit": NaN,
+  "ttlSecs": NaN,
 }
 `;

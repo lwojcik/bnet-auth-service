@@ -1,11 +1,8 @@
 import { registerAs } from '@nestjs/config';
 import { RegionName } from 'blizzapi';
-import { BATTLENET } from '../common/constants';
-
-const { env } = process;
 
 export const battleNetConfig = registerAs('battlenet', () => ({
-  region: env[BATTLENET.region] as RegionName,
-  clientId: env[BATTLENET.clientId],
-  clientSecret: env[BATTLENET.clientSecret],
+  region: process.env.BAS_BATTLENET_REGION as RegionName,
+  clientId: process.env.BAS_BATTLENET_CLIENT_ID,
+  clientSecret: process.env.BAS_BATTLENET_CLIENT_SECRET,
 }));

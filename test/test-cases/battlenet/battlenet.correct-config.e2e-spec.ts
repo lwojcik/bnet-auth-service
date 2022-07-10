@@ -1,9 +1,5 @@
 import { NestFastifyApplication } from '@nestjs/platform-fastify';
-import {
-  accessTokenFromApiResponse,
-  mainResponse,
-  statusProperties,
-} from '../../responses';
+import { accessTokenFromApiResponse } from '../../responses';
 import {
   prepareMinimalSetup,
   setupEnvVariables,
@@ -64,31 +60,6 @@ describe('Battle.net API (correct config)', () => {
     process.env = { ...OLD_ENV };
     await stopTestServer(app);
   });
-
-  it('/ (GET)', () =>
-    app
-      .inject({
-        method: 'GET',
-        url: '/',
-      })
-      .then((result) => {
-        expect(result.statusCode).toEqual(200);
-        expect(JSON.parse(result.payload)).toEqual(mainResponse);
-      }));
-
-  it('/status (GET)', () =>
-    app
-      .inject({
-        method: 'GET',
-        url: '/status',
-      })
-      .then((result) => {
-        expect(result.statusCode).toEqual(200);
-
-        statusProperties.forEach((property) => {
-          expect(JSON.parse(result.payload)).toHaveProperty(property);
-        });
-      }));
 
   it('/accesstoken (GET)', () =>
     app

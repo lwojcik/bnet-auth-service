@@ -2,13 +2,13 @@
 
 exports[`redisConfig should create Redis config 1`] = `
 Object {
-  "db": 0,
+  "db": NaN,
   "enable": false,
-  "host": "redis",
+  "host": undefined,
   "keyName": "accesstoken",
   "keyPrefix": "bas",
-  "password": "",
-  "port": 6379,
-  "ttlSecs": 2000,
+  "password": undefined,
+  "port": NaN,
+  "ttlSecs": NaN,
 }
 `;

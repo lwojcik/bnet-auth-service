@@ -2,7 +2,6 @@ import { Injectable } from '@nestjs/common';
 import { Cron } from '@nestjs/schedule';
 import { LoggerService } from '../logger/logger.service';
 import { AccessTokenService } from '../accesstoken/accesstoken.service';
-import { DEFAULTS } from '../common/constants';
 
 @Injectable()
 export class CronService {
@@ -11,7 +10,7 @@ export class CronService {
     private readonly accessTokenService: AccessTokenService
   ) {}
 
-  @Cron(process.env.BAS_CRON_PATTERN || DEFAULTS.cron.pattern)
+  @Cron(process.env.BAS_CRON_PATTERN)
   handleCron() {
     this.logger.debug('Refreshing access token via cron...');
     this.accessTokenService.getAccessToken(true);

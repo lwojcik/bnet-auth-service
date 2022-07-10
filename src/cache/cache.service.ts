@@ -4,7 +4,6 @@ import { ConfigType } from '@nestjs/config';
 import Redis from 'ioredis';
 import { LoggerService } from '../logger/logger.service';
 import { redisConfig } from '../config';
-import { REDIS } from '../common/constants';
 
 @Injectable()
 export class CacheService {
@@ -24,7 +23,7 @@ export class CacheService {
 
   saveAccessToken(accessToken: string) {
     if (!this.redisConf.enable) {
-      this.logger.debug(`${REDIS.enable} set to false - access key not saved`);
+      this.logger.debug('BAS_REDIS_ENABLE set to false - access key not saved');
     } else {
       this.logger.debug(
         `Using Redis key: ${this.redisConf.keyPrefix}${this.cacheKey}`
@@ -39,7 +38,7 @@ export class CacheService {
   async getAccessToken() {
     if (!this.redisConf.enable) {
       this.logger.debug(
-        `${REDIS.enable} set to false - returning 'null' as access key`
+        `BAS_REDIS_ENABLE set to false - returning 'null' as access key`
       );
       return null;
     }

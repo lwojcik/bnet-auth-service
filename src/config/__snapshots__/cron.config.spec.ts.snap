@@ -3,6 +3,6 @@
 exports[`cronConfig should create cron config 1`] = `
 Object {
   "enable": false,
-  "pattern": "0 */30 * * * *",
+  "pattern": undefined,
 }
 `;
