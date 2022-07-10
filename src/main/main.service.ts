@@ -13,7 +13,20 @@ export class MainService {
   getMain() {
     return {
       name: APP_INFO.name,
-      endpoints: this.endpoints,
+      endpoints: {
+        status: {
+          url: '/status',
+          method: 'GET',
+        },
+        accesstoken: {
+          url: '/accesstoken',
+          method: 'GET',
+        },
+        accesstokenrefresh: {
+          url: '/accesstoken?refresh=true',
+          method: 'GET',
+        },
+      },
     };
   }
 }

@@ -2,8 +2,7 @@ import { ConfigModule, registerAs } from '@nestjs/config';
 import { Test } from '@nestjs/testing';
 import { AppController } from './app.controller';
 import { AppModule } from './app.module';
-import { CONFIG_VALIDATION_SCHEMA } from './common/constants';
-import { endpointsConfig, redisConfig } from './config';
+import { endpointsConfig, redisConfig, configValidationSchema } from './config';
 
 describe('AppModule', () => {
   let OLD_ENV: NodeJS.ProcessEnv;
@@ -34,7 +33,7 @@ describe('AppModule', () => {
             })),
           ],
           cache: true,
-          validationSchema: CONFIG_VALIDATION_SCHEMA,
+          validationSchema: configValidationSchema,
           validationOptions: {
             abortEarly: true,
           },

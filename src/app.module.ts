@@ -3,34 +3,28 @@ import { ConfigModule, ConfigService } from '@nestjs/config';
 import { ThrottlerGuard, ThrottlerModule } from '@nestjs/throttler';
 import { APP_GUARD } from '@nestjs/core';
 import { AppController } from './app.controller';
-import {
-  AUTH,
-  CONFIG_VALIDATION_SCHEMA,
-  CRON,
-  THROTTLE,
-} from './common/constants';
+import { configValidationSchema, throttleConfig } from './config';
 import { StatusModule } from './status/status.module';
 import { AccessTokenModule } from './accesstoken/accesstoken.module';
 import { LoggerModule } from './logger/logger.module';
 import { MainModule } from './main/main.module';
 import { AuthModule } from './auth/auth.module';
 import { JwtAuthGuard, PassthroughGuard } from './auth/guards';
-import { trueStringToBoolean } from './utils/trueStringToBoolean';
 import { CronModule } from './cron/cron.module';
 
 const imports = [
   ConfigModule.forRoot({
-    validationSchema: CONFIG_VALIDATION_SCHEMA,
+    validationSchema: configValidationSchema,
     validationOptions: {
       abortEarly: true,
     },
   }),
   ThrottlerModule.forRootAsync({
-    imports: [ConfigModule],
+    imports: [ConfigModule.forFeature(throttleConfig)],
     inject: [ConfigService],
     useFactory: (config: ConfigService) => ({
-      ttl: config.get(THROTTLE.ttlSecs),
-      limit: config.get(THROTTLE.limit),
+      ttl: config.get('throttle.ttlSecs'),
+      limit: config.get('throttle.limit'),
     }),
   }),
   AuthModule,
@@ -41,7 +35,7 @@ const imports = [
 ];
 
 /* istanbul ignore next */
-if (trueStringToBoolean({ value: process.env[CRON.enable] })) {
+if (process.env.BAS_CRON_ENABLE === 'true') {
   imports.push(CronModule);
 }
 
@@ -57,7 +51,7 @@ if (trueStringToBoolean({ value: process.env[CRON.enable] })) {
       provide: APP_GUARD,
       useClass:
         // istanbul ignore next
-        trueStringToBoolean({ value: process.env[AUTH.enable] })
+        process.env.BAS_AUTH_ENABLE === 'true'
           ? JwtAuthGuard
           : PassthroughGuard,
     },

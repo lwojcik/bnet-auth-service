@@ -1,6 +1,5 @@
 services:
   bnet-auth-service:
-    container_name: bnet-auth-service
     build:
       context: .
       target: development
@@ -15,6 +14,7 @@ services:
       - redis
 
   redis:
-    image: 'redis:alpine'
+    image: redis:alpine
+    hostname: redis
     ports:
       - ${BAS_REDIS_PORT}:${BAS_REDIS_PORT}

@@ -4,3 +4,4 @@ export * from './battlenet.config';
 export * from './endpoints.config';
 export * from './redis.config';
 export * from './throttle.config';
+export * from './config-validation.schema';

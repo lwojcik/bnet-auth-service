@@ -2,11 +2,11 @@
 
 exports[`appConfig should create app config 1`] = `
 Object {
-  "corsOrigin": "",
+  "corsOrigin": undefined,
   "enableCors": false,
   "environment": "test",
-  "host": "0.0.0.0",
+  "host": undefined,
   "name": "bnet-auth-service",
-  "port": 3000,
+  "port": NaN,
 }
 `;
