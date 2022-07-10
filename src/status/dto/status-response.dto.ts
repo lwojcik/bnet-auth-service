@@ -1,14 +1,12 @@
 import { ApiProperty } from '@nestjs/swagger';
 import { IsString } from 'class-validator';
-import { ApiStatus } from '../../common/types';
 
 export class StatusResponse {
   @ApiProperty({
     description: 'Application status',
-    example: 'ok',
   })
   @IsString()
-  status: ApiStatus.ok;
+  status: string;
 
   @ApiProperty({
     description: 'Application uptime',

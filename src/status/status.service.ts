@@ -1,6 +1,5 @@
 import { Injectable } from '@nestjs/common';
 import { Duration } from 'luxon';
-import { ApiStatus } from '../common/types';
 import { StatusResponse } from './dto/status-response.dto';
 
 @Injectable()
@@ -12,7 +11,7 @@ export class StatusService {
     const uptimeDays = Math.floor(uptimeHours / 24);
 
     return {
-      status: ApiStatus.ok,
+      status: 'ok',
       uptime: Duration.fromObject({
         days: uptimeDays,
         hours: uptimeHours,

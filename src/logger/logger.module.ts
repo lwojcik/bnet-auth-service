@@ -1,7 +1,6 @@
 import { Module } from '@nestjs/common';
 import { LoggerModule as PinoLoggerModule } from 'nestjs-pino';
 import { v4 } from 'uuid';
-import { Environment } from '../common/types';
 import { LoggerService } from './logger.service';
 
 @Module({
@@ -13,15 +12,15 @@ import { LoggerService } from './logger.service';
           () => v4().toString(),
         level:
           // eslint-disable-next-line no-nested-ternary
-          process.env.NODE_ENV === Environment.production
+          process.env.NODE_ENV === 'production'
             ? // istanbul ignore next
               'error'
-            : process.env.NODE_ENV === Environment.development
+            : process.env.NODE_ENV === 'development'
             ? // istanbul ignore next
               'debug'
             : 'silent',
         transport:
-          process.env.NODE_ENV !== Environment.production
+          process.env.NODE_ENV !== 'production'
             ? {
                 target: 'pino-pretty',
                 options: {
