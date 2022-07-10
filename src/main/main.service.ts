@@ -1,18 +1,10 @@
-import { Inject, Injectable } from '@nestjs/common';
-import { ConfigType } from '@nestjs/config';
-import { APP_INFO } from '../common/constants';
-import { endpointsConfig } from '../config';
+import { Injectable } from '@nestjs/common';
 
 @Injectable()
 export class MainService {
-  constructor(
-    @Inject(endpointsConfig.KEY)
-    private readonly endpoints: ConfigType<typeof endpointsConfig>
-  ) {}
-
   getMain() {
     return {
-      name: APP_INFO.name,
+      name: 'bnet-auth-service',
       endpoints: {
         status: {
           url: '/status',

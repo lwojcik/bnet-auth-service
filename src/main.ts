@@ -7,7 +7,6 @@ import fs from 'fs';
 import { ValidationPipe } from '@nestjs/common';
 import { SwaggerModule, DocumentBuilder } from '@nestjs/swagger';
 import { AppModule } from './app.module';
-import { APP_INFO } from './common/constants';
 import { Environment } from './common/types';
 
 async function bootstrap() {
@@ -38,8 +37,10 @@ async function bootstrap() {
 
   if (process.env.NODE_ENV !== Environment.production) {
     const swaggerConfig = new DocumentBuilder()
-      .setTitle(APP_INFO.name)
-      .setDescription(APP_INFO.description)
+      .setTitle('bnet-auth-service')
+      .setDescription(
+        'REST microservice for retrieving and caching OAuth access tokens from Blizzard Battle.net API'
+      )
       .build();
     const document = SwaggerModule.createDocument(app, swaggerConfig);
     SwaggerModule.setup('api', app, document);
