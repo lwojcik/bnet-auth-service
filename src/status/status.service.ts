@@ -18,7 +18,7 @@ export class StatusService {
         hours: uptimeHours,
         minutes: uptimeMinutes,
       }).toHuman({
-        unitDisplay: 'short',
+        unitDisplay: 'narrow',
       }),
       timestamp: new Date().toISOString(),
     };

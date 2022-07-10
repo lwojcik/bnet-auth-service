@@ -4,6 +4,6 @@ exports[`StatusService should return status response 1`] = `
 Object {
   "status": "ok",
   "timestamp": "2020-01-01T00:00:00.000Z",
-  "uptime": "0 days, 0 hrs, 2 mins",
+  "uptime": "0d, 0h, 2m",
 }
 `;
