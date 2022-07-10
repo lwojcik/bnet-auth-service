@@ -7,7 +7,6 @@ import fs from 'fs';
 import { ValidationPipe } from '@nestjs/common';
 import { SwaggerModule, DocumentBuilder } from '@nestjs/swagger';
 import { AppModule } from './app.module';
-import { Environment } from './common/types';
 
 async function bootstrap() {
   const app = await NestFactory.create<NestFastifyApplication>(
@@ -35,7 +34,7 @@ async function bootstrap() {
     app.enableCors(corsConfig);
   }
 
-  if (process.env.NODE_ENV !== Environment.production) {
+  if (process.env.NODE_ENV !== 'production') {
     const swaggerConfig = new DocumentBuilder()
       .setTitle('bnet-auth-service')
       .setDescription(
