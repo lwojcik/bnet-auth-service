@@ -75,7 +75,7 @@
     "@types/eslint": "8.4.3"
   },
   "dependencies": {
-    "@liaoliaots/nestjs-redis": "9.0.0",
+    "@liaoliaots/nestjs-redis": "^9.0.1",
     "@nestjs/common": "^9.0.3",
     "@nestjs/config": "^2.2.0",
     "@nestjs/core": "^9.0.3",
@@ -92,7 +92,7 @@
     "ioredis": "^5.2.1",
     "joi": "^17.6.0",
     "luxon": "^3.0.1",
-    "nestjs-pino": "^2.6.0",
+    "nestjs-pino": "^3.1.1",
     "nestjs-request-context": "^1.0.0",
     "passport": "^0.6.0",
     "passport-jwt": "^4.0.0",
