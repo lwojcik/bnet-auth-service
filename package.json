@@ -93,7 +93,7 @@
     "joi": "^17.6.0",
     "luxon": "^3.0.1",
     "nestjs-pino": "^3.1.1",
-    "nestjs-request-context": "^1.0.0",
+    "nestjs-request-context": "^2.0.1",
     "passport": "^0.6.0",
     "passport-jwt": "^4.0.0",
     "reflect-metadata": "^0.1.13",
