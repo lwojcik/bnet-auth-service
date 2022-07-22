@@ -71,9 +71,6 @@
       "^.+\\.ts$": "ts-jest"
     }
   },
-  "resolutions": {
-    "@types/eslint": "8.4.3"
-  },
   "dependencies": {
     "@liaoliaots/nestjs-redis": "^9.0.1",
     "@nestjs/common": "^9.0.3",
