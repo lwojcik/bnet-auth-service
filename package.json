@@ -104,7 +104,7 @@
     "@nestjs/testing": "^9.0.3",
     "@types/cron": "^2.0.0",
     "@types/jest": "28.1.6",
-    "@types/luxon": "^2.3.2",
+    "@types/luxon": "^3.0.0",
     "@types/module-alias": "^2.0.1",
     "@types/node": "^18.0.5",
     "@types/passport-jwt": "^3.0.6",
