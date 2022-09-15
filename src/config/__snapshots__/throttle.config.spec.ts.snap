@@ -1,7 +1,7 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`throttleConfig should create throttle config 1`] = `
-Object {
+{
   "limit": NaN,
   "ttlSecs": NaN,
 }

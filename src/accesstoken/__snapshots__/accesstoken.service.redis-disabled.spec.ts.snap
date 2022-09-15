@@ -1,14 +1,14 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`AccessTokenService should get access token from Battle.net 1`] = `
-Object {
+{
   "accessToken": "mocked_access_token_from_battlenet",
   "source": "battlenet",
 }
 `;
 
 exports[`AccessTokenService should return access token error from Battle.net 1`] = `
-Object {
+{
   "error": "Mocked error response",
   "id": "sample_mocked_request_id",
   "statusCode": "Mocked error status code",
