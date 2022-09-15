@@ -1,12 +1,12 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`config should be defined 1`] = `
-Object {
+{
   "appConfig": [Function],
   "authConfig": [Function],
   "battleNetConfig": [Function],
-  "configValidationSchema": Object {
-    "$_root": Object {
+  "configValidationSchema": {
+    "$_root": {
       "ValidationError": [Function],
       "_types": Set {
         "alternatives",
@@ -33,14 +33,14 @@ Object {
       "bool": [Function],
       "boolean": [Function],
       "build": [Function],
-      "cache": Object {
+      "cache": {
         "provision": [Function],
       },
       "checkPreferences": [Function],
       "compile": [Function],
       "custom": [Function],
       "date": [Function],
-      "default": Object {
+      "default": {
         "ValidationError": [Function],
         "_types": Set {
           "alternatives",
@@ -67,7 +67,7 @@ Object {
         "bool": [Function],
         "boolean": [Function],
         "build": [Function],
-        "cache": Object {
+        "cache": {
           "provision": [Function],
         },
         "checkPreferences": [Function],
@@ -151,23 +151,23 @@ Object {
       "when": [Function],
       "x": [Function],
     },
-    "$_super": Object {
+    "$_super": {
       "default": [Function],
     },
-    "$_temp": Object {
+    "$_temp": {
       "ruleset": false,
-      "whens": Object {},
+      "whens": {},
     },
-    "$_terms": Object {
+    "$_terms": {
       "alterations": null,
       "dependencies": null,
       "examples": null,
       "externals": null,
       "keys":  [
-        Object {
+        {
           "key": "NODE_ENV",
-          "schema": Object {
-            "$_root": Object {
+          "schema": {
+            "$_root": {
               "ValidationError": [Function],
               "_types": Set {
                 "alternatives",
@@ -194,14 +194,14 @@ Object {
               "bool": [Function],
               "boolean": [Function],
               "build": [Function],
-              "cache": Object {
+              "cache": {
                 "provision": [Function],
               },
               "checkPreferences": [Function],
               "compile": [Function],
               "custom": [Function],
               "date": [Function],
-              "default": Object {
+              "default": {
                 "ValidationError": [Function],
                 "_types": Set {
                   "alternatives",
@@ -228,7 +228,7 @@ Object {
                 "bool": [Function],
                 "boolean": [Function],
                 "build": [Function],
-                "cache": Object {
+                "cache": {
                   "provision": [Function],
                 },
                 "checkPreferences": [Function],
@@ -312,46 +312,46 @@ Object {
               "when": [Function],
               "x": [Function],
             },
-            "$_super": Object {},
-            "$_temp": Object {
+            "$_super": {},
+            "$_temp": {
               "ruleset": false,
-              "whens": Object {},
+              "whens": {},
             },
-            "$_terms": Object {
+            "$_terms": {
               "alterations": null,
               "examples": null,
               "externals": null,
-              "metas": Array [],
-              "notes": Array [],
+              "metas": [],
+              "notes": [],
               "replacements": null,
               "shared": null,
-              "tags": Array [],
+              "tags": [],
               "whens": null,
             },
             "_cache": null,
-            "_flags": Object {
+            "_flags": {
               "default": "production",
             },
-            "_ids": Object {
+            "_ids": {
               "_byId": Map {},
               "_byKey": Map {},
               "_schemaChain": false,
             },
             "_invalids": null,
             "_preferences": null,
-            "_refs": Object {
-              "refs": Array [],
+            "_refs": {
+              "refs": [],
             },
-            "_rules": Array [],
+            "_rules": [],
             "_singleRules": Map {},
             "_valids": null,
             "type": "string",
           },
         },
-        Object {
+        {
           "key": "BAS_APP_HOST",
-          "schema": Object {
-            "$_root": Object {
+          "schema": {
+            "$_root": {
               "ValidationError": [Function],
               "_types": Set {
                 "alternatives",
@@ -378,14 +378,14 @@ Object {
               "bool": [Function],
               "boolean": [Function],
               "build": [Function],
-              "cache": Object {
+              "cache": {
                 "provision": [Function],
               },
               "checkPreferences": [Function],
               "compile": [Function],
               "custom": [Function],
               "date": [Function],
-              "default": Object {
+              "default": {
                 "ValidationError": [Function],
                 "_types": Set {
                   "alternatives",
@@ -412,7 +412,7 @@ Object {
                 "bool": [Function],
                 "boolean": [Function],
                 "build": [Function],
-                "cache": Object {
+                "cache": {
                   "provision": [Function],
                 },
                 "checkPreferences": [Function],
@@ -496,46 +496,46 @@ Object {
               "when": [Function],
               "x": [Function],
             },
-            "$_super": Object {},
-            "$_temp": Object {
+            "$_super": {},
+            "$_temp": {
               "ruleset": false,
-              "whens": Object {},
+              "whens": {},
             },
-            "$_terms": Object {
+            "$_terms": {
               "alterations": null,
               "examples": null,
               "externals": null,
-              "metas": Array [],
-              "notes": Array [],
+              "metas": [],
+              "notes": [],
               "replacements": null,
               "shared": null,
-              "tags": Array [],
+              "tags": [],
               "whens": null,
             },
             "_cache": null,
-            "_flags": Object {
+            "_flags": {
               "default": "0.0.0.0",
             },
-            "_ids": Object {
+            "_ids": {
               "_byId": Map {},
               "_byKey": Map {},
               "_schemaChain": false,
             },
             "_invalids": null,
             "_preferences": null,
-            "_refs": Object {
-              "refs": Array [],
+            "_refs": {
+              "refs": [],
             },
-            "_rules": Array [],
+            "_rules": [],
             "_singleRules": Map {},
             "_valids": null,
             "type": "string",
           },
         },
-        Object {
+        {
           "key": "BAS_APP_PORT",
-          "schema": Object {
-            "$_root": Object {
+          "schema": {
+            "$_root": {
               "ValidationError": [Function],
               "_types": Set {
                 "alternatives",
@@ -562,14 +562,14 @@ Object {
               "bool": [Function],
               "boolean": [Function],
               "build": [Function],
-              "cache": Object {
+              "cache": {
                 "provision": [Function],
               },
               "checkPreferences": [Function],
               "compile": [Function],
               "custom": [Function],
               "date": [Function],
-              "default": Object {
+              "default": {
                 "ValidationError": [Function],
                 "_types": Set {
                   "alternatives",
@@ -596,7 +596,7 @@ Object {
                 "bool": [Function],
                 "boolean": [Function],
                 "build": [Function],
-                "cache": Object {
+                "cache": {
                   "provision": [Function],
                 },
                 "checkPreferences": [Function],
@@ -680,46 +680,46 @@ Object {
               "when": [Function],
               "x": [Function],
             },
-            "$_super": Object {},
-            "$_temp": Object {
+            "$_super": {},
+            "$_temp": {
               "ruleset": false,
-              "whens": Object {},
+              "whens": {},
             },
-            "$_terms": Object {
+            "$_terms": {
               "alterations": null,
               "examples": null,
               "externals": null,
-              "metas": Array [],
-              "notes": Array [],
+              "metas": [],
+              "notes": [],
               "replacements": null,
               "shared": null,
-              "tags": Array [],
+              "tags": [],
               "whens": null,
             },
             "_cache": null,
-            "_flags": Object {
+            "_flags": {
               "default": 3000,
             },
-            "_ids": Object {
+            "_ids": {
               "_byId": Map {},
               "_byKey": Map {},
               "_schemaChain": false,
             },
             "_invalids": null,
             "_preferences": null,
-            "_refs": Object {
-              "refs": Array [],
+            "_refs": {
+              "refs": [],
             },
-            "_rules": Array [],
+            "_rules": [],
             "_singleRules": Map {},
             "_valids": null,
             "type": "string",
           },
         },
-        Object {
+        {
           "key": "BAS_APP_CORS_ORIGIN",
-          "schema": Object {
-            "$_root": Object {
+          "schema": {
+            "$_root": {
               "ValidationError": [Function],
               "_types": Set {
                 "alternatives",
@@ -746,14 +746,14 @@ Object {
               "bool": [Function],
               "boolean": [Function],
               "build": [Function],
-              "cache": Object {
+              "cache": {
                 "provision": [Function],
               },
               "checkPreferences": [Function],
               "compile": [Function],
               "custom": [Function],
               "date": [Function],
-              "default": Object {
+              "default": {
                 "ValidationError": [Function],
                 "_types": Set {
                   "alternatives",
@@ -780,7 +780,7 @@ Object {
                 "bool": [Function],
                 "boolean": [Function],
                 "build": [Function],
-                "cache": Object {
+                "cache": {
                   "provision": [Function],
                 },
                 "checkPreferences": [Function],
@@ -864,45 +864,45 @@ Object {
               "when": [Function],
               "x": [Function],
             },
-            "$_super": Object {},
-            "$_temp": Object {
+            "$_super": {},
+            "$_temp": {
               "ruleset": false,
-              "whens": Object {},
+              "whens": {},
             },
-            "$_terms": Object {
+            "$_terms": {
               "alterations": null,
               "examples": null,
               "externals": null,
-              "metas": Array [],
-              "notes": Array [],
+              "metas": [],
+              "notes": [],
               "shared": null,
-              "tags": Array [],
+              "tags": [],
               "whens": null,
             },
             "_cache": null,
-            "_flags": Object {
+            "_flags": {
               "presence": "optional",
             },
-            "_ids": Object {
+            "_ids": {
               "_byId": Map {},
               "_byKey": Map {},
               "_schemaChain": false,
             },
             "_invalids": null,
             "_preferences": null,
-            "_refs": Object {
-              "refs": Array [],
+            "_refs": {
+              "refs": [],
             },
-            "_rules": Array [],
+            "_rules": [],
             "_singleRules": Map {},
             "_valids": null,
             "type": "any",
           },
         },
-        Object {
+        {
           "key": "BAS_REDIS_HOST",
-          "schema": Object {
-            "$_root": Object {
+          "schema": {
+            "$_root": {
               "ValidationError": [Function],
               "_types": Set {
                 "alternatives",
@@ -929,14 +929,14 @@ Object {
               "bool": [Function],
               "boolean": [Function],
               "build": [Function],
-              "cache": Object {
+              "cache": {
                 "provision": [Function],
               },
               "checkPreferences": [Function],
               "compile": [Function],
               "custom": [Function],
               "date": [Function],
-              "default": Object {
+              "default": {
                 "ValidationError": [Function],
                 "_types": Set {
                   "alternatives",
@@ -963,7 +963,7 @@ Object {
                 "bool": [Function],
                 "boolean": [Function],
                 "build": [Function],
-                "cache": Object {
+                "cache": {
                   "provision": [Function],
                 },
                 "checkPreferences": [Function],
@@ -1047,47 +1047,47 @@ Object {
               "when": [Function],
               "x": [Function],
             },
-            "$_super": Object {},
-            "$_temp": Object {
+            "$_super": {},
+            "$_temp": {
               "ruleset": false,
-              "whens": Object {},
+              "whens": {},
             },
-            "$_terms": Object {
+            "$_terms": {
               "alterations": null,
               "examples": null,
               "externals": null,
-              "metas": Array [],
-              "notes": Array [],
+              "metas": [],
+              "notes": [],
               "replacements": null,
               "shared": null,
-              "tags": Array [],
+              "tags": [],
               "whens": null,
             },
             "_cache": null,
-            "_flags": Object {
+            "_flags": {
               "default": "redis",
               "presence": "optional",
             },
-            "_ids": Object {
+            "_ids": {
               "_byId": Map {},
               "_byKey": Map {},
               "_schemaChain": false,
             },
             "_invalids": null,
             "_preferences": null,
-            "_refs": Object {
-              "refs": Array [],
+            "_refs": {
+              "refs": [],
             },
-            "_rules": Array [],
+            "_rules": [],
             "_singleRules": Map {},
             "_valids": null,
             "type": "string",
           },
         },
-        Object {
+        {
           "key": "BAS_REDIS_PORT",
-          "schema": Object {
-            "$_root": Object {
+          "schema": {
+            "$_root": {
               "ValidationError": [Function],
               "_types": Set {
                 "alternatives",
@@ -1114,14 +1114,14 @@ Object {
               "bool": [Function],
               "boolean": [Function],
               "build": [Function],
-              "cache": Object {
+              "cache": {
                 "provision": [Function],
               },
               "checkPreferences": [Function],
               "compile": [Function],
               "custom": [Function],
               "date": [Function],
-              "default": Object {
+              "default": {
                 "ValidationError": [Function],
                 "_types": Set {
                   "alternatives",
@@ -1148,7 +1148,7 @@ Object {
                 "bool": [Function],
                 "boolean": [Function],
                 "build": [Function],
-                "cache": Object {
+                "cache": {
                   "provision": [Function],
                 },
                 "checkPreferences": [Function],
@@ -1232,47 +1232,47 @@ Object {
               "when": [Function],
               "x": [Function],
             },
-            "$_super": Object {},
-            "$_temp": Object {
+            "$_super": {},
+            "$_temp": {
               "ruleset": false,
-              "whens": Object {},
+              "whens": {},
             },
-            "$_terms": Object {
+            "$_terms": {
               "alterations": null,
               "examples": null,
               "externals": null,
-              "metas": Array [],
-              "notes": Array [],
+              "metas": [],
+              "notes": [],
               "replacements": null,
               "shared": null,
-              "tags": Array [],
+              "tags": [],
               "whens": null,
             },
             "_cache": null,
-            "_flags": Object {
+            "_flags": {
               "default": "6379",
               "presence": "optional",
             },
-            "_ids": Object {
+            "_ids": {
               "_byId": Map {},
               "_byKey": Map {},
               "_schemaChain": false,
             },
             "_invalids": null,
             "_preferences": null,
-            "_refs": Object {
-              "refs": Array [],
+            "_refs": {
+              "refs": [],
             },
-            "_rules": Array [],
+            "_rules": [],
             "_singleRules": Map {},
             "_valids": null,
             "type": "string",
           },
         },
-        Object {
+        {
           "key": "BAS_REDIS_PASSWORD",
-          "schema": Object {
-            "$_root": Object {
+          "schema": {
+            "$_root": {
               "ValidationError": [Function],
               "_types": Set {
                 "alternatives",
@@ -1299,14 +1299,14 @@ Object {
               "bool": [Function],
               "boolean": [Function],
               "build": [Function],
-              "cache": Object {
+              "cache": {
                 "provision": [Function],
               },
               "checkPreferences": [Function],
               "compile": [Function],
               "custom": [Function],
               "date": [Function],
-              "default": Object {
+              "default": {
                 "ValidationError": [Function],
                 "_types": Set {
                   "alternatives",
@@ -1333,7 +1333,7 @@ Object {
                 "bool": [Function],
                 "boolean": [Function],
                 "build": [Function],
-                "cache": Object {
+                "cache": {
                   "provision": [Function],
                 },
                 "checkPreferences": [Function],
@@ -1417,45 +1417,45 @@ Object {
               "when": [Function],
               "x": [Function],
             },
-            "$_super": Object {},
-            "$_temp": Object {
+            "$_super": {},
+            "$_temp": {
               "ruleset": false,
-              "whens": Object {},
+              "whens": {},
             },
-            "$_terms": Object {
+            "$_terms": {
               "alterations": null,
               "examples": null,
               "externals": null,
-              "metas": Array [],
-              "notes": Array [],
+              "metas": [],
+              "notes": [],
               "shared": null,
-              "tags": Array [],
+              "tags": [],
               "whens": null,
             },
             "_cache": null,
-            "_flags": Object {
+            "_flags": {
               "presence": "optional",
             },
-            "_ids": Object {
+            "_ids": {
               "_byId": Map {},
               "_byKey": Map {},
               "_schemaChain": false,
             },
             "_invalids": null,
             "_preferences": null,
-            "_refs": Object {
-              "refs": Array [],
+            "_refs": {
+              "refs": [],
             },
-            "_rules": Array [],
+            "_rules": [],
             "_singleRules": Map {},
             "_valids": null,
             "type": "any",
           },
         },
-        Object {
+        {
           "key": "BAS_REDIS_TTL_SECS",
-          "schema": Object {
-            "$_root": Object {
+          "schema": {
+            "$_root": {
               "ValidationError": [Function],
               "_types": Set {
                 "alternatives",
@@ -1482,14 +1482,14 @@ Object {
               "bool": [Function],
               "boolean": [Function],
               "build": [Function],
-              "cache": Object {
+              "cache": {
                 "provision": [Function],
               },
               "checkPreferences": [Function],
               "compile": [Function],
               "custom": [Function],
               "date": [Function],
-              "default": Object {
+              "default": {
                 "ValidationError": [Function],
                 "_types": Set {
                   "alternatives",
@@ -1516,7 +1516,7 @@ Object {
                 "bool": [Function],
                 "boolean": [Function],
                 "build": [Function],
-                "cache": Object {
+                "cache": {
                   "provision": [Function],
                 },
                 "checkPreferences": [Function],
@@ -1600,47 +1600,47 @@ Object {
               "when": [Function],
               "x": [Function],
             },
-            "$_super": Object {},
-            "$_temp": Object {
+            "$_super": {},
+            "$_temp": {
               "ruleset": false,
-              "whens": Object {},
+              "whens": {},
             },
-            "$_terms": Object {
+            "$_terms": {
               "alterations": null,
               "examples": null,
               "externals": null,
-              "metas": Array [],
-              "notes": Array [],
+              "metas": [],
+              "notes": [],
               "replacements": null,
               "shared": null,
-              "tags": Array [],
+              "tags": [],
               "whens": null,
             },
             "_cache": null,
-            "_flags": Object {
+            "_flags": {
               "default": "2000",
               "presence": "optional",
             },
-            "_ids": Object {
+            "_ids": {
               "_byId": Map {},
               "_byKey": Map {},
               "_schemaChain": false,
             },
             "_invalids": null,
             "_preferences": null,
-            "_refs": Object {
-              "refs": Array [],
+            "_refs": {
+              "refs": [],
             },
-            "_rules": Array [],
+            "_rules": [],
             "_singleRules": Map {},
             "_valids": null,
             "type": "string",
           },
         },
-        Object {
+        {
           "key": "BAS_REDIS_DB",
-          "schema": Object {
-            "$_root": Object {
+          "schema": {
+            "$_root": {
               "ValidationError": [Function],
               "_types": Set {
                 "alternatives",
@@ -1667,14 +1667,14 @@ Object {
               "bool": [Function],
               "boolean": [Function],
               "build": [Function],
-              "cache": Object {
+              "cache": {
                 "provision": [Function],
               },
               "checkPreferences": [Function],
               "compile": [Function],
               "custom": [Function],
               "date": [Function],
-              "default": Object {
+              "default": {
                 "ValidationError": [Function],
                 "_types": Set {
                   "alternatives",
@@ -1701,7 +1701,7 @@ Object {
                 "bool": [Function],
                 "boolean": [Function],
                 "build": [Function],
-                "cache": Object {
+                "cache": {
                   "provision": [Function],
                 },
                 "checkPreferences": [Function],
@@ -1785,47 +1785,47 @@ Object {
               "when": [Function],
               "x": [Function],
             },
-            "$_super": Object {},
-            "$_temp": Object {
+            "$_super": {},
+            "$_temp": {
               "ruleset": false,
-              "whens": Object {},
+              "whens": {},
             },
-            "$_terms": Object {
+            "$_terms": {
               "alterations": null,
               "examples": null,
               "externals": null,
-              "metas": Array [],
-              "notes": Array [],
+              "metas": [],
+              "notes": [],
               "replacements": null,
               "shared": null,
-              "tags": Array [],
+              "tags": [],
               "whens": null,
             },
             "_cache": null,
-            "_flags": Object {
+            "_flags": {
               "default": "0",
               "presence": "optional",
             },
-            "_ids": Object {
+            "_ids": {
               "_byId": Map {},
               "_byKey": Map {},
               "_schemaChain": false,
             },
             "_invalids": null,
             "_preferences": null,
-            "_refs": Object {
-              "refs": Array [],
+            "_refs": {
+              "refs": [],
             },
-            "_rules": Array [],
+            "_rules": [],
             "_singleRules": Map {},
             "_valids": null,
             "type": "string",
           },
         },
-        Object {
+        {
           "key": "BAS_BATTLENET_REGION",
-          "schema": Object {
-            "$_root": Object {
+          "schema": {
+            "$_root": {
               "ValidationError": [Function],
               "_types": Set {
                 "alternatives",
@@ -1852,14 +1852,14 @@ Object {
               "bool": [Function],
               "boolean": [Function],
               "build": [Function],
-              "cache": Object {
+              "cache": {
                 "provision": [Function],
               },
               "checkPreferences": [Function],
               "compile": [Function],
               "custom": [Function],
               "date": [Function],
-              "default": Object {
+              "default": {
                 "ValidationError": [Function],
                 "_types": Set {
                   "alternatives",
@@ -1886,7 +1886,7 @@ Object {
                 "bool": [Function],
                 "boolean": [Function],
                 "build": [Function],
-                "cache": Object {
+                "cache": {
                   "provision": [Function],
                 },
                 "checkPreferences": [Function],
@@ -1970,40 +1970,40 @@ Object {
               "when": [Function],
               "x": [Function],
             },
-            "$_super": Object {},
-            "$_temp": Object {
+            "$_super": {},
+            "$_temp": {
               "ruleset": null,
-              "whens": Object {},
+              "whens": {},
             },
-            "$_terms": Object {
+            "$_terms": {
               "alterations": null,
               "examples": null,
               "externals": null,
-              "metas": Array [],
-              "notes": Array [],
+              "metas": [],
+              "notes": [],
               "replacements": null,
               "shared": null,
-              "tags": Array [],
+              "tags": [],
               "whens": null,
             },
             "_cache": null,
-            "_flags": Object {
+            "_flags": {
               "presence": "required",
             },
-            "_ids": Object {
+            "_ids": {
               "_byId": Map {},
               "_byKey": Map {},
               "_schemaChain": false,
             },
             "_invalids": null,
             "_preferences": null,
-            "_refs": Object {
-              "refs": Array [],
+            "_refs": {
+              "refs": [],
             },
-            "_rules": Array [
-              Object {
-                "_resolve": Array [],
-                "args": Object {
+            "_rules": [
+              {
+                "_resolve": [],
+                "args": {
                   "method": [Function],
                 },
                 "method": "custom",
@@ -2015,10 +2015,10 @@ Object {
             "type": "string",
           },
         },
-        Object {
+        {
           "key": "BAS_BATTLENET_CLIENT_ID",
-          "schema": Object {
-            "$_root": Object {
+          "schema": {
+            "$_root": {
               "ValidationError": [Function],
               "_types": Set {
                 "alternatives",
@@ -2045,14 +2045,14 @@ Object {
               "bool": [Function],
               "boolean": [Function],
               "build": [Function],
-              "cache": Object {
+              "cache": {
                 "provision": [Function],
               },
               "checkPreferences": [Function],
               "compile": [Function],
               "custom": [Function],
               "date": [Function],
-              "default": Object {
+              "default": {
                 "ValidationError": [Function],
                 "_types": Set {
                   "alternatives",
@@ -2079,7 +2079,7 @@ Object {
                 "bool": [Function],
                 "boolean": [Function],
                 "build": [Function],
-                "cache": Object {
+                "cache": {
                   "provision": [Function],
                 },
                 "checkPreferences": [Function],
@@ -2163,46 +2163,46 @@ Object {
               "when": [Function],
               "x": [Function],
             },
-            "$_super": Object {},
-            "$_temp": Object {
+            "$_super": {},
+            "$_temp": {
               "ruleset": false,
-              "whens": Object {},
+              "whens": {},
             },
-            "$_terms": Object {
+            "$_terms": {
               "alterations": null,
               "examples": null,
               "externals": null,
-              "metas": Array [],
-              "notes": Array [],
+              "metas": [],
+              "notes": [],
               "replacements": null,
               "shared": null,
-              "tags": Array [],
+              "tags": [],
               "whens": null,
             },
             "_cache": null,
-            "_flags": Object {
+            "_flags": {
               "presence": "required",
             },
-            "_ids": Object {
+            "_ids": {
               "_byId": Map {},
               "_byKey": Map {},
               "_schemaChain": false,
             },
             "_invalids": null,
             "_preferences": null,
-            "_refs": Object {
-              "refs": Array [],
+            "_refs": {
+              "refs": [],
             },
-            "_rules": Array [],
+            "_rules": [],
             "_singleRules": Map {},
             "_valids": null,
             "type": "string",
           },
         },
-        Object {
+        {
           "key": "BAS_BATTLENET_CLIENT_SECRET",
-          "schema": Object {
-            "$_root": Object {
+          "schema": {
+            "$_root": {
               "ValidationError": [Function],
               "_types": Set {
                 "alternatives",
@@ -2229,14 +2229,14 @@ Object {
               "bool": [Function],
               "boolean": [Function],
               "build": [Function],
-              "cache": Object {
+              "cache": {
                 "provision": [Function],
               },
               "checkPreferences": [Function],
               "compile": [Function],
               "custom": [Function],
               "date": [Function],
-              "default": Object {
+              "default": {
                 "ValidationError": [Function],
                 "_types": Set {
                   "alternatives",
@@ -2263,7 +2263,7 @@ Object {
                 "bool": [Function],
                 "boolean": [Function],
                 "build": [Function],
-                "cache": Object {
+                "cache": {
                   "provision": [Function],
                 },
                 "checkPreferences": [Function],
@@ -2347,46 +2347,46 @@ Object {
               "when": [Function],
               "x": [Function],
             },
-            "$_super": Object {},
-            "$_temp": Object {
+            "$_super": {},
+            "$_temp": {
               "ruleset": false,
-              "whens": Object {},
+              "whens": {},
             },
-            "$_terms": Object {
+            "$_terms": {
               "alterations": null,
               "examples": null,
               "externals": null,
-              "metas": Array [],
-              "notes": Array [],
+              "metas": [],
+              "notes": [],
               "replacements": null,
               "shared": null,
-              "tags": Array [],
+              "tags": [],
               "whens": null,
             },
             "_cache": null,
-            "_flags": Object {
+            "_flags": {
               "presence": "required",
             },
-            "_ids": Object {
+            "_ids": {
               "_byId": Map {},
               "_byKey": Map {},
               "_schemaChain": false,
             },
             "_invalids": null,
             "_preferences": null,
-            "_refs": Object {
-              "refs": Array [],
+            "_refs": {
+              "refs": [],
             },
-            "_rules": Array [],
+            "_rules": [],
             "_singleRules": Map {},
             "_valids": null,
             "type": "string",
           },
         },
-        Object {
+        {
           "key": "BAS_THROTTLE_LIMIT",
-          "schema": Object {
-            "$_root": Object {
+          "schema": {
+            "$_root": {
               "ValidationError": [Function],
               "_types": Set {
                 "alternatives",
@@ -2413,14 +2413,14 @@ Object {
               "bool": [Function],
               "boolean": [Function],
               "build": [Function],
-              "cache": Object {
+              "cache": {
                 "provision": [Function],
               },
               "checkPreferences": [Function],
               "compile": [Function],
               "custom": [Function],
               "date": [Function],
-              "default": Object {
+              "default": {
                 "ValidationError": [Function],
                 "_types": Set {
                   "alternatives",
@@ -2447,7 +2447,7 @@ Object {
                 "bool": [Function],
                 "boolean": [Function],
                 "build": [Function],
-                "cache": Object {
+                "cache": {
                   "provision": [Function],
                 },
                 "checkPreferences": [Function],
@@ -2531,47 +2531,47 @@ Object {
               "when": [Function],
               "x": [Function],
             },
-            "$_super": Object {},
-            "$_temp": Object {
+            "$_super": {},
+            "$_temp": {
               "ruleset": false,
-              "whens": Object {},
+              "whens": {},
             },
-            "$_terms": Object {
+            "$_terms": {
               "alterations": null,
               "examples": null,
               "externals": null,
-              "metas": Array [],
-              "notes": Array [],
+              "metas": [],
+              "notes": [],
               "replacements": null,
               "shared": null,
-              "tags": Array [],
+              "tags": [],
               "whens": null,
             },
             "_cache": null,
-            "_flags": Object {
+            "_flags": {
               "default": "300",
               "presence": "optional",
             },
-            "_ids": Object {
+            "_ids": {
               "_byId": Map {},
               "_byKey": Map {},
               "_schemaChain": false,
             },
             "_invalids": null,
             "_preferences": null,
-            "_refs": Object {
-              "refs": Array [],
+            "_refs": {
+              "refs": [],
             },
-            "_rules": Array [],
+            "_rules": [],
             "_singleRules": Map {},
             "_valids": null,
             "type": "string",
           },
         },
-        Object {
+        {
           "key": "BAS_THROTTLE_TTL_SECS",
-          "schema": Object {
-            "$_root": Object {
+          "schema": {
+            "$_root": {
               "ValidationError": [Function],
               "_types": Set {
                 "alternatives",
@@ -2598,14 +2598,14 @@ Object {
               "bool": [Function],
               "boolean": [Function],
               "build": [Function],
-              "cache": Object {
+              "cache": {
                 "provision": [Function],
               },
               "checkPreferences": [Function],
               "compile": [Function],
               "custom": [Function],
               "date": [Function],
-              "default": Object {
+              "default": {
                 "ValidationError": [Function],
                 "_types": Set {
                   "alternatives",
@@ -2632,7 +2632,7 @@ Object {
                 "bool": [Function],
                 "boolean": [Function],
                 "build": [Function],
-                "cache": Object {
+                "cache": {
                   "provision": [Function],
                 },
                 "checkPreferences": [Function],
@@ -2716,47 +2716,47 @@ Object {
               "when": [Function],
               "x": [Function],
             },
-            "$_super": Object {},
-            "$_temp": Object {
+            "$_super": {},
+            "$_temp": {
               "ruleset": false,
-              "whens": Object {},
+              "whens": {},
             },
-            "$_terms": Object {
+            "$_terms": {
               "alterations": null,
               "examples": null,
               "externals": null,
-              "metas": Array [],
-              "notes": Array [],
+              "metas": [],
+              "notes": [],
               "replacements": null,
               "shared": null,
-              "tags": Array [],
+              "tags": [],
               "whens": null,
             },
             "_cache": null,
-            "_flags": Object {
+            "_flags": {
               "default": "60",
               "presence": "optional",
             },
-            "_ids": Object {
+            "_ids": {
               "_byId": Map {},
               "_byKey": Map {},
               "_schemaChain": false,
             },
             "_invalids": null,
             "_preferences": null,
-            "_refs": Object {
-              "refs": Array [],
+            "_refs": {
+              "refs": [],
             },
-            "_rules": Array [],
+            "_rules": [],
             "_singleRules": Map {},
             "_valids": null,
             "type": "string",
           },
         },
-        Object {
+        {
           "key": "BAS_AUTH_USERNAME",
-          "schema": Object {
-            "$_root": Object {
+          "schema": {
+            "$_root": {
               "ValidationError": [Function],
               "_types": Set {
                 "alternatives",
@@ -2783,14 +2783,14 @@ Object {
               "bool": [Function],
               "boolean": [Function],
               "build": [Function],
-              "cache": Object {
+              "cache": {
                 "provision": [Function],
               },
               "checkPreferences": [Function],
               "compile": [Function],
               "custom": [Function],
               "date": [Function],
-              "default": Object {
+              "default": {
                 "ValidationError": [Function],
                 "_types": Set {
                   "alternatives",
@@ -2817,7 +2817,7 @@ Object {
                 "bool": [Function],
                 "boolean": [Function],
                 "build": [Function],
-                "cache": Object {
+                "cache": {
                   "provision": [Function],
                 },
                 "checkPreferences": [Function],
@@ -2901,46 +2901,46 @@ Object {
               "when": [Function],
               "x": [Function],
             },
-            "$_super": Object {},
-            "$_temp": Object {
+            "$_super": {},
+            "$_temp": {
               "ruleset": false,
-              "whens": Object {},
+              "whens": {},
             },
-            "$_terms": Object {
+            "$_terms": {
               "alterations": null,
               "examples": null,
               "externals": null,
-              "metas": Array [],
-              "notes": Array [],
+              "metas": [],
+              "notes": [],
               "replacements": null,
               "shared": null,
-              "tags": Array [],
+              "tags": [],
               "whens": null,
             },
             "_cache": null,
-            "_flags": Object {
+            "_flags": {
               "presence": "optional",
             },
-            "_ids": Object {
+            "_ids": {
               "_byId": Map {},
               "_byKey": Map {},
               "_schemaChain": false,
             },
             "_invalids": null,
             "_preferences": null,
-            "_refs": Object {
-              "refs": Array [],
+            "_refs": {
+              "refs": [],
             },
-            "_rules": Array [],
+            "_rules": [],
             "_singleRules": Map {},
             "_valids": null,
             "type": "string",
           },
         },
-        Object {
+        {
           "key": "BAS_AUTH_JWT_SECRET",
-          "schema": Object {
-            "$_root": Object {
+          "schema": {
+            "$_root": {
               "ValidationError": [Function],
               "_types": Set {
                 "alternatives",
@@ -2967,14 +2967,14 @@ Object {
               "bool": [Function],
               "boolean": [Function],
               "build": [Function],
-              "cache": Object {
+              "cache": {
                 "provision": [Function],
               },
               "checkPreferences": [Function],
               "compile": [Function],
               "custom": [Function],
               "date": [Function],
-              "default": Object {
+              "default": {
                 "ValidationError": [Function],
                 "_types": Set {
                   "alternatives",
@@ -3001,7 +3001,7 @@ Object {
                 "bool": [Function],
                 "boolean": [Function],
                 "build": [Function],
-                "cache": Object {
+                "cache": {
                   "provision": [Function],
                 },
                 "checkPreferences": [Function],
@@ -3085,46 +3085,46 @@ Object {
               "when": [Function],
               "x": [Function],
             },
-            "$_super": Object {},
-            "$_temp": Object {
+            "$_super": {},
+            "$_temp": {
               "ruleset": false,
-              "whens": Object {},
+              "whens": {},
             },
-            "$_terms": Object {
+            "$_terms": {
               "alterations": null,
               "examples": null,
               "externals": null,
-              "metas": Array [],
-              "notes": Array [],
+              "metas": [],
+              "notes": [],
               "replacements": null,
               "shared": null,
-              "tags": Array [],
+              "tags": [],
               "whens": null,
             },
             "_cache": null,
-            "_flags": Object {
+            "_flags": {
               "presence": "optional",
             },
-            "_ids": Object {
+            "_ids": {
               "_byId": Map {},
               "_byKey": Map {},
               "_schemaChain": false,
             },
             "_invalids": null,
             "_preferences": null,
-            "_refs": Object {
-              "refs": Array [],
+            "_refs": {
+              "refs": [],
             },
-            "_rules": Array [],
+            "_rules": [],
             "_singleRules": Map {},
             "_valids": null,
             "type": "string",
           },
         },
-        Object {
+        {
           "key": "BAS_HTTPS_KEY_PATH",
-          "schema": Object {
-            "$_root": Object {
+          "schema": {
+            "$_root": {
               "ValidationError": [Function],
               "_types": Set {
                 "alternatives",
@@ -3151,14 +3151,14 @@ Object {
               "bool": [Function],
               "boolean": [Function],
               "build": [Function],
-              "cache": Object {
+              "cache": {
                 "provision": [Function],
               },
               "checkPreferences": [Function],
               "compile": [Function],
               "custom": [Function],
               "date": [Function],
-              "default": Object {
+              "default": {
                 "ValidationError": [Function],
                 "_types": Set {
                   "alternatives",
@@ -3185,7 +3185,7 @@ Object {
                 "bool": [Function],
                 "boolean": [Function],
                 "build": [Function],
-                "cache": Object {
+                "cache": {
                   "provision": [Function],
                 },
                 "checkPreferences": [Function],
@@ -3269,46 +3269,46 @@ Object {
               "when": [Function],
               "x": [Function],
             },
-            "$_super": Object {},
-            "$_temp": Object {
+            "$_super": {},
+            "$_temp": {
               "ruleset": false,
-              "whens": Object {},
+              "whens": {},
             },
-            "$_terms": Object {
+            "$_terms": {
               "alterations": null,
               "examples": null,
               "externals": null,
-              "metas": Array [],
-              "notes": Array [],
+              "metas": [],
+              "notes": [],
               "replacements": null,
               "shared": null,
-              "tags": Array [],
+              "tags": [],
               "whens": null,
             },
             "_cache": null,
-            "_flags": Object {
+            "_flags": {
               "presence": "optional",
             },
-            "_ids": Object {
+            "_ids": {
               "_byId": Map {},
               "_byKey": Map {},
               "_schemaChain": false,
             },
             "_invalids": null,
             "_preferences": null,
-            "_refs": Object {
-              "refs": Array [],
+            "_refs": {
+              "refs": [],
             },
-            "_rules": Array [],
+            "_rules": [],
             "_singleRules": Map {},
             "_valids": null,
             "type": "string",
           },
         },
-        Object {
+        {
           "key": "BAS_HTTPS_CERT_PATH",
-          "schema": Object {
-            "$_root": Object {
+          "schema": {
+            "$_root": {
               "ValidationError": [Function],
               "_types": Set {
                 "alternatives",
@@ -3335,14 +3335,14 @@ Object {
               "bool": [Function],
               "boolean": [Function],
               "build": [Function],
-              "cache": Object {
+              "cache": {
                 "provision": [Function],
               },
               "checkPreferences": [Function],
               "compile": [Function],
               "custom": [Function],
               "date": [Function],
-              "default": Object {
+              "default": {
                 "ValidationError": [Function],
                 "_types": Set {
                   "alternatives",
@@ -3369,7 +3369,7 @@ Object {
                 "bool": [Function],
                 "boolean": [Function],
                 "build": [Function],
-                "cache": Object {
+                "cache": {
                   "provision": [Function],
                 },
                 "checkPreferences": [Function],
@@ -3453,46 +3453,46 @@ Object {
               "when": [Function],
               "x": [Function],
             },
-            "$_super": Object {},
-            "$_temp": Object {
+            "$_super": {},
+            "$_temp": {
               "ruleset": false,
-              "whens": Object {},
+              "whens": {},
             },
-            "$_terms": Object {
+            "$_terms": {
               "alterations": null,
               "examples": null,
               "externals": null,
-              "metas": Array [],
-              "notes": Array [],
+              "metas": [],
+              "notes": [],
               "replacements": null,
               "shared": null,
-              "tags": Array [],
+              "tags": [],
               "whens": null,
             },
             "_cache": null,
-            "_flags": Object {
+            "_flags": {
               "presence": "optional",
             },
-            "_ids": Object {
+            "_ids": {
               "_byId": Map {},
               "_byKey": Map {},
               "_schemaChain": false,
             },
             "_invalids": null,
             "_preferences": null,
-            "_refs": Object {
-              "refs": Array [],
+            "_refs": {
+              "refs": [],
             },
-            "_rules": Array [],
+            "_rules": [],
             "_singleRules": Map {},
             "_valids": null,
             "type": "string",
           },
         },
-        Object {
+        {
           "key": "BAS_CRON_PATTERN",
-          "schema": Object {
-            "$_root": Object {
+          "schema": {
+            "$_root": {
               "ValidationError": [Function],
               "_types": Set {
                 "alternatives",
@@ -3519,14 +3519,14 @@ Object {
               "bool": [Function],
               "boolean": [Function],
               "build": [Function],
-              "cache": Object {
+              "cache": {
                 "provision": [Function],
               },
               "checkPreferences": [Function],
               "compile": [Function],
               "custom": [Function],
               "date": [Function],
-              "default": Object {
+              "default": {
                 "ValidationError": [Function],
                 "_types": Set {
                   "alternatives",
@@ -3553,7 +3553,7 @@ Object {
                 "bool": [Function],
                 "boolean": [Function],
                 "build": [Function],
-                "cache": Object {
+                "cache": {
                   "provision": [Function],
                 },
                 "checkPreferences": [Function],
@@ -3637,61 +3637,61 @@ Object {
               "when": [Function],
               "x": [Function],
             },
-            "$_super": Object {},
-            "$_temp": Object {
+            "$_super": {},
+            "$_temp": {
               "ruleset": false,
-              "whens": Object {},
+              "whens": {},
             },
-            "$_terms": Object {
+            "$_terms": {
               "alterations": null,
               "examples": null,
               "externals": null,
-              "metas": Array [],
-              "notes": Array [],
+              "metas": [],
+              "notes": [],
               "replacements": null,
               "shared": null,
-              "tags": Array [],
+              "tags": [],
               "whens": null,
             },
             "_cache": null,
-            "_flags": Object {
+            "_flags": {
               "default": "0 */30 * * * *",
               "presence": "optional",
             },
-            "_ids": Object {
+            "_ids": {
               "_byId": Map {},
               "_byKey": Map {},
               "_schemaChain": false,
             },
             "_invalids": null,
             "_preferences": null,
-            "_refs": Object {
-              "refs": Array [],
+            "_refs": {
+              "refs": [],
             },
-            "_rules": Array [],
+            "_rules": [],
             "_singleRules": Map {},
             "_valids": null,
             "type": "string",
           },
         },
       ],
-      "metas": Array [],
-      "notes": Array [],
+      "metas": [],
+      "notes": [],
       "patterns": null,
       "renames": null,
       "shared": null,
-      "tags": Array [],
+      "tags": [],
       "whens": null,
     },
     "_cache": null,
-    "_flags": Object {},
-    "_ids": Object {
+    "_flags": {},
+    "_ids": {
       "_byId": Map {},
       "_byKey": Map {
-        "NODE_ENV" => Object {
+        "NODE_ENV" => {
           "id": "NODE_ENV",
-          "schema": Object {
-            "$_root": Object {
+          "schema": {
+            "$_root": {
               "ValidationError": [Function],
               "_types": Set {
                 "alternatives",
@@ -3718,14 +3718,14 @@ Object {
               "bool": [Function],
               "boolean": [Function],
               "build": [Function],
-              "cache": Object {
+              "cache": {
                 "provision": [Function],
               },
               "checkPreferences": [Function],
               "compile": [Function],
               "custom": [Function],
               "date": [Function],
-              "default": Object {
+              "default": {
                 "ValidationError": [Function],
                 "_types": Set {
                   "alternatives",
@@ -3752,7 +3752,7 @@ Object {
                 "bool": [Function],
                 "boolean": [Function],
                 "build": [Function],
-                "cache": Object {
+                "cache": {
                   "provision": [Function],
                 },
                 "checkPreferences": [Function],
@@ -3836,46 +3836,46 @@ Object {
               "when": [Function],
               "x": [Function],
             },
-            "$_super": Object {},
-            "$_temp": Object {
+            "$_super": {},
+            "$_temp": {
               "ruleset": false,
-              "whens": Object {},
+              "whens": {},
             },
-            "$_terms": Object {
+            "$_terms": {
               "alterations": null,
               "examples": null,
               "externals": null,
-              "metas": Array [],
-              "notes": Array [],
+              "metas": [],
+              "notes": [],
               "replacements": null,
               "shared": null,
-              "tags": Array [],
+              "tags": [],
               "whens": null,
             },
             "_cache": null,
-            "_flags": Object {
+            "_flags": {
               "default": "production",
             },
-            "_ids": Object {
+            "_ids": {
               "_byId": Map {},
               "_byKey": Map {},
               "_schemaChain": false,
             },
             "_invalids": null,
             "_preferences": null,
-            "_refs": Object {
-              "refs": Array [],
+            "_refs": {
+              "refs": [],
             },
-            "_rules": Array [],
+            "_rules": [],
             "_singleRules": Map {},
             "_valids": null,
             "type": "string",
           },
         },
-        "BAS_APP_HOST" => Object {
+        "BAS_APP_HOST" => {
           "id": "BAS_APP_HOST",
-          "schema": Object {
-            "$_root": Object {
+          "schema": {
+            "$_root": {
               "ValidationError": [Function],
               "_types": Set {
                 "alternatives",
@@ -3902,14 +3902,14 @@ Object {
               "bool": [Function],
               "boolean": [Function],
               "build": [Function],
-              "cache": Object {
+              "cache": {
                 "provision": [Function],
               },
               "checkPreferences": [Function],
               "compile": [Function],
               "custom": [Function],
               "date": [Function],
-              "default": Object {
+              "default": {
                 "ValidationError": [Function],
                 "_types": Set {
                   "alternatives",
@@ -3936,7 +3936,7 @@ Object {
                 "bool": [Function],
                 "boolean": [Function],
                 "build": [Function],
-                "cache": Object {
+                "cache": {
                   "provision": [Function],
                 },
                 "checkPreferences": [Function],
@@ -4020,46 +4020,46 @@ Object {
               "when": [Function],
               "x": [Function],
             },
-            "$_super": Object {},
-            "$_temp": Object {
+            "$_super": {},
+            "$_temp": {
               "ruleset": false,
-              "whens": Object {},
+              "whens": {},
             },
-            "$_terms": Object {
+            "$_terms": {
               "alterations": null,
               "examples": null,
               "externals": null,
-              "metas": Array [],
-              "notes": Array [],
+              "metas": [],
+              "notes": [],
               "replacements": null,
               "shared": null,
-              "tags": Array [],
+              "tags": [],
               "whens": null,
             },
             "_cache": null,
-            "_flags": Object {
+            "_flags": {
               "default": "0.0.0.0",
             },
-            "_ids": Object {
+            "_ids": {
               "_byId": Map {},
               "_byKey": Map {},
               "_schemaChain": false,
             },
             "_invalids": null,
             "_preferences": null,
-            "_refs": Object {
-              "refs": Array [],
+            "_refs": {
+              "refs": [],
             },
-            "_rules": Array [],
+            "_rules": [],
             "_singleRules": Map {},
             "_valids": null,
             "type": "string",
           },
         },
-        "BAS_APP_PORT" => Object {
+        "BAS_APP_PORT" => {
           "id": "BAS_APP_PORT",
-          "schema": Object {
-            "$_root": Object {
+          "schema": {
+            "$_root": {
               "ValidationError": [Function],
               "_types": Set {
                 "alternatives",
@@ -4086,14 +4086,14 @@ Object {
               "bool": [Function],
               "boolean": [Function],
               "build": [Function],
-              "cache": Object {
+              "cache": {
                 "provision": [Function],
               },
               "checkPreferences": [Function],
               "compile": [Function],
               "custom": [Function],
               "date": [Function],
-              "default": Object {
+              "default": {
                 "ValidationError": [Function],
                 "_types": Set {
                   "alternatives",
@@ -4120,7 +4120,7 @@ Object {
                 "bool": [Function],
                 "boolean": [Function],
                 "build": [Function],
-                "cache": Object {
+                "cache": {
                   "provision": [Function],
                 },
                 "checkPreferences": [Function],
@@ -4204,46 +4204,46 @@ Object {
               "when": [Function],
               "x": [Function],
             },
-            "$_super": Object {},
-            "$_temp": Object {
+            "$_super": {},
+            "$_temp": {
               "ruleset": false,
-              "whens": Object {},
+              "whens": {},
             },
-            "$_terms": Object {
+            "$_terms": {
               "alterations": null,
               "examples": null,
               "externals": null,
-              "metas": Array [],
-              "notes": Array [],
+              "metas": [],
+              "notes": [],
               "replacements": null,
               "shared": null,
-              "tags": Array [],
+              "tags": [],
               "whens": null,
             },
             "_cache": null,
-            "_flags": Object {
+            "_flags": {
               "default": 3000,
             },
-            "_ids": Object {
+            "_ids": {
               "_byId": Map {},
               "_byKey": Map {},
               "_schemaChain": false,
             },
             "_invalids": null,
             "_preferences": null,
-            "_refs": Object {
-              "refs": Array [],
+            "_refs": {
+              "refs": [],
             },
-            "_rules": Array [],
+            "_rules": [],
             "_singleRules": Map {},
             "_valids": null,
             "type": "string",
           },
         },
-        "BAS_APP_CORS_ORIGIN" => Object {
+        "BAS_APP_CORS_ORIGIN" => {
           "id": "BAS_APP_CORS_ORIGIN",
-          "schema": Object {
-            "$_root": Object {
+          "schema": {
+            "$_root": {
               "ValidationError": [Function],
               "_types": Set {
                 "alternatives",
@@ -4270,14 +4270,14 @@ Object {
               "bool": [Function],
               "boolean": [Function],
               "build": [Function],
-              "cache": Object {
+              "cache": {
                 "provision": [Function],
               },
               "checkPreferences": [Function],
               "compile": [Function],
               "custom": [Function],
               "date": [Function],
-              "default": Object {
+              "default": {
                 "ValidationError": [Function],
                 "_types": Set {
                   "alternatives",
@@ -4304,7 +4304,7 @@ Object {
                 "bool": [Function],
                 "boolean": [Function],
                 "build": [Function],
-                "cache": Object {
+                "cache": {
                   "provision": [Function],
                 },
                 "checkPreferences": [Function],
@@ -4388,45 +4388,45 @@ Object {
               "when": [Function],
               "x": [Function],
             },
-            "$_super": Object {},
-            "$_temp": Object {
+            "$_super": {},
+            "$_temp": {
               "ruleset": false,
-              "whens": Object {},
+              "whens": {},
             },
-            "$_terms": Object {
+            "$_terms": {
               "alterations": null,
               "examples": null,
               "externals": null,
-              "metas": Array [],
-              "notes": Array [],
+              "metas": [],
+              "notes": [],
               "shared": null,
-              "tags": Array [],
+              "tags": [],
               "whens": null,
             },
             "_cache": null,
-            "_flags": Object {
+            "_flags": {
               "presence": "optional",
             },
-            "_ids": Object {
+            "_ids": {
               "_byId": Map {},
               "_byKey": Map {},
               "_schemaChain": false,
             },
             "_invalids": null,
             "_preferences": null,
-            "_refs": Object {
-              "refs": Array [],
+            "_refs": {
+              "refs": [],
             },
-            "_rules": Array [],
+            "_rules": [],
             "_singleRules": Map {},
             "_valids": null,
             "type": "any",
           },
         },
-        "BAS_REDIS_HOST" => Object {
+        "BAS_REDIS_HOST" => {
           "id": "BAS_REDIS_HOST",
-          "schema": Object {
-            "$_root": Object {
+          "schema": {
+            "$_root": {
               "ValidationError": [Function],
               "_types": Set {
                 "alternatives",
@@ -4453,14 +4453,14 @@ Object {
               "bool": [Function],
               "boolean": [Function],
               "build": [Function],
-              "cache": Object {
+              "cache": {
                 "provision": [Function],
               },
               "checkPreferences": [Function],
               "compile": [Function],
               "custom": [Function],
               "date": [Function],
-              "default": Object {
+              "default": {
                 "ValidationError": [Function],
                 "_types": Set {
                   "alternatives",
@@ -4487,7 +4487,7 @@ Object {
                 "bool": [Function],
                 "boolean": [Function],
                 "build": [Function],
-                "cache": Object {
+                "cache": {
                   "provision": [Function],
                 },
                 "checkPreferences": [Function],
@@ -4571,47 +4571,47 @@ Object {
               "when": [Function],
               "x": [Function],
             },
-            "$_super": Object {},
-            "$_temp": Object {
+            "$_super": {},
+            "$_temp": {
               "ruleset": false,
-              "whens": Object {},
+              "whens": {},
             },
-            "$_terms": Object {
+            "$_terms": {
               "alterations": null,
               "examples": null,
               "externals": null,
-              "metas": Array [],
-              "notes": Array [],
+              "metas": [],
+              "notes": [],
               "replacements": null,
               "shared": null,
-              "tags": Array [],
+              "tags": [],
               "whens": null,
             },
             "_cache": null,
-            "_flags": Object {
+            "_flags": {
               "default": "redis",
               "presence": "optional",
             },
-            "_ids": Object {
+            "_ids": {
               "_byId": Map {},
               "_byKey": Map {},
               "_schemaChain": false,
             },
             "_invalids": null,
             "_preferences": null,
-            "_refs": Object {
-              "refs": Array [],
+            "_refs": {
+              "refs": [],
             },
-            "_rules": Array [],
+            "_rules": [],
             "_singleRules": Map {},
             "_valids": null,
             "type": "string",
           },
         },
-        "BAS_REDIS_PORT" => Object {
+        "BAS_REDIS_PORT" => {
           "id": "BAS_REDIS_PORT",
-          "schema": Object {
-            "$_root": Object {
+          "schema": {
+            "$_root": {
               "ValidationError": [Function],
               "_types": Set {
                 "alternatives",
@@ -4638,14 +4638,14 @@ Object {
               "bool": [Function],
               "boolean": [Function],
               "build": [Function],
-              "cache": Object {
+              "cache": {
                 "provision": [Function],
               },
               "checkPreferences": [Function],
               "compile": [Function],
               "custom": [Function],
               "date": [Function],
-              "default": Object {
+              "default": {
                 "ValidationError": [Function],
                 "_types": Set {
                   "alternatives",
@@ -4672,7 +4672,7 @@ Object {
                 "bool": [Function],
                 "boolean": [Function],
                 "build": [Function],
-                "cache": Object {
+                "cache": {
                   "provision": [Function],
                 },
                 "checkPreferences": [Function],
@@ -4756,47 +4756,47 @@ Object {
               "when": [Function],
               "x": [Function],
             },
-            "$_super": Object {},
-            "$_temp": Object {
+            "$_super": {},
+            "$_temp": {
               "ruleset": false,
-              "whens": Object {},
+              "whens": {},
             },
-            "$_terms": Object {
+            "$_terms": {
               "alterations": null,
               "examples": null,
               "externals": null,
-              "metas": Array [],
-              "notes": Array [],
+              "metas": [],
+              "notes": [],
               "replacements": null,
               "shared": null,
-              "tags": Array [],
+              "tags": [],
               "whens": null,
             },
             "_cache": null,
-            "_flags": Object {
+            "_flags": {
               "default": "6379",
               "presence": "optional",
             },
-            "_ids": Object {
+            "_ids": {
               "_byId": Map {},
               "_byKey": Map {},
               "_schemaChain": false,
             },
             "_invalids": null,
             "_preferences": null,
-            "_refs": Object {
-              "refs": Array [],
+            "_refs": {
+              "refs": [],
             },
-            "_rules": Array [],
+            "_rules": [],
             "_singleRules": Map {},
             "_valids": null,
             "type": "string",
           },
         },
-        "BAS_REDIS_PASSWORD" => Object {
+        "BAS_REDIS_PASSWORD" => {
           "id": "BAS_REDIS_PASSWORD",
-          "schema": Object {
-            "$_root": Object {
+          "schema": {
+            "$_root": {
               "ValidationError": [Function],
               "_types": Set {
                 "alternatives",
@@ -4823,14 +4823,14 @@ Object {
               "bool": [Function],
               "boolean": [Function],
               "build": [Function],
-              "cache": Object {
+              "cache": {
                 "provision": [Function],
               },
               "checkPreferences": [Function],
               "compile": [Function],
               "custom": [Function],
               "date": [Function],
-              "default": Object {
+              "default": {
                 "ValidationError": [Function],
                 "_types": Set {
                   "alternatives",
@@ -4857,7 +4857,7 @@ Object {
                 "bool": [Function],
                 "boolean": [Function],
                 "build": [Function],
-                "cache": Object {
+                "cache": {
                   "provision": [Function],
                 },
                 "checkPreferences": [Function],
@@ -4941,45 +4941,45 @@ Object {
               "when": [Function],
               "x": [Function],
             },
-            "$_super": Object {},
-            "$_temp": Object {
+            "$_super": {},
+            "$_temp": {
               "ruleset": false,
-              "whens": Object {},
+              "whens": {},
             },
-            "$_terms": Object {
+            "$_terms": {
               "alterations": null,
               "examples": null,
               "externals": null,
-              "metas": Array [],
-              "notes": Array [],
+              "metas": [],
+              "notes": [],
               "shared": null,
-              "tags": Array [],
+              "tags": [],
               "whens": null,
             },
             "_cache": null,
-            "_flags": Object {
+            "_flags": {
               "presence": "optional",
             },
-            "_ids": Object {
+            "_ids": {
               "_byId": Map {},
               "_byKey": Map {},
               "_schemaChain": false,
             },
             "_invalids": null,
             "_preferences": null,
-            "_refs": Object {
-              "refs": Array [],
+            "_refs": {
+              "refs": [],
             },
-            "_rules": Array [],
+            "_rules": [],
             "_singleRules": Map {},
             "_valids": null,
             "type": "any",
           },
         },
-        "BAS_REDIS_TTL_SECS" => Object {
+        "BAS_REDIS_TTL_SECS" => {
           "id": "BAS_REDIS_TTL_SECS",
-          "schema": Object {
-            "$_root": Object {
+          "schema": {
+            "$_root": {
               "ValidationError": [Function],
               "_types": Set {
                 "alternatives",
@@ -5006,14 +5006,14 @@ Object {
               "bool": [Function],
               "boolean": [Function],
               "build": [Function],
-              "cache": Object {
+              "cache": {
                 "provision": [Function],
               },
               "checkPreferences": [Function],
               "compile": [Function],
               "custom": [Function],
               "date": [Function],
-              "default": Object {
+              "default": {
                 "ValidationError": [Function],
                 "_types": Set {
                   "alternatives",
@@ -5040,7 +5040,7 @@ Object {
                 "bool": [Function],
                 "boolean": [Function],
                 "build": [Function],
-                "cache": Object {
+                "cache": {
                   "provision": [Function],
                 },
                 "checkPreferences": [Function],
@@ -5124,47 +5124,47 @@ Object {
               "when": [Function],
               "x": [Function],
             },
-            "$_super": Object {},
-            "$_temp": Object {
+            "$_super": {},
+            "$_temp": {
               "ruleset": false,
-              "whens": Object {},
+              "whens": {},
             },
-            "$_terms": Object {
+            "$_terms": {
               "alterations": null,
               "examples": null,
               "externals": null,
-              "metas": Array [],
-              "notes": Array [],
+              "metas": [],
+              "notes": [],
               "replacements": null,
               "shared": null,
-              "tags": Array [],
+              "tags": [],
               "whens": null,
             },
             "_cache": null,
-            "_flags": Object {
+            "_flags": {
               "default": "2000",
               "presence": "optional",
             },
-            "_ids": Object {
+            "_ids": {
               "_byId": Map {},
               "_byKey": Map {},
               "_schemaChain": false,
             },
             "_invalids": null,
             "_preferences": null,
-            "_refs": Object {
-              "refs": Array [],
+            "_refs": {
+              "refs": [],
             },
-            "_rules": Array [],
+            "_rules": [],
             "_singleRules": Map {},
             "_valids": null,
             "type": "string",
           },
         },
-        "BAS_REDIS_DB" => Object {
+        "BAS_REDIS_DB" => {
           "id": "BAS_REDIS_DB",
-          "schema": Object {
-            "$_root": Object {
+          "schema": {
+            "$_root": {
               "ValidationError": [Function],
               "_types": Set {
                 "alternatives",
@@ -5191,14 +5191,14 @@ Object {
               "bool": [Function],
               "boolean": [Function],
               "build": [Function],
-              "cache": Object {
+              "cache": {
                 "provision": [Function],
               },
               "checkPreferences": [Function],
               "compile": [Function],
               "custom": [Function],
               "date": [Function],
-              "default": Object {
+              "default": {
                 "ValidationError": [Function],
                 "_types": Set {
                   "alternatives",
@@ -5225,7 +5225,7 @@ Object {
                 "bool": [Function],
                 "boolean": [Function],
                 "build": [Function],
-                "cache": Object {
+                "cache": {
                   "provision": [Function],
                 },
                 "checkPreferences": [Function],
@@ -5309,47 +5309,47 @@ Object {
               "when": [Function],
               "x": [Function],
             },
-            "$_super": Object {},
-            "$_temp": Object {
+            "$_super": {},
+            "$_temp": {
               "ruleset": false,
-              "whens": Object {},
+              "whens": {},
             },
-            "$_terms": Object {
+            "$_terms": {
               "alterations": null,
               "examples": null,
               "externals": null,
-              "metas": Array [],
-              "notes": Array [],
+              "metas": [],
+              "notes": [],
               "replacements": null,
               "shared": null,
-              "tags": Array [],
+              "tags": [],
               "whens": null,
             },
             "_cache": null,
-            "_flags": Object {
+            "_flags": {
               "default": "0",
               "presence": "optional",
             },
-            "_ids": Object {
+            "_ids": {
               "_byId": Map {},
               "_byKey": Map {},
               "_schemaChain": false,
             },
             "_invalids": null,
             "_preferences": null,
-            "_refs": Object {
-              "refs": Array [],
+            "_refs": {
+              "refs": [],
             },
-            "_rules": Array [],
+            "_rules": [],
             "_singleRules": Map {},
             "_valids": null,
             "type": "string",
           },
         },
-        "BAS_BATTLENET_REGION" => Object {
+        "BAS_BATTLENET_REGION" => {
           "id": "BAS_BATTLENET_REGION",
-          "schema": Object {
-            "$_root": Object {
+          "schema": {
+            "$_root": {
               "ValidationError": [Function],
               "_types": Set {
                 "alternatives",
@@ -5376,14 +5376,14 @@ Object {
               "bool": [Function],
               "boolean": [Function],
               "build": [Function],
-              "cache": Object {
+              "cache": {
                 "provision": [Function],
               },
               "checkPreferences": [Function],
               "compile": [Function],
               "custom": [Function],
               "date": [Function],
-              "default": Object {
+              "default": {
                 "ValidationError": [Function],
                 "_types": Set {
                   "alternatives",
@@ -5410,7 +5410,7 @@ Object {
                 "bool": [Function],
                 "boolean": [Function],
                 "build": [Function],
-                "cache": Object {
+                "cache": {
                   "provision": [Function],
                 },
                 "checkPreferences": [Function],
@@ -5494,40 +5494,40 @@ Object {
               "when": [Function],
               "x": [Function],
             },
-            "$_super": Object {},
-            "$_temp": Object {
+            "$_super": {},
+            "$_temp": {
               "ruleset": null,
-              "whens": Object {},
+              "whens": {},
             },
-            "$_terms": Object {
+            "$_terms": {
               "alterations": null,
               "examples": null,
               "externals": null,
-              "metas": Array [],
-              "notes": Array [],
+              "metas": [],
+              "notes": [],
               "replacements": null,
               "shared": null,
-              "tags": Array [],
+              "tags": [],
               "whens": null,
             },
             "_cache": null,
-            "_flags": Object {
+            "_flags": {
               "presence": "required",
             },
-            "_ids": Object {
+            "_ids": {
               "_byId": Map {},
               "_byKey": Map {},
               "_schemaChain": false,
             },
             "_invalids": null,
             "_preferences": null,
-            "_refs": Object {
-              "refs": Array [],
+            "_refs": {
+              "refs": [],
             },
-            "_rules": Array [
-              Object {
-                "_resolve": Array [],
-                "args": Object {
+            "_rules": [
+              {
+                "_resolve": [],
+                "args": {
                   "method": [Function],
                 },
                 "method": "custom",
@@ -5539,10 +5539,10 @@ Object {
             "type": "string",
           },
         },
-        "BAS_BATTLENET_CLIENT_ID" => Object {
+        "BAS_BATTLENET_CLIENT_ID" => {
           "id": "BAS_BATTLENET_CLIENT_ID",
-          "schema": Object {
-            "$_root": Object {
+          "schema": {
+            "$_root": {
               "ValidationError": [Function],
               "_types": Set {
                 "alternatives",
@@ -5569,14 +5569,14 @@ Object {
               "bool": [Function],
               "boolean": [Function],
               "build": [Function],
-              "cache": Object {
+              "cache": {
                 "provision": [Function],
               },
               "checkPreferences": [Function],
               "compile": [Function],
               "custom": [Function],
               "date": [Function],
-              "default": Object {
+              "default": {
                 "ValidationError": [Function],
                 "_types": Set {
                   "alternatives",
@@ -5603,7 +5603,7 @@ Object {
                 "bool": [Function],
                 "boolean": [Function],
                 "build": [Function],
-                "cache": Object {
+                "cache": {
                   "provision": [Function],
                 },
                 "checkPreferences": [Function],
@@ -5687,46 +5687,46 @@ Object {
               "when": [Function],
               "x": [Function],
             },
-            "$_super": Object {},
-            "$_temp": Object {
+            "$_super": {},
+            "$_temp": {
               "ruleset": false,
-              "whens": Object {},
+              "whens": {},
             },
-            "$_terms": Object {
+            "$_terms": {
               "alterations": null,
               "examples": null,
               "externals": null,
-              "metas": Array [],
-              "notes": Array [],
+              "metas": [],
+              "notes": [],
               "replacements": null,
               "shared": null,
-              "tags": Array [],
+              "tags": [],
               "whens": null,
             },
             "_cache": null,
-            "_flags": Object {
+            "_flags": {
               "presence": "required",
             },
-            "_ids": Object {
+            "_ids": {
               "_byId": Map {},
               "_byKey": Map {},
               "_schemaChain": false,
             },
             "_invalids": null,
             "_preferences": null,
-            "_refs": Object {
-              "refs": Array [],
+            "_refs": {
+              "refs": [],
             },
-            "_rules": Array [],
+            "_rules": [],
             "_singleRules": Map {},
             "_valids": null,
             "type": "string",
           },
         },
-        "BAS_BATTLENET_CLIENT_SECRET" => Object {
+        "BAS_BATTLENET_CLIENT_SECRET" => {
           "id": "BAS_BATTLENET_CLIENT_SECRET",
-          "schema": Object {
-            "$_root": Object {
+          "schema": {
+            "$_root": {
               "ValidationError": [Function],
               "_types": Set {
                 "alternatives",
@@ -5753,14 +5753,14 @@ Object {
               "bool": [Function],
               "boolean": [Function],
               "build": [Function],
-              "cache": Object {
+              "cache": {
                 "provision": [Function],
               },
               "checkPreferences": [Function],
               "compile": [Function],
               "custom": [Function],
               "date": [Function],
-              "default": Object {
+              "default": {
                 "ValidationError": [Function],
                 "_types": Set {
                   "alternatives",
@@ -5787,7 +5787,7 @@ Object {
                 "bool": [Function],
                 "boolean": [Function],
                 "build": [Function],
-                "cache": Object {
+                "cache": {
                   "provision": [Function],
                 },
                 "checkPreferences": [Function],
@@ -5871,46 +5871,46 @@ Object {
               "when": [Function],
               "x": [Function],
             },
-            "$_super": Object {},
-            "$_temp": Object {
+            "$_super": {},
+            "$_temp": {
               "ruleset": false,
-              "whens": Object {},
+              "whens": {},
             },
-            "$_terms": Object {
+            "$_terms": {
               "alterations": null,
               "examples": null,
               "externals": null,
-              "metas": Array [],
-              "notes": Array [],
+              "metas": [],
+              "notes": [],
               "replacements": null,
               "shared": null,
-              "tags": Array [],
+              "tags": [],
               "whens": null,
             },
             "_cache": null,
-            "_flags": Object {
+            "_flags": {
               "presence": "required",
             },
-            "_ids": Object {
+            "_ids": {
               "_byId": Map {},
               "_byKey": Map {},
               "_schemaChain": false,
             },
             "_invalids": null,
             "_preferences": null,
-            "_refs": Object {
-              "refs": Array [],
+            "_refs": {
+              "refs": [],
             },
-            "_rules": Array [],
+            "_rules": [],
             "_singleRules": Map {},
             "_valids": null,
             "type": "string",
           },
         },
-        "BAS_THROTTLE_LIMIT" => Object {
+        "BAS_THROTTLE_LIMIT" => {
           "id": "BAS_THROTTLE_LIMIT",
-          "schema": Object {
-            "$_root": Object {
+          "schema": {
+            "$_root": {
               "ValidationError": [Function],
               "_types": Set {
                 "alternatives",
@@ -5937,14 +5937,14 @@ Object {
               "bool": [Function],
               "boolean": [Function],
               "build": [Function],
-              "cache": Object {
+              "cache": {
                 "provision": [Function],
               },
               "checkPreferences": [Function],
               "compile": [Function],
               "custom": [Function],
               "date": [Function],
-              "default": Object {
+              "default": {
                 "ValidationError": [Function],
                 "_types": Set {
                   "alternatives",
@@ -5971,7 +5971,7 @@ Object {
                 "bool": [Function],
                 "boolean": [Function],
                 "build": [Function],
-                "cache": Object {
+                "cache": {
                   "provision": [Function],
                 },
                 "checkPreferences": [Function],
@@ -6055,47 +6055,47 @@ Object {
               "when": [Function],
               "x": [Function],
             },
-            "$_super": Object {},
-            "$_temp": Object {
+            "$_super": {},
+            "$_temp": {
               "ruleset": false,
-              "whens": Object {},
+              "whens": {},
             },
-            "$_terms": Object {
+            "$_terms": {
               "alterations": null,
               "examples": null,
               "externals": null,
-              "metas": Array [],
-              "notes": Array [],
+              "metas": [],
+              "notes": [],
               "replacements": null,
               "shared": null,
-              "tags": Array [],
+              "tags": [],
               "whens": null,
             },
             "_cache": null,
-            "_flags": Object {
+            "_flags": {
               "default": "300",
               "presence": "optional",
             },
-            "_ids": Object {
+            "_ids": {
               "_byId": Map {},
               "_byKey": Map {},
               "_schemaChain": false,
             },
             "_invalids": null,
             "_preferences": null,
-            "_refs": Object {
-              "refs": Array [],
+            "_refs": {
+              "refs": [],
             },
-            "_rules": Array [],
+            "_rules": [],
             "_singleRules": Map {},
             "_valids": null,
             "type": "string",
           },
         },
-        "BAS_THROTTLE_TTL_SECS" => Object {
+        "BAS_THROTTLE_TTL_SECS" => {
           "id": "BAS_THROTTLE_TTL_SECS",
-          "schema": Object {
-            "$_root": Object {
+          "schema": {
+            "$_root": {
               "ValidationError": [Function],
               "_types": Set {
                 "alternatives",
@@ -6122,14 +6122,14 @@ Object {
               "bool": [Function],
               "boolean": [Function],
               "build": [Function],
-              "cache": Object {
+              "cache": {
                 "provision": [Function],
               },
               "checkPreferences": [Function],
               "compile": [Function],
               "custom": [Function],
               "date": [Function],
-              "default": Object {
+              "default": {
                 "ValidationError": [Function],
                 "_types": Set {
                   "alternatives",
@@ -6156,7 +6156,7 @@ Object {
                 "bool": [Function],
                 "boolean": [Function],
                 "build": [Function],
-                "cache": Object {
+                "cache": {
                   "provision": [Function],
                 },
                 "checkPreferences": [Function],
@@ -6240,47 +6240,47 @@ Object {
               "when": [Function],
               "x": [Function],
             },
-            "$_super": Object {},
-            "$_temp": Object {
+            "$_super": {},
+            "$_temp": {
               "ruleset": false,
-              "whens": Object {},
+              "whens": {},
             },
-            "$_terms": Object {
+            "$_terms": {
               "alterations": null,
               "examples": null,
               "externals": null,
-              "metas": Array [],
-              "notes": Array [],
+              "metas": [],
+              "notes": [],
               "replacements": null,
               "shared": null,
-              "tags": Array [],
+              "tags": [],
               "whens": null,
             },
             "_cache": null,
-            "_flags": Object {
+            "_flags": {
               "default": "60",
               "presence": "optional",
             },
-            "_ids": Object {
+            "_ids": {
               "_byId": Map {},
               "_byKey": Map {},
               "_schemaChain": false,
             },
             "_invalids": null,
             "_preferences": null,
-            "_refs": Object {
-              "refs": Array [],
+            "_refs": {
+              "refs": [],
             },
-            "_rules": Array [],
+            "_rules": [],
             "_singleRules": Map {},
             "_valids": null,
             "type": "string",
           },
         },
-        "BAS_AUTH_USERNAME" => Object {
+        "BAS_AUTH_USERNAME" => {
           "id": "BAS_AUTH_USERNAME",
-          "schema": Object {
-            "$_root": Object {
+          "schema": {
+            "$_root": {
               "ValidationError": [Function],
               "_types": Set {
                 "alternatives",
@@ -6307,14 +6307,14 @@ Object {
               "bool": [Function],
               "boolean": [Function],
               "build": [Function],
-              "cache": Object {
+              "cache": {
                 "provision": [Function],
               },
               "checkPreferences": [Function],
               "compile": [Function],
               "custom": [Function],
               "date": [Function],
-              "default": Object {
+              "default": {
                 "ValidationError": [Function],
                 "_types": Set {
                   "alternatives",
@@ -6341,7 +6341,7 @@ Object {
                 "bool": [Function],
                 "boolean": [Function],
                 "build": [Function],
-                "cache": Object {
+                "cache": {
                   "provision": [Function],
                 },
                 "checkPreferences": [Function],
@@ -6425,46 +6425,46 @@ Object {
               "when": [Function],
               "x": [Function],
             },
-            "$_super": Object {},
-            "$_temp": Object {
+            "$_super": {},
+            "$_temp": {
               "ruleset": false,
-              "whens": Object {},
+              "whens": {},
             },
-            "$_terms": Object {
+            "$_terms": {
               "alterations": null,
               "examples": null,
               "externals": null,
-              "metas": Array [],
-              "notes": Array [],
+              "metas": [],
+              "notes": [],
               "replacements": null,
               "shared": null,
-              "tags": Array [],
+              "tags": [],
               "whens": null,
             },
             "_cache": null,
-            "_flags": Object {
+            "_flags": {
               "presence": "optional",
             },
-            "_ids": Object {
+            "_ids": {
               "_byId": Map {},
               "_byKey": Map {},
               "_schemaChain": false,
             },
             "_invalids": null,
             "_preferences": null,
-            "_refs": Object {
-              "refs": Array [],
+            "_refs": {
+              "refs": [],
             },
-            "_rules": Array [],
+            "_rules": [],
             "_singleRules": Map {},
             "_valids": null,
             "type": "string",
           },
         },
-        "BAS_AUTH_JWT_SECRET" => Object {
+        "BAS_AUTH_JWT_SECRET" => {
           "id": "BAS_AUTH_JWT_SECRET",
-          "schema": Object {
-            "$_root": Object {
+          "schema": {
+            "$_root": {
               "ValidationError": [Function],
               "_types": Set {
                 "alternatives",
@@ -6491,14 +6491,14 @@ Object {
               "bool": [Function],
               "boolean": [Function],
               "build": [Function],
-              "cache": Object {
+              "cache": {
                 "provision": [Function],
               },
               "checkPreferences": [Function],
               "compile": [Function],
               "custom": [Function],
               "date": [Function],
-              "default": Object {
+              "default": {
                 "ValidationError": [Function],
                 "_types": Set {
                   "alternatives",
@@ -6525,7 +6525,7 @@ Object {
                 "bool": [Function],
                 "boolean": [Function],
                 "build": [Function],
-                "cache": Object {
+                "cache": {
                   "provision": [Function],
                 },
                 "checkPreferences": [Function],
@@ -6609,46 +6609,46 @@ Object {
               "when": [Function],
               "x": [Function],
             },
-            "$_super": Object {},
-            "$_temp": Object {
+            "$_super": {},
+            "$_temp": {
               "ruleset": false,
-              "whens": Object {},
+              "whens": {},
             },
-            "$_terms": Object {
+            "$_terms": {
               "alterations": null,
               "examples": null,
               "externals": null,
-              "metas": Array [],
-              "notes": Array [],
+              "metas": [],
+              "notes": [],
               "replacements": null,
               "shared": null,
-              "tags": Array [],
+              "tags": [],
               "whens": null,
             },
             "_cache": null,
-            "_flags": Object {
+            "_flags": {
               "presence": "optional",
             },
-            "_ids": Object {
+            "_ids": {
               "_byId": Map {},
               "_byKey": Map {},
               "_schemaChain": false,
             },
             "_invalids": null,
             "_preferences": null,
-            "_refs": Object {
-              "refs": Array [],
+            "_refs": {
+              "refs": [],
             },
-            "_rules": Array [],
+            "_rules": [],
             "_singleRules": Map {},
             "_valids": null,
             "type": "string",
           },
         },
-        "BAS_HTTPS_KEY_PATH" => Object {
+        "BAS_HTTPS_KEY_PATH" => {
           "id": "BAS_HTTPS_KEY_PATH",
-          "schema": Object {
-            "$_root": Object {
+          "schema": {
+            "$_root": {
               "ValidationError": [Function],
               "_types": Set {
                 "alternatives",
@@ -6675,14 +6675,14 @@ Object {
               "bool": [Function],
               "boolean": [Function],
               "build": [Function],
-              "cache": Object {
+              "cache": {
                 "provision": [Function],
               },
               "checkPreferences": [Function],
               "compile": [Function],
               "custom": [Function],
               "date": [Function],
-              "default": Object {
+              "default": {
                 "ValidationError": [Function],
                 "_types": Set {
                   "alternatives",
@@ -6709,7 +6709,7 @@ Object {
                 "bool": [Function],
                 "boolean": [Function],
                 "build": [Function],
-                "cache": Object {
+                "cache": {
                   "provision": [Function],
                 },
                 "checkPreferences": [Function],
@@ -6793,46 +6793,46 @@ Object {
               "when": [Function],
               "x": [Function],
             },
-            "$_super": Object {},
-            "$_temp": Object {
+            "$_super": {},
+            "$_temp": {
               "ruleset": false,
-              "whens": Object {},
+              "whens": {},
             },
-            "$_terms": Object {
+            "$_terms": {
               "alterations": null,
               "examples": null,
               "externals": null,
-              "metas": Array [],
-              "notes": Array [],
+              "metas": [],
+              "notes": [],
               "replacements": null,
               "shared": null,
-              "tags": Array [],
+              "tags": [],
               "whens": null,
             },
             "_cache": null,
-            "_flags": Object {
+            "_flags": {
               "presence": "optional",
             },
-            "_ids": Object {
+            "_ids": {
               "_byId": Map {},
               "_byKey": Map {},
               "_schemaChain": false,
             },
             "_invalids": null,
             "_preferences": null,
-            "_refs": Object {
-              "refs": Array [],
+            "_refs": {
+              "refs": [],
             },
-            "_rules": Array [],
+            "_rules": [],
             "_singleRules": Map {},
             "_valids": null,
             "type": "string",
           },
         },
-        "BAS_HTTPS_CERT_PATH" => Object {
+        "BAS_HTTPS_CERT_PATH" => {
           "id": "BAS_HTTPS_CERT_PATH",
-          "schema": Object {
-            "$_root": Object {
+          "schema": {
+            "$_root": {
               "ValidationError": [Function],
               "_types": Set {
                 "alternatives",
@@ -6859,14 +6859,14 @@ Object {
               "bool": [Function],
               "boolean": [Function],
               "build": [Function],
-              "cache": Object {
+              "cache": {
                 "provision": [Function],
               },
               "checkPreferences": [Function],
               "compile": [Function],
               "custom": [Function],
               "date": [Function],
-              "default": Object {
+              "default": {
                 "ValidationError": [Function],
                 "_types": Set {
                   "alternatives",
@@ -6893,7 +6893,7 @@ Object {
                 "bool": [Function],
                 "boolean": [Function],
                 "build": [Function],
-                "cache": Object {
+                "cache": {
                   "provision": [Function],
                 },
                 "checkPreferences": [Function],
@@ -6977,46 +6977,46 @@ Object {
               "when": [Function],
               "x": [Function],
             },
-            "$_super": Object {},
-            "$_temp": Object {
+            "$_super": {},
+            "$_temp": {
               "ruleset": false,
-              "whens": Object {},
+              "whens": {},
             },
-            "$_terms": Object {
+            "$_terms": {
               "alterations": null,
               "examples": null,
               "externals": null,
-              "metas": Array [],
-              "notes": Array [],
+              "metas": [],
+              "notes": [],
               "replacements": null,
               "shared": null,
-              "tags": Array [],
+              "tags": [],
               "whens": null,
             },
             "_cache": null,
-            "_flags": Object {
+            "_flags": {
               "presence": "optional",
             },
-            "_ids": Object {
+            "_ids": {
               "_byId": Map {},
               "_byKey": Map {},
               "_schemaChain": false,
             },
             "_invalids": null,
             "_preferences": null,
-            "_refs": Object {
-              "refs": Array [],
+            "_refs": {
+              "refs": [],
             },
-            "_rules": Array [],
+            "_rules": [],
             "_singleRules": Map {},
             "_valids": null,
             "type": "string",
           },
         },
-        "BAS_CRON_PATTERN" => Object {
+        "BAS_CRON_PATTERN" => {
           "id": "BAS_CRON_PATTERN",
-          "schema": Object {
-            "$_root": Object {
+          "schema": {
+            "$_root": {
               "ValidationError": [Function],
               "_types": Set {
                 "alternatives",
@@ -7043,14 +7043,14 @@ Object {
               "bool": [Function],
               "boolean": [Function],
               "build": [Function],
-              "cache": Object {
+              "cache": {
                 "provision": [Function],
               },
               "checkPreferences": [Function],
               "compile": [Function],
               "custom": [Function],
               "date": [Function],
-              "default": Object {
+              "default": {
                 "ValidationError": [Function],
                 "_types": Set {
                   "alternatives",
@@ -7077,7 +7077,7 @@ Object {
                 "bool": [Function],
                 "boolean": [Function],
                 "build": [Function],
-                "cache": Object {
+                "cache": {
                   "provision": [Function],
                 },
                 "checkPreferences": [Function],
@@ -7161,38 +7161,38 @@ Object {
               "when": [Function],
               "x": [Function],
             },
-            "$_super": Object {},
-            "$_temp": Object {
+            "$_super": {},
+            "$_temp": {
               "ruleset": false,
-              "whens": Object {},
+              "whens": {},
             },
-            "$_terms": Object {
+            "$_terms": {
               "alterations": null,
               "examples": null,
               "externals": null,
-              "metas": Array [],
-              "notes": Array [],
+              "metas": [],
+              "notes": [],
               "replacements": null,
               "shared": null,
-              "tags": Array [],
+              "tags": [],
               "whens": null,
             },
             "_cache": null,
-            "_flags": Object {
+            "_flags": {
               "default": "0 */30 * * * *",
               "presence": "optional",
             },
-            "_ids": Object {
+            "_ids": {
               "_byId": Map {},
               "_byKey": Map {},
               "_schemaChain": false,
             },
             "_invalids": null,
             "_preferences": null,
-            "_refs": Object {
-              "refs": Array [],
+            "_refs": {
+              "refs": [],
             },
-            "_rules": Array [],
+            "_rules": [],
             "_singleRules": Map {},
             "_valids": null,
             "type": "string",
@@ -7203,10 +7203,10 @@ Object {
     },
     "_invalids": null,
     "_preferences": null,
-    "_refs": Object {
-      "refs": Array [],
+    "_refs": {
+      "refs": [],
     },
-    "_rules": Array [],
+    "_rules": [],
     "_singleRules": Map {},
     "_valids": null,
     "type": "object",

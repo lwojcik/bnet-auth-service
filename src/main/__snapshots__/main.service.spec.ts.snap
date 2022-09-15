@@ -1,17 +1,17 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`MainService should get status 1`] = `
-Object {
-  "endpoints": Object {
-    "accesstoken": Object {
+{
+  "endpoints": {
+    "accesstoken": {
       "method": "GET",
       "url": "/accesstoken",
     },
-    "accesstokenrefresh": Object {
+    "accesstokenrefresh": {
       "method": "GET",
       "url": "/accesstoken?refresh=true",
     },
-    "status": Object {
+    "status": {
       "method": "GET",
       "url": "/status",
     },
