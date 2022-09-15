@@ -1,16 +1,16 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`endpointsConfig should create endpoints config 1`] = `
-Object {
-  "accesstoken": Object {
+{
+  "accesstoken": {
     "method": "GET",
     "url": "/accesstoken",
   },
-  "accesstokenrefresh": Object {
+  "accesstokenrefresh": {
     "method": "GET",
     "url": "/accesstoken?refresh=true",
   },
-  "status": Object {
+  "status": {
     "method": "GET",
     "url": "/status",
   },

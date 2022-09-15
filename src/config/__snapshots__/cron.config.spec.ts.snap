@@ -1,7 +1,7 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`cronConfig should create cron config 1`] = `
-Object {
+{
   "enable": false,
   "pattern": undefined,
 }
