@@ -75,7 +75,7 @@
     "@types/eslint": "8.4.3"
   },
   "dependencies": {
-    "@fastify/swagger": "^7.4.1",
+    "@fastify/swagger": "^8.0.0",
     "@liaoliaots/nestjs-redis": "^9.0.2",
     "@nestjs/common": "^9.0.11",
     "@nestjs/config": "^2.2.0",
