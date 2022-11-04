@@ -1,6 +1,6 @@
 image: Ubuntu2004
 platform: x64
-stack: node 18
+stack: node lts/*
 services:
   - docker
 
