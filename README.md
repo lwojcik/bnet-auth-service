@@ -213,20 +213,3 @@ This method is meant as a fallback for service consumers to use when access toke
 ## Swagger
 
 Swagger is available when `NODE_ENV` is set to `development` at `http://service.url.here/api`. When using the service locally, the URL is most likely `http://localhost:3000/api`.
-
-## Contributions
-
-`bnet-auth-service` is mostly a complete project and no further features are planned.
-
-The type of contributions that are most welcome:
-
-- bug reports and fixes of any kind
-- documentation improvements
-- suggestions of additional properties returned by any of the existing endpoints
-- error responses that weren't explicitly documented
-
-Before contributing be sure to read [Code of Conduct](https://github.com/sc2pte/bnet-auth-service/blob/master/CODE_OF_CONDUCT.md).
-
-## License
-
-Code is available under MIT license. See [LICENSE](https://raw.githubusercontent.com/sc2pte/bnet-auth-service/master/LICENSE) for more information.
