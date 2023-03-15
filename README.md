@@ -1,9 +1,6 @@
 # bnet-auth-service (BAS)
 
-[![Build status](https://ci.appveyor.com/api/projects/status/5lunfkv0ot8rh3yt/branch/master?svg=true)](https://ci.appveyor.com/project/lwojcik/bnet-auth-service/branch/master)
-[![codecov](https://codecov.io/gh/sc2pte/bnet-auth-service/branch/master/graph/badge.svg?token=sFEmFjKiRo)](https://codecov.io/gh/sc2pte/bnet-auth-service)
-
-**This is version 2 of the project and it's incompatible with previous version. If you're looking for the previous version, head to [v1 branch](https://github.com/sc2pte/bnet-auth-service/tree/v1).**
+> **As of 15 March 2023 this project is no longer updated or maintained.**
 
 REST microservice retrieving and caching OAuth access tokens from [Blizzard Battle.net API](https://develop.battle.net/).
 
